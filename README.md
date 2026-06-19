@@ -1,4 +1,4 @@
-# AI Chat Mod experimental release 1.3
+# AI Chat Mod experimental release 1.2
 
 Microsoft Defender might flag the plugin as suspicious, but you can scan the file on `virustotal.com` to verify that it's clean
 
@@ -50,7 +50,7 @@ Important: Local AI models are resource-intensive. While the game is running (wh
 
 ## Configuration
 
-All settings are stored in `AIchat/aichat_config.txt` and can be edited while the game is running via the in-game Settings panel (toggle with config button in the chat window).
+All settings are stored in `Some_Modeling_Agency/BepInEx/plugins/AIchat/aichat_config.txt` and can be edited while the game is running via the in-game Settings panel (toggle with config button in the chat window).
 
 | Setting | Default | Description |
 |---------|---------|-------------|
@@ -58,7 +58,7 @@ All settings are stored in `AIchat/aichat_config.txt` and can be edited while th
 | `Provider` | `Gemini` | Active provider: `Gemini`, `Ollama`, or `Gemma` |
 | `OllamaUrl` | `http://localhost:11434/api/generate` | Ollama API endpoint |
 | `OllamaModel` | `dolphin3:8b` | Default Ollama model name, you can download at https://ollama.com/library/dolphin3:8b |
-| `GemmaUrl` | `http://localhost:11434/api/generate` | Gemma API endpoint (Ollama-compatible) |
+| `GemmaUrl` | `http://localhost:1234/v1` | Gemma API endpoint |
 | `GemmaModel` | `gemma-the-writer-n-restless-quill-10b-uncensored` | Default Gemma model name |
 | `ChatHotkey` | `F9` | Key to toggle the chat window |
 | `AllowSluttifyCommand` | `False` | Allow the AI to use the `sluttify` command |
