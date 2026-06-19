@@ -168,7 +168,7 @@ She: I... I'll try to relax...
 
 ### Gemma (Local)
 
-- **Endpoint**: Configurable (default `http://localhost:11434/api/generate`, Ollama-compatible)
+- **Endpoint**: Configurable (default `http://localhost:1234/v1`)
 - **Format**: Gemma's **strict chat template** using control tokens. Each turn is wrapped:
   ```
   {system prompt}
@@ -214,7 +214,7 @@ The AI can request any of these commands through conversation. Each can be toggl
 
 ## System Prompt Structure
 
-The system prompt is dynamically generated each interaction by `PromptBuilder.GenerarSystemPrompt()`. It uses a template (`AIchat/system_prompt.txt`) with placeholders:
+The system prompt is dynamically generated each interaction by `PromptBuilder.GenerarSystemPrompt()`. It uses a template (`Some_Modeling_Agency/BepInEx/plugins/AIchat/system_prompt.txt`) with placeholders:
 
 | Placeholder | Content |
 |-------------|---------|
