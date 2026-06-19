@@ -1,0 +1,485 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5CDA55CE-936A-4CCF-B4A8-92430C0C63B1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Base.Plugins</RootNamespace>
+    <AssemblyName>Base.Plugins</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="netstandard">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\netstandard.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Mathematics">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Unity.Mathematics.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Unity.TextMeshPro.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AnimationModule">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.AnimationModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ImageConversionModule">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.ImageConversionModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.IMGUIModule">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.IMGUIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.InputLegacyModule">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.InputLegacyModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.JSONSerializeModule">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.JSONSerializeModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.PhysicsModule">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.PhysicsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TextRenderingModule">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.TextRenderingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UIModule">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.UIModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AllAroundNode.cs" />
+    <Compile Include="Assets\AngularAxisPolarizado.cs" />
+    <Compile Include="Assets\AnimatorExtBoneMap.cs" />
+    <Compile Include="Assets\ArchivosEnDisco.cs" />
+    <Compile Include="Assets\Axis.cs" />
+    <Compile Include="Assets\AxisPolarizado.cs" />
+    <Compile Include="Assets\BaseCoroutineCapsule.2.cs" />
+    <Compile Include="Assets\BaseCoroutineCapsule.cs" />
+    <Compile Include="Assets\BaseCoroutineCapsuleConfig.cs" />
+    <Compile Include="Assets\BaseFlotante.cs" />
+    <Compile Include="Assets\BaseFlotanteDobleLayer.cs" />
+    <Compile Include="Assets\BaseFlotanteDobleLayerV2.cs" />
+    <Compile Include="Assets\BaseFlotanteSingleLayer.cs" />
+    <Compile Include="Assets\Base\Plugins\Runtime\IRecostable.cs" />
+    <Compile Include="Assets\Base\Plugins\Runtime\ItemQuality.cs" />
+    <Compile Include="Assets\Base\Plugins\Runtime\ItemQualityEXT.cs" />
+    <Compile Include="Assets\Base\Plugins\Runtime\ShadersWarmUpDialog.cs" />
+    <Compile Include="Assets\Base\Plugins\Runtime\TipoDeRandomizadoParaSujeto.cs" />
+    <Compile Include="Assets\Base\Plugins\Runtime\UI\AsyncDrawedAttribute.cs" />
+    <Compile Include="Assets\Base\Plugins\Runtime\UI\AutoElementoUIAttribute.cs" />
+    <Compile Include="Assets\Base\Plugins\Runtime\UI\ColorEnum.cs" />
+    <Compile Include="Assets\Base\Plugins\Runtime\UI\DynamicUIElementAttribute.cs" />
+    <Compile Include="Assets\Base\Plugins\Runtime\UI\FontProConfigUIAttribute.cs" />
+    <Compile Include="Assets\Base\Plugins\Runtime\UI\ForceTittleAttribute.cs" />
+    <Compile Include="Assets\Base\Plugins\Runtime\UI\IBaseLayoutAttribute.cs" />
+    <Compile Include="Assets\Base\Plugins\Runtime\UI\IFontAttribute.cs" />
+    <Compile Include="Assets\Base\Plugins\Runtime\UI\IFontAttributePro.cs" />
+    <Compile Include="Assets\Base\Plugins\Runtime\UI\IgnoreAttribute.cs" />
+    <Compile Include="Assets\Base\Plugins\Runtime\UI\IgnoreIfAttribute.cs" />
+    <Compile Include="Assets\Base\Plugins\Runtime\UI\IgnoreValueAttribute.cs" />
+    <Compile Include="Assets\Base\Plugins\Runtime\UI\IPanelAttribute.cs" />
+    <Compile Include="Assets\Base\Plugins\Runtime\UI\LayoutConfigUIAttribute.cs" />
+    <Compile Include="Assets\Base\Plugins\Runtime\UI\ModeloAttribute.cs" />
+    <Compile Include="Assets\Base\Plugins\Runtime\UI\OrderAttribute.cs" />
+    <Compile Include="Assets\Base\Plugins\Runtime\UI\PanelBackgroundColor.cs" />
+    <Compile Include="Assets\Base\Plugins\Runtime\UI\PanelBackgroundType.cs" />
+    <Compile Include="Assets\Base\Plugins\Runtime\UI\PanelLayoutAttribute.cs" />
+    <Compile Include="Assets\Base\Plugins\Runtime\UI\TipoDeElementoUI.cs" />
+    <Compile Include="Assets\Base\Plugins\Runtime\UI\UIElementDisabledAttribute.cs" />
+    <Compile Include="Assets\Base\Plugins\Runtime\UI\UIElementoDinamico.cs" />
+    <Compile Include="Assets\Base\Plugins\Runtime\UI\UnTittleAttribute.cs" />
+    <Compile Include="Assets\BonesTransforms.cs" />
+    <Compile Include="Assets\BufferDeMaxValue.cs" />
+    <Compile Include="Assets\CharacterEstadoDeBoca.cs" />
+    <Compile Include="Assets\ClampRange.cs" />
+    <Compile Include="Assets\ColliderKeyColliderValueDictionary.cs" />
+    <Compile Include="Assets\ColliderKeyVector3ValueDictionary.cs" />
+    <Compile Include="Assets\ConfiguracionConstanteDeLocalizacion.cs" />
+    <Compile Include="Assets\CoroutineCapsuleConfig.cs" />
+    <Compile Include="Assets\CoroutineCapsuleGeneric.cs" />
+    <Compile Include="Assets\CoroutineCapsuleMonoGeneric.cs" />
+    <Compile Include="Assets\CustomMonobehaviourEventHandler.cs" />
+    <Compile Include="Assets\DatosDeBoneBase.cs" />
+    <Compile Include="Assets\DatosDeHumanBone.cs" />
+    <Compile Include="Assets\DatosDeHumanBoneBase.cs" />
+    <Compile Include="Assets\DatosDeJaw.cs" />
+    <Compile Include="Assets\DatosDeLengua.cs" />
+    <Compile Include="Assets\DatosDeNeck.cs" />
+    <Compile Include="Assets\DatosDeNoHumanBone.cs" />
+    <Compile Include="Assets\DatosDeNoHumanBoneBase.cs" />
+    <Compile Include="Assets\DiccionaryEnum.cs" />
+    <Compile Include="Assets\DiccionaryEnumLong.cs" />
+    <Compile Include="Assets\DiccLayer.cs" />
+    <Compile Include="Assets\EnumExtensions.cs" />
+    <Compile Include="Assets\EXT_AxisEXT.cs" />
+    <Compile Include="Assets\EXT_ComponenteExt.cs" />
+    <Compile Include="Assets\FixedFrameCounter.cs" />
+    <Compile Include="Assets\FlagsExt.cs" />
+    <Compile Include="Assets\ForcedFixedUpdateId.cs" />
+    <Compile Include="Assets\ForcedUpdateId.cs" />
+    <Compile Include="Assets\GameFolders.cs" />
+    <Compile Include="Assets\HashSetList.cs" />
+    <Compile Include="Assets\Hue.cs" />
+    <Compile Include="Assets\IAnimatorCharacter.cs" />
+    <Compile Include="Assets\IBufferDeMaxValueListiner.cs" />
+    <Compile Include="Assets\IBuscadorDeCharactersUnicosActivos.cs" />
+    <Compile Include="Assets\IBuscadorDeCharactersUnicosExistentes.cs" />
+    <Compile Include="Assets\ICamara.cs" />
+    <Compile Include="Assets\ICharacter.cs" />
+    <Compile Include="Assets\ICharacterBarkUI.cs" />
+    <Compile Include="Assets\ICharacterConversador.cs" />
+    <Compile Include="Assets\ICharacterGestuable.cs" />
+    <Compile Include="Assets\ICharacterGuardableToMemory.cs" />
+    <Compile Include="Assets\ICharacterHablador.cs" />
+    <Compile Include="Assets\ICharacterHighHeelable.cs" />
+    <Compile Include="Assets\ICharacterIdleable.cs" />
+    <Compile Include="Assets\ICharacterNavegable.cs" />
+    <Compile Include="Assets\ICharacterPuedeConversar.cs" />
+    <Compile Include="Assets\ICharacterPuedeHablar.cs" />
+    <Compile Include="Assets\ICharacterRoot.cs" />
+    <Compile Include="Assets\ICharacterTeleportable.cs" />
+    <Compile Include="Assets\ICharacterUnico.cs" />
+    <Compile Include="Assets\IComponentAwakeable.cs" />
+    <Compile Include="Assets\IComponentEnabable.cs" />
+    <Compile Include="Assets\IComponentStartable.cs" />
+    <Compile Include="Assets\IConvinable.2.cs" />
+    <Compile Include="Assets\IConvinable.cs" />
+    <Compile Include="Assets\IConvinableInterval.2.cs" />
+    <Compile Include="Assets\IConvinableInterval.cs" />
+    <Compile Include="Assets\IConvinableValue.cs" />
+    <Compile Include="Assets\ICopiableA.cs" />
+    <Compile Include="Assets\IDefinedProp.cs" />
+    <Compile Include="Assets\IEsConvinable.2.cs" />
+    <Compile Include="Assets\IEsConvinable.cs" />
+    <Compile Include="Assets\IEsConvinableValue.cs" />
+    <Compile Include="Assets\IFemaleCharacterIdleable.cs" />
+    <Compile Include="Assets\IIKPassEventoHandler.cs" />
+    <Compile Include="Assets\IIKUpdateEventoHandler.cs" />
+    <Compile Include="Assets\IIKUpdater.cs" />
+    <Compile Include="Assets\IIKUpdaterPasadaEventoHandler.cs" />
+    <Compile Include="Assets\IKEventData.cs" />
+    <Compile Include="Assets\IKLayer.cs" />
+    <Compile Include="Assets\IKLayerFlag.cs" />
+    <Compile Include="Assets\IKOrder.cs" />
+    <Compile Include="Assets\IKOrderFlag.cs" />
+    <Compile Include="Assets\IKPass.cs" />
+    <Compile Include="Assets\IKPassEventData.cs" />
+    <Compile Include="Assets\IKPassExt.cs" />
+    <Compile Include="Assets\IKPassFlag.cs" />
+    <Compile Include="Assets\IKPassOrder.cs" />
+    <Compile Include="Assets\IKPassOrderFlag.cs" />
+    <Compile Include="Assets\IMaleCharacterIdleable.cs" />
+    <Compile Include="Assets\IMapaDeHuesos.cs" />
+    <Compile Include="Assets\IMapaDeHuesosDeCharacter.cs" />
+    <Compile Include="Assets\IModificable.2.cs" />
+    <Compile Include="Assets\IModificable.cs" />
+    <Compile Include="Assets\INombrable.cs" />
+    <Compile Include="Assets\INombrableLocalizado.cs" />
+    <Compile Include="Assets\IntExt.cs" />
+    <Compile Include="Assets\IntKeyBooleanValueDictionary.cs" />
+    <Compile Include="Assets\IntKeyDictionary.cs" />
+    <Compile Include="Assets\IntKeyFloatValueDictionary.cs" />
+    <Compile Include="Assets\IntKeyStringValueDictionary.cs" />
+    <Compile Include="Assets\IParteDelCuerpoHumanoPrioridades.cs" />
+    <Compile Include="Assets\IParteDelCuerpoHumanoPrioridadesContexto.cs" />
+    <Compile Include="Assets\IPertenecibleDeCharacter.cs" />
+    <Compile Include="Assets\IPhysicsIKJustUpdater.cs" />
+    <Compile Include="Assets\IPoolableItem.cs" />
+    <Compile Include="Assets\IPuppetCharacter.cs" />
+    <Compile Include="Assets\IShapeKey.cs" />
+    <Compile Include="Assets\ISingleOwnerValuable.cs" />
+    <Compile Include="Assets\IStepVelocitySaverEmulated.cs" />
+    <Compile Include="Assets\ITransformScaleModificable.cs" />
+    <Compile Include="Assets\IValorModificable.cs" />
+    <Compile Include="Assets\IValuable.cs" />
+    <Compile Include="Assets\LayerKeyFloatValueDictionary.cs" />
+    <Compile Include="Assets\LayerMaskEXT__.cs" />
+    <Compile Include="Assets\Localizacion.cs" />
+    <Compile Include="Assets\LongKeyStringValueDictionary.cs" />
+    <Compile Include="Assets\Math3dTvalle.cs" />
+    <Compile Include="Assets\ModificableDeBool.cs" />
+    <Compile Include="Assets\ModificableDeFloat.cs" />
+    <Compile Include="Assets\ModificadorDeBool.cs" />
+    <Compile Include="Assets\ModificadorDeFloat.cs" />
+    <Compile Include="Assets\ModificadorDeFloatBase.cs" />
+    <Compile Include="Assets\MultipleModificable.cs" />
+    <Compile Include="Assets\NombrableResult.cs" />
+    <Compile Include="Assets\ParteDelCuerpoHumano.cs" />
+    <Compile Include="Assets\ParteDelCuerpoHumanoHelper.cs" />
+    <Compile Include="Assets\ParteDelCuerpoHumanoHole.cs" />
+    <Compile Include="Assets\ParteDelCuerpoHumanoPrioridadesFixed.cs" />
+    <Compile Include="Assets\ParteDelCuerpoHumanoPrioridadesOnlyFixed.cs" />
+    <Compile Include="Assets\ParteQuePuedeEstimular.cs" />
+    <Compile Include="Assets\ParteQuePuedeEstimularHelper.cs" />
+    <Compile Include="Assets\Percentage.cs" />
+    <Compile Include="Assets\PercentageInv.cs" />
+    <Compile Include="Assets\PercentageRange.cs" />
+    <Compile Include="Assets\PhysicsCast.cs" />
+    <Compile Include="Assets\Plugins\TPlugins\TavoPacks\TavoCustomClases\Scripts\Nota.cs" />
+    <Compile Include="Assets\PorcentageModificable.cs" />
+    <Compile Include="Assets\PrioridadDeParteDelCuerpoHumanoContexto.cs" />
+    <Compile Include="Assets\RangeValue.cs" />
+    <Compile Include="Assets\RangeValueCaculeModConfig.cs" />
+    <Compile Include="Assets\RangeValueV2.cs" />
+    <Compile Include="Assets\ReflectionsEXT.cs" />
+    <Compile Include="Assets\ReportarRendimiento.cs" />
+    <Compile Include="Assets\RigidbodyKeyVector3ValueDictionary.cs" />
+    <Compile Include="Assets\SemenParticulaQuePuedeEstimular.cs" />
+    <Compile Include="Assets\SerializableEnumHashSetList.cs" />
+    <Compile Include="Assets\SerializableEnumHashSetListSlow.cs" />
+    <Compile Include="Assets\SerializableHashSetList.cs" />
+    <Compile Include="Assets\SerializableHashSetListValues.cs" />
+    <Compile Include="Assets\SerializableIdentificablesList.cs" />
+    <Compile Include="Assets\Sexo.cs" />
+    <Compile Include="Assets\ShapeKey.cs" />
+    <Compile Include="Assets\ShapeKeyPolarizada.cs" />
+    <Compile Include="Assets\Side.cs" />
+    <Compile Include="Assets\SimplePool.2.cs" />
+    <Compile Include="Assets\SimplePool.cs" />
+    <Compile Include="Assets\SimplePoolDeClearables.cs" />
+    <Compile Include="Assets\SimplePoolDeCollection.cs" />
+    <Compile Include="Assets\SimplePoolDeComponentesHijos.cs" />
+    <Compile Include="Assets\SmoothDoubles.cs" />
+    <Compile Include="Assets\SmoothFloats.cs" />
+    <Compile Include="Assets\SmoothFloatsV2.cs" />
+    <Compile Include="Assets\SmoothItems.cs" />
+    <Compile Include="Assets\SmoothQuaternions.cs" />
+    <Compile Include="Assets\SmoothQuaternionsMultiple.cs" />
+    <Compile Include="Assets\SmoothVectors.cs" />
+    <Compile Include="Assets\SmoothWeight.cs" />
+    <Compile Include="Assets\StringExt.cs" />
+    <Compile Include="Assets\StringKeyBoolValueDictionary.cs" />
+    <Compile Include="Assets\StringKeyCustomValueDictionary.cs" />
+    <Compile Include="Assets\StringKeyFloatValueDictionary.cs" />
+    <Compile Include="Assets\StringKeyIntValueDictionary.cs" />
+    <Compile Include="Assets\StringKeyQuaternionValueDictionary.cs" />
+    <Compile Include="Assets\StringKeyStringValueDictionary.cs" />
+    <Compile Include="Assets\StringKeyTextureValueDictionary.cs" />
+    <Compile Include="Assets\StringKeyUnityValueDictionary.cs" />
+    <Compile Include="Assets\StringKeyVector3ValueDictionary.cs" />
+    <Compile Include="Assets\TipoDePenetracion.cs" />
+    <Compile Include="Assets\TipoDePersonaje.cs" />
+    <Compile Include="Assets\TipoDeProp.cs" />
+    <Compile Include="Assets\TipoDeSemen.cs" />
+    <Compile Include="Assets\TipoDeSemenEXT.cs" />
+    <Compile Include="Assets\TValleEditorTools.cs" />
+    <Compile Include="Assets\TvalleGPUKernel.cs" />
+    <Compile Include="Assets\TvalleUpdateNormalsKernel.cs" />
+    <Compile Include="Assets\TypeKeyUnityValueDictionary.cs" />
+    <Compile Include="Assets\TypeKeyUnityValueDictionaryComparador.cs" />
+    <Compile Include="Assets\UpdateAutoId.cs" />
+    <Compile Include="Assets\UpdateIdsExt.cs" />
+    <Compile Include="Assets\ValorDeColorHSV.cs" />
+    <Compile Include="Assets\ValoresFlotantesMateriales.cs" />
+    <Compile Include="Assets\ValorFlotante.cs" />
+    <Compile Include="Assets\ValorFlotanteBaseLibre.cs" />
+    <Compile Include="Assets\ValorFlotanteDoble.cs" />
+    <Compile Include="Assets\ValorFlotanteDobleV2.cs" />
+    <Compile Include="Assets\ValorModificable.cs" />
+    <Compile Include="Assets\Vector.cs" />
+    <Compile Include="Assets\VisionScore.cs" />
+    <Compile Include="Assets\WeightFlotante.cs" />
+    <Compile Include="Assets\WeightFlotanteBaseLibre.cs" />
+    <Compile Include="Assets\Zipiry.cs" />
+    <Compile Include="Assets\_ReusableScripts\AnimationCurveTValle.cs" />
+    <Compile Include="Assets\_ReusableScripts\ICharacterIdentificable.cs" />
+    <Compile Include="Assets\_ReusableScripts\UI\Drawing\Elementos\Abstracts\IUIElemento.cs" />
+    <Compile Include="Assets\_ReusableScripts\UI\Drawing\Elementos\Abstracts\IUIElementoSecondaryBindable.cs" />
+    <Compile Include="Assets\_ReusableScripts\UI\Handlers\SliderValueText.cs" />
+    <Compile Include="Assets\__ICharacterConversador_EXT.cs" />
+    <Compile Include="Assets\__ICharacterPuedeHablar_EXT.cs" />
+    <Compile Include="Assets\___EXTHue.cs" />
+    <Compile Include="Assets\___ICharacterEXT.cs" />
+    <Compile Include="Assets\___IPertenecibleDeCharacterEXT.cs" />
+    <Compile Include="BufferDeFuerzas.cs" />
+    <Compile Include="BufferDeFuerzasConfig.cs" />
+    <Compile Include="CalcNode.cs" />
+    <Compile Include="ClassExtendsAttribute.cs" />
+    <Compile Include="ClassGrouping.cs" />
+    <Compile Include="ClassImplementsAttribute.cs" />
+    <Compile Include="ClassIsAttribute.cs" />
+    <Compile Include="ClassTypeConstraintAttribute.cs" />
+    <Compile Include="ComboBoxAttribute.cs" />
+    <Compile Include="ComboBoxProveedorAttribute.cs" />
+    <Compile Include="CoolArrayItemAttribute.cs" />
+    <Compile Include="DebugExtension.cs" />
+    <Compile Include="DescripcionDinamicaAttribute.cs" />
+    <Compile Include="DescripcionLocalizadoAttribute.cs" />
+    <Compile Include="DiccEXT.cs" />
+    <Compile Include="DisplayNode.cs" />
+    <Compile Include="EnumFlagsAttribute.cs" />
+    <Compile Include="EnumIDAttribute.cs" />
+    <Compile Include="ExampleNode.cs" />
+    <Compile Include="ExtTransform.cs" />
+    <Compile Include="ExtUnityObject___.cs" />
+    <Compile Include="EXT__FloatEXT.cs" />
+    <Compile Include="FixedListAttribute.cs" />
+    <Compile Include="FixedListV2Attribute.cs" />
+    <Compile Include="FloatExt.cs" />
+    <Compile Include="FPSCounter.cs" />
+    <Compile Include="HandleTextFile.cs" />
+    <Compile Include="HeightDinamicoAttribute.cs" />
+    <Compile Include="HumanHandBones.cs" />
+    <Compile Include="HumanHandBonesConTips.cs" />
+    <Compile Include="HumanHandBonesTargetsIK.cs" />
+    <Compile Include="IActivable.cs" />
+    <Compile Include="IActivableInput.cs" />
+    <Compile Include="IActivableModificable.cs" />
+    <Compile Include="IClearable.cs" />
+    <Compile Include="IDataContainer.cs" />
+    <Compile Include="IDataContainerReadOnly.cs" />
+    <Compile Include="IDCompuesto.cs" />
+    <Compile Include="IListExt.cs" />
+    <Compile Include="IMassModifier.cs" />
+    <Compile Include="InputNode.cs" />
+    <Compile Include="InterfaceFields\ConstraintTypeAttribute.cs" />
+    <Compile Include="ISerializedDataContainer.cs" />
+    <Compile Include="ISerializedDataContainerHelper.cs" />
+    <Compile Include="IStepVelocitySaver.cs" />
+    <Compile Include="ITransparentPhyscisObject.cs" />
+    <Compile Include="LabelDinamicoAttribute.cs" />
+    <Compile Include="LabelLocalizadoAttribute.cs" />
+    <Compile Include="LerpMinToMaxItem.cs" />
+    <Compile Include="ListColisionesEXT.cs" />
+    <Compile Include="ListShuffleExt.cs" />
+    <Compile Include="Math3d.cs" />
+    <Compile Include="Math3dPart2.cs" />
+    <Compile Include="MathfExtension.cs" />
+    <Compile Include="MemoriaDiccionarioAttribute.cs" />
+    <Compile Include="MemoriaFunctionsAttribute.cs" />
+    <Compile Include="MemoriaRelatedBehaviourAttribute.cs" />
+    <Compile Include="MemoriaRelatedClassAttribute.cs" />
+    <Compile Include="MonoExtenciones__.cs" />
+    <Compile Include="NodeEditorFramework\ConnectionDrawMethod.cs" />
+    <Compile Include="NodeEditorFramework\ConnectionTypes.cs" />
+    <Compile Include="NodeEditorFramework\FloatType.cs" />
+    <Compile Include="NodeEditorFramework\IConnectionTypeDeclaration.cs" />
+    <Compile Include="NodeEditorFramework\Node.cs" />
+    <Compile Include="NodeEditorFramework\NodeAttribute.cs" />
+    <Compile Include="NodeEditorFramework\NodeCanvas.cs" />
+    <Compile Include="NodeEditorFramework\NodeData.cs" />
+    <Compile Include="NodeEditorFramework\NodeEditor.cs" />
+    <Compile Include="NodeEditorFramework\NodeEditorCallbackReceiver.cs" />
+    <Compile Include="NodeEditorFramework\NodeEditorCallbacks.cs" />
+    <Compile Include="NodeEditorFramework\NodeEditorGUI.cs" />
+    <Compile Include="NodeEditorFramework\NodeEditorSaveManager.cs" />
+    <Compile Include="NodeEditorFramework\NodeEditorState.cs" />
+    <Compile Include="NodeEditorFramework\NodeInput.cs" />
+    <Compile Include="NodeEditorFramework\NodeKnob.cs" />
+    <Compile Include="NodeEditorFramework\NodeOutput.cs" />
+    <Compile Include="NodeEditorFramework\NodeSide.cs" />
+    <Compile Include="NodeEditorFramework\NodeTypes.cs" />
+    <Compile Include="NodeEditorFramework\TypeData.cs" />
+    <Compile Include="NodeEditorFramework\Utilities\GenericMenu.cs" />
+    <Compile Include="NodeEditorFramework\Utilities\GUIScaleUtility.cs" />
+    <Compile Include="NodeEditorFramework\Utilities\OverlayGUI.cs" />
+    <Compile Include="NodeEditorFramework\Utilities\PopupMenu.cs" />
+    <Compile Include="NodeEditorFramework\Utilities\ResourceManager.cs" />
+    <Compile Include="NodeEditorFramework\Utilities\RTEditorGUI.cs" />
+    <Compile Include="ObjectEXT.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReadOnlyUIAttribute.cs" />
+    <Compile Include="RequiredAttribute.cs" />
+    <Compile Include="RigidBodyAttributesExt.cs" />
+    <Compile Include="RigidBodyForcesExt.cs" />
+    <Compile Include="RuntimeNodeEditor.cs" />
+    <Compile Include="SavingDates.cs" />
+    <Compile Include="SerializableType.cs" />
+    <Compile Include="StringSelectorAttribute.cs" />
+    <Compile Include="StringSelectorProveedorAttribute.cs" />
+    <Compile Include="StringSelectorV2Attribute.cs" />
+    <Compile Include="TextoLocalizadoAttribute.cs" />
+    <Compile Include="TValleCustomClases\AngleLimits.cs" />
+    <Compile Include="TValleCustomClases\AngleModificable.cs" />
+    <Compile Include="TValleCustomClases\AngularSpeedConvertion.cs" />
+    <Compile Include="TValleCustomClases\BallisticsCalcule.cs" />
+    <Compile Include="TValleCustomClases\BaseModificable.cs" />
+    <Compile Include="TValleCustomClases\BehaviourTreeNode.cs" />
+    <Compile Include="TValleCustomClases\BoundsCalcule.cs" />
+    <Compile Include="TValleCustomClases\BufferedCoolDown.cs" />
+    <Compile Include="TValleCustomClases\CalculeAimAngleLimits.cs" />
+    <Compile Include="TValleCustomClases\CheckPointCrowded.cs" />
+    <Compile Include="TValleCustomClases\CollisionExt.cs" />
+    <Compile Include="TValleCustomClases\CoolDown.cs" />
+    <Compile Include="TValleCustomClases\CoolDownPorID.cs" />
+    <Compile Include="TValleCustomClases\CreateSpline.cs" />
+    <Compile Include="TValleCustomClases\DiamondAngle.cs" />
+    <Compile Include="TValleCustomClases\DistanceLimits.cs" />
+    <Compile Include="TValleCustomClases\DoubleExt.cs" />
+    <Compile Include="TValleCustomClases\DynamicConstraintInstantiation.2.cs" />
+    <Compile Include="TValleCustomClases\DynamicConstraintInstantiation.3.cs" />
+    <Compile Include="TValleCustomClases\DynamicConstraintInstantiation.4.cs" />
+    <Compile Include="TValleCustomClases\DynamicConstraintInstantiation.cs" />
+    <Compile Include="TValleCustomClases\DynamicInstantiation.2.cs" />
+    <Compile Include="TValleCustomClases\DynamicInstantiation.3.cs" />
+    <Compile Include="TValleCustomClases\DynamicInstantiation.4.cs" />
+    <Compile Include="TValleCustomClases\DynamicInstantiation.cs" />
+    <Compile Include="TValleCustomClases\DynamicInstantiationBase.cs" />
+    <Compile Include="TValleCustomClases\FixedCoolDown.cs" />
+    <Compile Include="TValleCustomClases\IgnoreCollisionsExt.cs" />
+    <Compile Include="TValleCustomClases\Instantiator.2.cs" />
+    <Compile Include="TValleCustomClases\Instantiator.3.cs" />
+    <Compile Include="TValleCustomClases\Instantiator.4.cs" />
+    <Compile Include="TValleCustomClases\Instantiator.cs" />
+    <Compile Include="TValleCustomClases\LauchAngleCalcule.cs" />
+    <Compile Include="TValleCustomClases\Leaf.cs" />
+    <Compile Include="TValleCustomClases\ListCheckItemsFields.cs" />
+    <Compile Include="TValleCustomClases\ListContainsExt.cs" />
+    <Compile Include="TValleCustomClases\ListCustomFind.cs" />
+    <Compile Include="TValleCustomClases\ListDistintos.cs" />
+    <Compile Include="TValleCustomClases\ListExecuteExt.cs" />
+    <Compile Include="TValleCustomClases\Modificable.cs" />
+    <Compile Include="TValleCustomClases\ModificablePercentage.cs" />
+    <Compile Include="TValleCustomClases\ObjectsInTrayectory.cs" />
+    <Compile Include="TValleCustomClases\ProyectilLaunchCalcule.cs" />
+    <Compile Include="TValleCustomClases\ProyectilLaunchCalculeResult.cs" />
+    <Compile Include="TValleCustomClases\ProyectilLaunchMode.cs" />
+    <Compile Include="TValleCustomClases\ProyectilTrayectory.cs" />
+    <Compile Include="TValleCustomClases\RealAngleModificable.cs" />
+    <Compile Include="TValleCustomClases\RealModificable.cs" />
+    <Compile Include="TValleCustomClases\RealModificablePercentage.cs" />
+    <Compile Include="TValleCustomClases\RemoveDuplicatesListExt.cs" />
+    <Compile Include="TValleCustomClases\RigidbodyMaterial.cs" />
+    <Compile Include="TValleCustomClases\SerializableDictionary.cs" />
+    <Compile Include="TValleCustomClases\TargetScoreGenerator.cs" />
+    <Compile Include="TValleCustomClases\TreeMap.cs" />
+    <Compile Include="TValleCustomClases\TreeNode.cs" />
+    <Compile Include="TValleCustomClases\VectorFastComparer.cs" />
+    <Compile Include="TypeCollector.cs" />
+    <Compile Include="UDateTime.cs" />
+    <Compile Include="UnityHandHumanBones.cs" />
+    <Compile Include="UnitySourceGeneratedAssemblyMonoScriptTypes_v1.cs" />
+    <Compile Include="Unity\IL2CPP\CompilerServices\Il2CppSetOptionAttribute.cs" />
+    <Compile Include="Unity\IL2CPP\CompilerServices\Option.cs" />
+    <Compile Include="Vector_EXT_.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -1,0 +1,538 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FA10E19B-71A9-45B6-A401-CA983C187EE1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Assets</RootNamespace>
+    <AssemblyName>TValle.Pro.Entrevista</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Assembly-D_C_Dependientes_ReSc">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Assembly-D_C_Dependientes_ReSc.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-D_C_Dependientes_ReSc.DialogueSys">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Assembly-D_C_Dependientes_ReSc.DialogueSys.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-D_D_Characters_ReSc">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Assembly-D_D_Characters_ReSc.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-D_E_Chuchi_ReSc">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Assembly-D_E_Chuchi_ReSc.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-D_F_CharactersBasics_ReSc">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Assembly-D_F_CharactersBasics_ReSc.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-D_ReSc">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Assembly-D_ReSc.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.BeachGirl.Controladores.Materiales">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.BeachGirl.Controladores.Materiales.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.Behaviours">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.Behaviours.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.Bones">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.Bones.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.Bones.Gizmos">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.Bones.Gizmos.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.Bones.Gizmos.BeachGirl">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.Bones.Gizmos.BeachGirl.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.Configs">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.Configs.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.Controllers">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.Controllers.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.CustomMonoBehaviours">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.CustomMonoBehaviours.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.Genetica">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.Genetica.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.Globales">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.Globales.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.Joints">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.Joints.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.Memoria">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.Memoria.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.Npc">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.Npc.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.Plugins">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.Plugins.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.RootMotion">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.RootMotion.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.RootMotion.BeachGirl">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.RootMotion.BeachGirl.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.SingletonesAndSystemasGlobales">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.SingletonesAndSystemasGlobales.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.Tiempo">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.Tiempo.dll</HintPath>
+    </Reference>
+    <Reference Include="Battlehub.RTEditor">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Battlehub.RTEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="DialogueSystem">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\DialogueSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="netstandard">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\netstandard.dll</HintPath>
+    </Reference>
+    <Reference Include="RandomNameGeneratorLibrary">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\RandomNameGeneratorLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="TAlteradores.Masculinos">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\TAlteradores.Masculinos.dll</HintPath>
+    </Reference>
+    <Reference Include="TCharacters.Memory">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\TCharacters.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="TUI">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\TUI.dll</HintPath>
+    </Reference>
+    <Reference Include="TValle.BeachGirl">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\TValle.BeachGirl.dll</HintPath>
+    </Reference>
+    <Reference Include="TValle.BeachGirl.Alteradores">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\TValle.BeachGirl.Alteradores.dll</HintPath>
+    </Reference>
+    <Reference Include="TValle.BeachGirl.Alteradores.MapasDeAlteradores">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\TValle.BeachGirl.Alteradores.MapasDeAlteradores.dll</HintPath>
+    </Reference>
+    <Reference Include="TValle.BeachGirl.Characters.Male">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\TValle.BeachGirl.Characters.Male.dll</HintPath>
+    </Reference>
+    <Reference Include="TValle.BeachGirl.Estimulos">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\TValle.BeachGirl.Estimulos.dll</HintPath>
+    </Reference>
+    <Reference Include="TValle.BeachGirl.Genetica.Alteradores">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\TValle.BeachGirl.Genetica.Alteradores.dll</HintPath>
+    </Reference>
+    <Reference Include="TValle.BeachGirl.GpuHair.Controlladores">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\TValle.BeachGirl.GpuHair.Controlladores.dll</HintPath>
+    </Reference>
+    <Reference Include="TValle.BeachGirl.MapasDeAlteradores">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\TValle.BeachGirl.MapasDeAlteradores.dll</HintPath>
+    </Reference>
+    <Reference Include="TValle.Inputs">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\TValle.Inputs.dll</HintPath>
+    </Reference>
+    <Reference Include="TValle.IU">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\TValle.IU.dll</HintPath>
+    </Reference>
+    <Reference Include="TValle.MeshCalcules">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\TValle.MeshCalcules.dll</HintPath>
+    </Reference>
+    <Reference Include="TValle.MeshCalcules.ShapingSkinningPoints">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\TValle.MeshCalcules.ShapingSkinningPoints.dll</HintPath>
+    </Reference>
+    <Reference Include="TValle.Modding.Tools">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\TValle.Modding.Tools.dll</HintPath>
+    </Reference>
+    <Reference Include="TValle.Pro.Entrevista.Tiempo">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\TValle.Pro.Entrevista.Tiempo.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Addressables">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Unity.Addressables.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Collections">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Unity.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Mathematics">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Unity.Mathematics.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Core.Runtime">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ResourceManager">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Unity.ResourceManager.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Unity.TextMeshPro.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AnimationModule">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.AnimationModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AudioModule">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.AudioModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.JSONSerializeModule">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.JSONSerializeModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.PhysicsModule">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.PhysicsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.UI.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Productos\Juegos\Reception\LoaderDeNpcFemeninos.cs" />
+    <Compile Include="Productos\Juegos\Reception\Scripts\AutoRatingsProfiles\AutoRatingFemaleLogic.cs" />
+    <Compile Include="Productos\Juegos\Reception\Scripts\AutoRatingsProfiles\AutoRatingHelper.cs" />
+    <Compile Include="Productos\Juegos\Reception\Scripts\AutoRatingsProfiles\AutoRatingProfile.cs" />
+    <Compile Include="Productos\Juegos\Reception\Scripts\AutoRatingsProfiles\AutoRatingProfilePreview.cs" />
+    <Compile Include="Productos\Juegos\Reception\Scripts\AutoRatingsProfiles\AutoRatingWraper.cs" />
+    <Compile Include="Productos\Juegos\Reception\Scripts\AutoRatingsProfiles\Behaviours\AutoRatingFemaleLogicAdder.cs" />
+    <Compile Include="Productos\Juegos\Reception\Scripts\AutoRatingsProfiles\PreviewCamera.cs" />
+    <Compile Include="Productos\Juegos\Reception\Scripts\AutoRatingsProfiles\SimplifiedAutoRatings.cs" />
+    <Compile Include="Productos\Juegos\Reception\Scripts\AutoRatingsProfiles\UI\AutoRatingProfileModel.cs" />
+    <Compile Include="Productos\Juegos\Reception\Scripts\AutoRatingsProfiles\UI\PanelEditorDeAutoRatingProfiles.cs" />
+    <Compile Include="Productos\Juegos\Reception\Scripts\Dependientes\Controlladores\SelfPortraitCamera.cs" />
+    <Compile Include="Productos\Juegos\Reception\Scripts\Entrevistas\Modelos\AcountModel.cs" />
+    <Compile Include="Productos\Juegos\Reception\Scripts\Entrevistas\Modelos\BalanceModel.cs" />
+    <Compile Include="Productos\Juegos\Reception\Scripts\Entrevistas\Modelos\EmailsModel.cs" />
+    <Compile Include="Productos\Juegos\Reception\Scripts\Entrevistas\Modelos\EntrevistaComenzarModelo.cs" />
+    <Compile Include="Productos\Juegos\Reception\Scripts\Entrevistas\Modelos\EntrevistaComenzarNoWork.cs" />
+    <Compile Include="Productos\Juegos\Reception\Scripts\Entrevistas\Modelos\EntrevistaComenzarNoWorkLate.cs" />
+    <Compile Include="Productos\Juegos\Reception\Scripts\Entrevistas\Modelos\EstrevistaCalificacionAparienciaFisicaModelo.cs" />
+    <Compile Include="Productos\Juegos\Reception\Scripts\Entrevistas\Modelos\EstrevistaCalificacionDispatchModelo.cs" />
+    <Compile Include="Productos\Juegos\Reception\Scripts\Entrevistas\Modelos\EstrevistaCalificacionPersonalidadModelo.cs" />
+    <Compile Include="Productos\Juegos\Reception\Scripts\Entrevistas\Modelos\EstrevistaMainGoneLateModelo.cs" />
+    <Compile Include="Productos\Juegos\Reception\Scripts\Entrevistas\Modelos\EstrevistaMainGoneModelo.cs" />
+    <Compile Include="Productos\Juegos\Reception\Scripts\Entrevistas\Modelos\EstrevistaMainModelo.cs" />
+    <Compile Include="Productos\Juegos\Reception\Scripts\Entrevistas\Modelos\EstrevistaRatingModelo.cs" />
+    <Compile Include="Productos\Juegos\Reception\Scripts\Entrevistas\Modelos\InformacionDeAgenciaModelo.cs" />
+    <Compile Include="Productos\Juegos\Reception\Scripts\Entrevistas\Modelos\PersonalidadConsenting.cs" />
+    <Compile Include="Productos\Juegos\Reception\Scripts\Entrevistas\Modelos\TransactionsModel.cs" />
+    <Compile Include="Productos\Juegos\Reception\Scripts\Entrevistas\PanelDeEntrevistaCalificacion.cs" />
+    <Compile Include="Productos\Juegos\Reception\Scripts\Entrevistas\PanelInfoOwnAgencia.cs" />
+    <Compile Include="Productos\Juegos\Reception\Scripts\EscenaDeRecepcionJuego.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TValle\Pro\Entrevista\InterpretacionFieldSelectorAttribute.cs" />
+    <Compile Include="TValle\Pro\Entrevista\InterpretacionFieldValueSelectorAttribute.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Actividades\Actividad.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Actividades\ActividadConMaleAndFemaleCharacter.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Actividades\ActividadConMaleAndFemaleCharacterConfigAndData.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Actividades\ActividadConMaleCharacter.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Actividades\ActividadConSoloFemaleCharacter.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Actividades\ActividadesManager.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Actividades\ActividadesUpdater.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Actividades\ActividadScenesLoader.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Actividades\ActrividadConFemaleNpc.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Actividades\ActrividadConSoloFemaleNpc.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Actividades\DesignerFemaleModel_OfficeLvl1_Loader.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Actividades\Emociones\CallBackAtDecepcionMaxValueBuffer.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Actividades\Emociones\CallBackAtDolorMaxValueBuffer.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Actividades\Emociones\CallBackAtEmocionesMaxValue.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Actividades\Emociones\CallBackAtEmocionMaxValueBuffer.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Actividades\Emociones\CallBackAtFearMaxValueBuffer.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Actividades\Emociones\CallBackAtPlacerMaxValueBuffer.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Actividades\Emociones\CallBackAtRageMaxValueBuffer.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Actividades\EntrevistaComenzarATrabajar.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Actividades\EntrevistaComenzarATrabajar_OfficeLvl0_Loader.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Actividades\EntrevistaComenzarATrabajar_OfficeLvl1_Loader.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Actividades\EntrevistaComenzarATrabajar_OfficeLvl2_Loader.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Actividades\EntrevistaComenzarATrabajar_OfficeLvl3_Loader.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Actividades\EntrevistaComenzarATrabajar_OfficeLvl4_Loader.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Actividades\EntrevistaConFemaleCharacter.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Actividades\EntrevistaConFemaleCharacterConfigAndData.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Actividades\EntrevistaFemaleCharacterFromPoolConfigAndData.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Actividades\EntrevistaFemaleCharacterFromPoolOrMemOrDisk.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Actividades\EntrevistaParaCalificarFemaleCharacterFromPool.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Actividades\EntrevistaScoreFemaleFromPool.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Actividades\EntrevistaScoreFemaleFromPool_OfficeLvl0_Loader.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Actividades\EntrevistaScoreFemaleFromPool_OfficeLvl1_Loader.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Actividades\EntrevistaScoreFemaleFromPool_OfficeLvl2_Loader.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Actividades\EntrevistaScoreFemaleFromPool_OfficeLvl3_Loader.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Actividades\EntrevistaScoreFemaleFromPool_OfficeLvl4_Loader.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Actividades\FemaleDesignerActivity.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Actividades\Globales\OfficeDebuging.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Actividades\IActividadLoader.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Actividades\Loaders\Abstracts\ITValleActividadEnNuevoHorarioLoader.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Actividades\Loaders\Abstracts\TValleActividadEnNuevoHorarioLoader.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Actividades\Loaders\GetLoaderDeNivelDeOficina.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Actividades\Loaders\TValleActividadEnOfficeJustGeometryLoader.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Actividades\Loaders\TValleActividadEnOfficeLoader.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Actividades\Maps\ActividadFemaleConfigMap.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Actividades\Maps\DefaultActividadFemaleConfigMap.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Actividades\MeetingFromMemoryNPCFemale.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Actividades\MeetingHiredFemaleModel.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Actividades\MeetingHiredFemaleModel_OfficeLvl0_Loader.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Actividades\MeetingHiredFemaleModel_OfficeLvl1_Loader.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Actividades\MeetingHiredFemaleModel_OfficeLvl2_Loader.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Actividades\MeetingHiredFemaleModel_OfficeLvl3_Loader.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Actividades\MeetingHiredFemaleModel_OfficeLvl4_Loader.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Actividades\TValleActividad.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Actividades\TValleActividadLoader.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Actividades\TValleActividadSavedWihtinTheSceneLoader.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Actividades\TValleActividadSavedWithinTheScene.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\AI\Reactores\ParaReactores\ParaReactorSayGraciasOnWalletChange.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\BuffAndDebuff\InitialMedicalConditionsBuff.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Controlladores\Gestos\ControlladorDeGestosDeModelaje.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Controlladores\Gestos\CustomGestosDeModelaje.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\DialogueSys\Chats\UI\SayHelloWhenHiredIsGrayOut.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\DialogueSys\CheckRegistroDeFuncionesDeGestosDeModelaje.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\DialogueSys\CheckRegistroDeFuncionesDeMakeover.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\DialogueSys\Conversaciones\Abstracts\StartConversacionsAtEmocionMaxValue.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\DialogueSys\Conversaciones\StartConversacionsAtDecepMaxValue.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\DialogueSys\Conversaciones\StartConversacionsAtFearMaxValue.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\DialogueSys\Conversaciones\StartConversacionsAtPainMaxValue.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\DialogueSys\Conversaciones\StartConversacionsAtRageMaxValue.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\DialogueSys\Globales\DialoguesForActivities.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\DialogueSys\RegistroDeFuncionesDeGestosDeModelaje.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\DialogueSys\RegistroDeFuncionesDeMakeover.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\DialogueSys\Trabajos\CheckRegistroDeFuncionesDeContratacionDeModelos.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\DialogueSys\Trabajos\CheckRegistroDeFuncionesDeTrabajosDeModelaje.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\DialogueSys\Trabajos\RegistroDeFuncionesDeContratacionDeModelos.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\DialogueSys\Trabajos\RegistroDeFuncionesDeTrabajosDeModelaje.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\DialogueSys\UI\GenericOpcionDeTHSDonaQueIniciaDialogos.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Economia\Agencias\AgenciaBase.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Economia\Agencias\AgenciasHelper.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Economia\Agencias\BuffAndDebuff\AgenciasArg.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Economia\Agencias\BuffAndDebuff\AgencyEarningsArg.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Economia\Agencias\BuffAndDebuff\AgencyEarningsEfecto.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Economia\Agencias\BuffAndDebuff\AgencyIncomeChangeArg.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Economia\Agencias\BuffAndDebuff\AgencyIncomeChangeEfecto.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Economia\Agencias\BuffAndDebuff\AgencyIncomeDecreaseEfecto.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Economia\Agencias\BuffAndDebuff\AgencyIncomeIncreaseEfecto.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Economia\Agencias\BuffAndDebuff\AgencyIncomeSmallDecreaseEfecto.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Economia\Agencias\BuffAndDebuff\AgencyIncomeSmallIncreaseEfecto.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Economia\Agencias\BuffAndDebuff\Clases\Efectos\DesblokeoDeAgenciasArg.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Economia\Agencias\BuffAndDebuff\Clases\Efectos\DesblokeoDeAgenciasEfecto.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Economia\Agencias\BuffAndDebuff\Clases\Efectos\DesblokeoDeAgenciasPorCoital1Efecto.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Economia\Agencias\BuffAndDebuff\Clases\Efectos\DesblokeoDeAgenciasPorCoital1SemiAfricanasEfecto.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Economia\Agencias\BuffAndDebuff\Clases\Efectos\DesblokeoDeAgenciasPorCoital1SemiAsiaticasEfecto.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Economia\Agencias\BuffAndDebuff\Clases\Efectos\DesblokeoDeAgenciasPorCoital1SemiHispanicEfecto.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Economia\Agencias\BuffAndDebuff\Clases\Efectos\DesblokeoDeAgenciasPorCoital1SemiNordicEfecto.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Economia\Agencias\BuffAndDebuff\Clases\Efectos\DesblokeoDeAgenciasPorCoital2Efecto.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Economia\Agencias\BuffAndDebuff\Clases\Efectos\DesblokeoDeAgenciasPorDesvestirPartesPrivadas5Efecto.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Economia\Agencias\BuffAndDebuff\Clases\Efectos\DesblokeoDeAgenciasPorDesvestirPartesSemiPrivadas5Efecto.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Economia\Agencias\BuffAndDebuff\Clases\Efectos\DesblokeoDeAgenciasPorFat1Efecto.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Economia\Agencias\BuffAndDebuff\Clases\Efectos\DesblokeoDeAgenciasPorFit1Efecto.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Economia\Agencias\BuffAndDebuff\Clases\Efectos\DesblokeoDeAgenciasPorSemiAfricanas1Efecto.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Economia\Agencias\BuffAndDebuff\Clases\Efectos\DesblokeoDeAgenciasPorSemiAsiaticas1Efecto.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Economia\Agencias\BuffAndDebuff\Clases\Efectos\DesblokeoDeAgenciasPorSemiElf1Efecto.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Economia\Agencias\BuffAndDebuff\Clases\Efectos\DesblokeoDeAgenciasPorSemiHispanic1Efecto.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Economia\Agencias\BuffAndDebuff\Clases\Efectos\DesblokeoDeAgenciasPorSemiNordic1Efecto.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Economia\Agencias\BuffAndDebuff\Clases\Efectos\DesblokeoDeAgenciasPorTall1Efecto.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Economia\Agencias\BuffAndDebuff\Mapas\Buff\AgenciasBuffMap.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Economia\Agencias\BuffAndDebuff\StacksTiposDeAgencias.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Economia\Agencias\DialogosGenericos\ObtenerDialogoAgenciasHelper.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Economia\Agencias\DialogueSystem\ComenzarConversacionAlElegirOtraAgencia.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Economia\Agencias\DialogueSystem\KeysDeVariablesDeOtrasAgencias.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Economia\Agencias\DialogueSystem\RegistroDeFuncionesDeMandarAOtraAgencia.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Economia\Agencias\Eventos\EmailAgencyUnlockedEvento.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Economia\Agencias\Eventos\EmailFromAgenciesRecivedEvento.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Economia\Agencias\Eventos\EmailModelLvlIncreased.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Economia\Agencias\Eventos\EmailModelResponseFromAgencyEvento.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Economia\Agencias\Eventos\EmailRecivedEvento.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Economia\Agencias\Eventos\EmailsInbox.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Economia\Agencias\InitialCharacterBuffDeDesblokeoDeAgencias.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Economia\Agencias\Interpretaciones\Clases\RequerimientoDePersonalidad.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Economia\Agencias\Interpretaciones\CondicionesDeApariencia.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Economia\Agencias\Interpretaciones\CondicionesDePersonalidad.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Economia\Agencias\Interpretaciones\RequerimientoDeApariencia.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Economia\Agencias\Interpretaciones\RequerimientoGenetico.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Economia\Agencias\KeysDeMemoriaDeOtrasAgencias.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Economia\Agencias\Mapas\Agencia.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Economia\Agencias\ModificadorDeIngresosDeAgenciasDeCharacter.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Economia\Agencias\OtrasAgencias.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Economia\Agencias\ProveedorDeAgenciasIdsAttribute.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Economia\Agencias\UI\OtrasAgenciasPanelDataLoader.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Economia\CharacterWallet.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Economia\Eventos\CheckGameOverLunesEvento.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Economia\Eventos\PagoDeCuentasSabadoEvento.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Economia\SimpleWallet.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\FemaleCharacterModelo.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\General\Cheats\CheatsSetterToMale.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\General\Clases\LoaderDeNpc.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\General\Globales\SMAGameController.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\General\Globales\SMAGameplayController.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\General\MaleMoneySetter.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\General\Memoria\MemoriaDeSMAGamePlay.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\General\Memoria\MemoriaDeSMAModelosFemeninas.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\General\Scenas\StandAloneRatingScene.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\General\UI\CurrentAvailableJobsPortraitsGetter.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\General\UI\CurrentAvailableOfficesPortraitsGetter.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\General\UI\CurrentModelsInCampaingPortraitsGetter.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\General\UI\CurrentModelsOnDiskNotInMemoryPortraitsGetter.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\General\UI\CurrentWorkingModelsPortraitsGetter.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\General\UI\Modelos\NewGameModel.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\General\UI\PanelNewGameMenu.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\General\UI\SMACurriculumVitaePanelDataLoader.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\General\UI\SMAMaleInfoPanelDataLoader.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Genetica\NPCCharacter.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Genetica\PiscinaNpcDeSujetoComponent.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\LoaderDeNpcMasculinos.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Menus\Globales\RadialMenusForActivities.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Menus\Maps\GenericRadialMenuMap.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Menus\Maps\IRadialMenuMap.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Menus\Maps\PrefabRadialMenuMap.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Menus\Maps\RadialMenuMap.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Menus\SlaveOpcionDeTHSDona.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Menus\UI\OpcionesDeTHSDonaDeLoadCustomGesturesConDialogue.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Menus\UI\OpcionesDeTHSDonaDeLoadCustomMakeoverConDialogue.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Modelaje\DialogueSystem\AskToForEroIsGrayOut.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Modelaje\DialogueSystem\AskToForPosingIsGrayOut.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Modelaje\DialogueSystem\AskToForUndresingIsGrayOut.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Modelaje\DialogueSystem\CanIIsGrayOut.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Modelaje\DialogueSystem\ExpresionsIsGrayOut.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Modelaje\DialogueSystem\ForceChangeOutfitIsGrayOut.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Modelaje\DialogueSystem\Funciones\CheckRegistroDeFuncionesDeModelaje.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Modelaje\DialogueSystem\Funciones\DebugClases\ForzarTiposDeModelojeAModelo.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Modelaje\DialogueSystem\Funciones\RegistroDeFuncionesDeModelaje.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Modelaje\DialogueSystem\GetNakedGrayOut.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Modelaje\DialogueSystem\HandjobActionIsGrayOut.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Modelaje\DialogueSystem\MakeoverGrayOut.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Modelaje\DialogueSystem\PosingIsGrayOut.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Modelaje\DialogueSystem\PreferencesIsGrayOut.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Modelaje\DialogueSystem\ServicingGrayOut.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Modelaje\DialogueSystem\UndresingIsGrayOut.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Modelaje\DialogueSystem\UndressAllDonaOptionAction.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Modelaje\KeysDeMemoriaDeModelaje.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Modelaje\Memoria\GestosFacialesToDisk.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Modelaje\Memoria\MakeoverToDisk.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Oficinas\OficinaManager.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Penes\AI\ReactoresDeEstimulos\InyectorDeCalculoDePinchazoConJeringa.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Penes\BuffAndDebuff\JeringaBuffCaster.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Penes\BulbEnemaAction.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Penes\Historiales\PuntaDeJeringaColisionable.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Penes\Holes\HoleTemperature.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Penes\Jeringa.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Penes\JeringaAction.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Penes\LubeTubeAction.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Penes\Thermometer.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Penes\ToyConLuz.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Penes\UltrasonidoOrgansActivation.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Penes\UltrasonidoTrasnVagCamera.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Props\SpeculumsAction.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Scenas\Managers\ScenaConMainProtagonistaFemenina.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Scenas\Managers\ScenaConMainProtagonistaMasculino.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Sobornaje\CheckModeloSeVuelveSobornable.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Sobornaje\DialogueSystem\Funciones\CheckRegistroDeFuncionesDeSobornos.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Sobornaje\DialogueSystem\Funciones\RegistroDeFuncionesDeSobornos.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Sobornaje\DialogueSystem\NeedMoreMoneyIsGrayOut.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Sobornaje\DialogueSystem\PayHerAnalSexIsGrayOut.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Sobornaje\DialogueSystem\PayHerIsGrayOut.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Sobornaje\DialogueSystem\PayHerOralSexIsGrayOut.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Sobornaje\DialogueSystem\PayHerSexIsGrayOut.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Sobornaje\DialogueSystem\RequiereCantidadDePagoPorSexo.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Sobornaje\DialogueSystem\RequiereCantidadDePagoPorSexoAnal.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Sobornaje\DialogueSystem\RequiereCantidadDePagoPorSexoOral.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Sobornaje\KeysDeMemoriaDeSoborno.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Tiempo\ScenaTiempoDelDia.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Trabajos\Clases\CalculadorDeIncomeDeJobSession.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Trabajos\Clases\MemoriaDeSMAJobs.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Trabajos\JobActivity.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Trabajos\JobActivityLoader.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Trabajos\JobsGetter.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Trabajos\JobsManager.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Trabajos\JobsModsLoader.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Trabajos\JobsUIManager.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Trabajos\Jobs\SpaJob.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Trabajos\Jobs\Spa\BalanceShow.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Trabajos\Jobs\Spa\Camilla.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Trabajos\Jobs\Spa\CamillaBigGotosPositionsToClientBody.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Trabajos\Jobs\Spa\CamillaGotosPositionsToClientBodyParts.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Trabajos\Jobs\Spa\CamillaPoseTraslateHandJobInteractionsToGoto.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Trabajos\Jobs\Spa\Globales\ColleccionDeCamillas.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Trabajos\Jobs\Spa\Globales\SpaSounds.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Trabajos\Jobs\Spa\SpaDebugger.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Trabajos\Jobs\StandardizedPatientJob.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Trabajos\Jobs\StandardizedPatient\CamillaGineMedica.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Trabajos\Jobs\StandardizedPatient\CamillaGineMedicaGoToTarget.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Trabajos\Jobs\StandardizedPatient\CamillaGineRecostable.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Trabajos\Jobs\StandardizedPatient\CamillaMedica.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Trabajos\Jobs\StandardizedPatient\CamillaMedicaGoToTarget.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Trabajos\Jobs\StandardizedPatient\CamillaRecostable.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Trabajos\Jobs\StandardizedPatient\Globales\ColleccionDeObjetosSP.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Trabajos\Jobs\StandardizedPatient\HerramientasVuelveASuSlot.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Trabajos\Jobs\StandardizedPatient\MesitaParaHerramientasConSlots.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Trabajos\Jobs\StandardizedPatient\StandardizedPatientDebugger.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Trabajos\PhotoshootJob.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Trabajos\TValleSMAJob.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\Trabajos\TValleSMAJob_Ext.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\UI\Entrevistas\Modelos\AssignmentInfoModelo.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\UI\Entrevistas\Modelos\BuffAndDebuffModelo.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\UI\Entrevistas\Modelos\IncomeOrExpenses.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\UI\Entrevistas\Modelos\JobImageModelo.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\UI\Entrevistas\Modelos\MeetingHiredModelModelo.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\UI\Entrevistas\Modelos\MeetingHiredModelModeloGoneModelo.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\UI\Entrevistas\Modelos\ModelAssignmentModelo.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\UI\Entrevistas\Modelos\ModelImageModelo.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\UI\Entrevistas\Modelos\ModelInfoModelo.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\UI\Entrevistas\Modelos\SessionEndBuffGain.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\UI\Entrevistas\Modelos\SessionEndBuffGainCategoria.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\UI\Entrevistas\Modelos\SessionEndBuffGainPair.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\UI\Entrevistas\Modelos\SessionEndInfoModelo.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\UI\Entrevistas\Modelos\WeeklyFinancesIncomeVsExpenses.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\UI\Entrevistas\Modelos\WeeklyFinancesModelo.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\UI\Entrevistas\PanelCharacterCompleteInfoGetter.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\UI\Entrevistas\PanelCharacterCompleteInfoLoader.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\UI\Entrevistas\PanelDeEntrevistaCalificacionGetter.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\UI\Entrevistas\PanelDeMeetingHiredModel.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\UI\Entrevistas\PanelMakeWeeklyPayments.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\UI\Entrevistas\PanelMakeWeeklyPaymentsGetter.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\UI\Entrevistas\PanelModelAssignmentsLoader.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\UI\Entrevistas\PanelSessionEnd.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\UI\Entrevistas\PanelSessionEndGetter.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\UI\Modelaje\Modelos\EyebrowsMakeover.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\UI\Modelaje\Modelos\EyelashesMakeover.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\UI\Modelaje\Modelos\GestosFacialesShapesCheeksAndChin.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\UI\Modelaje\Modelos\GestosFacialesShapesEyeBrows.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\UI\Modelaje\Modelos\GestosFacialesShapesEyes.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\UI\Modelaje\Modelos\GestosFacialesShapesJaw.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\UI\Modelaje\Modelos\GestosFacialesShapesLips.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\UI\Modelaje\Modelos\GestosFacialesShapesMouth.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\UI\Modelaje\Modelos\GestosFacialesShapesNose.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\UI\Modelaje\Modelos\GestosFacialesShapesToEdit.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\UI\Modelaje\Modelos\GestosFacialesShapesTongue.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\UI\Modelaje\Modelos\HairMakeover.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\UI\Modelaje\Modelos\LipstickMakeover.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\UI\Modelaje\Modelos\MakeoverColor.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\UI\Modelaje\Modelos\MakeoverColorOpacity.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\UI\Modelaje\Modelos\MakeoverToEdit.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\UI\Modelaje\Modelos\MakeUpMakeover.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\UI\Modelaje\PanelDeEditarGestosFaciales.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\UI\Modelaje\PanelDeEditarGestosFacialesGetter.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\UI\Modelaje\PanelDeEditarMakeover.cs" />
+    <Compile Include="TValle\Pro\Entrevista\Runtime\UI\Modelaje\PanelDeEditarMakeoverGetter.cs" />
+    <Compile Include="UnitySourceGeneratedAssemblyMonoScriptTypes_v1.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Characters\AI\Reactores\Emociones\ReactorCambioDeConsentPorFotosConPartesExpuestas.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Characters\AI\Reactores\Emociones\ReactorCambioDeConsentPorFotoSobrePartes.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\Emociones\ReactorCambioDeConsentPorFotoDespuesDeMoverBones.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\DialogueSystem\Chats\UI\SayHelloIsGrayOut.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

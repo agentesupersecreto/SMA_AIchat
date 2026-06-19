@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8AE8DC33-40D4-4B5D-8ABA-065553E02E5A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Assets</RootNamespace>
+    <AssemblyName>Base.Memoria</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Base.CustomMonoBehaviours">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.CustomMonoBehaviours.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.Globales">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.Globales.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.Plugins">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.Plugins.dll</HintPath>
+    </Reference>
+    <Reference Include="netstandard">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\netstandard.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ImageConversionModule">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.ImageConversionModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.JSONSerializeModule">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.JSONSerializeModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="IMemoria.cs" />
+    <Compile Include="IMemoryNodeEXT.cs" />
+    <Compile Include="MemoriaJsonGenerica.2.cs" />
+    <Compile Include="MemoriaJsonGenerica.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UnitySourceGeneratedAssemblyMonoScriptTypes_v1.cs" />
+    <Compile Include="_ReusableScripts\DiccionarioDeMemoria.cs" />
+    <Compile Include="_ReusableScripts\MemoriaJson.cs" />
+    <Compile Include="_ReusableScripts\Memorias\Archivos\SaveLoadCharacters.cs" />
+    <Compile Include="_ReusableScripts\Memorias\Archivos\SaveLoadGestos.cs" />
+    <Compile Include="_ReusableScripts\Memorias\Archivos\SaveLoadImagesWithData.cs" />
+    <Compile Include="_ReusableScripts\Memorias\Archivos\SaveLoadJson.cs" />
+    <Compile Include="_ReusableScripts\Memorias\Archivos\SaveLoadMakeover.cs" />
+    <Compile Include="_ReusableScripts\Memorias\Archivos\SaveLoadOutfit.cs" />
+    <Compile Include="_ReusableScripts\Memorias\Archivos\SaveLoadPoses.cs" />
+    <Compile Include="_ReusableScripts\Memorias\Archivos\SaveLoadProfilePortraits.cs" />
+    <Compile Include="_ReusableScripts\Memorias\IMemoryNode.cs" />
+    <Compile Include="_ReusableScripts\Memorias\IMemoryNodeEvents.cs" />
+    <Compile Include="_ReusableScripts\Memorias\IMemoryNodeReadOnly.cs" />
+    <Compile Include="_ReusableScripts\Memorias\JsonMemorias\Clases\JsonMemoryNode.cs" />
+    <Compile Include="_ReusableScripts\Memorias\JsonMemorias\IJsonMemoryNode.cs" />
+    <Compile Include="_ReusableScripts\Memorias\JsonMemorias\IJsonMemoryNodeBehaviour.cs" />
+    <Compile Include="_ReusableScripts\Memorias\JsonMemorias\IJsonMemoryNodeReadOnly.cs" />
+    <Compile Include="_ReusableScripts\Memorias\JsonMemorias\IJsonMemoryNodeReadOnlyBehaviour.cs" />
+    <Compile Include="_ReusableScripts\Memorias\JsonMemorias\Mapas\Abstracts\MapaInyectorDeMemoriaString.cs" />
+    <Compile Include="_ReusableScripts\Memorias\JsonMemorias\Mapas\MapaInyectorDeMemoriaGenerico.cs" />
+    <Compile Include="_ReusableScripts\Memorias\JsonMemorias\NodeDeMemoriaBehaviour.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

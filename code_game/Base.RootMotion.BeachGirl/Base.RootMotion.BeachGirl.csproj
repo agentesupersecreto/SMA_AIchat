@@ -1,0 +1,360 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{18E9665E-1F0D-481F-AD5F-0C2F42D6AC16}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Assets</RootNamespace>
+    <AssemblyName>Base.RootMotion.BeachGirl</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Base.BeachGirl.Mapas">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.BeachGirl.Mapas.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.Behaviours">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.Behaviours.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.Bones">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.Bones.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.Configs">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.Configs.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.Controllers">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.Controllers.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.CustomMonoBehaviours">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.CustomMonoBehaviours.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.Globales">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.Globales.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.Joints">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.Joints.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.Plugins">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.Plugins.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.RootMotion">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.RootMotion.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.SingletonesAndSystemasGlobales">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.SingletonesAndSystemasGlobales.dll</HintPath>
+    </Reference>
+    <Reference Include="netstandard">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\netstandard.dll</HintPath>
+    </Reference>
+    <Reference Include="TValle.BeachGirl">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\TValle.BeachGirl.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AnimationModule">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.AnimationModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.IMGUIModule">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.IMGUIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.PhysicsModule">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.PhysicsModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Base\RootMotion\BeachGirl\Interacciones\PoseQueExponePartes.cs" />
+    <Compile Include="Base\RootMotion\BeachGirl\Runtime\Ataduras\Controlladores\AtadurasDePuppetHaciaMuscleController.cs" />
+    <Compile Include="Base\RootMotion\BeachGirl\Runtime\Controllers\AutoSex\ControlladorDeAutoSexOral.cs" />
+    <Compile Include="Base\RootMotion\BeachGirl\Runtime\Controllers\AutoSex\ControlladorDeAutoSexV2.cs" />
+    <Compile Include="Base\RootMotion\BeachGirl\Runtime\Controllers\AutoSex\IAutoSexRangesGetter.cs" />
+    <Compile Include="Base\RootMotion\BeachGirl\Runtime\Controllers\Interacciones\FingerPointAtInteraction.cs" />
+    <Compile Include="Base\RootMotion\BeachGirl\Runtime\Controllers\Interacciones\InteraccionAdderOnRangeBase.cs" />
+    <Compile Include="Base\RootMotion\BeachGirl\Runtime\Controllers\Interacciones\InteraccionMalePrimariaBase.cs" />
+    <Compile Include="Base\RootMotion\BeachGirl\Runtime\Controllers\Interacciones\InteraccionTransicionController.cs" />
+    <Compile Include="Base\RootMotion\BeachGirl\Runtime\Controllers\Interacciones\InteracionMalePrimariaExterna.cs" />
+    <Compile Include="Base\RootMotion\BeachGirl\Runtime\Controllers\Interacciones\InteracionSegundariaExterna.cs" />
+    <Compile Include="Base\RootMotion\BeachGirl\Runtime\Controllers\Interacciones\IPartesExpuestaDeInteraccion.cs" />
+    <Compile Include="Base\RootMotion\BeachGirl\Runtime\Controllers\Interacciones\MaleInteractions\InteraccionesBasicasDeMale.cs" />
+    <Compile Include="Base\RootMotion\BeachGirl\Runtime\Controllers\Interacciones\MaleInteractions\__InteraccionName_Ext.cs" />
+    <Compile Include="Base\RootMotion\BeachGirl\Runtime\Controllers\Interacciones\RecostarseInteraccionAdderOnRange.cs" />
+    <Compile Include="Base\RootMotion\BeachGirl\Runtime\Controllers\Interacciones\SillaRecostable.cs" />
+    <Compile Include="Base\RootMotion\BeachGirl\Runtime\Controllers\Interacciones\TargetsDynamicos\ChainBendGoalDeInteraccion.cs" />
+    <Compile Include="Base\RootMotion\BeachGirl\Runtime\Controllers\Interacciones\TargetsDynamicos\TargetDynamicoDeInteracionBase.cs" />
+    <Compile Include="Base\RootMotion\BeachGirl\Runtime\Controllers\Interacciones\TargetsDynamicos\TargetDynamicoLegsVsGravityOnColliders.cs" />
+    <Compile Include="Base\RootMotion\BeachGirl\Runtime\Controllers\Interacciones\TargetsDynamicos\TargetDynamicoLimbVsGravityOnColliders.cs" />
+    <Compile Include="Base\RootMotion\BeachGirl\Runtime\Controllers\Interacciones\Utilidades\BlendInteractionRootJustBeforeExecuting.cs" />
+    <Compile Include="Base\RootMotion\BeachGirl\Runtime\Controllers\Poses\BaseFemalePoseLoader.cs" />
+    <Compile Include="Base\RootMotion\BeachGirl\Runtime\Controllers\SexoAt\OralAtController.cs" />
+    <Compile Include="Base\RootMotion\BeachGirl\Runtime\Controllers\SexoAt\SexoAtController.cs" />
+    <Compile Include="Base\RootMotion\BeachGirl\Runtime\FinalIk\CustomEffectors\ToesEffectorTValle.cs" />
+    <Compile Include="Base\RootMotion\BeachGirl\Runtime\FinalIk\CustomTargets\InteractionSkeletonRoot.cs" />
+    <Compile Include="Base\RootMotion\BeachGirl\Runtime\FinalIk\FemaleFullBodyBipedIKs_Simple.cs" />
+    <Compile Include="Base\RootMotion\BeachGirl\Runtime\FinalIk\HighHeelScripts\FemaleCharacterHighHeelable.cs" />
+    <Compile Include="Base\RootMotion\BeachGirl\Runtime\FinalIk\HighHeelScripts\FemaleHighHeelSystem.cs" />
+    <Compile Include="Base\RootMotion\BeachGirl\Runtime\FinalIk\ILookAtSolverIK.cs" />
+    <Compile Include="Base\RootMotion\BeachGirl\Runtime\FinalIk\Interacciones\InteractionObjects\InteraccionObjectCallBacksComponents\InterObjInstanciador.cs" />
+    <Compile Include="Base\RootMotion\BeachGirl\Runtime\FinalIk\Interacciones\InteractionObjects\InteraccionObjectCallBacksComponents\InterObjInstanciadorInHand.cs" />
+    <Compile Include="Base\RootMotion\BeachGirl\Runtime\FinalIk\Interacciones\TurnOffIKIfNoInteraction.cs" />
+    <Compile Include="Base\RootMotion\BeachGirl\Runtime\FinalIk\SexoIKs\IIKInitializador.cs" />
+    <Compile Include="Base\RootMotion\BeachGirl\Runtime\FinalIk\SexoIKs\OralIK.cs" />
+    <Compile Include="Base\RootMotion\BeachGirl\Runtime\FinalIk\SexoIKs\OralIKInitializador.cs" />
+    <Compile Include="Base\RootMotion\BeachGirl\Runtime\FinalIk\SexoIKs\OralIKUpdater.cs" />
+    <Compile Include="Base\RootMotion\BeachGirl\Runtime\FinalIk\SexoIKs\SexIK.cs" />
+    <Compile Include="Base\RootMotion\BeachGirl\Runtime\FinalIk\SexoIKs\SexIKBase.cs" />
+    <Compile Include="Base\RootMotion\BeachGirl\Runtime\FinalIk\SexoIKs\SexIKInitializador.cs" />
+    <Compile Include="Base\RootMotion\BeachGirl\Runtime\FinalIk\SexoIKs\SexIKUpdater.cs" />
+    <Compile Include="Base\RootMotion\BeachGirl\Runtime\FinalIk\TValleEffectorForcedOffset.cs" />
+    <Compile Include="Base\RootMotion\BeachGirl\Runtime\FinalIk\TValleEffectorForcer.cs" />
+    <Compile Include="Base\RootMotion\BeachGirl\Runtime\FinalIk\TValleEffectorOffsetBase.cs" />
+    <Compile Include="Base\RootMotion\BeachGirl\Runtime\FinalIk\TValleEffectorOffsetComplejo.cs" />
+    <Compile Include="Base\RootMotion\BeachGirl\Runtime\FinalIk\TValleEffectorOffsetInteremedio.cs" />
+    <Compile Include="Base\RootMotion\BeachGirl\Runtime\FinalIk\TValleEffectorOffsetSimple.cs" />
+    <Compile Include="Base\RootMotion\BeachGirl\Runtime\FinalIk\WorldEffectorOffset.cs" />
+    <Compile Include="Base\RootMotion\BeachGirl\Runtime\FinalIk\WorldEffectorOffsetComplejo.cs" />
+    <Compile Include="Base\RootMotion\BeachGirl\Runtime\IFemaleFullBodyBipedIKs.cs" />
+    <Compile Include="Base\RootMotion\BeachGirl\Runtime\Puppet\Clases\Configuraciones\MusclePinChangeSegunDistanceOffsets.cs" />
+    <Compile Include="Base\RootMotion\BeachGirl\Runtime\Puppet\Clases\Configuraciones\MusclePropModsSegunRotationOffsets.cs" />
+    <Compile Include="Base\RootMotion\BeachGirl\Runtime\Puppet\Clases\Configuraciones\MusclescConfigPinChangeSegunDistanceOffsets.cs" />
+    <Compile Include="Base\RootMotion\BeachGirl\Runtime\Puppet\Clases\Configuraciones\MusclesConfigPropModsSegunRotationOffsets.cs" />
+    <Compile Include="Base\RootMotion\BeachGirl\Runtime\Puppet\Colliders\PuppetPartHeelColliders.cs" />
+    <Compile Include="Base\RootMotion\BeachGirl\Runtime\Puppet\IKBeforePhysicsSingleIK.cs" />
+    <Compile Include="Base\RootMotion\BeachGirl\Runtime\Puppet\Mapas\Configuraciones\ReusableMusclesPinChangePorOffsetsConfig.cs" />
+    <Compile Include="Base\RootMotion\BeachGirl\Runtime\Puppet\Mapas\Configuraciones\ReusableMusclesPropsModsPorOffsetsConfig.cs" />
+    <Compile Include="Base\RootMotion\BeachGirl\Runtime\Puppet\PuppetMuscleModsSegunOffsets.cs" />
+    <Compile Include="ConfiguracionParaTarget.cs" />
+    <Compile Include="FinalIk\FinalIKUtils.cs" />
+    <Compile Include="FinalIk\LookAtIKTargets.cs" />
+    <Compile Include="FinalIk\LookAtTarget.cs" />
+    <Compile Include="FinalIk\LookAtTargetWieghtPar.cs" />
+    <Compile Include="FinalIk\LookAtTargetWieghtParCollection.cs" />
+    <Compile Include="IConfiguracionParaTarget.cs" />
+    <Compile Include="MuscleUtilities.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PuppetExt.cs" />
+    <Compile Include="UnitySourceGeneratedAssemblyMonoScriptTypes_v1.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Clases\AnimatorConfig.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Clases\MusclePropsConfig.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Clases\PuppetConfig.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Clases\PuppetMuscleConfig.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Clases\PuppetMuscleConfigPar.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Clases\PuppetMusclesConfig.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\ControllerPoses\ConfiguracionDePoscionSexual.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\ControllerPoses\FemalePosesConfigs.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\ControllerPoses\TipoDeAtadura.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\AtadurasDePuppetController.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\CurvasDeGestosConCabeza.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\CurvasDeGestosConHombros.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\EffectorsController.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\FullBodyBipedEffectorDual.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\Checkers\Abstracts\InteraccionChecker.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\Checkers\InteraccionCheckCollider.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\Checkers\InteraccionRayCastChecker.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\Checkers\ReCheckValidesDeInteraccionOnCambioDePose.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\Checkers\UserInteraccionPuedeEjecutarse.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\DatosDeInteraccionDynamica.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\DatosDeInteraccionDynamicaGenerica.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\Handlers\InteractionExecuteWhile.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\IInteraccionesDeCharacter.2.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\IInteraccionesDeCharacter.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\IInteraccionesDeCharacterEXT.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\IInteraccionesDeCharacterFemenino.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\IInteraccionesDeCharacterFemeninoEXT.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\IInteraccionesDeCharacterMale.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\IInteractionController.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\IInteractionObjectPar.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\IInteractionOrden.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\Interaccion.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\InteraccionAbortHanlder.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\InteraccionAdderOnRange.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\InteraccionAddingEvents.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\InteraccionCheckers.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\InteraccionController.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\InteraccionDeCharacter.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\InteraccionDeCharacterFemenino.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\InteraccionesBasicasDeFemale.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\InteraccionGenerica.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\InteraccionPrimaria.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\InteraccionPrimariaBase.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\InteraccionPrimariaName.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\InteraccionSegundaria.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\InteraccionSegundariaBase.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\InteraccionSegundariaName.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\InteraccionTryEjecutarHanlder.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\InteracionPrimariaExterna.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\InteractionCallBackHandler.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\InteractionEffectorControllerSlave.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\Testing\InteraccionInterfaceActivadorTESTING.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\Utilidades\TransferirAnimatorBoneScalaToPivot.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\Utilidades\TransferirScalaToPivot.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\InteractionEffectorController.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\InteractionsController.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\LookAtControllerV2.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\CerrarOjosMirandoAbajo.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\CharacterInteractionSystem.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\CharAnimatorLocalEffectorAdder.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\CustomEffectors\FemaleHeadChainEffectorTValle.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\CustomEffectors\HeadChainEffectorTValle.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\CustomEffectors\ICodoIKEffector.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\CustomEffectors\ICodosIKEffector.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\CustomEffectors\IHombroIKEffector.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\CustomEffectors\IHombrosIKEffector.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\CustomEffectors\IIKCustomEffector.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\CustomEffectors\IToeIKEffector.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\CustomEffectors\IToesIKEffector.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\CustomIKs\IKSolverLimbTValle.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\CustomIKs\IKSolverTrigonometricTValle.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\CustomIKs\LimbIKTValle.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\FBBIKArmBendingTValle.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\FBBIKFemaleLootAt.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\FBBIKOverrideBendDirections.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\FemaleFullBodyBipedIKs.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\FinalIKSolverUpdater.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\FingerRigInitializeWithState.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\FingerRigTransferirReferencias.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\FingerRigTValle.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\FixBendDirection.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\HandPoses\HandPoserByName.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\HandPoses\SimpleObjectToHand.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\HandPoses\SimpleObjectToHandBase.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\HeadLookAtSolver.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\HeadLookAtSolverPostSuavizador.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\IEffectorIsLooked.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\IInteractionSystemLookAtGetter.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\ILookAtHandlerHorizontalChange.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\ILookAtHeadTargets.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\ILookAtIK.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\ILookAtIKOjos.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\ILookAtOjosTargets.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\ILookAtWeights.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\Interacciones\AddProbToInteractionSimple.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\Interacciones\CollidersDeInteracion.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\Interacciones\Followers\FollowInterObjAnimatorBone.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\Interacciones\Followers\FollowInterObjAnimatorBoneBase.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\Interacciones\Followers\FollowInterObjFemaleCharBone.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\Interacciones\Followers\FollowInterObjFemaleCharBoneBase.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\Interacciones\Followers\FollowInterObjFemaleCharBoneScalerBase.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\Interacciones\Followers\FollowInterObjFemaleCharScalerBone.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\Interacciones\Followers\FollowInterObjTransform.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\Interacciones\Followers\InterObjIKPassMatrixFollower.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\Interacciones\IInteraccion.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\Interacciones\IInteraccionPrimaria.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\Interacciones\InteraccionEffectorParInfo.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\Interacciones\InteraccionEstado.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\Interacciones\InteraccionInfo.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\Interacciones\InteraccionObjectCallBacks.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\Interacciones\InteraccionObjectCallBacksPauseOnHalfTime.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\Interacciones\InteraccionObjectComienzaTerminaCallBacks.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\Interacciones\InteraccionObjectReducirMappingDeMusculos.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\Interacciones\InteraccionObjectReducirMappingDeMusculosDeAvatarBase.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\Interacciones\InteraccionReducirMappingDeMusculosDeAvatar.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\Interacciones\InteraccionStartParams.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\Interacciones\InteraccionStartParamsModificadores.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\Interacciones\InteractionEffectorV2.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\Interacciones\InteractionObjects\InteraccionObjectCallBacksComponents\IntObjChangeFollowerSpeedOnPause.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\Interacciones\InteractionObjects\InteractionObjectConCustomEffectors.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\Interacciones\InteractionObjectV2ConCabeza.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\Interacciones\InteractionObjectV2EnableScripts.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\Interacciones\InteractionObjectV2Hombros.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\Interacciones\InteractionSystemTestGUIV2.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\Interacciones\InteractionSystemV3.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\Interacciones\ManoIzqTelefonoHaciaRostro.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\Interacciones\Targets\CustomBipedEffector.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\Interacciones\Targets\InteractionTargetTValle.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\Interacciones\Targets\___FullBodyBipedEffectorEXT.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\InteractionLookAtV2.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\InteractionObjectV2.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\InteractionObjectV2Base.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\InteractionSystemV2.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\InteractionSystemV2Updater.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\IUserFullBodyBipedIK.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\LocalDefaultEffectorOffset.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\LocalEffectorOffset.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\LookAtIKModificadores.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\LookAtIKPostSuavizador.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\LookAtInitializador.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\LookAtManager.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\LookAtManagerV2.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\LookAt\LookAtIKPostSuavizadorV2.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\LookAt\LookAtIKUpdater.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\LookAt\LookAtIK_TargetTransformer.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\LookAt\LookAtIK_version3.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\LookAt\ProveedorDeDataDeLookAtIK.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\LookAt\ProveedorDeTargetDeLookAtIK.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\LookAt\Testing\LookAtSetTargetToTransformadorTesting.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\LookAt\Transformadores\ILookAtIKTargetTransformer.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\LookAt\Transformadores\OrientacionMod.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\LookAt\Transformadores\ProyectOnUpMirandoAtras.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\OjosLookAtIK.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\OjosLookAtManager.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\Poses\HandPoses\HandPoserDeInterSys.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\Poses\PoserDeInterSys.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\ShoulderRotatorV2.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\TValleEffectorOffsetV2.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\TValleOffsetModifier.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\IJustPuppetEvents.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\MalePuppetMasterUpdater.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\PuppetCollidersToConvexAdder.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\PuppetCollidersToConvexAdderV2.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\PuppetCollidersToPenisAdder.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\PuppetColliderToConvex.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\PuppetColliderToConvexV2.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\PuppetColliderToPene.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\PuppetExtraColliders.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\PuppetMasterUpdater.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Puppet\AtadurasDinamicasDePuppet.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Puppet\Behaviours\BehaviourBaseUpdater.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Puppet\DeteccionDePuntosDeApoyoDePuppet.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Puppet\FemaleIKUpdater.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Puppet\IKBeforePhysicsBase.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Puppet\IKBeforePhysicsLookAtOrder.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Puppet\IKBeforePhysicsV2.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Puppet\IMuscleCollidersModificador.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Puppet\IMuscleCollidersUpdater.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Puppet\LookAt\PhysicsLookAt.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Puppet\MuscleCollidersCopier.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Puppet\OralAt\PhysicsOralAt.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Puppet\PuppetCollidersToConvexAdderV3.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Puppet\PuppetMusclePropMods.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Puppet\ToConvexColliderAdder.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Puppet\ToMusclePuppetAdder.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Puppet\TransFollowers\FollowAnimatorBoneAfterIK.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Puppet\TransFollowers\FollowNalgas.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Puppet\TransFollowers\FollowTetas.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scriptables\ReusableAnimatorConfig.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scriptables\ReusableMusclesConfig.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scriptables\ReusablePuppetConfig.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\___FullBodyBipedEffectorEXT.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\IKMatrixFollower.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\TransFollowers\FollowFemaleCharBone.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\TransFollowers\FollowFemaleCharIKBone.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\TransFollowers\FollowNalgas.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\TransFollowers\IKPassMatrixFollower.cs" />
+    <Compile Include="__IConfiguracionParaTargetEXT.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

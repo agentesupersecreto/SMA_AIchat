@@ -1,0 +1,730 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{76DFAC88-D96E-4187-8DF2-58BE3DAE1773}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Assets</RootNamespace>
+    <AssemblyName>Assembly-D_C_Dependientes_ReSc</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Assembly-D_D_Characters_ReSc">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Assembly-D_D_Characters_ReSc.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-D_E_Chuchi_ReSc">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Assembly-D_E_Chuchi_ReSc.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-D_F_CharactersBasics_ReSc">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Assembly-D_F_CharactersBasics_ReSc.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-D_ReSc">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Assembly-D_ReSc.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.Activables">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.Activables.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.BeachGirl.Controladores.Materiales">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.BeachGirl.Controladores.Materiales.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.BeachGirl.Mapas">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.BeachGirl.Mapas.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.BeachGirl.Mapas.Materiales">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.BeachGirl.Mapas.Materiales.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.Behaviours">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.Behaviours.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.Bones">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.Bones.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.Bones.Gizmos">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.Bones.Gizmos.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.Bones.Gizmos.BeachGirl">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.Bones.Gizmos.BeachGirl.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.Configs">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.Configs.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.Controllers">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.Controllers.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.CustomMonoBehaviours">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.CustomMonoBehaviours.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.Globales">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.Globales.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.Joints">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.Joints.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.Memoria">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.Memoria.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.Plugins">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.Plugins.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.RootMotion">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.RootMotion.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.RootMotion.BeachGirl">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.RootMotion.BeachGirl.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.SingletonesAndSystemasGlobales">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.SingletonesAndSystemasGlobales.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.Tiempo">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.Tiempo.dll</HintPath>
+    </Reference>
+    <Reference Include="DialogueSystem">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\DialogueSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="GpuTools">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\GpuTools.dll</HintPath>
+    </Reference>
+    <Reference Include="netstandard">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\netstandard.dll</HintPath>
+    </Reference>
+    <Reference Include="Otti">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Otti.dll</HintPath>
+    </Reference>
+    <Reference Include="TCharacters.Memory">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\TCharacters.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="TValle.BeachGirl">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\TValle.BeachGirl.dll</HintPath>
+    </Reference>
+    <Reference Include="TValle.BeachGirl.Alteradores">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\TValle.BeachGirl.Alteradores.dll</HintPath>
+    </Reference>
+    <Reference Include="TValle.BeachGirl.Alteradores.MapasDeAlteradores">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\TValle.BeachGirl.Alteradores.MapasDeAlteradores.dll</HintPath>
+    </Reference>
+    <Reference Include="TValle.BeachGirl.Estimulos">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\TValle.BeachGirl.Estimulos.dll</HintPath>
+    </Reference>
+    <Reference Include="TValle.BeachGirl.EyeAdvance">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\TValle.BeachGirl.EyeAdvance.dll</HintPath>
+    </Reference>
+    <Reference Include="TValle.BeachGirl.Genetica.Alteradores">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\TValle.BeachGirl.Genetica.Alteradores.dll</HintPath>
+    </Reference>
+    <Reference Include="TValle.BeachGirl.GpuHair">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\TValle.BeachGirl.GpuHair.dll</HintPath>
+    </Reference>
+    <Reference Include="TValle.BeachGirl.GpuHair.Controlladores">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\TValle.BeachGirl.GpuHair.Controlladores.dll</HintPath>
+    </Reference>
+    <Reference Include="TValle.BeachGirl.MapasDeAlteradores">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\TValle.BeachGirl.MapasDeAlteradores.dll</HintPath>
+    </Reference>
+    <Reference Include="TValle.BeachGirl.VertExmotions">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\TValle.BeachGirl.VertExmotions.dll</HintPath>
+    </Reference>
+    <Reference Include="TValle.Inputs">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\TValle.Inputs.dll</HintPath>
+    </Reference>
+    <Reference Include="TValle.IU">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\TValle.IU.dll</HintPath>
+    </Reference>
+    <Reference Include="TValle.MeshCalcules">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\TValle.MeshCalcules.dll</HintPath>
+    </Reference>
+    <Reference Include="TValle.MeshCalcules.ShapingSkinningPoints">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\TValle.MeshCalcules.ShapingSkinningPoints.dll</HintPath>
+    </Reference>
+    <Reference Include="TValle.Modding.Tools">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\TValle.Modding.Tools.dll</HintPath>
+    </Reference>
+    <Reference Include="TValle.SystemasConstraints">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\TValle.SystemasConstraints.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Addressables">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Unity.Addressables.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Burst">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Unity.Burst.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Collections">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Unity.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Mathematics">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Unity.Mathematics.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AIModule">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.AIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AnimationModule">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.AnimationModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AudioModule">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.AudioModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.IMGUIModule">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.IMGUIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.JSONSerializeModule">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.JSONSerializeModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.PhysicsModule">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.PhysicsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="VertExmotion">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\VertExmotion.dll</HintPath>
+    </Reference>
+    <Reference Include="VertExmotion.Scripts">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\VertExmotion.Scripts.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Base\RootMotion\BeachGirl\Runtime\FinalIk\HighHeelScripts\FemaleHighHeelFromClothing.cs" />
+    <Compile Include="BuffAndDebuffGeneratorHelper.cs" />
+    <Compile Include="CustomPoses\CustomPosesSaveIDs.cs" />
+    <Compile Include="CustomPoses\CustomPoseTransformData.cs" />
+    <Compile Include="CustomPoses\SaveLoadCustomPoses.cs" />
+    <Compile Include="IControlladorDeBark.cs" />
+    <Compile Include="Productos\Juegos\Scripts\BeachGirl\VertExmotions\SensoresDeMaleCharacter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UnitySourceGeneratedAssemblyMonoScriptTypes_v1.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\AI\Emociones\Handlers\Cambiadores\ConsentPorGustosDeModelaje.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Characters\AI\Reactores\Orgasmo\ReactorDeExpresionesConSonidoPorOrgasmo.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Chars\AI\AjustadorDeDilatacionDePupilas.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\AutoSexRangosDeToleranciaCalculador.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\AI\FemaleEstimulosReacciones.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Interpretadores\Helpers\BodySkinData.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Interpretadores\Helpers\DeseosData.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Interpretadores\Helpers\FacialSkinData.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Interpretadores\Helpers\HairData.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Interpretadores\Helpers\HelperDeInterpretadorBase.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Interpretadores\Helpers\HoleRangesData.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Interpretadores\Helpers\NalgasSkinRangesData.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Interpretadores\Helpers\PersonalidadData.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Interpretadores\Helpers\PubicHairData.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Interpretadores\Helpers\RazaData.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Interpretadores\Helpers\SenosSkinRangesData.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Interpretadores\Helpers\SkinRangesDataBase.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Interpretadores\InterpretadorDeFemales.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Interpretadores\LoaderInterpretacionDeApariencia.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Interpretadores\Mapas\MapaSingletonDefaultInterpretacion.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Interpretadores\Mapas\MapaSingletonDefaultInterpretacionData.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\AI\LookAtPuppetEyesOrDefaultAI.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Navigation\CharacterNavMeshObstacle.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Navigation\LookAtNextCornerWhenClose.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Navigation\SimpleFemaleNavigation.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Navigation\StopNavigationOnTuchingHandTouch.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\AI\ReaccionDePose.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\AI\ReaccionesDePoses\ReaccionAOrgasmoTodasLasPoses.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\AI\ReaccionesDePoses\ReaccionCerrarHoleTodasLasPoses.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\AI\ReaccionesDePoses\ReaccionConDiscurso.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\AI\ReaccionesDePoses\ReaccionConEffector.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\AI\ReaccionesDePoses\ReaccionDiscursoTodasLasPoses.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\AI\ReaccionesDePoses\ReaccionesDePie.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\AI\ReaccionesDePoses\ReaccionGestosFacialesTodasLasPoses.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\AI\ReaccionesDePoses\ReaccionLookAtTodasLasPoses.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\AnalPosibilidadScore.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\AnalSexScore.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\AutoSexPosibilidadScore.2.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\AutoSexPosibilidadScore.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\AutoSexScore.2.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\AutoSexScore.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\ConAnimator\ReactorDeActivarPoseIdleEmocionAlSerEstiualada.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\ConExpresiones\ReactorExpresionBase.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\ConExpresiones\ReactorExpresionOnJustPenetrated.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\ConExpresiones\ReactorExpresionOnMaxHoleProfundidad.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\ConExpresiones\ReactorExpresionOnSpot.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\Dialogos\Abstract\ReactorDeBarkingBasicoConHandlerDeInteraccionEstimulante.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\Dialogos\Abstract\ReactorDeBarkingBasicoConMultipleBarks.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\Dialogos\Clases\ReactorDeBarkingHandler.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\Dialogos\ModificadorPorCambioDeEstimulada.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\Dialogos\ModificadorPorCambioDeEstimulante.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\Dialogos\ModificadorPorCambioDeReaccion.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\Dialogos\ModificadorPorCambioDeTipoDeEstimulo.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\Dialogos\ModificadorPorCambiosEnCalculos.2.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\Dialogos\ModificadorPorCambiosEnCalculos.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\Dialogos\ObtenerDialogosUtil.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\Dialogos\ReactorDeBarkingBasicoV2DeEmocionRecibida.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\Dialogos\ReactorDeBarkingBasicoV2DeEmocionRecibidaTACTIL.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\Dialogos\ReactorDeBarkingDeIntensidadAlta.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\Dialogos\ReactorDeBarkingDeIntensidadAltaV2Coital.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\Dialogos\ReactorDeBarkingDeIntensidadAltaV2CoitalAnchura.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\Dialogos\ReactorDeBarkingDeIntensidadAltaV2CoitalProfunda.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\Dialogos\ReactorDeBarkingDeIntensidadAltaV2Tactil.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\Dialogos\ReactorDeBarkingDeIntensidadBaja.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\Dialogos\ReactorDeBarkingDeIntensidadBajaV2Coital.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\Dialogos\ReactorDeBarkingDeIntensidadBajaV2CoitalAnchura.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\Dialogos\ReactorDeBarkingDeIntensidadBajaV2CoitalProfunda.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\Dialogos\ReactorDeBarkingDeIntensidadBajaV2Tactil.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\Dialogos\ReactorDeBarkingPorVerPartesMasuculinas.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\Dialogos\ReactorDeBarkingRecibidos.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\Dialogos\ReactorDeBarkingRecibidosNORage.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\Dialogos\ReactorDeBarkingRecibidosRAGE.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\AI\Reactores\Effector\ConfigDeReacctorConEffector.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\AI\Reactores\Effector\CoolDownPorTipo.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\AI\Reactores\Effector\DependenciasGetter.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\AI\Reactores\Effector\ReactorConEffector.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\AI\Reactores\Effector\ReactorConEffectorAEstimulosCoitales.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\AI\Reactores\Effector\ReactorConEffectorAEstimulosTactiles.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\Effector\ReactorConHeadEffectorAEstimulos.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\Effector\ReactorConHombrosEffectorAEstimulos.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\GestosFaciales\DependenciasGestosFaciales.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\GestosFaciales\ReactorExagerarGestosFacialesDeCoitoOnReaccionInicia.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\GestosFaciales\ReactorExagerarGestosFacialesDeToquesOnReaccionInicia.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\GestosFaciales\ReactorExagerarGestosFacialesOnGolpe.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\GestosFaciales\ReactorGeneralDeGestosFaciales.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\GestosFaciales\ReactorGestosFacialesBase.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\Interacciones\ReacctorCubrirPartesPrivadasAlSerDesvestido.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\Interacciones\ReacctorCubrirPartesPrivadasAlSerTocado.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\Interacciones\ReacctorCubrirPartesPrivadasAlSerVistoPorMain.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\Interacciones\ReacctorDeInteracciones.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\Interacciones\ReacctorDeInteraccionesConfig.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\Interacciones\ReacctorDeInteraccionesPartesPrivadas.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\Interacciones\ReacctorDeInteraccionesPartesPrivadasConPersonalidad.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\Interacciones\ReacctorDeInteraccionesPartesPrivadasConRopa.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\Interacciones\ReacctorMirarAtrasAbajoAlMirarAtrasAbajo.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\Interacciones\ReacctorMirarAtrasAlSerTocadaPorDetras.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\AI\Reactores\LookAt\ConfigReactorLookAtBase.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\AI\Reactores\LookAt\DependenciasReactorLookAtBase.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\AI\Reactores\LookAt\ReactorGeneralLookAt.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\AI\Reactores\LookAt\ReactorLookAtBase.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\OjosExpresion\ReacctorConExpresionDeOjos.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\OjosExpresion\ReactorCerrarOjosAlTocarOjos.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\OjosExpresion\ReactorCerrarOjosOnGolpe.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\Orales\DedoOralPosibilidadScore.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\Orales\DedoOralSexScore.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\Orales\OralPosibilidadScore.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\Orales\OralSexScore.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\Orales\PeneOralPosibilidadScore.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\Orales\PeneOralSexScore.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\Orales\ReactorAbrirLabiosPorGargantaEsofagoSex.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\Orales\ReactorAutoSexOralPorPenetracion.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\Orales\ReactorAutoSexPorPenetracion.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\Orales\ReactorDeseoOralBocaPosePorTocar.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\Orales\ReactorDeseoOralBocaPosePorVer.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\Orales\ReactorOralAtPorSerPenetrada.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\Orales\ReactorOralAtPorVerPene.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\Orales\ReactorOralPorTocarPene.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\Orales\ReactorSexAtPorSerPenetrada.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\Orales\ReactorSexAtPorTocarPene.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\Orales\ReactorSexAtPorVerPene.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\Orales\ReactorSuckPenePartePorTocar.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\Orales\ReactorSuckPenePorPenetracion.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\Orgasmo\Dialogos\ReactorDeBarkingDeOrgasmo.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\Orgasmo\Effectors\ReactorConEffectorAOrgasmo.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\ParaReactores\OjosExpresion\ParaReactorAumentarBrilloHumedadDeHole.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\ParaReactores\OjosExpresion\ParaReactorCerrarOjoConSemen.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\ParaReactores\OjosExpresion\ParaReactorCerrarOjosAlAhogarse.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\ParaReactores\OjosExpresion\ParaReactorCerrarOjosAlCoito.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\ParaReactores\ParaReactorDolorPorEnema.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\ParaReactores\ParaReactorExpresionesPorExpulsionDeEnema.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\ParaReactores\ParaReactorSayGraciasOnWalletChange.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\ReactorCambioDeDeseosPorEstimulos.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\RecopiladorDeSexScores.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\Sexuales\DedoAnalPosibilidadScore.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\Sexuales\DedoAnalSexScore.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\Sexuales\DedoVaginalPosibilidadScore.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\Sexuales\DedoVaginalSexScore.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\Sexuales\PeneAnalPosibilidadScore.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\Sexuales\PeneAnalSexScore.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\Sexuales\PeneVaginalPosibilidadScore.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\Sexuales\PeneVaginalSexScore.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\VaginalPosibilidadScore.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Reactores\VaginalSexScore.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ai\Scenas\ScenaAI.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\AI\Scenes\Alpha01\Alpha01SceneAI.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\BuffAndDebuff\ArgumentoDeEfecto.2.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\BuffAndDebuff\ArgumentoDeEfecto.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\BuffAndDebuff\ArgumentosDeEfectosManager.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\BuffAndDebuff\BuffAconteciendo.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\BuffAndDebuff\BuffBehaviurBase.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\BuffAndDebuff\BuffDeCharacter.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\BuffAndDebuff\BuffEnEspera.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\BuffAndDebuff\BuffEvento.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\BuffAndDebuff\BuffManager.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\BuffAndDebuff\BuffMap.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\BuffAndDebuff\Efecto.2.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\BuffAndDebuff\Efecto.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\BuffAndDebuff\EfectosManager.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\BuffAndDebuff\MapaDeTiposDeBuffStackable.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\BuffAndDebuff\MapaDeTiposDeBuffStackableMaxCount.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\BuffAndDebuff\Mapas\DisplayableBuffMap.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\BuffAndDebuff\ProveedorArgumentoDeEfectosIdsAttribute.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\BuffAndDebuff\ProveedorBuffIdsAttribute.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\BuffAndDebuff\ProveedorDeStacksTipoIdsAttribute.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\BuffAndDebuff\ProveedorEfectosIdsAttribute.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\BuffAndDebuff\TipoDeBuff.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Characters\Abstracts\CharacterRotationMode.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Characters\Ai\FemaleCharTouchInformerV2.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Characters\Ai\FemaleInformer.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Characters\Ai\FemaleVagLabiaInformer.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Characters\Alteradores\Delegados\AlteradorDelegadoDePivotDePiernasPuppet.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Characters\Alteradores\Holders\AlteracionesDependientesDeMeshDeBrazosGeneral.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Characters\Alteradores\Holders\AlteracionesDependientesDeMeshDeCabelloGeneral.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Characters\Alteradores\Holders\AlteracionesDependientesDeMeshDeCabezaGeneral.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Characters\Alteradores\Holders\AlteracionesDependientesDeMeshDeManosGeneral.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Characters\Alteradores\Holders\AlteracionesDependientesDeMeshDePiernasGeneral.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Characters\Alteradores\Holders\AlteracionesDependientesDeMeshDeTorzoGeneral.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Characters\Alteradores\Holders\AlteracionesDependientesDeMeshGeneral.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Characters\Alteradores\Holders\CondicionesMedicas\AlteracionesDeCondicionesMedicas.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Characters\Alteradores\Holders\DeMateriales\AlteracionesDeMateralesDeCabelloGeneral.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Characters\Alteradores\Holders\DeMateriales\AlteracionesDeMateralesDeOjos.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Characters\Alteradores\Holders\DeMateriales\AlteracionesDependientesDeMateralesDeCuerpoGeneral.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Characters\Alteradores\Holders\Masculinos\AlteracionesDependientesDeMaleDeMeshGeneral.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Characters\Alteradores\Holders\Masculinos\ControlladorDeMaleHeight.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Characters\BodyCollidersContraCharacter.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Characters\BuffAndDebuff\CheckHolesForLubrication.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Characters\BuffAndDebuff\CheckSkinsForLubrication.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Characters\CharacterMuscles.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Characters\Controlladores\HandController.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Characters\Controlladores\HandControllerV2.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Characters\Controlladores\Hands\AI\HandJobTouchInyector.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Characters\Controlladores\Hands\AI\MassageTouchInyector.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Characters\Controlladores\Hands\FemaleHandPickHandler.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Characters\Controlladores\Hands\FemaleHandPickHandlerDeInteraccionExterna.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Characters\Controlladores\Hands\FingerPhyscisController.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Characters\Controlladores\Hands\HandConstraintPositionOnFingerPenetration.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Characters\Controlladores\Hands\HandDamperChangeOnFingerTouch.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Characters\Controlladores\Hands\HandDamperChangeOnPenetrationBoca.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Characters\Controlladores\Hands\HandDamperChangeOnTouching.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Characters\Controlladores\Hands\HandJobController.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Characters\Controlladores\Hands\HandPickController.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Characters\Controlladores\Hands\HandPickHandler.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Characters\Controlladores\Hands\HandPickHandlerBase.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Characters\Controlladores\Hands\HandPickHandlerDeInteraccionExterna.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Characters\Controlladores\Hands\HandPickUserController.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Characters\Controlladores\Hands\MassageController.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Characters\Controlladores\Hands\RedirectorDeSkinOnCollisionStayListiner.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Characters\Controlladores\HandTipoDePose.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Characters\Controlladores\IHandActivador.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Characters\Controlladores\Sonido\Expresiones\ControlladorDeExpresionesVerbalesConSonido.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Characters\DetectorDeCollisionesDeCamaraDeCharacter.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Characters\EyeAdvance\Alteradores\AlteracionesDeEyeAdvance.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Characters\FemaleCharPenetrationInformer.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Characters\FemaleCharTouchInformer.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Characters\FemalePuppetChar.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Characters\FemalePuppetCharIdleable.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Characters\FingerLookAtTargetProvider.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Characters\HandCameraController.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Characters\HandCameraControllerV2.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Characters\ICharacterControllerChar.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Characters\IDepthPositionContainer.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Characters\Inputs\UserFacePointOfView.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Characters\IPuppetChar.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Characters\IViewPortPositionContainer.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Characters\MalePuppetChar.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Characters\MalePuppetCharIdleable.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Characters\MoverHombrosDeCharParaEscaparDeCollisionDeCamera.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Characters\PuppetFingerPenisAdder.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Characters\PuppetPenisAdder.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Characters\RespiracionDeIK.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Characters\Shapes\DesplazadorDePenePorShapes.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Characters\UpdatingHandPosition.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Characters\UpdatingHandPositionFixing.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Characters\UpdatingHandPositionV2.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\ControllerPoses\BaseFemalePoseLoader.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\ControllerPoses\FemalePoseLoader.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\ControllerPoses\Posicion.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\ControllerPoses\PosicionEnumExt.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\ControllerPoses\SimpleFemalePoseLoader.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\ControllerPoses\SubStates\RecostadaTracker.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\AtadurasPorUsuarioController.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\ControladorDeGestosConCabeza.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\ControladorDeGestosConHombros.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\ControlladorDeShapeDeInternalOrgans.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\AI\BoneGuiable.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\AI\CambiarEstadoDeInteraccionesConAI.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\AI\Emociones\CambiosDePoseByMainInFrame.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\AI\Emociones\Handlers\Abstracts\CalculoDeEmocionesPorCambioDePose.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\AI\Emociones\Handlers\Abstracts\CalculoDeEmocionesPorCambioDePoseConfiguracion.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\AI\Emociones\Handlers\Abstracts\CalculoDeEmocionesPorEjecutarDePose.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\AI\Emociones\Handlers\Abstracts\CalculoDeEmocionesPorGuiaDeBones.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\AI\Emociones\Handlers\Abstracts\CalculoDeEmocionesPorManipulacionDeBones.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\AI\Emociones\Handlers\Abstracts\CalculoDeEmocionesPorMovimientoDeBones.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\AI\Emociones\Handlers\Abstracts\CalculoDeEmocionesPorMovimientoDeBonesConfiguracion.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\AI\Emociones\Handlers\Abstracts\CalculoDeEmocionesPorMovimientoDeBonesResultado.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\AI\Emociones\Handlers\Abstracts\CalculoDeEmocionesPorPeticionEjecutarDePose.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\AI\Emociones\Handlers\Abstracts\CalculoDeEstimuloCambioDePoseResultado.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\AI\Emociones\Handlers\DolorPorEjecucionDePose.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\AI\Emociones\Handlers\DolorPorManipulacionDeBones.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\AI\Emociones\Handlers\FrameCalculos\DesHieloPorCambioDeEmocionesDependientes.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\AI\Emociones\Handlers\FrameCalculos\FearPorCambioDeEmocionesDependientes.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\AI\Emociones\Handlers\FrameCalculos\FearPorDesHieloDependientes.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\AI\Emociones\Handlers\PlacerPorEjecucionDePose.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\AI\Emociones\Handlers\PlacerPorGuiaDeBones.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\AI\Emociones\Handlers\PlacerPorManipulacionDeBones.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\AI\Emociones\Handlers\PlacerPorPeticionDeEjecucionDePose.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\AI\Emociones\Handlers\RagePorEjecucionDePose.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\AI\Emociones\Handlers\RagePorGuiaDeBones.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\AI\Emociones\Handlers\RagePorManipulacionDeBones.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\AI\Emociones\Handlers\RagePorPeticionDeEjecucionDePose.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\AI\Emociones\Handlers\SesionesCalculos\SesionGeneralGuiaDeBones.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\AI\Emociones\Handlers\SesionesCalculos\SesionGeneralManipulacionDeBones.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\AI\Emociones\Handlers\SesionesCalculos\SesionPromGuiaDeBones.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\AI\Emociones\Handlers\SesionesCalculos\SesionPromManipulacionDeBones.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\AI\Emociones\MovimientosDeBonesByMainInFrame.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\AI\Emociones\PuedeRespirarSegunAgarrantesEnViasRespiratorias.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\AI\Estimulos\SiendoCambiadoDePosePorCharacter.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\AI\Estimulos\SiendoCambiadoEjecutarPosePorCharacterConManos.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\AI\Estimulos\SiendoCambiadoEjecutarPosePorCharacterConVoz.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\AI\Estimulos\SiendoGuiadoEnBonesPorCharacter.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\AI\Estimulos\SiendoManipuladoEnBonesPorCharacter.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\AI\Estimulos\SiendoMovidoEnBoneGuiablePorCharacter.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\AI\Estimulos\SiendoMovidoEnBonesPorCharacter.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\AI\Estimulos\SiendoPedidoEjecutarPosePorCharacter.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\AI\ICalculadorDeEstimuloDeCambioDePose.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\AI\ICalculadorDeEstimuloDeMovimientoDeBones.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\AI\ICalculoDeEstimuloPorCambioDePose.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\AI\ICalculoDeEstimuloPorMovimientoDeBones.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\AI\ICambioDePoseEnFrameDataCollector.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\AI\ICambioDePoseRegistrador.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\AI\ICharCambioDePoseInformer.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\AI\ICharCambioDePoseInformerInstanceGetter.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\AI\ICharGuiadoDeBonesInformer.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\AI\ICharManipulacionDeBonesInformer.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\AI\ICharMovimientoDeBonesInformerInstanceGetter.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\AI\ICharPeticionDeCambioDePoseInformer.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\AI\IMovidoEnBonesEnFrameDataCollector.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\AI\IMovidoEnBonesRegistrador.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\AI\Informers\CharCambiosDePoseInformer.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\AI\Informers\CharMovimientosDeBonesInformer.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\AI\InteraccionPersonalidadData.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\AI\Memoria\MemoriaDeRegistroDePeticionesDeEjecutarPose.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\AI\Memoria\MemoriaDeRegistroDePeticionesDeGuiarPose.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\AI\PeticionEstadoDeInteraccionesConAI.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\AI\PoseQueExponePartesVestidas.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\ChangePinnedBoneColor.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\Especificas\ApuntarProbAUretra.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\Especificas\EstetoscopioChangeStateOnInteractionPause.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\Especificas\EstetoscopioHacerLectura.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\Especificas\EstetoscopioInteractions.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\Especificas\EstetoscopioOnTomarLector.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\Especificas\EstetoscopioPasarAlFrenteLector.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\Especificas\PeneAgarrarPuntaInvertido.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\Especificas\PeneCambiarRotationOnApplyingIntObj.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\Especificas\PeneInsertarProbeEnUretra.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\Especificas\TomarPeneIgnoraCollisiones.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\UI\GreyOutOnInteraccionPlaying.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\UI\InteraccionStrings.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\UI\OpcionesDeDonaDeInteraccionesDisponibles.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\Interacciones\UI\SitDownIsGreyOut.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\LookAtController.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\MovementLimitSegunHoleFondoBase.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\PelvisMovementController.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\PelvisMovementLimitSegunHoleFondo.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\PelvisMovementLimitSegunHoleFondoDUMMY.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\UpdatingPelvisPosition.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\UserControllers\PelvisMovementMouseUserController.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\UserControllers\PelvisMovementMouseUserFixPositionOnPenetration.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\UserControllers\PelvisMovementMouseWheelUserController.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Controllers\UserControllers\UserController.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\CustomPoses\ActivateStateOnEditMode.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\CustomPoses\BlockearActualizacionDeCalculoDeEstimuloEnEditarPose.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\CustomPoses\DebugScripts\DebugFemale.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Dialogos\Genericos\Testing\PrintTESTDialogosGenericos.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\DedosIK.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\DedoTargetsIKHelper.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\Interacciones\InteractuarSuavizarYEstirarTetas.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\Interacciones\MaleHandInteractionTarget.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\Interacciones\MaleSlaveHandFollowCameraRotation.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\Interacciones\Targets\Desplazadores\DesplazadorDeInterTargetSegunFemaleShape.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\TValleBodyTilt.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\FinalIk\TValleOffsetPose.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Hair\Alteradores\AlteradoresDeCabelloFemenino.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Hair\HairDatos.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Hair\UI\DebugUIHair.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\IPuppetManipulable.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\IPuppetManipulator.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\IPuppetManipulatorData.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ootii\ActorBodyShapeReUpdater.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ootii\ActorControllerOnRotationMode.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ootii\ActorControllerUpdater.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ootii\BaseCameraRigUpdater.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ootii\Camaras\MainCharCamera.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ootii\Controllers\MotionControllerPuppet.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ootii\Inputs\PausePlayerInputs.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ootii\Inputs\SincronizarConPlayerInputs.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ootii\Inputs\UnityInputSourceEmulable.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ootii\MotionAndActorControllerActivable.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ootii\MotionControllers\TavoIdleMale.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ootii\MotionControllers\TavoTestingMotion.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ootii\MotionControllerUpdater.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Penes\GrabbableToy.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Penes\GrabbableToyFireActionWithPoser.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Props\DrawOnTopGuiasDeProps.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Props\DummyGrabbableProp.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Props\GrabbableDefinedProp.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Props\GrabbableDefinedPropConSensores.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Props\GrabbableProp.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Props\GrabbablePropFireAction.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Props\GrabbablePropFireActionWithPoser.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Props\GuiaDeGrabbableProp.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Puppet\Adders\Estimulos\ManoGenericAgarranteToHandsMusclesAdder.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Puppet\Adders\Estimulos\TocanteObjectToMusclesAdder.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Puppet\Adders\Estimulos\TocanteObjetoToConvexColliderAdder.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Puppet\Adders\Sonidos\MuscleFormaPar.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Puppet\Adders\Sonidos\MuscleTexturaPar.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Puppet\Adders\Sonidos\SonidoProductorToConvexColliderAdder.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Puppet\Adders\Sonidos\SonidoProductorToConvexColliderAdderBase.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Puppet\Adders\Sonidos\SonidoProductorToMusclesAdder.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Puppet\Adders\Sonidos\SonidoProductorToMusclesAdderBase.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Puppet\Alteradores\AlteradorDeScalaDeBoneDeParte.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Puppet\Alteradores\AlteradorDeScalaDeBoneDualDeParte.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Puppet\Alteradores\Componentes\ScaladorDeColliderPrincipalDeParte.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Puppet\Behaviours\TValleSemiPuppetBehaviour.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Puppet\CorrectorDeMasaParaMusculo.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Puppet\ICariciaEstimulanteAPuppetPart.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Puppet\PupetPartToBodyPartExt.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Puppet\PuppetPart.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Puppet\PuppetPartes.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Puppet\PuppetPartMainColliderVolumer.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Puppet\Shapes\Abstracts\PuppetModificadorDeVolumenDeMusculos.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Puppet\Shapes\FemalePuppetModificadorDeVolumenDeMusculos.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Puppet\Shapes\MalePuppetModificadorDeVolumenDeMusculos.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Puppet\Volumenes\BoxModificable.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Puppet\Volumenes\CapsuleModificable.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Puppet\Volumenes\IModificableDeVolumenDeMusculo.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Puppet\Volumenes\SphereModificable.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Puppet\Volumenes\TipoDeCollider.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Puppet\Volumenes\ValorFlotante.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ropa\DesvestirseInteractuandoConRopa.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Ropa\Interacciones\RopaInteractableInteraccion.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\ScenaManagers\GoTo\UI\OpcionesDeDonaDeGoToDisponibles.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\ScenaManagers\ScenaCharacteresManager.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\BuffableBySceneInteractionsCharacter.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\BuffEffectoDisminutionReturn.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\Clases\BuffOfMedicalConditionArg.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\Clases\BuffOfMedicalConditionEffecto.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\Clases\BuffOnAlteratorFemAppValueChangeEffecto.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\Clases\BuffOnAlteratorValueChangeArg.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\Clases\BuffOnDeseoGainAndMaxValueArg.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\Clases\BuffOnDeseoGainAndMaxValueEffecto.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\Clases\BuffOnDeshieloDeEstimuloEnPartesArg.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\Clases\BuffOnDeshieloDeEstimuloEnPartesEffecto.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\Clases\BuffOnDesiresArg.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\Clases\BuffOnDesiresEffecto.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\Clases\BuffOnEmocionAddArg.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\Clases\BuffOnEmocionAddEffecto.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\Clases\BuffOnEmocionGainArg.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\Clases\BuffOnEmocionGainEffecto.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\Clases\BuffOnEmotionArg.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\Clases\BuffOnEmotionAuraArg.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\Clases\BuffOnEmotionAuraEffecto.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\Clases\BuffOnEmotionEffecto.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\Clases\BuffOnEmotionGainOfInteractionArg.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\Clases\BuffOnEmotionGainOfInteractionEffecto.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\Clases\BuffOnEmotionIntervalExpandOfInteractionArg.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\Clases\BuffOnEmotionIntervalExpandOfInteractionEffecto.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\Clases\BuffOnEmotionIntervalIncreaseOfInteractionArg.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\Clases\BuffOnEmotionIntervalIncreaseOfInteractionEffecto.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\Clases\BuffOnEmotionTowardCharacterArg.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\Clases\BuffOnEmotionTowardCharacterEffecto.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\Clases\BuffOnEyacAmountArg.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\Clases\BuffOnEyacAmountEffecto.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\Clases\BuffOnEyacTimesArg.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\Clases\BuffOnEyacTimesEffecto.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\Clases\BuffOnFavorabilityReqOfInteractionArg.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\Clases\BuffOnFavorabilityReqOfInteractionEffecto.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\Clases\BuffOnFavorabilityTowardCharacterValueArg.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\Clases\BuffOnFavorabilityValueTowardCharacterEffecto.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\Clases\BuffOnHoleWearingBottomArg.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\Clases\BuffOnHoleWearingBottomEffecto.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\Clases\BuffOnHoleWearingMotionArg.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\Clases\BuffOnHoleWearingMotionEffecto.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\Clases\BuffOnHoleWearingWallsArg.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\Clases\BuffOnHoleWearingWallsEffecto.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\Clases\BuffOnInteractionArg.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\Clases\BuffOnInteractionEffecto.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\Clases\BuffOnKarmaArg.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\Clases\BuffOnKarmaEffecto.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\Clases\BuffOnMinFavorabilityValueArg.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\Clases\BuffOnMinFavorabilityValueEffecto.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\Clases\BuffOnMinFavorabilityValueLayer2Arg.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\Clases\BuffOnMinFavorabilityValueLayer2Effecto.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\Clases\BuffOnOxygenDemandArg.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\Clases\BuffOnOxygenDemandEffecto.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\Clases\BuffOnOxygenGainArg.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\Clases\BuffOnOxygenGainEffecto.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\Clases\BuffOnPartePorLubricacionArg.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\Clases\BuffOnPartePorLubricacionEffecto.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\Clases\BuffOnPersonalityTraitArg.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\Clases\BuffOnPersonalityTraitEffecto.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\Clases\ByInteraccionEnScenaArg.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\Clases\ByInteraccionEnScenaEffecto.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\Clases\BySceceInteractionsBuff.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\Clases\DisplayableArgumentoDeEfecto.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\Clases\DisplayableBuff.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\Clases\GenericDataExclusiveOfInteractionArg.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\Clases\GenericDataOfInteraccionMultArg.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\Clases\GenericDataOfInteractionArg.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\Clases\GenericDataOfInteractionMultArg.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\Clases\IByInteraccionEnScenaArg.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\Clases\IDataExlusiveOfInteractionArg.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\Clases\IDataOfInteraccionMultArg.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\Clases\IDataOfInteractionArg.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\Clases\IDataOfInteractionMultArg.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\Clases\IDisplayableArgCategorable.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\Clases\IDisplayableArgumentoDeEfecto.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\Clases\IDisplayableBuffCategorable.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\Clases\IDisplayableCustomToolTip.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\Clases\IExclusiveInteractionArg.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\Clases\IInteractionArg.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\DeseosGainMaxByFatigue.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\EmocionesGainByFatigue.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\GeneradorDeBuffDeConsentPorAtraccion.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\OxigenDemandByFatigue.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\StacksDeBuffDeFavorabilityGainSingleAction.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Scenas\BuffAndDebuff\StacksDeBuffDeInteraccionesEnScena.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Skins\InternalOrgansSkin.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Skins\Semen\ControlladorDeSkinDeAcumulacionDeSemenEnHoles.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Skins\Semen\EmisorDeSemenChainSetAsLube.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Skins\Semen\EmisorDeSemenChainSetAsWater.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Skins\Semen\Heredacion\AdderDeListinersDeGuiaInteractableDeRopaParaHeredarSemen.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Skins\Semen\Heredacion\HeredarHelper.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Skins\Semen\Heredacion\ListinersDeGuiaInteractableDeRopaParaHeredarSemen.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Skins\Semen\SemenMeshToSkinMesh.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Skins\Semen\SemenSkinController.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\Skins\SkinCollisionForceTransfer.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\VertExmotions\SensoresDeSelfInternals.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Dependentes\___HolderDeAlteradores__EXT.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Holes\Internals\Controlladores\Pieles\ControlladorDeSemenParaAnusInternal.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Holes\Internals\Controlladores\Pieles\ControlladorDeSemenParaInternalHole.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Holes\Internals\Controlladores\Pieles\ControlladorDeSemenParaVagInternal.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Skins\Semen\EmisorDeSemenChainSetContraSkinComponents.cs" />
+    <Compile Include="_ReusableScripts\Testing\Dependientes\ChangeChainBendDirectionTesting.cs" />
+    <Compile Include="_ReusableScripts\Testing\Dependientes\ChangeFullIKAminPose.cs" />
+    <Compile Include="__JobReflectionRegistrationOutput__828862108.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -1,0 +1,440 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{193099E3-0A96-4F97-8F8F-2312F9BD9077}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TValle.BeachGirl</RootNamespace>
+    <AssemblyName>TValle.BeachGirl</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Base.BeachGirl.Controladores.Materiales">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.BeachGirl.Controladores.Materiales.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.BeachGirl.Mapas">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.BeachGirl.Mapas.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.BeachGirl.Mapas.Materiales">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.BeachGirl.Mapas.Materiales.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.Behaviours">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.Behaviours.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.Bones">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.Bones.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.Configs">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.Configs.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.Controllers">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.Controllers.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.CustomMonoBehaviours">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.CustomMonoBehaviours.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.Globales">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.Globales.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.Joints">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.Joints.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.Memoria">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.Memoria.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.Plugins">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.Plugins.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.SingletonesAndSystemasGlobales">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.SingletonesAndSystemasGlobales.dll</HintPath>
+    </Reference>
+    <Reference Include="netstandard">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\netstandard.dll</HintPath>
+    </Reference>
+    <Reference Include="TValle.Inputs">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\TValle.Inputs.dll</HintPath>
+    </Reference>
+    <Reference Include="TValle.MeshCalcules">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\TValle.MeshCalcules.dll</HintPath>
+    </Reference>
+    <Reference Include="TValle.MeshCalcules.BeachGirl">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\TValle.MeshCalcules.BeachGirl.dll</HintPath>
+    </Reference>
+    <Reference Include="TValle.MeshCalcules.ShapingSkinningPoints">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\TValle.MeshCalcules.ShapingSkinningPoints.dll</HintPath>
+    </Reference>
+    <Reference Include="TValle.Modding.Tools">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\TValle.Modding.Tools.dll</HintPath>
+    </Reference>
+    <Reference Include="TValle.SystemasConstraints">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\TValle.SystemasConstraints.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Mathematics">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Unity.Mathematics.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AnimationModule">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.AnimationModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AudioModule">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.AudioModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.PhysicsModule">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.PhysicsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UIModule">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.UIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="VertExmotion">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\VertExmotion.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AhogadoEstado.cs" />
+    <Compile Include="Assets\Base\BeachGirl\Runtime\TipoDeGestoDeCabeza.cs" />
+    <Compile Include="Assets\Base\BeachGirl\Runtime\TipoDeGestoDeHombro.cs" />
+    <Compile Include="Assets\CurrentMainChar.cs" />
+    <Compile Include="Assets\CurrentMainCharacter.cs" />
+    <Compile Include="Assets\CurrentTargetChar.cs" />
+    <Compile Include="Assets\FemalePenetracionTipo.cs" />
+    <Compile Include="Assets\FemalePenetracionTipoEXT.cs" />
+    <Compile Include="Assets\HoleVirtualHardPoint.cs" />
+    <Compile Include="Assets\IAtadurasDePuppetAI.cs" />
+    <Compile Include="Assets\IHole.cs" />
+    <Compile Include="Assets\IHoleInternals.cs" />
+    <Compile Include="Assets\IPenetrable.cs" />
+    <Compile Include="Assets\PerfilesDeReduccionDePenisParteSegunParteHumana.cs" />
+    <Compile Include="Assets\PhysicsAndBonesScripts\ChainStretched.cs" />
+    <Compile Include="Assets\TipoDeAtaduraDePuppet.cs" />
+    <Compile Include="Assets\TipoDeMuscleAlQueSePuedeAtar.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\FemaleCharInfoPromediable.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\IAnusDesgastable.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\IBocaDesgastable.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\IDesgastable.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\IEstirable.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\IFemaleChar.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\IFemaleCharInfo.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\IFemaleCharInfoEXT.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\IFemaleCharInfoPromediable.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\IFemaleSkins.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\IHitSkin.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\IHitSkinnedCharacter.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\IHoleDesgastable.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\IHoleDesgastableDebug.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\IHolesDesgastables.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\IMaleCharacter.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\IMaleSkins.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\IPene.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\IPeneCallbacks.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\IPeneCallbacksHandler.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\IPeneConPartes.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\IPeneCresiente.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\IPeneEstirable.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\IPeneIntentadorDePenetracion.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\IPeneParte.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\IPeneParteCollider.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\IPenePenetratingHandler.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\IPeneRigido.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\IPeneSimple.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\IPenetrableProp.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\IPropPeneConPartes.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\IPuppetConPartes.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\IPuppetParte.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\ISkinnedCharacter.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\IToyPropCharacter.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\IVagDesgastable.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\MaleCharacterType.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Males\CharacterPenisAdder.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\PartesDePuppet.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\PuppetParte.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\AI\ExponiendoPartesSegunCurrentPose.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\Camaras\MainCameraRig.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\Camaras\MainInternalsXRayCamera.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\Characteres\GrabbablePropEstado.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\Characteres\IGrabableProp.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\Characteres\IGrabablePropConSensores.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\Characteres\IHandFingerSizeModPorShapes.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\Characteres\InteractedBodyRootMotionTransform.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\Characteres\IPropCharacter.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\Characteres\Memoria\DiccionarioDeMemoriaDeCharacteres.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\Characteres\PersonajeEnEscena.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\Characteres\Props\DummyCharacterParaProps.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\Characteres\SimpleCharacterMainCamera.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\Constraints\Anus\AnusHoleInnerConstraintsAdder.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\Constraints\Bocas\LabiosFixTransfomrsConstraintsAdder.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\Constraints\Bocas\LabiosJawConstraintsAdder.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\Constraints\Bocas\LabiosStretchToConstraintsAdder.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\Constraints\Bocas\LabiosStretchToPhysicsConstraintsAdder.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\Constraints\Bocas\NarizStretchToPhysicsConstraintsAdder.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\Constraints\Penes\PeneMaleConstraintsAdder.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\GoTo\SillaGoToTarget.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\Guias\CollecionDeGuiasSlaveChildOf.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\Guias\GuiasParaGlasesHelper.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\Guias\GuiasParaInteraccionesMaleHelper.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\Guias\GuiasParaInteracionesDeRopaHelper.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\Guias\GuiasParaTongueHelper.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\IControladorDeGestosDeBoca.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\IControladorDeLipSync.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\IK\BoneState.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\IK\EstadosDeBone.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\IK\LookAtEstadisticas.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\ILookAt.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\IOralAt.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\IPhonemeDelegado.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\ISexAt.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\IVagAnalAt.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\Males\BaseCharacterPenisAdder.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\Males\CharacterFingerPenisAdder.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\Males\CharacterToyAdder.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\Males\FingerPenisDedosParentFix.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\Males\MaleHandFingerSizeModPorShapes.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\ModificadorDeVolumenPorShapes.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\Penes\ControlladorIPeneEsEstirable.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\Penes\IGrabableToy.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\Penes\PeneRigidesModificable.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\Penes\PeneSizeModificable.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\Penes\PenisLocalRotationUserControl.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\Penes\Toy.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\Phoneme.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\PhonemeDelegados.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\PhysicsScripts\Chains\Abstracts\LinearBoneChain.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\PhysicsScripts\Chains\Abstracts\LinearBoneChainBase.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\PhysicsScripts\Chains\Abstracts\LinearChainDestruible.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\PhysicsScripts\Chains\CharacterScripts\Anuss\AnusHoleShapesReductorPorScale.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\PhysicsScripts\Chains\CharacterScripts\Boquita\AperturaDeBocaSegunAnchoDePenetracion.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\PhysicsScripts\Chains\CharacterScripts\Boquita\Boca.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\PhysicsScripts\Chains\CharacterScripts\Boquita\BocaHole.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\PhysicsScripts\Chains\CharacterScripts\Boquita\BocaHoleMovementSegunAnchoDePenetracion.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\PhysicsScripts\Chains\CharacterScripts\Boquita\ControlladorDeSuccion.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\PhysicsScripts\Chains\CharacterScripts\Boquita\DynamicColliderCompatibilidad.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\PhysicsScripts\Chains\CharacterScripts\Boquita\LabioPoint.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\PhysicsScripts\Chains\CharacterScripts\Boquita\LabioPointCollider.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\PhysicsScripts\Chains\CharacterScripts\Boquita\LabioPointColliderOverStretchFixer.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\PhysicsScripts\Chains\CharacterScripts\Boquita\LabiosBonesFollowingLabiosChain.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\PhysicsScripts\Chains\CharacterScripts\Boquita\LabiosChain.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\PhysicsScripts\Chains\CharacterScripts\Boquita\LabiosChainFolloingGuias.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\PhysicsScripts\Chains\CharacterScripts\Boquita\LabiosChainFolloingGuiasOffsetsController.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\PhysicsScripts\Chains\CharacterScripts\Boquita\LabiosSuckPose.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\PhysicsScripts\Chains\CharacterScripts\Boquita\LabioToLabioJoint.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\PhysicsScripts\Chains\CharacterScripts\GenericFemaleHole2.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\PhysicsScripts\Chains\CharacterScripts\GenericFemaleHole8.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\PhysicsScripts\Chains\CharacterScripts\HoleShapesReductorPorScale.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\PhysicsScripts\Chains\CharacterScripts\Nariz\NarizPhyscis.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\PhysicsScripts\Chains\CharacterScripts\Nariz\NarizPointCollider.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\PhysicsScripts\Chains\CharacterScripts\Penes\DummyCharacterParaPene.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\PhysicsScripts\Chains\CharacterScripts\Penes\PenisMassModSetter.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\PhysicsScripts\Chains\CharacterScripts\Vagis\ClitorisCollider.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\PhysicsScripts\Chains\CharacterScripts\Vagis\ClitorisPhysics.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\PhysicsScripts\Chains\CharacterScripts\Vagis\VagHoleShapesReductorPorScale.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\PhysicsScripts\Controlladores\ControlladorDeSuccionJoints.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\PhysicsScripts\ForcedFixedJoint.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\PhysicsScripts\ModificadorDeContactosBase.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\PhysicsScripts\ModificadorDeContactosUserBase.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\PhysicsScripts\ModificadorDeImpulsoDeContactos.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\PhysicsScripts\ModificadorDeImpulsoDeContactosUser.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\PhysicsScripts\ModificadorDeMasaDeContactos.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\PhysicsScripts\ModificadorDeMasaDeContactosUser.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\PuedoConversarHablarSegunTipoDeBocaSex.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\Recorridos\Holes\HoleRecorrido.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\Semens\EmisorDeSemenChain.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\Semens\SemenChain.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\Semens\SemenPunto.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\Skins\ConfiguradorDeSkins.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\Skins\GenericFemaleArmatureSkinsClasificada.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\Skins\ISkinOnCollisionEnterListiner.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\Skins\ISkinOnCollisionExitListiner.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\Skins\ISkinOnCollisionStayListiner.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\Skins\PhysicsScripts\HitSkinColision.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\Skins\PhysicsScripts\IHitSkinCollisionListener.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\Skins\Physics\PedidoDePhyscisBakeDeSkin.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\Sonidos\Characters\CharacterPitchDeExpulsiones.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\Sonidos\Characters\Globales\MapasDeSonidosDeExpresionesVerbalesSexuales.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\Sonidos\Characters\Mapas\ExpresionVerbalData.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\TipoDeSexIK.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\TiposDeGestosDeBoca.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\TiposDeGestosDeBocaEXT.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\UI\SetMainCharCameraToCanvas.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\XRays\BocaXRayIsBloked.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\XRays\Globales\XRaysReferences.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\XRays\Inputs\ShowXRaysUserController.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\XRays\PelvisXRayIsBloked.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\XRays\XRayBocaCamera.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\XRays\XRayBocaUI.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\XRays\XRayCamera.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\XRays\XRayPelvisCamera.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\XRays\XRayPelvisUI.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\XRays\XRaysParaFemaleCharacter.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Runtime\XRays\XRayUI.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Sexual\IAnusHole.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Sexual\IAnusHoleConstants.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Sexual\IBocaHole.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Sexual\IBocaHoleConstants.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Sexual\IFemaleHole.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Sexual\IVagHole.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Sexual\IVagHoleConstants.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Sexual\TipoDeOralSex.cs" />
+    <Compile Include="Assets\_ReusableScripts\BaseDeLenguaRotationAxis.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\AnimatorCharacter.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\BodyPartCollider.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\CalculadorDePenetracion.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\CamaraAtable.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\Character.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\CharacteresActivos.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\CharacteresEnScena.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\CharacteresExistentesEnScena.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\Characters\Controladores\BajoNivel\ControladorDeBaseDeLengua.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\Chars\BlendShapeCopier.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\Chars\BlendShapeTransfer.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\Chars\Controladores\ControladorDeJawV2.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\Chars\GenericShapeKeyCopier.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\Chars\Mapas\MapaDeCharacteresIDs.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\Chars\Mapas\MapaSingletonDeFemaleMainSkinsConfig.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\Chars\Mapas\SkinConfig.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\Chars\Shapes\Abstracts\BaseModificadorDeEscalaSegunShape.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\Chars\Shapes\ModificadorDeEscalableSegunFemaleShape.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\CollecionDeCharacteresIDs.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\ConstraintsScripts\Anus\AnusHoleConstraintsAdder.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\ConstraintsScripts\ConstraintsAdder.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\ConstraintsScripts\StandaloneConstraintsAdder.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\ConstraintsScripts\Vags\VagHoleConstraintsAdder.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\ConstraintsScripts\Vags\VagHoleInnerConstraintsAdder.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\ConstraintsScripts\Vags\VagHoleOutterConstraintsAdder.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\ConstraintsScripts\Vags\VagLabiaConstraintsAdder.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\ConstraintsScripts\Vags\VagMiddleConstraintsAdder.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\CreadorDeCollidersParaManos.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\Dependentes\ScenaManagers\GoToScenaManager.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\Dependentes\ScenaManagers\GoTo\GoToTarget.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\Finger.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\Holes\HolePointsDataCollector.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\IAnusBlocker.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\IBocaBlocker.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\ICharacterSkinMeshConfig.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\IFingerLookAtTargetProividor.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\IMapaDeMaleBlendShapes.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\IPenisBlocker.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\IVagBlocker.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\MainChar.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\MapaDeMaleBlendShapes.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\Penes\Controladores\PeneControladorDeConecionAAnimator.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\Penes\IPenisPartPenetrationValidator.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\Penes\IPenisPartPenetratiosCallbacks.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\Penes\IPenisPartPuntaPenetratiosCallbacks.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\Penes\IPenisPenetratiosCallbacks.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\Penes\PeneSimple.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\Penes\PenisPartPunta.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\Penes\PenisPartSimple.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\Penes\ToPenetratorPartsAdder.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\Penetrador.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\PenetradorRenderers.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\Penis.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\PenisPart.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\PhysicsAndBonesScripts\AnusHole.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\PhysicsAndBonesScripts\Anuss\Anus.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\PhysicsAndBonesScripts\BoneStretchedChain.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\PhysicsAndBonesScripts\Cadenas\CadenaLinearDeLargoVariable.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\PhysicsAndBonesScripts\Cadenas\CollidersParaCadenaLinearDeLargoVariable.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\PhysicsAndBonesScripts\ChainPointStretcherJoint.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\PhysicsAndBonesScripts\Circular8BoneChain.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\PhysicsAndBonesScripts\Circular8ChainPointModificadorDeDrive.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\PhysicsAndBonesScripts\CircularChainPointCopier.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\PhysicsAndBonesScripts\CircularChainPointStretcherCreator.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\PhysicsAndBonesScripts\CircularChainPointStretcherJoint.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\PhysicsAndBonesScripts\ConfigurableJointExtensions.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\PhysicsAndBonesScripts\DensityAdminByScale.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\PhysicsAndBonesScripts\EstadoDeCadena.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\PhysicsAndBonesScripts\FemaleHole.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\PhysicsAndBonesScripts\FondoOfHole.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\PhysicsAndBonesScripts\GenericPenetrationJointCreator.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\PhysicsAndBonesScripts\GlutenJoint.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\PhysicsAndBonesScripts\HoleDeformationScaleAdmin.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\PhysicsAndBonesScripts\HoleWallPointCollider.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\PhysicsAndBonesScripts\IAnusInternals.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\PhysicsAndBonesScripts\IAñadirPenisHit.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\PhysicsAndBonesScripts\ILimpiarPenisHit.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\PhysicsAndBonesScripts\ILinearChain.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\PhysicsAndBonesScripts\InvertedJiggleAdmin.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\PhysicsAndBonesScripts\IPoblarPenisHit.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\PhysicsAndBonesScripts\IVagInternals.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\PhysicsAndBonesScripts\Linear7BoneChain.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\PhysicsAndBonesScripts\Linear7BoneChainBase.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\PhysicsAndBonesScripts\LinearChainTipo2.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\PhysicsAndBonesScripts\MantenimientoDeCadenas.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\PhysicsAndBonesScripts\Penetraciones.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\PhysicsAndBonesScripts\PenetradorHits.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\PhysicsAndBonesScripts\PenetrationJointCreator.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\PhysicsAndBonesScripts\Penises\PenisLinearChain.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\PhysicsAndBonesScripts\Penises\PenisLinearChainAddingFollowersHandler.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\PhysicsAndBonesScripts\Penises\PenisLinearChainAddingFollowerUpdateEvent.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\PhysicsAndBonesScripts\Penises\PenisLinearChainRenderer.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\PhysicsAndBonesScripts\Penises\PenisPoint.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\PhysicsAndBonesScripts\Penises\PenisPointCollider.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\PhysicsAndBonesScripts\Penises\PenisPointColliderSizeGetterHandler.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\PhysicsAndBonesScripts\Penises\PenisPointColliderSmoothScaler.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\PhysicsAndBonesScripts\PenisPartHit.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\PhysicsAndBonesScripts\Scriptables\PhysicBoneInvertJointConfig.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\PhysicsAndBonesScripts\Suavizacion.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\PhysicsAndBonesScripts\VagHole.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\PhysicsAndBonesScripts\VagHoleJoint.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\PhysicsAndBonesScripts\VagHoleJointAnusStateMover.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\PhysicsAndBonesScripts\VagLabiaPointColliders.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\PhysicsAndBonesScripts\VagLipPointToPointJoint.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\PhysicsAndBonesScripts\VagPointCollider.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\PhysicsAndBonesScripts\Vags\Clitoris.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\PhysicsAndBonesScripts\Vags\Vagi.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\PhysicsAndBonesScripts\Vags\VagLabia.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\PhysicsAndBonesScripts\Vags\VagLabiaPoint.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\PhysicsAndBonesScripts\Vags\VagLabiaScalerAnusStateMover.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\PhysicsAndBonesScripts\Vags\VagLabiaSide.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\PhysicsAndBonesScripts\Vags\VagLipMiddleBackPointCreator.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\Scriptables\NormalRecalculadorBoneMap.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\SimpleCharacter.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\Skins\ArmaduresSkins\ArmatureMaleSkinsClasificada.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\Skins\ArmaduresSkins\ArmatureSkinsClasificada.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\Skins\ArmatureSkins.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\Skins\Colliders\HandCenterCollider.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\Skins\ISkinEvents.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\Skins\ISkinIgnoreAttachments.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\Skins\Skin.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\Skins\SkinIgnoreAttachments.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\TargetChar.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\_CharactersBasics\IControladorDeJaw.cs" />
+    <Compile Include="Assets\_ReusableScripts\IControladorDeBaseDeLengua.cs" />
+    <Compile Include="CanzancioEstado.cs" />
+    <Compile Include="ICharacterChupador.cs" />
+    <Compile Include="ICharacterRespirador.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Runtime\Colliders\ICreadorDeCollidersParaManosProducer.cs" />
+    <Compile Include="UnitySourceGeneratedAssemblyMonoScriptTypes_v1.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

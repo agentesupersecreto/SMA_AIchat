@@ -1,0 +1,148 @@
+﻿using System;
+using Assets.TValle.Tools.Runtime.Characters;
+using Assets.TValle.Tools.Runtime.Characters.Atts.Emotions;
+using Assets.TValle.Tools.Runtime.Characters.BuffAndDebuff;
+using Assets._ReusableScripts.CuchiCuchi.AI;
+using Assets._ReusableScripts.CuchiCuchi.AI.Emociones.Handlers;
+using Assets._ReusableScripts.CuchiCuchi.Dependentes.BuffAndDebuff;
+using Assets._ReusableScripts.Tiempo;
+using UnityEngine;
+
+namespace Assets._ReusableScripts.CuchiCuchi.Dependentes.Scenas.BuffAndDebuff.Clases
+{
+	// Token: 0x020000D4 RID: 212
+	[Serializable]
+	public class BuffOnEmotionAuraEffecto : ByInteraccionEnScenaEffecto<BuffOnEmotionAuraEffecto, BuffOnEmotionAuraArg>
+	{
+		// Token: 0x06000459 RID: 1113 RVA: 0x00018E80 File Offset: 0x00017080
+		protected override void OnApply(object affected, BuffOnEmotionAuraArg argument, object buff, object caster)
+		{
+			BuffEvento buffEvento = buff as BuffEvento;
+			if (buffEvento == null)
+			{
+				return;
+			}
+			MonoBehaviour monoBehaviour = affected as MonoBehaviour;
+			EmocionesHumanasBase emocionesHumanasBase = ((monoBehaviour != null) ? monoBehaviour.GetComponentEnRoot(false) : null);
+			if (emocionesHumanasBase == null)
+			{
+				return;
+			}
+			Emotion emotion = argument.buffOn.emotion;
+			ReaccionHumana reaccionHumana = emotion.Parse();
+			EmocionAuraProducer.Aura auraNotNull = emocionesHumanasBase.GetComponentNotNull<EmocionAuraProducer>().GetAuraNotNull(reaccionHumana);
+			SimpleEmotionModifier modifier = argument.buffOn.modifier;
+			if (modifier != SimpleEmotionModifier.defaultValue)
+			{
+				if (modifier != SimpleEmotionModifier.gain)
+				{
+					throw new ArgumentOutOfRangeException(argument.buffOn.modifier.ToString());
+				}
+				Operation operation = argument.buffOn.operation;
+				if (operation == Operation.add)
+				{
+					Debug.LogError("esto puede da;ar una personaje si este valro es negativo, nunca sumaria placer porejecplo, a no se q fuera una cantiodad muy grande de placer");
+					return;
+				}
+				if (operation != Operation.mult)
+				{
+					throw new ArgumentOutOfRangeException(argument.buffOn.operation.ToString());
+				}
+				float num = ((emotion == Emotion.pleasure) ? 2f : 10f);
+				float num2 = ((emotion == Emotion.pleasure) ? 0.5f : 0.1f);
+				ModificadorDeFloat modificadorDeFloat = auraNotNull.multiplicadorDeAumento.ObtenerModificadorNotNull(buffEvento.id);
+				modificadorDeFloat.valor.valor = BuffEffectoDisminutionReturn.Mul(argument.buffOn.value, num2, num, 0.25f);
+				base.UpdateQualityAndVisibility(buffEvento, num2, 1f, num, modificadorDeFloat.valor.valor, 3f, emotion.IsGood());
+				argument.actualValue = new float?(modificadorDeFloat.valor.valor);
+				return;
+			}
+			else
+			{
+				Operation operation = argument.buffOn.operation;
+				if (operation == Operation.add)
+				{
+					ModificadorDeFloat modificadorDeFloat2 = auraNotNull.sumadorDeValor.ObtenerModificadorNotNull(buffEvento.id);
+					modificadorDeFloat2.valor.valor = BuffEffectoDisminutionReturn.Add(argument.buffOn.value, -100f, 100f, 0.25f);
+					base.UpdateQualityAndVisibility(buffEvento, -100f, 0f, 100f, modificadorDeFloat2.valor.valor, 3f, emotion.IsGood());
+					argument.actualValue = new float?(modificadorDeFloat2.valor.valor);
+					return;
+				}
+				if (operation != Operation.mult)
+				{
+					throw new ArgumentOutOfRangeException(argument.buffOn.operation.ToString());
+				}
+				ModificadorDeFloat modificadorDeFloat3 = auraNotNull.multiplicadorDeValor.ObtenerModificadorNotNull(buffEvento.id);
+				modificadorDeFloat3.valor.valor = BuffEffectoDisminutionReturn.Mul(argument.buffOn.value, 0.333f, 3f, 0.25f);
+				base.UpdateQualityAndVisibility(buffEvento, 0.333f, 1f, 3f, modificadorDeFloat3.valor.valor, 3f, emotion.IsGood());
+				argument.actualValue = new float?(modificadorDeFloat3.valor.valor);
+				return;
+			}
+		}
+
+		// Token: 0x0600045A RID: 1114 RVA: 0x00019133 File Offset: 0x00017333
+		protected override void OnStay(object affected, BuffOnEmotionAuraArg argument, object buff, object caster)
+		{
+			this.OnApply(affected, argument, buff, caster);
+		}
+
+		// Token: 0x0600045B RID: 1115 RVA: 0x00019140 File Offset: 0x00017340
+		protected override void OnRemove(object affected, BuffOnEmotionAuraArg argument, object buff, object caster)
+		{
+			Evento evento = buff as Evento;
+			if (evento == null)
+			{
+				return;
+			}
+			MonoBehaviour monoBehaviour = affected as MonoBehaviour;
+			EmocionesHumanasBase emocionesHumanasBase = ((monoBehaviour != null) ? monoBehaviour.GetComponentEnRoot(false) : null);
+			if (emocionesHumanasBase == null)
+			{
+				return;
+			}
+			ReaccionHumana reaccionHumana = argument.buffOn.emotion.Parse();
+			EmocionAuraProducer.Aura auraNotNull = emocionesHumanasBase.GetComponentNotNull<EmocionAuraProducer>().GetAuraNotNull(reaccionHumana);
+			SimpleEmotionModifier modifier = argument.buffOn.modifier;
+			if (modifier != SimpleEmotionModifier.defaultValue)
+			{
+				if (modifier != SimpleEmotionModifier.gain)
+				{
+					throw new ArgumentOutOfRangeException(argument.buffOn.modifier.ToString());
+				}
+				Operation operation = argument.buffOn.operation;
+				if (operation != Operation.add)
+				{
+					if (operation != Operation.mult)
+					{
+						throw new ArgumentOutOfRangeException(argument.buffOn.operation.ToString());
+					}
+					if (!auraNotNull.multiplicadorDeAumento.TryRemoverModificador(evento.id))
+					{
+						Debug.LogError("no se puedo remover buff " + evento.id + " no existia en modificables ", caster as MonoBehaviour);
+						return;
+					}
+				}
+			}
+			else
+			{
+				Operation operation = argument.buffOn.operation;
+				if (operation != Operation.add)
+				{
+					if (operation != Operation.mult)
+					{
+						throw new ArgumentOutOfRangeException(argument.buffOn.operation.ToString());
+					}
+					if (!auraNotNull.multiplicadorDeValor.TryRemoverModificador(evento.id))
+					{
+						Debug.LogError("no se puedo remover buff " + evento.id + " no existia en modificables ", caster as MonoBehaviour);
+						return;
+					}
+				}
+				else if (!auraNotNull.sumadorDeValor.TryRemoverModificador(evento.id))
+				{
+					Debug.LogError("no se puedo remover buff " + evento.id + " no existia en modificables ", caster as MonoBehaviour);
+					return;
+				}
+			}
+		}
+	}
+}

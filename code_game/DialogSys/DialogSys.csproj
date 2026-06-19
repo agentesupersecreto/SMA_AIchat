@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5F457993-0308-435E-BBC0-457ED68F760B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PixelCrushers.DialogueSystem</RootNamespace>
+    <AssemblyName>DialogSys</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DialogueSystem">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\DialogueSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="netstandard">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\netstandard.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Timeline">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Unity.Timeline.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AIModule">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.AIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AnimationModule">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.AnimationModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AudioModule">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.AudioModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.DirectorModule">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.DirectorModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.IMGUIModule">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.IMGUIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.InputLegacyModule">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.InputLegacyModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Physics2DModule">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.Physics2DModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.PhysicsModule">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.PhysicsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TextRenderingModule">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.TextRenderingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UIModule">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.UIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestWWWModule">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AlertMixerBehaviour.cs" />
+    <Compile Include="AlertTrack.cs" />
+    <Compile Include="AnimatedPortrait.cs" />
+    <Compile Include="BarkBehaviour.cs" />
+    <Compile Include="BarkClip.cs" />
+    <Compile Include="BarkMixerBehaviour.cs" />
+    <Compile Include="BarkTrack.cs" />
+    <Compile Include="ChatMapper\ChatMapperTools.cs" />
+    <Compile Include="ConversationLogger.cs" />
+    <Compile Include="ConversationMixerBehaviour.cs" />
+    <Compile Include="ConversationTrack.cs" />
+    <Compile Include="DeselectedUsableObjectDelegate.cs" />
+    <Compile Include="DialogueSystemEvents.cs" />
+    <Compile Include="DieOnTakeDamage.cs" />
+    <Compile Include="Examples\AlwaysFaceCamera.cs" />
+    <Compile Include="ExtraDatabases.cs" />
+    <Compile Include="IncrementOnDestroy.cs" />
+    <Compile Include="LocalizeTextMesh.cs" />
+    <Compile Include="LocalizeUIText.cs" />
+    <Compile Include="NavigateOnMouseClick.cs" />
+    <Compile Include="OverrideUnityUIDialogueControls.cs" />
+    <Compile Include="PauseGameOnConversation.cs" />
+    <Compile Include="PersistentDestructible.cs" />
+    <Compile Include="PreloadActorPortraits.cs" />
+    <Compile Include="PreviewUI.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ProximitySelector.cs" />
+    <Compile Include="QuestLogWindowHotkey.cs" />
+    <Compile Include="QuestStateDispatcher.cs" />
+    <Compile Include="QuestStateIndicator.cs" />
+    <Compile Include="QuestStateListener.cs" />
+    <Compile Include="QuestStateMixerBehaviour.cs" />
+    <Compile Include="QuestStateTrack.cs" />
+    <Compile Include="QuestTracker.cs" />
+    <Compile Include="RangeTrigger.cs" />
+    <Compile Include="SelectedUsableObjectDelegate.cs" />
+    <Compile Include="Selector.cs" />
+    <Compile Include="SelectorFollowTarget.cs" />
+    <Compile Include="SequencerCommands\SequencerCommandAudioWaitOnce.cs" />
+    <Compile Include="SequencerCommands\SequencerCommandAudioWWW.cs" />
+    <Compile Include="SequencerCommands\SequencerCommandLoadLevel.cs" />
+    <Compile Include="SequencerCommands\SequencerCommandSetTimeout.cs" />
+    <Compile Include="SequencerCommands\SequencerCommandTimeline.cs" />
+    <Compile Include="SetQuestStateBehaviour.cs" />
+    <Compile Include="SetQuestStateClip.cs" />
+    <Compile Include="ShowAlertBehaviour.cs" />
+    <Compile Include="ShowAlertClip.cs" />
+    <Compile Include="SimpleController.cs" />
+    <Compile Include="SmoothCameraWithBumper.cs" />
+    <Compile Include="StartConversationBehaviour.cs" />
+    <Compile Include="StartConversationClip.cs" />
+    <Compile Include="TimelineTrigger.cs" />
+    <Compile Include="UIButtonKeyTrigger.cs" />
+    <Compile Include="UIShowHideController.cs" />
+    <Compile Include="UITools.cs" />
+    <Compile Include="UnitySourceGeneratedAssemblyMonoScriptTypes_v1.cs" />
+    <Compile Include="UnityUIAlertControls.cs" />
+    <Compile Include="UnityUIBarkSubtitleDialogueUI.cs" />
+    <Compile Include="UnityUIBarkUI.cs" />
+    <Compile Include="UnityUIColorText.cs" />
+    <Compile Include="UnityUIContinueButtonFastForward.cs" />
+    <Compile Include="UnityUIDialogueControls.cs" />
+    <Compile Include="UnityUIDialogueUI.cs" />
+    <Compile Include="UnityUIIgnorePauseCodes.cs" />
+    <Compile Include="UnityUIQTEControls.cs" />
+    <Compile Include="UnityUIQuestGroupTemplate.cs" />
+    <Compile Include="UnityUIQuestLogWindow.cs" />
+    <Compile Include="UnityUIQuestTemplate.cs" />
+    <Compile Include="UnityUIQuestTemplateAlternateDescriptions.cs" />
+    <Compile Include="UnityUIQuestTitle.cs" />
+    <Compile Include="UnityUIQuestTracker.cs" />
+    <Compile Include="UnityUIQuestTrackTemplate.cs" />
+    <Compile Include="UnityUIResponseButton.cs" />
+    <Compile Include="UnityUIResponseMenuControls.cs" />
+    <Compile Include="UnityUIRoot.cs" />
+    <Compile Include="UnityUIScrollbarEnabler.cs" />
+    <Compile Include="UnityUISelectorDisplay.cs" />
+    <Compile Include="UnityUISelectorElements.cs" />
+    <Compile Include="UnityUISubtitleControls.cs" />
+    <Compile Include="UnityUITextFieldUI.cs" />
+    <Compile Include="UnityUITimer.cs" />
+    <Compile Include="UnityUITypewriterEffect.cs" />
+    <Compile Include="UpdateLocalizedUITexts.cs" />
+    <Compile Include="Usable.cs" />
+    <Compile Include="UsableUnityEvent.cs" />
+    <Compile Include="UsableUnityUI.cs" />
+    <Compile Include="UseAnimatedPortraits.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

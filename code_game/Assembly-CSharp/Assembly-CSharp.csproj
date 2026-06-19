@@ -1,0 +1,415 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FB7FD366-E01A-410E-8092-950A3B440AD2}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Assembly-CSharp</RootNamespace>
+    <AssemblyName>Assembly-CSharp</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Assembly-D_C_Dependientes_ReSc">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Assembly-D_C_Dependientes_ReSc.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-D_C_Dependientes_ReSc.DialogueSys">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Assembly-D_C_Dependientes_ReSc.DialogueSys.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-D_D_Characters_ReSc">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Assembly-D_D_Characters_ReSc.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-D_E_Chuchi_ReSc">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Assembly-D_E_Chuchi_ReSc.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-D_F_CharactersBasics_ReSc">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Assembly-D_F_CharactersBasics_ReSc.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-D_ReSc">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Assembly-D_ReSc.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.BeachGirl.Controladores.Materiales">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.BeachGirl.Controladores.Materiales.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.BeachGirl.Mapas">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.BeachGirl.Mapas.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.BeachGirl.Mapas.Materiales">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.BeachGirl.Mapas.Materiales.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.Behaviours">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.Behaviours.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.Bones">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.Bones.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.Bones.Gizmos">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.Bones.Gizmos.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.Bones.Gizmos.BeachGirl">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.Bones.Gizmos.BeachGirl.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.Configs">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.Configs.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.Controllers">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.Controllers.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.CustomMonoBehaviours">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.CustomMonoBehaviours.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.Genetica">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.Genetica.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.Globales">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.Globales.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.Memoria">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.Memoria.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.Npc">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.Npc.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.Plugins">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.Plugins.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.RootMotion">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.RootMotion.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.RootMotion.BeachGirl">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.RootMotion.BeachGirl.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.SingletonesAndSystemasGlobales">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.SingletonesAndSystemasGlobales.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.Tiempo">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.Tiempo.dll</HintPath>
+    </Reference>
+    <Reference Include="Battlehub.RTEditor">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Battlehub.RTEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="DialogSys">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\DialogSys.dll</HintPath>
+    </Reference>
+    <Reference Include="DialogueSystem">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\DialogueSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="netstandard">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\netstandard.dll</HintPath>
+    </Reference>
+    <Reference Include="TCharacters.Memory">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\TCharacters.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="TUI">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\TUI.dll</HintPath>
+    </Reference>
+    <Reference Include="TValle.BeachGirl">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\TValle.BeachGirl.dll</HintPath>
+    </Reference>
+    <Reference Include="TValle.BeachGirl.Alteradores">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\TValle.BeachGirl.Alteradores.dll</HintPath>
+    </Reference>
+    <Reference Include="TValle.BeachGirl.Characters.Male">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\TValle.BeachGirl.Characters.Male.dll</HintPath>
+    </Reference>
+    <Reference Include="TValle.BeachGirl.Estimulos">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\TValle.BeachGirl.Estimulos.dll</HintPath>
+    </Reference>
+    <Reference Include="TValle.BeachGirl.Genetica.Alteradores">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\TValle.BeachGirl.Genetica.Alteradores.dll</HintPath>
+    </Reference>
+    <Reference Include="TValle.BeachGirl.MapasDeAlteradores">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\TValle.BeachGirl.MapasDeAlteradores.dll</HintPath>
+    </Reference>
+    <Reference Include="TValle.BeachGirl.UI">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\TValle.BeachGirl.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="TValle.BeachGirl.VertExmotions">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\TValle.BeachGirl.VertExmotions.dll</HintPath>
+    </Reference>
+    <Reference Include="TValle.Inputs">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\TValle.Inputs.dll</HintPath>
+    </Reference>
+    <Reference Include="TValle.IU">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\TValle.IU.dll</HintPath>
+    </Reference>
+    <Reference Include="TValle.MeshCalcules">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\TValle.MeshCalcules.dll</HintPath>
+    </Reference>
+    <Reference Include="TValle.Pro.Entrevista">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\TValle.Pro.Entrevista.dll</HintPath>
+    </Reference>
+    <Reference Include="TValle.Pro.Entrevista.Tiempo">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\TValle.Pro.Entrevista.Tiempo.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Core.Runtime">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.HighDefinition.Runtime">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Unity.RenderPipelines.HighDefinition.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Unity.TextMeshPro.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AnimationModule">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.AnimationModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AudioModule">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.AudioModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.IMGUIModule">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.IMGUIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.InputLegacyModule">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.InputLegacyModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.JSONSerializeModule">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.JSONSerializeModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.PhysicsModule">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.PhysicsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="VertExmotion">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\VertExmotion.dll</HintPath>
+    </Reference>
+    <Reference Include="VertExmotion.Scripts">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\VertExmotion.Scripts.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AmplifyOcclusionBase.cs" />
+    <Compile Include="AmplifyOcclusionEffect.cs" />
+    <Compile Include="AmplifyOcclusion\VersionInfo.cs" />
+    <Compile Include="Assets\AmbienteSonidoModSegunConfig.cs" />
+    <Compile Include="Assets\Base\BeachGirl\Controladores\Materiales\Test\Runtime\Scripts\CharactererDummy.cs" />
+    <Compile Include="Assets\Productos\Juegos\Reception\Scripts\AutoRatingsProfiles\AutoRatings.cs" />
+    <Compile Include="Assets\Productos\Juegos\Reception\Scripts\AutoRatingsProfiles\CheckLevelUpChangeProfiles.cs" />
+    <Compile Include="Assets\Productos\Juegos\Reception\Scripts\AutoRatingsProfiles\ProfileLoaderToCharacter.cs" />
+    <Compile Include="Assets\Productos\Juegos\Reception\Scripts\AutoRatingsProfiles\UI\PanelProfilesDeGrupos.cs" />
+    <Compile Include="Assets\Productos\Juegos\Reception\Scripts\ChangeOfficinaLight.cs" />
+    <Compile Include="Assets\Productos\Juegos\Reception\Scripts\Dependientes\AI\Emociones\EmocionMaxBuffer.cs" />
+    <Compile Include="Assets\Productos\Juegos\Reception\Scripts\Dependientes\Controlladores\MaleCameraUserController.cs" />
+    <Compile Include="Assets\Productos\Juegos\Reception\Scripts\Dependientes\CustomPoses\DyaSys\OpcionesDeTHSDonaDeLoadCustomPose.cs" />
+    <Compile Include="Assets\Productos\Juegos\Reception\Scripts\Dependientes\CustomPoses\DyaSys\OpcionesDeTHSDonaDeLoadCustomPoseConDialogue.cs" />
+    <Compile Include="Assets\Productos\Juegos\Reception\Scripts\Dependientes\CustomPoses\OnEditionActivadoDesactivado.cs" />
+    <Compile Include="Assets\Productos\Juegos\Reception\Scripts\Dependientes\deleteMe.cs" />
+    <Compile Include="Assets\Productos\Juegos\Reception\Scripts\Dependientes\LoadModelFromDiskDEBUG.cs" />
+    <Compile Include="Assets\Productos\Juegos\Reception\Scripts\Dependientes\NPCsFinalesCanLevelUpSegunCheatsConfig.cs" />
+    <Compile Include="Assets\Productos\Juegos\Reception\Scripts\Dependientes\ScenaManagers\ConDoctoraScenaManager.cs" />
+    <Compile Include="Assets\Productos\Juegos\Reception\Scripts\Dependientes\ScenaManagers\DialogueSystem\EntrevistaDiaSysFunciones.cs" />
+    <Compile Include="Assets\Productos\Juegos\Reception\Scripts\Dependientes\ScenaManagers\DocExamenMedico.cs" />
+    <Compile Include="Assets\Productos\Juegos\Reception\Scripts\Dependientes\ScenaManagers\EntrevistaConFemale.cs" />
+    <Compile Include="Assets\Productos\Juegos\Reception\Scripts\Dependientes\ScenaManagers\EntrevistaConFemaleDePoolDelDia.cs" />
+    <Compile Include="Assets\Productos\Juegos\Reception\Scripts\Dependientes\ScenaManagers\EntrevistaConSingleFemale.cs" />
+    <Compile Include="Assets\Productos\Juegos\Reception\Scripts\Dependientes\ScenaManagers\ScenaConFemaleChar.cs" />
+    <Compile Include="Assets\Productos\Juegos\Reception\Scripts\Dependientes\ScenaManagers\ScenaConFemaleCharFromPoolDelDia.cs" />
+    <Compile Include="Assets\Productos\Juegos\Reception\Scripts\EnableComponentsSiNivelAlcanzado.cs" />
+    <Compile Include="Assets\Productos\Juegos\Reception\Scripts\Entrevistas\EntrevistaLoader.cs" />
+    <Compile Include="Assets\Productos\Juegos\Reception\Scripts\Entrevistas\Globales\EntrevistasDelDia.cs" />
+    <Compile Include="Assets\Productos\Juegos\Reception\Scripts\Entrevistas\GoBackToMainMenuHandler.cs" />
+    <Compile Include="Assets\Productos\Juegos\Reception\Scripts\Entrevistas\IndirectLightDeEntrevista.cs" />
+    <Compile Include="Assets\Productos\Juegos\Reception\Scripts\Entrevistas\Modelos\EntrevistaComenzarConConvocatoria.cs" />
+    <Compile Include="Assets\Productos\Juegos\Reception\Scripts\Entrevistas\Modelos\EntrevistaComenzarSinConvocatoria.cs" />
+    <Compile Include="Assets\Productos\Juegos\Reception\Scripts\Entrevistas\Modelos\EntrevistaConfigDeLucesModelo.cs" />
+    <Compile Include="Assets\Productos\Juegos\Reception\Scripts\Entrevistas\Modelos\EntrevistaInfoCampaing.cs" />
+    <Compile Include="Assets\Productos\Juegos\Reception\Scripts\Entrevistas\Modelos\EntrevistaInfoCampaingInfo.cs" />
+    <Compile Include="Assets\Productos\Juegos\Reception\Scripts\Entrevistas\Modelos\EntrevistaInfoCampaingProfile.cs" />
+    <Compile Include="Assets\Productos\Juegos\Reception\Scripts\Entrevistas\Modelos\EntrevistaMainMenuModelo.cs" />
+    <Compile Include="Assets\Productos\Juegos\Reception\Scripts\Entrevistas\Modelos\EntrevistaStartCampaing.cs" />
+    <Compile Include="Assets\Productos\Juegos\Reception\Scripts\Entrevistas\Modelos\EntrevistaStartCampaingInfo.cs" />
+    <Compile Include="Assets\Productos\Juegos\Reception\Scripts\Entrevistas\Modelos\EntrevistaStartCampaingProfile.cs" />
+    <Compile Include="Assets\Productos\Juegos\Reception\Scripts\Entrevistas\Modelos\IModeloConContratadas.cs" />
+    <Compile Include="Assets\Productos\Juegos\Reception\Scripts\Entrevistas\Modelos\IModeloConConvocatoria.cs" />
+    <Compile Include="Assets\Productos\Juegos\Reception\Scripts\Entrevistas\OtrasAgenciasDrawer.cs" />
+    <Compile Include="Assets\Productos\Juegos\Reception\Scripts\Entrevistas\PanelComenzarATrabajar.cs" />
+    <Compile Include="Assets\Productos\Juegos\Reception\Scripts\Entrevistas\PanelComenzarCampaing.cs" />
+    <Compile Include="Assets\Productos\Juegos\Reception\Scripts\Entrevistas\PanelControlDeLuces.cs" />
+    <Compile Include="Assets\Productos\Juegos\Reception\Scripts\Entrevistas\PanelInfoCampaing.cs" />
+    <Compile Include="Assets\Productos\Juegos\Reception\Scripts\Entrevistas\PanelMainMenu.cs" />
+    <Compile Include="Assets\Productos\Juegos\Reception\Scripts\Entrevistas\SecondayLightDeEntrevista.cs" />
+    <Compile Include="Assets\Productos\Juegos\Reception\Scripts\Entrevistas\SpotLightDeEntrevista.cs" />
+    <Compile Include="Assets\Productos\Juegos\Reception\Scripts\Entrevistas\WindowLightDeEntrevista.cs" />
+    <Compile Include="Assets\Productos\Juegos\Reception\Scripts\HidePurpleMaleBarOnCheat.cs" />
+    <Compile Include="Assets\Productos\Juegos\Reception\Scripts\Penises\ModPenisRigidezPorCheats.cs" />
+    <Compile Include="Assets\Productos\Juegos\Reception\Scripts\Penises\ModPenisSizePerLvl.cs" />
+    <Compile Include="Assets\Productos\Juegos\Reception\Scripts\Penises\ModPenisSizePorCheats.cs" />
+    <Compile Include="Assets\Productos\Juegos\Reception\Scripts\SceneEntrevistaObjetos.cs" />
+    <Compile Include="Assets\Productos\Juegos\Reception\Scripts\XRays\EnableXRaysSiNivelAlcanzado.cs" />
+    <Compile Include="Assets\Productos\Juegos\Scripts\BeachGirl\MeshCalcules\VertExmotions\AddVertExmotionToNewSkins.cs" />
+    <Compile Include="Assets\Productos\Juegos\Scripts\BeachGirl\MeshCalcules\VertExmotions\FromVertExmotionMeshInstanceToWorkingMesh.cs" />
+    <Compile Include="Assets\Productos\Juegos\Scripts\BeachGirl\SimpleCharacterCaptures.cs" />
+    <Compile Include="Assets\Productos\Juegos\Scripts\BeachGirl\Testing\LoadSaveImageCharacterTesting.cs" />
+    <Compile Include="Assets\Productos\Juegos\Scripts\BeachGirl\UI\EditingModels\Modelos\DesignerEditApparenceAlteratorModel.cs" />
+    <Compile Include="Assets\Productos\Juegos\Scripts\BeachGirl\UI\EditingModels\Modelos\DesignerEditApparenceAlteratorsModel.cs" />
+    <Compile Include="Assets\Productos\Juegos\Scripts\BeachGirl\UI\EditingModels\Modelos\DesignerEditApparenceHoldersModel.cs" />
+    <Compile Include="Assets\Productos\Juegos\Scripts\BeachGirl\UI\EditingModels\Modelos\DesignerEditApparenceModel.cs" />
+    <Compile Include="Assets\Productos\Juegos\Scripts\BeachGirl\UI\EditingModels\Modelos\DesignerEditOutfitEditMaterialModel.cs" />
+    <Compile Include="Assets\Productos\Juegos\Scripts\BeachGirl\UI\EditingModels\Modelos\DesignerEditOutfitEditPrendaModel.cs" />
+    <Compile Include="Assets\Productos\Juegos\Scripts\BeachGirl\UI\EditingModels\Modelos\DesignerEditOutfitEditPrendasModel.cs" />
+    <Compile Include="Assets\Productos\Juegos\Scripts\BeachGirl\UI\EditingModels\Modelos\DesignerEditOutfitModel.cs" />
+    <Compile Include="Assets\Productos\Juegos\Scripts\BeachGirl\UI\EditingModels\Modelos\DesignerEditOutfitTypeExistentesModel.cs" />
+    <Compile Include="Assets\Productos\Juegos\Scripts\BeachGirl\UI\EditingModels\Modelos\DesignerEditOutfitTypeModel.cs" />
+    <Compile Include="Assets\Productos\Juegos\Scripts\BeachGirl\UI\EditingModels\Modelos\DesignerOptionsModel.cs" />
+    <Compile Include="Assets\Productos\Juegos\Scripts\BeachGirl\UI\EditingModels\PanelDesigner.cs" />
+    <Compile Include="Assets\Productos\ReusableScripts\Cuchicuchi\InfoTools\Abstracts\ConcentMinimoPara.cs" />
+    <Compile Include="Assets\Productos\ReusableScripts\Cuchicuchi\InfoTools\Abstracts\ConcentMinimoParaToques.cs" />
+    <Compile Include="Assets\Productos\ReusableScripts\Cuchicuchi\InfoTools\Abstracts\ConcentMinimoParaVisiones.cs" />
+    <Compile Include="Assets\Productos\ReusableScripts\Cuchicuchi\InfoTools\Abstracts\ConcentMinimoParaVisionesDadas.cs" />
+    <Compile Include="Assets\Productos\ReusableScripts\Cuchicuchi\InfoTools\Abstracts\RangosDeGeneracionPara.cs" />
+    <Compile Include="Assets\Productos\ReusableScripts\Cuchicuchi\InfoTools\Abstracts\RangosDeGeneracionParaPenetraAnchura.cs" />
+    <Compile Include="Assets\Productos\ReusableScripts\Cuchicuchi\InfoTools\Abstracts\RangosDeGeneracionParaPenetraApertura.cs" />
+    <Compile Include="Assets\Productos\ReusableScripts\Cuchicuchi\InfoTools\Abstracts\RangosDeGeneracionParaPenetracion.cs" />
+    <Compile Include="Assets\Productos\ReusableScripts\Cuchicuchi\InfoTools\Abstracts\RangosDeGeneracionParaPenetraMovimiento.cs" />
+    <Compile Include="Assets\Productos\ReusableScripts\Cuchicuchi\InfoTools\Abstracts\RangosDeGeneracionParaPenetraProfundidad.cs" />
+    <Compile Include="Assets\Productos\ReusableScripts\Cuchicuchi\InfoTools\Abstracts\RangosDeGeneracionParaToquesRecibidos.cs" />
+    <Compile Include="Assets\Productos\ReusableScripts\Cuchicuchi\InfoTools\ConcentMinimoParaMirar.cs" />
+    <Compile Include="Assets\Productos\ReusableScripts\Cuchicuchi\InfoTools\ConcentMinimoParaSerAcariciado.cs" />
+    <Compile Include="Assets\Productos\ReusableScripts\Cuchicuchi\InfoTools\ConcentMinimoParaSerBesado.cs" />
+    <Compile Include="Assets\Productos\ReusableScripts\Cuchicuchi\InfoTools\ConcentMinimoParaSerClutcheado.cs" />
+    <Compile Include="Assets\Productos\ReusableScripts\Cuchicuchi\InfoTools\ConcentMinimoParaSerDediado.cs" />
+    <Compile Include="Assets\Productos\ReusableScripts\Cuchicuchi\InfoTools\ConcentMinimoParaSerDerramado.cs" />
+    <Compile Include="Assets\Productos\ReusableScripts\Cuchicuchi\InfoTools\ConcentMinimoParaSerForzadoDesvestir.cs" />
+    <Compile Include="Assets\Productos\ReusableScripts\Cuchicuchi\InfoTools\ConcentMinimoParaSerForzadoPose.cs" />
+    <Compile Include="Assets\Productos\ReusableScripts\Cuchicuchi\InfoTools\ConcentMinimoParaSerHumped.cs" />
+    <Compile Include="Assets\Productos\ReusableScripts\Cuchicuchi\InfoTools\ConcentMinimoParaSerLambido.cs" />
+    <Compile Include="Assets\Productos\ReusableScripts\Cuchicuchi\InfoTools\ConcentMinimoParaSerManipulado.cs" />
+    <Compile Include="Assets\Productos\ReusableScripts\Cuchicuchi\InfoTools\ConcentMinimoParaSerMirado.cs" />
+    <Compile Include="Assets\Productos\ReusableScripts\Cuchicuchi\InfoTools\ConcentMinimoParaSerPedidoDesvestir.cs" />
+    <Compile Include="Assets\Productos\ReusableScripts\Cuchicuchi\InfoTools\ConcentMinimoParaSerPedidoMoverBone.cs" />
+    <Compile Include="Assets\Productos\ReusableScripts\Cuchicuchi\InfoTools\ConcentMinimoParaSerPedidoPose.cs" />
+    <Compile Include="Assets\Productos\ReusableScripts\Cuchicuchi\InfoTools\ConcentMinimoParaSerPenetrado.cs" />
+    <Compile Include="Assets\Productos\ReusableScripts\Cuchicuchi\InfoTools\PersonalidadInfo.cs" />
+    <Compile Include="Assets\Productos\ReusableScripts\Cuchicuchi\InfoTools\RangosDeGeneracionParaDolorPorBeso.cs" />
+    <Compile Include="Assets\Productos\ReusableScripts\Cuchicuchi\InfoTools\RangosDeGeneracionParaDolorPorCaricias.cs" />
+    <Compile Include="Assets\Productos\ReusableScripts\Cuchicuchi\InfoTools\RangosDeGeneracionParaDolorPorClutch.cs" />
+    <Compile Include="Assets\Productos\ReusableScripts\Cuchicuchi\InfoTools\RangosDeGeneracionParaDolorPorDedeada.cs" />
+    <Compile Include="Assets\Productos\ReusableScripts\Cuchicuchi\InfoTools\RangosDeGeneracionParaDolorPorDerramada.cs" />
+    <Compile Include="Assets\Productos\ReusableScripts\Cuchicuchi\InfoTools\RangosDeGeneracionParaDolorPorHump.cs" />
+    <Compile Include="Assets\Productos\ReusableScripts\Cuchicuchi\InfoTools\RangosDeGeneracionParaDolorPorLambida.cs" />
+    <Compile Include="Assets\Productos\ReusableScripts\Cuchicuchi\InfoTools\RangosDeGeneracionParaPlacerPorBeso.cs" />
+    <Compile Include="Assets\Productos\ReusableScripts\Cuchicuchi\InfoTools\RangosDeGeneracionParaPlacerPorCaricias.cs" />
+    <Compile Include="Assets\Productos\ReusableScripts\Cuchicuchi\InfoTools\RangosDeGeneracionParaPlacerPorClutch.cs" />
+    <Compile Include="Assets\Productos\ReusableScripts\Cuchicuchi\InfoTools\RangosDeGeneracionParaPlacerPorDedeada.cs" />
+    <Compile Include="Assets\Productos\ReusableScripts\Cuchicuchi\InfoTools\RangosDeGeneracionParaPlacerPorDerramada.cs" />
+    <Compile Include="Assets\Productos\ReusableScripts\Cuchicuchi\InfoTools\RangosDeGeneracionParaPlacerPorHump.cs" />
+    <Compile Include="Assets\Productos\ReusableScripts\Cuchicuchi\InfoTools\RangosDeGeneracionParaPlacerPorLambida.cs" />
+    <Compile Include="Assets\Productos\ReusableScripts\Cuchicuchi\InfoTools\RangosDeGeneracionParaRagePorBeso.cs" />
+    <Compile Include="Assets\Productos\ReusableScripts\Cuchicuchi\InfoTools\RangosDeGeneracionParaRagePorCaricias.cs" />
+    <Compile Include="Assets\Productos\ReusableScripts\Cuchicuchi\InfoTools\RangosDeGeneracionParaRagePorClutch.cs" />
+    <Compile Include="Assets\Productos\ReusableScripts\Cuchicuchi\InfoTools\RangosDeGeneracionParaRagePorDedeada.cs" />
+    <Compile Include="Assets\Productos\ReusableScripts\Cuchicuchi\InfoTools\RangosDeGeneracionParaRagePorDerramada.cs" />
+    <Compile Include="Assets\Productos\ReusableScripts\Cuchicuchi\InfoTools\RangosDeGeneracionParaRagePorHump.cs" />
+    <Compile Include="Assets\Productos\ReusableScripts\Cuchicuchi\InfoTools\RangosDeGeneracionParaRagePorLambida.cs" />
+    <Compile Include="Assets\Productos\ReusableScripts\Cuchicuchi\InfoTools\RangosDeGeneracion\Penetraciones\RanGenDolorPorPenetraAnchConPene.cs" />
+    <Compile Include="Assets\Productos\ReusableScripts\Cuchicuchi\InfoTools\RangosDeGeneracion\Penetraciones\RanGenDolorPorPenetraApertConPene.cs" />
+    <Compile Include="Assets\Productos\ReusableScripts\Cuchicuchi\InfoTools\RangosDeGeneracion\Penetraciones\RanGenDolorPorPenetracionConPene.cs" />
+    <Compile Include="Assets\Productos\ReusableScripts\Cuchicuchi\InfoTools\RangosDeGeneracion\Penetraciones\RanGenDolorPorPenetraMovConPene.cs" />
+    <Compile Include="Assets\Productos\ReusableScripts\Cuchicuchi\InfoTools\RangosDeGeneracion\Penetraciones\RanGenDolorPorPenetraProfConPene.cs" />
+    <Compile Include="Assets\Productos\ReusableScripts\Cuchicuchi\InfoTools\RangosDeGeneracion\Penetraciones\RanGenPlacerPorPenetraAnchConPene.cs" />
+    <Compile Include="Assets\Productos\ReusableScripts\Cuchicuchi\InfoTools\RangosDeGeneracion\Penetraciones\RanGenPlacerPorPenetraApertConPene.cs" />
+    <Compile Include="Assets\Productos\ReusableScripts\Cuchicuchi\InfoTools\RangosDeGeneracion\Penetraciones\RanGenPlacerPorPenetracionConPene.cs" />
+    <Compile Include="Assets\Productos\ReusableScripts\Cuchicuchi\InfoTools\RangosDeGeneracion\Penetraciones\RanGenPlacerPorPenetraMovConPene.cs" />
+    <Compile Include="Assets\Productos\ReusableScripts\Cuchicuchi\InfoTools\RangosDeGeneracion\Penetraciones\RanGenPlacerPorPenetraProfConPene.cs" />
+    <Compile Include="Assets\Productos\ReusableScripts\Cuchicuchi\InfoTools\RangosDeGeneracion\Penetraciones\RanGenRagePorPenetracionConPene.cs" />
+    <Compile Include="Assets\Scripts\Testing\BarycentricsCalculeTest.cs" />
+    <Compile Include="Assets\Scripts\Testing\CompararBindPoses.cs" />
+    <Compile Include="Assets\TValle\BeachGirl\Characters\Male\Runtime\Controllers\MalePhoneUserController.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\Dependentes\DialogueSystem\Interacciones\UI\StartBoneEditMode.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\Dependentes\DialogueSystem\Interacciones\UI\StartBoneEditModeConDialogo.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\Dependentes\ScenaManagers\BienvenidaScenaManager.cs" />
+    <Compile Include="Assets\_ReusableScripts\CuchiCuchi\Dependentes\ScenaManagers\SegundaScenaManager.cs" />
+    <Compile Include="ControllerCamera.cs" />
+    <Compile Include="ControllerGUI.cs" />
+    <Compile Include="DefaultPlayerLoopPrinter.cs" />
+    <Compile Include="EyeAdv_AutoDilation.cs" />
+    <Compile Include="PixelCrushers\DialogueSystem\SequencerCommands\SequencerCommandAchiquitarOjos.cs" />
+    <Compile Include="PixelCrushers\DialogueSystem\SequencerCommands\SequencerCommandAllowPlayerInputsOnEntry.cs" />
+    <Compile Include="PixelCrushers\DialogueSystem\SequencerCommands\SequencerCommandAsustar.cs" />
+    <Compile Include="PixelCrushers\DialogueSystem\SequencerCommands\SequencerCommandCalculadorEmocionIgnorarParte.cs" />
+    <Compile Include="PixelCrushers\DialogueSystem\SequencerCommands\SequencerCommandCambioEmocion.cs" />
+    <Compile Include="PixelCrushers\DialogueSystem\SequencerCommands\SequencerCommandCambioEmocionDirecto.cs" />
+    <Compile Include="PixelCrushers\DialogueSystem\SequencerCommands\SequencerCommandCambioEmocionEnListener.cs" />
+    <Compile Include="PixelCrushers\DialogueSystem\SequencerCommands\SequencerCommandCambioEmocionEnListenerDirecto.cs" />
+    <Compile Include="PixelCrushers\DialogueSystem\SequencerCommands\SequencerCommandCameraFadeTavo.cs" />
+    <Compile Include="PixelCrushers\DialogueSystem\SequencerCommands\SequencerCommandDesvestirPartePor.cs" />
+    <Compile Include="PixelCrushers\DialogueSystem\SequencerCommands\SequencerCommandEnojar.cs" />
+    <Compile Include="PixelCrushers\DialogueSystem\SequencerCommands\SequencerCommandEnojarCara.cs" />
+    <Compile Include="PixelCrushers\DialogueSystem\SequencerCommands\SequencerCommandEreccion.cs" />
+    <Compile Include="PixelCrushers\DialogueSystem\SequencerCommands\SequencerCommandExagerarGestos.cs" />
+    <Compile Include="PixelCrushers\DialogueSystem\SequencerCommands\SequencerCommandExagerarTipoDeExpresion.cs" />
+    <Compile Include="PixelCrushers\DialogueSystem\SequencerCommands\SequencerCommandGestuarAuto.cs" />
+    <Compile Include="PixelCrushers\DialogueSystem\SequencerCommands\SequencerCommandGestuarAutoBadMood.cs" />
+    <Compile Include="PixelCrushers\DialogueSystem\SequencerCommands\SequencerCommandGestuarCabeza.cs" />
+    <Compile Include="PixelCrushers\DialogueSystem\SequencerCommands\SequencerCommandGestuarHombros.cs" />
+    <Compile Include="PixelCrushers\DialogueSystem\SequencerCommands\SequencerCommandGoTo.cs" />
+    <Compile Include="PixelCrushers\DialogueSystem\SequencerCommands\SequencerCommandInputMoneyModalWindow.cs" />
+    <Compile Include="PixelCrushers\DialogueSystem\SequencerCommands\SequencerCommandInputPercentageModalWindow.cs" />
+    <Compile Include="PixelCrushers\DialogueSystem\SequencerCommands\SequencerCommandInteractuarConHandler.cs" />
+    <Compile Include="PixelCrushers\DialogueSystem\SequencerCommands\SequencerCommandInteractuarFBasico.cs" />
+    <Compile Include="PixelCrushers\DialogueSystem\SequencerCommands\SequencerCommandLamentar.cs" />
+    <Compile Include="PixelCrushers\DialogueSystem\SequencerCommands\SequencerCommandLamentarCara.cs" />
+    <Compile Include="PixelCrushers\DialogueSystem\SequencerCommands\SequencerCommandMatarPuppet.cs" />
+    <Compile Include="PixelCrushers\DialogueSystem\SequencerCommands\SequencerCommandMenusCountDown.cs" />
+    <Compile Include="PixelCrushers\DialogueSystem\SequencerCommands\SequencerCommandMostrarParteCurrentClickedSend.cs" />
+    <Compile Include="PixelCrushers\DialogueSystem\SequencerCommands\SequencerCommandMoverListenerA.cs" />
+    <Compile Include="PixelCrushers\DialogueSystem\SequencerCommands\SequencerCommandMoverSpeakerA.cs" />
+    <Compile Include="PixelCrushers\DialogueSystem\SequencerCommands\SequencerCommandOcultarPiezasCubriendo.cs" />
+    <Compile Include="PixelCrushers\DialogueSystem\SequencerCommands\SequencerCommandPelvisTo.cs" />
+    <Compile Include="PixelCrushers\DialogueSystem\SequencerCommands\SequencerCommandPlayerPuppetMoveAwayIf.cs" />
+    <Compile Include="PixelCrushers\DialogueSystem\SequencerCommands\SequencerCommandPointAtObstacle.cs" />
+    <Compile Include="PixelCrushers\DialogueSystem\SequencerCommands\SequencerCommandPoseCheckPlayerObstacleCurrentClicked.cs" />
+    <Compile Include="PixelCrushers\DialogueSystem\SequencerCommands\SequencerCommandPoseToggleCurrentClicked.cs" />
+    <Compile Include="PixelCrushers\DialogueSystem\SequencerCommands\SequencerCommandQuitarPiezaRopaCurrentClickedSend.cs" />
+    <Compile Include="PixelCrushers\DialogueSystem\SequencerCommands\SequencerCommandQuitarPiezaRopaCurrentClickedSendANY.cs" />
+    <Compile Include="PixelCrushers\DialogueSystem\SequencerCommands\SequencerCommandSetContinueModeTavo.cs" />
+    <Compile Include="PixelCrushers\DialogueSystem\SequencerCommands\SequencerCommandSonrreir.cs" />
+    <Compile Include="PixelCrushers\DialogueSystem\SequencerCommands\SequencerCommandSonrreirCara.cs" />
+    <Compile Include="PixelCrushers\DialogueSystem\SequencerCommands\SequencerCommandSorprender.cs" />
+    <Compile Include="PixelCrushers\DialogueSystem\SequencerCommands\SequencerCommandSorprenderCara.cs" />
+    <Compile Include="PixelCrushers\DialogueSystem\SequencerCommands\SequencerCommandStopInteraccionesPrimarias.cs" />
+    <Compile Include="PixelCrushers\DialogueSystem\SequencerCommands\SequencerCommandSufrir.cs" />
+    <Compile Include="PixelCrushers\DialogueSystem\SequencerCommands\SequencerCommandSuprimirTipoDeExpresion.cs" />
+    <Compile Include="PixelCrushers\DialogueSystem\SequencerCommands\SequencerCommandTakeAPic.cs" />
+    <Compile Include="PixelCrushers\DialogueSystem\SequencerCommands\SequencerCommandTavoLookAt.cs" />
+    <Compile Include="PixelCrushers\DialogueSystem\SequencerCommands\SequencerCommandTavoLookAtHumanBone.cs" />
+    <Compile Include="PixelCrushers\DialogueSystem\SequencerCommands\SequencerCommandTavoLookAtV2.cs" />
+    <Compile Include="PixelCrushers\DialogueSystem\SequencerCommands\SequencerCommandUsarBocaEnGestos.cs" />
+    <Compile Include="PixelCrushers\DialogueSystem\SequencerCommands\SequencerCommandVocal.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RandomTable.cs" />
+    <Compile Include="TestCloneMeshCollider.cs" />
+    <Compile Include="ToDoList.cs" />
+    <Compile Include="UnitySourceGeneratedAssemblyMonoScriptTypes_v1.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

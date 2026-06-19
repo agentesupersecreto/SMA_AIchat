@@ -1,0 +1,999 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C23D9B42-C37E-4819-B60C-C1D4CE51E63A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Assets._ReusableScripts.CuchiCuchi</RootNamespace>
+    <AssemblyName>Assembly-D_E_Chuchi_ReSc</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Assembly-D_F_CharactersBasics_ReSc">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Assembly-D_F_CharactersBasics_ReSc.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-D_ReSc">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Assembly-D_ReSc.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.Activables">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.Activables.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.BeachGirl.Controladores.Materiales">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.BeachGirl.Controladores.Materiales.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.BeachGirl.Mapas">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.BeachGirl.Mapas.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.BeachGirl.Mapas.Materiales">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.BeachGirl.Mapas.Materiales.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.Behaviours">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.Behaviours.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.Bones">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.Bones.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.Configs">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.Configs.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.Controllers">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.Controllers.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.CustomMonoBehaviours">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.CustomMonoBehaviours.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.Globales">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.Globales.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.Joints">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.Joints.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.Memoria">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.Memoria.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.Plugins">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.Plugins.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.RootMotion.BeachGirl">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.RootMotion.BeachGirl.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.SingletonesAndSystemasGlobales">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.SingletonesAndSystemasGlobales.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.Tiempo">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.Tiempo.dll</HintPath>
+    </Reference>
+    <Reference Include="netstandard">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\netstandard.dll</HintPath>
+    </Reference>
+    <Reference Include="TValle.Adresables">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\TValle.Adresables.dll</HintPath>
+    </Reference>
+    <Reference Include="TValle.BeachGirl">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\TValle.BeachGirl.dll</HintPath>
+    </Reference>
+    <Reference Include="TValle.BeachGirl.Estimulos">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\TValle.BeachGirl.Estimulos.dll</HintPath>
+    </Reference>
+    <Reference Include="TValle.BeachGirl.Genetica.Alteradores">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\TValle.BeachGirl.Genetica.Alteradores.dll</HintPath>
+    </Reference>
+    <Reference Include="TValle.IU">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\TValle.IU.dll</HintPath>
+    </Reference>
+    <Reference Include="TValle.MeshCalcules.BeachGirl">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\TValle.MeshCalcules.BeachGirl.dll</HintPath>
+    </Reference>
+    <Reference Include="TValle.MeshCalcules.ShapingSkinningPoints">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\TValle.MeshCalcules.ShapingSkinningPoints.dll</HintPath>
+    </Reference>
+    <Reference Include="TValle.Modding.Tools">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\TValle.Modding.Tools.dll</HintPath>
+    </Reference>
+    <Reference Include="TValle.SystemasConstraints">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\TValle.SystemasConstraints.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Addressables">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Unity.Addressables.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Burst">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Unity.Burst.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Collections">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Unity.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Mathematics">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Unity.Mathematics.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.HighDefinition.Runtime">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Unity.RenderPipelines.HighDefinition.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ResourceManager">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Unity.ResourceManager.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Splines">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Unity.Splines.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AnimationModule">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.AnimationModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.InputLegacyModule">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.InputLegacyModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.JSONSerializeModule">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.JSONSerializeModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ParticleSystemModule">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.ParticleSystemModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.PhysicsModule">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.PhysicsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.UI.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AI\AnimCollection\Idles\AnimacionesFemaleIdlesSegunPersonalidad.cs" />
+    <Compile Include="AI\AnimCollection\Idles\EvaluadorDeAnimacionFemaleIdle.cs" />
+    <Compile Include="AI\AnimCollection\Idles\FemaleCharacterIdleLoader.cs" />
+    <Compile Include="AI\CalculadorOnCalculadoCallbacksHandler.cs" />
+    <Compile Include="AI\CalculadorOnCalculadoTotalCallbacksHandler.cs" />
+    <Compile Include="AI\CharacterKarma.cs" />
+    <Compile Include="AI\CharAi.cs" />
+    <Compile Include="AI\CharPoseAi.cs" />
+    <Compile Include="AI\CharTouchEnum.cs" />
+    <Compile Include="AI\CollecionDeCurvasParaEmocionesReacciones.cs" />
+    <Compile Include="AI\CollecionDeMapasDePersonalidad.cs" />
+    <Compile Include="AI\ContraccionesDeOrgasmo.cs" />
+    <Compile Include="AI\Deseos.cs" />
+    <Compile Include="AI\DeseosScripts\ReduccionDeDeseosPorAhogamiento.cs" />
+    <Compile Include="AI\Dialogos\Objetos\Clases\BasePar.cs" />
+    <Compile Include="AI\Dialogos\Objetos\Clases\BaseParesInt.cs" />
+    <Compile Include="AI\Dialogos\Objetos\Clases\BaseParesIntCualquieraConfig.cs" />
+    <Compile Include="AI\Dialogos\Objetos\Clases\BaseParInt.cs" />
+    <Compile Include="AI\Dialogos\Objetos\Clases\BaseParIntMayorOMenor.cs" />
+    <Compile Include="AI\Dialogos\Objetos\Clases\CondicionesDeEvolturaCondicional.cs" />
+    <Compile Include="AI\Dialogos\Objetos\Clases\MayorOMenor.cs" />
+    <Compile Include="AI\Dialogos\Objetos\Clases\ParDeDirrecionDeEstimulo.cs" />
+    <Compile Include="AI\Dialogos\Objetos\Clases\ParDePartesEstimulantes.cs" />
+    <Compile Include="AI\Dialogos\Objetos\Clases\ParDePartesHumanas.cs" />
+    <Compile Include="AI\Dialogos\Objetos\Clases\ParDeReaccion.cs" />
+    <Compile Include="AI\Dialogos\Objetos\Clases\ParDeReaccionValorRequerido.cs" />
+    <Compile Include="AI\Dialogos\Objetos\Clases\ParDeTipoDeEstimulo.cs" />
+    <Compile Include="AI\Dialogos\Objetos\Clases\ParesDeReaccion.cs" />
+    <Compile Include="AI\Dialogos\Objetos\Clases\ParesDeReaccionValorRequerido.cs" />
+    <Compile Include="AI\Dialogos\Objetos\Clases\ParesDireccionDeEstimulo.cs" />
+    <Compile Include="AI\Dialogos\Objetos\Clases\ParesPartesEstimulantes.cs" />
+    <Compile Include="AI\Dialogos\Objetos\Clases\ParesPartesHumanas.cs" />
+    <Compile Include="AI\Dialogos\Objetos\Clases\ParesTipoDeEstimulo.cs" />
+    <Compile Include="AI\Dialogos\Objetos\Clases\TipoDeCalculoYTipoDeCalculador.cs" />
+    <Compile Include="AI\Dialogos\Objetos\EnvolturasCondicionales\EnvolturaCondicionalParaDialogoDeEstimulo.cs" />
+    <Compile Include="AI\Dialogos\Objetos\Genericos\CapsulaConCondicionesParaDialogosGenericos.cs" />
+    <Compile Include="AI\Dialogues\DialogueTag.cs" />
+    <Compile Include="AI\Diccionarios\DiccionarioDeReaccion.cs" />
+    <Compile Include="AI\Diccionarios\DiccionarioDeReaccionBase.2.cs" />
+    <Compile Include="AI\Diccionarios\DiccionarioDeReaccionBase.cs" />
+    <Compile Include="AI\Diccionarios\DiccionarioDeReaccionDeTipo.cs" />
+    <Compile Include="AI\Diccionarios\DiccionarioDeReaccionGeneric.cs" />
+    <Compile Include="AI\DuracionDeOrgasmo.cs" />
+    <Compile Include="AI\Emocion.cs" />
+    <Compile Include="AI\EmocionesFemeninas.cs" />
+    <Compile Include="AI\EmocionesFemeninasBase.cs" />
+    <Compile Include="AI\EmocionesFemeninasValues.cs" />
+    <Compile Include="AI\EmocionesHumanasBase.cs" />
+    <Compile Include="AI\EmocionesHumanasValues.cs" />
+    <Compile Include="AI\EmocionesHumanasValuesOld.cs" />
+    <Compile Include="AI\Emociones\Alegria.cs" />
+    <Compile Include="AI\Emociones\Alivio.cs" />
+    <Compile Include="AI\Emociones\Arousal.cs" />
+    <Compile Include="AI\Emociones\AscoBase.cs" />
+    <Compile Include="AI\Emociones\Boredom.cs" />
+    <Compile Include="AI\Emociones\ConsentToHero.cs" />
+    <Compile Include="AI\Emociones\Decepcion.cs" />
+    <Compile Include="AI\Emociones\DesHielo.cs" />
+    <Compile Include="AI\Emociones\Dolor.cs" />
+    <Compile Include="AI\Emociones\EmocionHacia.cs" />
+    <Compile Include="AI\Emociones\Fear.cs" />
+    <Compile Include="AI\Emociones\GrupoQueCompartenValores.cs" />
+    <Compile Include="AI\Emociones\GrupoSetter.cs" />
+    <Compile Include="AI\Emociones\GrupoValorPar.cs" />
+    <Compile Include="AI\Emociones\Handlers\Auras\AuraDeConcentDeCharacter.cs" />
+    <Compile Include="AI\Emociones\Handlers\Buffers\BufferDeMaxEmocion.2.cs" />
+    <Compile Include="AI\Emociones\Handlers\Buffers\BufferDeMaxEmocion.cs" />
+    <Compile Include="AI\Emociones\Handlers\Buffers\MaxDecepcionBuffer.cs" />
+    <Compile Include="AI\Emociones\Handlers\Buffers\MaxDolorBuffer.cs" />
+    <Compile Include="AI\Emociones\Handlers\Buffers\MaxFearBuffer.cs" />
+    <Compile Include="AI\Emociones\Handlers\Buffers\MaxPlacerBuffer.cs" />
+    <Compile Include="AI\Emociones\Handlers\Buffers\MaxRageBuffer.cs" />
+    <Compile Include="AI\Emociones\Handlers\CalculoDeEstimuloEnFrame.2.cs" />
+    <Compile Include="AI\Emociones\Handlers\CalculoDeEstimuloEnFrame.3.cs" />
+    <Compile Include="AI\Emociones\Handlers\CalculoDeEstimuloEnFrame.cs" />
+    <Compile Include="AI\Emociones\Handlers\CalculoDeEstimuloEnFrameUpdatedHandler.cs" />
+    <Compile Include="AI\Emociones\Handlers\CalculoDeEstimuloPor.cs" />
+    <Compile Include="AI\Emociones\Handlers\CalculoDeEstimuloPorCariciasConfig.cs" />
+    <Compile Include="AI\Emociones\Handlers\CalculoDeEstimuloPorCariciasResultado.cs" />
+    <Compile Include="AI\Emociones\Handlers\CalculoDeEstimuloPorPenetracionConfig.cs" />
+    <Compile Include="AI\Emociones\Handlers\CalculoDeEstimuloPorPenetracionHoleResultado.cs" />
+    <Compile Include="AI\Emociones\Handlers\CalculoDeEstimuloPorPenetracionRecibida.cs" />
+    <Compile Include="AI\Emociones\Handlers\CalculoDeEstimuloPorPenetracionRecibidaAdvance.cs" />
+    <Compile Include="AI\Emociones\Handlers\CalculoDeEstimuloPorPenetracionRecibidaBase.cs" />
+    <Compile Include="AI\Emociones\Handlers\CalculoDeEstimuloPorPenetracionRecibidaComplete.cs" />
+    <Compile Include="AI\Emociones\Handlers\CalculoDeEstimuloPorPenetracionResultado.2.cs" />
+    <Compile Include="AI\Emociones\Handlers\CalculoDeEstimuloPorPenetracionResultado.cs" />
+    <Compile Include="AI\Emociones\Handlers\CalculoDeEstimuloPorTactilesRecibidos.2.cs" />
+    <Compile Include="AI\Emociones\Handlers\CalculoDeEstimuloPorTactilesRecibidos.cs" />
+    <Compile Include="AI\Emociones\Handlers\Cambiadores\ArousalPorOrgasmo.cs" />
+    <Compile Include="AI\Emociones\Handlers\Cambiadores\ConsentPorInteraciones.cs" />
+    <Compile Include="AI\Emociones\Handlers\Cambiadores\EmocionPorEmocionMax.cs" />
+    <Compile Include="AI\Emociones\Handlers\Cambiadores\GenericEmocionPorOrgasmo.cs" />
+    <Compile Include="AI\Emociones\Handlers\Cambiadores\IConsentPorInteraciones.cs" />
+    <Compile Include="AI\Emociones\Handlers\ConsensualTree.cs" />
+    <Compile Include="AI\Emociones\Handlers\ConsentCorrupted.cs" />
+    <Compile Include="AI\Emociones\Handlers\ConsentNecesario.cs" />
+    <Compile Include="AI\Emociones\Handlers\DolorPorGolpes.cs" />
+    <Compile Include="AI\Emociones\Handlers\DolorPorPenetracion.cs" />
+    <Compile Include="AI\Emociones\Handlers\DolorPorToques.cs" />
+    <Compile Include="AI\Emociones\Handlers\EmocionAuraProducer.cs" />
+    <Compile Include="AI\Emociones\Handlers\EmocionAuraReceiver.cs" />
+    <Compile Include="AI\Emociones\Handlers\FrameCalculos\Abstracts\CalculoDeEstimuloEnFrameSlaveSegunValorGenerado.cs" />
+    <Compile Include="AI\Emociones\Handlers\FrameCalculos\Abstracts\CalculoDeEstimuloEnFrameSlaveSegunValorGeneradoBase.cs" />
+    <Compile Include="AI\Emociones\Handlers\FrameCalculos\Abstracts\CalculoDeEstimuloEnFrameSlaveSegunValorGeneradoCoital.cs" />
+    <Compile Include="AI\Emociones\Handlers\FrameCalculos\Abstracts\CalculoDeEstimuloEnFrameSlaveSegunValorGeneradoCoitalAnchura.cs" />
+    <Compile Include="AI\Emociones\Handlers\FrameCalculos\Abstracts\CalculoDeEstimuloEnFrameSlaveSegunValorGeneradoCoitalEspecif.cs" />
+    <Compile Include="AI\Emociones\Handlers\FrameCalculos\Abstracts\CalculoDeEstimuloEnFrameSlaveSegunValorGeneradoCoitalPenetra.cs" />
+    <Compile Include="AI\Emociones\Handlers\FrameCalculos\Abstracts\CalculoDeEstimuloEnFrameSlaveSegunValorGeneradoCoitalProfund.cs" />
+    <Compile Include="AI\Emociones\Handlers\FrameCalculos\CalculoDeEmocionesPorSerVisto.cs" />
+    <Compile Include="AI\Emociones\Handlers\FrameCalculos\CalculoDeEmocionesPorSerVistoConfiguracion.cs" />
+    <Compile Include="AI\Emociones\Handlers\FrameCalculos\CalculoDeEstimuloPorPenetracionHoleResultadoAnchura.cs" />
+    <Compile Include="AI\Emociones\Handlers\FrameCalculos\CalculoDeEstimuloPorPenetracionHoleResultadoProfunda.cs" />
+    <Compile Include="AI\Emociones\Handlers\FrameCalculos\CalculoDeEstimuloPorPenetracionHoleResultadoSimple.cs" />
+    <Compile Include="AI\Emociones\Handlers\FrameCalculos\CalculoDeEstimuloPorPenetracionHoleResultadoSimpleBase.cs" />
+    <Compile Include="AI\Emociones\Handlers\FrameCalculos\CalculoDeEstimuloPorPenetracionResultadoAnchura.cs" />
+    <Compile Include="AI\Emociones\Handlers\FrameCalculos\CalculoDeEstimuloPorPenetracionResultadoProfunda.cs" />
+    <Compile Include="AI\Emociones\Handlers\FrameCalculos\CalculoDeEstimuloPorPenetracionResultadoSimple.cs" />
+    <Compile Include="AI\Emociones\Handlers\FrameCalculos\CalculoDeEstimuloPorPenetracionResultadoSimpleBase.cs" />
+    <Compile Include="AI\Emociones\Handlers\FrameCalculos\CalculoDeEstimuloPorVerPartesMasculinas.cs" />
+    <Compile Include="AI\Emociones\Handlers\FrameCalculos\CalculoDeEstimuloVisualResultado.cs" />
+    <Compile Include="AI\Emociones\Handlers\FrameCalculos\CalculoPorVerPartesMasculinasConfiguracion.cs" />
+    <Compile Include="AI\Emociones\Handlers\FrameCalculos\DecepcionPorPenetracionAnchura.cs" />
+    <Compile Include="AI\Emociones\Handlers\FrameCalculos\DecepcionPorPenetraciones.cs" />
+    <Compile Include="AI\Emociones\Handlers\FrameCalculos\DecepcionPorPenetracionProfundidad.cs" />
+    <Compile Include="AI\Emociones\Handlers\FrameCalculos\DecepcionPorToques.cs" />
+    <Compile Include="AI\Emociones\Handlers\FrameCalculos\DesHieloPorCambioDeEmociones.cs" />
+    <Compile Include="AI\Emociones\Handlers\FrameCalculos\DisminucionPorAumentoDeRageODolor.cs" />
+    <Compile Include="AI\Emociones\Handlers\FrameCalculos\FearPorCambioDeEmociones.cs" />
+    <Compile Include="AI\Emociones\Handlers\FrameCalculos\FearPorDesHielo.cs" />
+    <Compile Include="AI\Emociones\Handlers\FrameCalculos\GeneracionPorCambioDeEmocion.cs" />
+    <Compile Include="AI\Emociones\Handlers\FrameCalculos\ICalculadorDeEstimuloConCalculosDeHielo.cs" />
+    <Compile Include="AI\Emociones\Handlers\FrameCalculos\IModDeInterDeGenCoitalAnchura.cs" />
+    <Compile Include="AI\Emociones\Handlers\FrameCalculos\IModDeInterDeGenCoitalPenVel.cs" />
+    <Compile Include="AI\Emociones\Handlers\FrameCalculos\IModDeInterDeGenCoitalProfundidad.cs" />
+    <Compile Include="AI\Emociones\Handlers\FrameCalculos\IModDeInterDeGenTactil.cs" />
+    <Compile Include="AI\Emociones\Handlers\FrameCalculos\IPhyscisIntervalosDeProfundidadAbove.cs" />
+    <Compile Include="AI\Emociones\Handlers\FrameCalculos\IPhyscisIntervalosDeProfundidadMiddle.cs" />
+    <Compile Include="AI\Emociones\Handlers\FrameCalculos\Modificadores\GeneradorDeIntervalosDePenetracionSegunPhyscis.cs" />
+    <Compile Include="AI\Emociones\Handlers\FrameCalculos\Modificadores\ModDeInterDeGenCoital.cs" />
+    <Compile Include="AI\Emociones\Handlers\FrameCalculos\Modificadores\ModifiicablesDeDamageAndIntervalsEnEmocionDeInteraccion.cs" />
+    <Compile Include="AI\Emociones\Handlers\FrameCalculos\PlacerPorSerVistoPorMain.cs" />
+    <Compile Include="AI\Emociones\Handlers\FrameCalculos\PlacerPorVerPartesMasculinas.cs" />
+    <Compile Include="AI\Emociones\Handlers\FrameCalculos\RagePorSerVistoPorMain.cs" />
+    <Compile Include="AI\Emociones\Handlers\FrameCalculos\RagePorVerPartesMasculinas.cs" />
+    <Compile Include="AI\Emociones\Handlers\FrameCalculos\ResistenciaDeAlivioSegunBribery.cs" />
+    <Compile Include="AI\Emociones\Handlers\Modificadores\ModificadorDeGananciaSegunAhogamiento.cs" />
+    <Compile Include="AI\Emociones\Handlers\Modificadores\ModificadorDeGananciaSegunCansamiento.cs" />
+    <Compile Include="AI\Emociones\Handlers\Modificadores\ModificadorDeGananciaSegunSaturacionDeOxigeno.cs" />
+    <Compile Include="AI\Emociones\Handlers\Modificadores\ModificadorDeValorSegunSaturacionDeOxigeno.cs" />
+    <Compile Include="AI\Emociones\Handlers\PlacerPorPenetraciones.cs" />
+    <Compile Include="AI\Emociones\Handlers\PlacerPorToques.cs" />
+    <Compile Include="AI\Emociones\Handlers\RagePorGolpes.cs" />
+    <Compile Include="AI\Emociones\Handlers\RagePorPenetracion.cs" />
+    <Compile Include="AI\Emociones\Handlers\RagePorToques.cs" />
+    <Compile Include="AI\Emociones\Handlers\RecopiladorDeCalculosParaReactores.cs" />
+    <Compile Include="AI\Emociones\Handlers\ReductoresEnMaxValue\Abstracts\ReductorDeEmocionValueEnMaxEmocionValue.cs" />
+    <Compile Include="AI\Emociones\Handlers\ReductoresEnMaxValue\CongeladorDeEmocionEnMaxValue.cs" />
+    <Compile Include="AI\Emociones\Handlers\SesionesCalculos\Abstracts\Generales\CalculadorRecopiladorDummy.cs" />
+    <Compile Include="AI\Emociones\Handlers\SesionesCalculos\Abstracts\Generales\SessionGeneralDeTipoDeCualquierEmocion.cs" />
+    <Compile Include="AI\Emociones\Handlers\SesionesCalculos\Abstracts\RecopiladorDeCalculadoresDeSesionesGenerales.cs" />
+    <Compile Include="AI\Emociones\Handlers\SesionesCalculos\Abstracts\RecopiladorDeCalculosDeSesionesGenerales.cs" />
+    <Compile Include="AI\Emociones\Handlers\SesionesCalculos\Abstracts\RecopiladorDeCalculosDeSesionesGeneralesParaTipo.cs" />
+    <Compile Include="AI\Emociones\Handlers\SesionesCalculos\DeDecepcion\SesionGeneralDeDecepcionCoital.cs" />
+    <Compile Include="AI\Emociones\Handlers\SesionesCalculos\DeDecepcion\SesionGeneralDeDecepcionTactil.cs" />
+    <Compile Include="AI\Emociones\Handlers\SesionesCalculos\Especificas\SesionEspecificaSiendoVistoGenerica.cs" />
+    <Compile Include="AI\Emociones\Handlers\SesionesCalculos\Especificas\SesionEspecificaTactilGenerica.cs" />
+    <Compile Include="AI\Emociones\Handlers\SesionesCalculos\Generales\DeDecepcion\SesionGeneralDeDecepcionCoitalAnchura.cs" />
+    <Compile Include="AI\Emociones\Handlers\SesionesCalculos\Generales\DeDecepcion\SesionGeneralDeDecepcionCoitalProfunda.cs" />
+    <Compile Include="AI\Emociones\Handlers\SesionesCalculos\Generales\ISesionGeneralCoital.cs" />
+    <Compile Include="AI\Emociones\Handlers\SesionesCalculos\Generales\ISesionGeneralVisual.cs" />
+    <Compile Include="AI\Emociones\Handlers\SesionesCalculos\Generales\SesionGeneralCoital.cs" />
+    <Compile Include="AI\Emociones\Handlers\SesionesCalculos\Generales\SesionGeneralCoitalParaCualquierTipo.cs" />
+    <Compile Include="AI\Emociones\Handlers\SesionesCalculos\Generales\SesionGeneralCoitalParaCualquierTipoDummy.cs" />
+    <Compile Include="AI\Emociones\Handlers\SesionesCalculos\Generales\SesionGeneralDesvestidura.cs" />
+    <Compile Include="AI\Emociones\Handlers\SesionesCalculos\Generales\SesionGeneralTactilParaCualquierTipo.cs" />
+    <Compile Include="AI\Emociones\Handlers\SesionesCalculos\Generales\SesionGeneralTactilParaCualquierTipoDummy.cs" />
+    <Compile Include="AI\Emociones\Handlers\SesionesCalculos\Generales\SesionGeneralVisual.cs" />
+    <Compile Include="AI\Emociones\Handlers\SesionesCalculos\Generales\SesionGeneralVisualDada.cs" />
+    <Compile Include="AI\Emociones\Handlers\SesionesCalculos\Generales\SesionGeneralVisualParaCualquierTipo.cs" />
+    <Compile Include="AI\Emociones\Handlers\SesionesCalculos\Generales\SesionGeneralVisualParaCualquierTipoDummy.cs" />
+    <Compile Include="AI\Emociones\Handlers\SesionesCalculos\Generales\SesionPromCoital.cs" />
+    <Compile Include="AI\Emociones\Handlers\SesionesCalculos\Generales\SesionPromDesvestidura.cs" />
+    <Compile Include="AI\Emociones\Handlers\SesionesCalculos\Generales\SesionPromTactil.cs" />
+    <Compile Include="AI\Emociones\Handlers\SesionesCalculos\Generales\SesionPromVisual.cs" />
+    <Compile Include="AI\Emociones\Handlers\SesionesCalculos\ICalculadorDeSession.cs" />
+    <Compile Include="AI\Emociones\Handlers\SesionesCalculos\ICalculadorDeSessionConResultado.cs" />
+    <Compile Include="AI\Emociones\Handlers\SesionesCalculos\ICalculadorDeSessionConResultadoDeCalculosDeEstimulo.cs" />
+    <Compile Include="AI\Emociones\Handlers\SesionesCalculos\ICalculadorDeSessionDeCalculosDeEstimulo.cs" />
+    <Compile Include="AI\Emociones\Handlers\SesionesCalculos\ICalculadorDeSessionDeTipo.2.cs" />
+    <Compile Include="AI\Emociones\Handlers\SesionesCalculos\ICalculadorDeSessionDeTipo.cs" />
+    <Compile Include="AI\Emociones\Handlers\SesionesCalculos\ICalculadorDeSessionDeTipoConResultado.cs" />
+    <Compile Include="AI\Emociones\Handlers\SesionesCalculos\ISesionGeneralTactil.cs" />
+    <Compile Include="AI\Emociones\Handlers\SesionesCalculos\RecopiladorDeCalculadoresDeSessionesGeneralesCoitales.cs" />
+    <Compile Include="AI\Emociones\Handlers\SesionesCalculos\RecopiladorDeCalculadoresDeSessionesGeneralesTactiles.cs" />
+    <Compile Include="AI\Emociones\Handlers\SesionesCalculos\RecopiladorDeCalculosDeSesionesGeneralesParaTipoCoital.cs" />
+    <Compile Include="AI\Emociones\Handlers\SesionesCalculos\RecopiladorDeCalculosDeSesionesGeneralesParaTipoTactiles.cs" />
+    <Compile Include="AI\Emociones\Handlers\SesionesCalculos\RecopiladorDeCalculosDeSesionesGeneralesParaTipoVisuales.cs" />
+    <Compile Include="AI\Emociones\Handlers\SesionesCalculos\ResultadoDeSessionBase.cs" />
+    <Compile Include="AI\Emociones\Handlers\SesionesCalculos\SesionEspecificaTactilDeEstimulanteGenerica.cs" />
+    <Compile Include="AI\Emociones\Handlers\SesionesCalculos\SesionGeneralTactil.cs" />
+    <Compile Include="AI\Emociones\Handlers\SesionesCalculos\SesionGeneralTactilDeEstimulanteGenerica.cs" />
+    <Compile Include="AI\Emociones\Handlers\SesionesCalculos\SessionDeCalculosDeEstimulo.cs" />
+    <Compile Include="AI\Emociones\Handlers\SesionesCalculos\SessionDeCalculosDeEstimuloPromiscua.cs" />
+    <Compile Include="AI\Emociones\Handlers\SesionesCalculos\SessionDeEstimulo.cs" />
+    <Compile Include="AI\Emociones\Handlers\SesionesCalculos\SessionEspecifica.cs" />
+    <Compile Include="AI\Emociones\Handlers\SesionesCalculos\SessionEspecificaDeEstimulanteBase.cs" />
+    <Compile Include="AI\Emociones\Handlers\SesionesCalculos\SessionEspecificaDeEstimulanteGenerica.cs" />
+    <Compile Include="AI\Emociones\Handlers\SesionesCalculos\SessionEspecificaGenerica.cs" />
+    <Compile Include="AI\Emociones\Handlers\SesionesCalculos\SessionGeneral.cs" />
+    <Compile Include="AI\Emociones\Handlers\SesionesCalculos\SessionGeneralDeEstimulanteBase.cs" />
+    <Compile Include="AI\Emociones\Handlers\SesionesCalculos\SessionGeneralDeEstimulanteGenerica.cs" />
+    <Compile Include="AI\Emociones\Handlers\SesionesCalculos\SessionGeneralProm.cs" />
+    <Compile Include="AI\Emociones\Interpretadores\InterpretadorDePersonalidadDataHandler.cs" />
+    <Compile Include="AI\Emociones\Mapas\DatosDeUmbral.cs" />
+    <Compile Include="AI\Emociones\Mapas\DatosDeUmbralSinIntervalo.cs" />
+    <Compile Include="AI\Emociones\Mapas\FloatPorGrupoDicc.cs" />
+    <Compile Include="AI\Emociones\Mapas\IDatosDeUmbral.cs" />
+    <Compile Include="AI\Emociones\Mapas\MapaDeEmociones.cs" />
+    <Compile Include="AI\Emociones\Mapas\MaxPlacerPorGrupo.cs" />
+    <Compile Include="AI\Emociones\Mapas\ModifcadorDeIntervalo.cs" />
+    <Compile Include="AI\Emociones\Mapas\PartesEstimulantePorGrupo.cs" />
+    <Compile Include="AI\Emociones\Mapas\PartesHumanasPorGrupo.cs" />
+    <Compile Include="AI\Emociones\Mapas\ValorPorGrupoDicc.cs" />
+    <Compile Include="AI\Emociones\ParteHumanaValorPar.cs" />
+    <Compile Include="AI\Emociones\Personalidades\ReductoresEnMaxValue\Abstracts\ReductorDeEmocionHastaSegunPersonalidadTraits.cs" />
+    <Compile Include="AI\Emociones\Personalidades\ReductoresEnMaxValue\CongelarPlacerHastaSegunDuracionDeOrgasmo.cs" />
+    <Compile Include="AI\Emociones\Personalidades\ReductoresEnMaxValue\ReductorDeDecepcionHastaSegunPersonalidadTraits.cs" />
+    <Compile Include="AI\Emociones\Personalidades\ReductoresEnMaxValue\ReductorDeDolorHastaSegunPersonalidadTraits.cs" />
+    <Compile Include="AI\Emociones\Personalidades\ReductoresEnMaxValue\ReductorDeFearHastaSegunPersonalidadTraits.cs" />
+    <Compile Include="AI\Emociones\Personalidades\ReductoresEnMaxValue\ReductorDePlacerHastaSegunPersonalidadTraits.cs" />
+    <Compile Include="AI\Emociones\Personalidades\ReductoresEnMaxValue\ReductorDeRageHastaSegunPersonalidadTraits.cs" />
+    <Compile Include="AI\Emociones\Placer.cs" />
+    <Compile Include="AI\Emociones\PlacerBase.cs" />
+    <Compile Include="AI\Emociones\Rage.cs" />
+    <Compile Include="AI\Emociones\Ropa\Handlers\FrameCalculos\CalculoDeEmocionesPorDesvestidura.cs" />
+    <Compile Include="AI\Emociones\Ropa\Handlers\FrameCalculos\CalculoDeEmocionesPorPeticionDesvestidura.cs" />
+    <Compile Include="AI\Emociones\Ropa\Handlers\FrameCalculos\CalculoDeEmocionesPorSerDesvestido.cs" />
+    <Compile Include="AI\Emociones\Ropa\Handlers\FrameCalculos\CalculoDeEmocionesPorSerDesvestidoConfiguracion.cs" />
+    <Compile Include="AI\Emociones\Ropa\Handlers\FrameCalculos\CalculoDeEstimuloDesvestidoResultado.cs" />
+    <Compile Include="AI\Emociones\Ropa\Handlers\FrameCalculos\PlacerPorPeticionDesvestidoPorMain.cs" />
+    <Compile Include="AI\Emociones\Ropa\Handlers\FrameCalculos\PlacerPorSerDesvestidoPorMain.cs" />
+    <Compile Include="AI\Emociones\Ropa\Handlers\FrameCalculos\RagePorPeticionDesvestidirPorMain.cs" />
+    <Compile Include="AI\Emociones\Ropa\Handlers\FrameCalculos\RagePorSerDesvestidoPorMain.cs" />
+    <Compile Include="AI\Emociones\Setter.cs" />
+    <Compile Include="AI\EmptyCharTouchData.cs" />
+    <Compile Include="AI\EmptyZonaErogenaData.cs" />
+    <Compile Include="AI\EstimuloDataEdicionDirecta.cs" />
+    <Compile Include="AI\Estimulos\Adders\Penes\TocanteObjectToFingerPartsAdder.cs" />
+    <Compile Include="AI\Estimulos\Adders\Penes\TocanteObjectToPenisPartsAdder.cs" />
+    <Compile Include="AI\Estimulos\Adders\Penes\TocanteObjectToToyAdder.cs" />
+    <Compile Include="AI\Estimulos\CambioDePoseData.cs" />
+    <Compile Include="AI\Estimulos\EstimuloInFrame.cs" />
+    <Compile Include="AI\Estimulos\EstimuloPorCambiarPose.cs" />
+    <Compile Include="AI\Estimulos\EstimuloPorManipulacionDeBone.cs" />
+    <Compile Include="AI\Estimulos\GenericAgarranteCharacter.cs" />
+    <Compile Include="AI\Estimulos\IAgarranteCharacter.cs" />
+    <Compile Include="AI\Estimulos\ISostenibleObjeto.cs" />
+    <Compile Include="AI\Estimulos\ISostenibleObjetoEvents.cs" />
+    <Compile Include="AI\Estimulos\IViendoA.cs" />
+    <Compile Include="AI\Estimulos\IViendoOSiendoVistoUser.cs" />
+    <Compile Include="AI\Estimulos\ManipulacionDeBoneData.cs" />
+    <Compile Include="AI\Estimulos\ObjetosEstimulantes\AgarranteObjeto.cs" />
+    <Compile Include="AI\Estimulos\ObjetosEstimulantes\GenericAgarranteObjeto.cs" />
+    <Compile Include="AI\Estimulos\ObjetosEstimulantes\ISidedAgarranteObjeto.cs" />
+    <Compile Include="AI\Estimulos\PenetracionesByMainInFrame.cs" />
+    <Compile Include="AI\Estimulos\SiendoVistoPorCharacter.cs" />
+    <Compile Include="AI\Estimulos\Sonidos\Toques\Modificadores\DiccDeModDeSonidoConstantesPenetracionDeParteEstimulada.cs" />
+    <Compile Include="AI\Estimulos\Sonidos\Toques\Modificadores\ModificadorDeTouchingSoundSegunConfig.cs" />
+    <Compile Include="AI\Estimulos\TouchesByMainInFrame.cs" />
+    <Compile Include="AI\Estimulos\ViendoA.cs" />
+    <Compile Include="AI\Estimulos\ViendoOSiendoVisto.cs" />
+    <Compile Include="AI\Estimulos\VisionDesdeMainInFrame.cs" />
+    <Compile Include="AI\Estimulos\VisionHaciaMainInFrame.cs" />
+    <Compile Include="AI\EstimuloTactilData.cs" />
+    <Compile Include="AI\EstimuloTipo.cs" />
+    <Compile Include="AI\EstimuloTipo2.cs" />
+    <Compile Include="AI\Ext_ReaccionHumana.cs" />
+    <Compile Include="AI\FrameCariciaEstimuloValue.cs" />
+    <Compile Include="AI\FrameEstimulosV2.cs" />
+    <Compile Include="AI\FramePenetrationEstimuloValue.cs" />
+    <Compile Include="AI\FrameSingleEstimuloValue.cs" />
+    <Compile Include="AI\FrameStimuloValue.2.cs" />
+    <Compile Include="AI\FrameStimuloValue.3.cs" />
+    <Compile Include="AI\FrameStimuloValue.cs" />
+    <Compile Include="AI\FrameZonaHerogenaEstimuloValue.cs" />
+    <Compile Include="AI\HoleType.cs" />
+    <Compile Include="AI\HumanTraitScore.cs" />
+    <Compile Include="AI\HumanTraitScoreEXT.cs" />
+    <Compile Include="AI\ICalculadorArregladorDeInstanciasDeEstimulos.cs" />
+    <Compile Include="AI\ICalculadorDeEstimulo.2.cs" />
+    <Compile Include="AI\ICalculadorDeEstimulo.cs" />
+    <Compile Include="AI\ICalculadorDeEstimuloClasificable.cs" />
+    <Compile Include="AI\ICalculadorDeEstimuloCoital.cs" />
+    <Compile Include="AI\ICalculadorDeEstimuloCoitalEXT.cs" />
+    <Compile Include="AI\ICalculadorDeEstimuloConCalculos.cs" />
+    <Compile Include="AI\ICalculadorDeEstimuloIgnoradorEnPartesHumanas.cs" />
+    <Compile Include="AI\ICalculadorDeEstimuloOnCalculoCallback.cs" />
+    <Compile Include="AI\ICalculadorDeEstimuloOnCalculoCallbacks.cs" />
+    <Compile Include="AI\ICalculadorDeEstimuloOnCalculoCallbacksCoitalAnchura.cs" />
+    <Compile Include="AI\ICalculadorDeEstimuloOnCalculoCallbacksCoitales.cs" />
+    <Compile Include="AI\ICalculadorDeEstimuloOnCalculoCallbacksCoitalPenetracion.cs" />
+    <Compile Include="AI\ICalculadorDeEstimuloOnCalculoCallbacksCoitalProfundidad.cs" />
+    <Compile Include="AI\ICalculadorDeEstimuloPorDesvestir.cs" />
+    <Compile Include="AI\ICalculadorDeEstimuloReaccionable.cs" />
+    <Compile Include="AI\ICalculadorDeEstimuloTactil.cs" />
+    <Compile Include="AI\ICalculadorDeEstimuloVisual.cs" />
+    <Compile Include="AI\ICalculadorSimulable.cs" />
+    <Compile Include="AI\ICalculoDeEstimulo.2.cs" />
+    <Compile Include="AI\ICalculoDeEstimulo.cs" />
+    <Compile Include="AI\ICalculoDeEstimuloBuffeador.cs" />
+    <Compile Include="AI\ICalculoDeEstimuloCoital.cs" />
+    <Compile Include="AI\ICalculoDeEstimuloCoitalHole.cs" />
+    <Compile Include="AI\ICalculoDeEstimuloCoitalHoleAncha.cs" />
+    <Compile Include="AI\ICalculoDeEstimuloCoitalHoleConSubTipoSegundario.cs" />
+    <Compile Include="AI\ICalculoDeEstimuloCoitalHoleProfundaV2.cs" />
+    <Compile Include="AI\ICalculoDeEstimuloCoitalHoleSimple.cs" />
+    <Compile Include="AI\ICalculoDeEstimuloCoitalHoleVeloz.cs" />
+    <Compile Include="AI\ICalculoDeEstimuloCompleto.cs" />
+    <Compile Include="AI\ICalculoDeEstimuloConEstado.cs" />
+    <Compile Include="AI\ICalculoDeEstimuloDeParteEstimulante.cs" />
+    <Compile Include="AI\ICalculoDeEstimuloEXT.cs" />
+    <Compile Include="AI\ICalculoDeEstimuloGenerando.cs" />
+    <Compile Include="AI\ICalculoDeEstimuloPorDesvestir.cs" />
+    <Compile Include="AI\ICalculoDeEstimuloPrioridadModificable.cs" />
+    <Compile Include="AI\ICalculoDeEstimuloReaccionable.cs" />
+    <Compile Include="AI\ICalculoDeEstimuloTactil.cs" />
+    <Compile Include="AI\ICalculoDeEstimuloVisual.cs" />
+    <Compile Include="AI\ICalculoDeInteracionEstimulante.cs" />
+    <Compile Include="AI\ICalculoDeInteracionEstimulanteConEstado.cs" />
+    <Compile Include="AI\ICalculoDeInteracionEstimulanteDeParteEstimulante.cs" />
+    <Compile Include="AI\ICalculoHelpler.cs" />
+    <Compile Include="AI\ICharDesvestiduraInformer.cs" />
+    <Compile Include="AI\ICharDesvestiduraInformerInstanceGetter.cs" />
+    <Compile Include="AI\ICharPenetrationData.cs" />
+    <Compile Include="AI\ICharPenetrationInformer.cs" />
+    <Compile Include="AI\ICharPenetrationInformerV2.cs" />
+    <Compile Include="AI\ICharPeticionDesvestiduraInformer.cs" />
+    <Compile Include="AI\ICharTouchData.cs" />
+    <Compile Include="AI\ICharTouchInformer.cs" />
+    <Compile Include="AI\ICharTouchInformerV2.cs" />
+    <Compile Include="AI\ICharTouchInformerV2User.cs" />
+    <Compile Include="AI\ICharVisionInformer.cs" />
+    <Compile Include="AI\IDataSet.cs" />
+    <Compile Include="AI\IEmocionesMasculinas.cs" />
+    <Compile Include="AI\IParaReactor.cs" />
+    <Compile Include="AI\IPenetrationInformer.cs" />
+    <Compile Include="AI\IPenetrationInformerV2.cs" />
+    <Compile Include="AI\IReactor.cs" />
+    <Compile Include="AI\IReactorInyectable.cs" />
+    <Compile Include="AI\IReactorReaccionadoHandler.cs" />
+    <Compile Include="AI\IReactorReaccionandoHandler.cs" />
+    <Compile Include="AI\IReactorRegistrador.cs" />
+    <Compile Include="AI\ITouchInformer.cs" />
+    <Compile Include="AI\IZonaErogenaData.cs" />
+    <Compile Include="AI\IZonaErogenaInformer.cs" />
+    <Compile Include="AI\IZonaErogenaUbicacionData.cs" />
+    <Compile Include="AI\ParpadeoDeOjosAI.cs" />
+    <Compile Include="AI\PartesHumanasParaAi.cs" />
+    <Compile Include="AI\PartesHumanasParaAiExt.cs" />
+    <Compile Include="AI\Personalidad.cs" />
+    <Compile Include="AI\Personalidades\Mapas\MapaDeDeseos.cs" />
+    <Compile Include="AI\Personalidades\Mapas\MapaDePersonalidad.cs" />
+    <Compile Include="AI\PersonalidadEXT.cs" />
+    <Compile Include="AI\Prioridades\PrioridadesDePartesDelCuerpoHumano.cs" />
+    <Compile Include="AI\Prioridades\PrioridadesDePartesDelCuerpoHumano_Erogenidad.cs" />
+    <Compile Include="AI\Prioridades\PrioridadesDePartesDelCuerpoHumano_Privacidad.cs" />
+    <Compile Include="AI\Prioridades\PrioridadesDePartesDelCuerpoHumano_Sensibilidad.cs" />
+    <Compile Include="AI\ReaccionHumana.cs" />
+    <Compile Include="AI\ReactoresDeEstimulos\Emociones\ReactorCambioDeConsentPorSessionesEnd.cs" />
+    <Compile Include="AI\ReactoresDeEstimulos\InyectorDeCalculoDeOrgasmo.cs" />
+    <Compile Include="AI\ReactoresDeEstimulos\MainParaReactorGenerico.cs" />
+    <Compile Include="AI\ReactoresDeEstimulos\MainReactorGenerico.cs" />
+    <Compile Include="AI\ReactoresDeEstimulos\ParaReactor.cs" />
+    <Compile Include="AI\ReactoresDeEstimulos\ParaReactoresAEstimulos\MainParaReactor.cs" />
+    <Compile Include="AI\ReactoresDeEstimulos\ParaReactoresAEstimulos\ParaReactoresTags.cs" />
+    <Compile Include="AI\ReactoresDeEstimulos\ParaReactoresAEstimulos\ParaReactorPadre.cs" />
+    <Compile Include="AI\ReactoresDeEstimulos\ParaReactorPadreDummy.cs" />
+    <Compile Include="AI\ReactoresDeEstimulos\ReactorACalculoDeEstimulo.cs" />
+    <Compile Include="AI\ReactoresDeEstimulos\ReactorACalculoDeEstimuloBase.2.cs" />
+    <Compile Include="AI\ReactoresDeEstimulos\ReactorACalculoDeEstimuloBase.cs" />
+    <Compile Include="AI\ReactoresDeEstimulos\ReactorACalculoDeEstimuloConParaReactor.cs" />
+    <Compile Include="AI\ReactoresDeEstimulos\ReactorDeFrameGenerico.cs" />
+    <Compile Include="AI\ReactoresDeEstimulos\ReactorDeSesionGenerico.cs" />
+    <Compile Include="AI\ReactoresDeEstimulos\ReactorGenerico.cs" />
+    <Compile Include="AI\ReactoresDeEstimulos\ReactorGenericoParaCalculosDeInteraccionDeMasPrioridad.cs" />
+    <Compile Include="AI\ReactoresDeEstimulos\ReactorPadre.cs" />
+    <Compile Include="AI\ReactoresDeEstimulos\ReactorPadreConfig.cs" />
+    <Compile Include="AI\ReactoresDeEstimulos\ReactorPadreDummy.cs" />
+    <Compile Include="AI\ReactoresDeEstimulos\ReactorPadreParallel.cs" />
+    <Compile Include="AI\ReactoresDeEstimulos\ReactorPadreSelector.cs" />
+    <Compile Include="AI\ReactoresDeEstimulos\ReactorPadreSinLogica.cs" />
+    <Compile Include="AI\ReactoresDeEstimulos\ReactorPadreSinLogicaACalculoDeEstimulo.cs" />
+    <Compile Include="AI\ReactoresDeEstimulos\ReactorRedirector.cs" />
+    <Compile Include="AI\ReactoresDeEstimulos\ReactorSegundario.cs" />
+    <Compile Include="AI\ReactoresDeEstimulos\ReactorSlave.cs" />
+    <Compile Include="AI\ReactoresDeEstimulos\Reglas\ChecksHandler.cs" />
+    <Compile Include="AI\ReactoresDeEstimulos\Reglas\Condicion.cs" />
+    <Compile Include="AI\ReactoresDeEstimulos\Reglas\CondicionConTrigger.cs" />
+    <Compile Include="AI\ReactoresDeEstimulos\Reglas\CondicionesConTrigger.cs" />
+    <Compile Include="AI\ReactoresDeEstimulos\Reglas\CondicionesConTriggerParallel.cs" />
+    <Compile Include="AI\ReactoresDeEstimulos\Reglas\ICheckeadorDeCalculo.cs" />
+    <Compile Include="AI\ReactoresDeEstimulos\Reglas\IEditorCheckeadorDeCalculo.cs" />
+    <Compile Include="AI\ReactoresDeEstimulos\Reglas\Items\ReglaItem.cs" />
+    <Compile Include="AI\ReactoresDeEstimulos\Reglas\Items\r_AlwaysFalse.cs" />
+    <Compile Include="AI\ReactoresDeEstimulos\Reglas\Items\r_AlwaysTrue.cs" />
+    <Compile Include="AI\ReactoresDeEstimulos\Reglas\Items\r_EstimuladaEs.cs" />
+    <Compile Include="AI\ReactoresDeEstimulos\Reglas\Items\r_EstimuladaEsPrivadaTactilmente.cs" />
+    <Compile Include="AI\ReactoresDeEstimulos\Reglas\Items\r_EstimuladaEsPrivadaVisualmente.cs" />
+    <Compile Include="AI\ReactoresDeEstimulos\Reglas\Items\r_EstimuladaEsSemiPrivadaTactilmente.cs" />
+    <Compile Include="AI\ReactoresDeEstimulos\Reglas\Items\r_EstimuladaEsSemiPrivadaVisualmente.cs" />
+    <Compile Include="AI\ReactoresDeEstimulos\Reglas\Items\r_EstimuloDado.cs" />
+    <Compile Include="AI\ReactoresDeEstimulos\Reglas\Items\r_EstimuloMayorAZero.cs" />
+    <Compile Include="AI\ReactoresDeEstimulos\Reglas\Items\r_EstimuloRecibido.cs" />
+    <Compile Include="AI\ReactoresDeEstimulos\Reglas\Items\r_Reaccion.cs" />
+    <Compile Include="AI\ReactoresDeEstimulos\Reglas\Items\r_TipoDeCalculador.cs" />
+    <Compile Include="AI\ReactoresDeEstimulos\Reglas\Items\r_TipoDeCalculo.cs" />
+    <Compile Include="AI\ReactoresDeEstimulos\Reglas\Items\r_TipoDeEstimulo.cs" />
+    <Compile Include="AI\ReactoresDeEstimulos\Reglas\Items\r_TipoDeEstimuloVisual.cs" />
+    <Compile Include="AI\ReactoresDeEstimulos\Reglas\Regla.cs" />
+    <Compile Include="AI\Ropa\ControlladorDeGuiasDeInteraccionDeRopa.cs" />
+    <Compile Include="AI\Ropa\EstimulosDeGuiaDeRopaInteractable.cs" />
+    <Compile Include="AI\Ropa\EstimulosPorQuitarPrendasDeRopa.cs" />
+    <Compile Include="AI\Ropa\Estimulos\Clases\SiendoDesvestido.cs" />
+    <Compile Include="AI\Ropa\Estimulos\Clases\SiendoDesvestidoPorCharacter.cs" />
+    <Compile Include="AI\Ropa\Estimulos\Clases\SiendoPedidoDesvestirPorCharacter.cs" />
+    <Compile Include="AI\Ropa\Estimulos\DesvestidurasByMainInFrame.cs" />
+    <Compile Include="AI\Ropa\Estimulos\EstimuloPorDesvestir.cs" />
+    <Compile Include="AI\Ropa\GuiaDeRopaInteractable.cs" />
+    <Compile Include="AI\Ropa\UI\OpcionesDeDonaDeRopaCubreConTextoMutado.cs" />
+    <Compile Include="AI\SpotScore.cs" />
+    <Compile Include="AI\SpotScoreExt.cs" />
+    <Compile Include="AI\Succion\ModSuccPresionLiberadaSegunHumanTrait.cs" />
+    <Compile Include="AI\Succion\ModSuccPresionLiberadaSegunHumanTraitGaggInt.cs" />
+    <Compile Include="AI\Succion\ModSuccPresionLiberadaSegunHumanTraitSuccInt.cs" />
+    <Compile Include="AI\TipoDeCalculadorDeEstimulo.cs" />
+    <Compile Include="AI\TipoDeCalculoDeEstimulo.cs" />
+    <Compile Include="AI\TipoDeRelacion.cs" />
+    <Compile Include="AI\TouchInformerMethod.cs" />
+    <Compile Include="AI\TouchInformerMethodExt.cs" />
+    <Compile Include="AI\TraitHumano.cs" />
+    <Compile Include="AI\TraitHumanoHelper.cs" />
+    <Compile Include="AI\UI\BarraDeDeseo.cs" />
+    <Compile Include="AI\UI\BarraDeDeseoBoca.cs" />
+    <Compile Include="AI\UI\BarraDeDeseoEntrepierna.cs" />
+    <Compile Include="AI\UI\BarraDeDeseoTrasero.cs" />
+    <Compile Include="AI\UI\BarraDeEmocion.cs" />
+    <Compile Include="AI\UI\BarraDeEmocionColorCambianteOnRange.cs" />
+    <Compile Include="AI\UI\BarraDeEmocionColorCambianteOnValueChange.cs" />
+    <Compile Include="AI\UI\CharacterUI.cs" />
+    <Compile Include="AI\UI\CharacterUISetter.cs" />
+    <Compile Include="AI\UI\ConsentPorPlacerMaxIcon.cs" />
+    <Compile Include="AI\UmbralesV2\SpotBonuses.cs" />
+    <Compile Include="AI\UmbralesV2\UmbralBasico.cs" />
+    <Compile Include="AI\UnWantedTouchedReason.cs" />
+    <Compile Include="AI\ZonaErogenaMaxPlacer.cs" />
+    <Compile Include="AI\ZonaErogenaPrivacidad.cs" />
+    <Compile Include="AI\ZonaErogenaSensibilidad.cs" />
+    <Compile Include="AI\ZonaErogenaUbicacion.cs" />
+    <Compile Include="AI\__ICalculadorDeEstimuloIgnoradorEnPartesHumanasEXT__.cs" />
+    <Compile Include="Animations\IFemeninityWeightProducer.cs" />
+    <Compile Include="Animations\IFemeninityWeightProducerEXT.cs" />
+    <Compile Include="Animations\PoseBlendingByFemeninityAndHeight.cs" />
+    <Compile Include="Chains\ChainPointsDataCollector.cs" />
+    <Compile Include="Chains\Controllers\Linear7BoneChainController.cs" />
+    <Compile Include="Controllers\AnimatorParamsDicc.cs" />
+    <Compile Include="Controllers\ControlladorDeDiscurso.cs" />
+    <Compile Include="Controllers\ControlladorDeGestosFacialesEmocionales.cs" />
+    <Compile Include="Controllers\Desgastables\Handlers\DesgasteCiclicoTemporal.cs" />
+    <Compile Include="Controllers\Discursos\ControladorDeLipSync.cs" />
+    <Compile Include="Controllers\Discursos\LipSync\Casilla.cs" />
+    <Compile Include="Controllers\Discursos\LipSync\CasillaDeCharacters.cs" />
+    <Compile Include="Controllers\Discursos\LipSync\CasillaPronunciable.cs" />
+    <Compile Include="Controllers\Discursos\LipSync\DecoDeCasilla.cs" />
+    <Compile Include="Controllers\Discursos\LipSync\DecoDeCharacters.cs" />
+    <Compile Include="Controllers\Discursos\LipSync\DecoDeTexto.cs" />
+    <Compile Include="Controllers\Discursos\LipSync\IDecoDeCasilla.cs" />
+    <Compile Include="Controllers\Discursos\LipSync\IDecoDeCharacters.cs" />
+    <Compile Include="Controllers\Discursos\LipSync\PhonemeDelegados\PhonemeDelegado.cs" />
+    <Compile Include="Controllers\Discursos\LipSync\PhonemeDelegados\PhonemeDelegadoA1.cs" />
+    <Compile Include="Controllers\Discursos\LipSync\PhonemeDelegados\PhonemeDelegadoA2.cs" />
+    <Compile Include="Controllers\Discursos\LipSync\PhonemeDelegados\PhonemeDelegadoA3.cs" />
+    <Compile Include="Controllers\Discursos\LipSync\PhonemeDelegados\PhonemeDelegadoB1.cs" />
+    <Compile Include="Controllers\Discursos\LipSync\PhonemeDelegados\PhonemeDelegadoB2.cs" />
+    <Compile Include="Controllers\Discursos\LipSync\PhonemeDelegados\PhonemeDelegadoB3.cs" />
+    <Compile Include="Controllers\Discursos\LipSync\PhonemeDelegados\PhonemeDelegadoC1.cs" />
+    <Compile Include="Controllers\Discursos\LipSync\PhonemeDelegados\PhonemeDelegadoC2.cs" />
+    <Compile Include="Controllers\Discursos\LipSync\PhonemeDelegados\PhonemeDelegadoD1.cs" />
+    <Compile Include="Controllers\Discursos\LipSync\PhonemeDelegados\PhonemeDelegadoD2.cs" />
+    <Compile Include="Controllers\Discursos\LipSync\Silaba.cs" />
+    <Compile Include="Controllers\Discursos\LipSync\SilabaPronunciable.cs" />
+    <Compile Include="Controllers\Discursos\LipSync\SilabaPronunciableEnTiempo.cs" />
+    <Compile Include="Controllers\Discursos\LipSync\TextoPronunciable.cs" />
+    <Compile Include="Controllers\Discursos\LipSync\TipoDeCasilla.cs" />
+    <Compile Include="Controllers\Discursos\LipSync\TipoDeCasillaPronunciable.cs" />
+    <Compile Include="Controllers\Discursos\LipSync\TipoDeCharacter.cs" />
+    <Compile Include="Controllers\Discursos\LipSync\TipoDeSilaba.cs" />
+    <Compile Include="Controllers\Discursos\LipSync\ValorDePhoneme.cs" />
+    <Compile Include="Controllers\Discursos\LipSync\ValoresDePhonemes.cs" />
+    <Compile Include="Controllers\Ojos\Parpadeos\ControlDeParpadeo.cs" />
+    <Compile Include="Controllers\Ojos\Parpadeos\OjosExpresionController.cs" />
+    <Compile Include="Controllers\Ropa\ModificacionDeDesgastePorCambiosDeRopaAnus.cs" />
+    <Compile Include="Controllers\Ropa\ModificacionDeDesgastePorCambiosDeRopaBase.cs" />
+    <Compile Include="Controllers\Ropa\ModificacionDeDesgastePorCambiosDeRopaVag.cs" />
+    <Compile Include="Controllers\Ropa\ModificadorDeScalaDeVagPorCambiosDeRopa.cs" />
+    <Compile Include="Controllers\_TipoDeExpresionExT__.cs" />
+    <Compile Include="Dialogos\DialogoInfo.cs" />
+    <Compile Include="Dialogos\Genericos\Globales\DialogosDeSayGracias.cs" />
+    <Compile Include="Dialogos\Genericos\Globales\PalabrasDeDialogosGenericos.cs" />
+    <Compile Include="Dialogos\Genericos\ListaDeTipoDePalabraGenerica.cs" />
+    <Compile Include="Dialogos\Genericos\Objetos\CapsulaDummyDeDialogosGenericos.cs" />
+    <Compile Include="Dialogos\Genericos\Objetos\DialogoInfoGenerico.cs" />
+    <Compile Include="Dialogos\Genericos\Objetos\DialogoInfoGenericoConTipoDeRespuesta.cs" />
+    <Compile Include="Dialogos\Genericos\Objetos\DialogosLocalizadosDeTipoDeRespuesta.cs" />
+    <Compile Include="Dialogos\Genericos\Objetos\DialogosLocalizadosGenericos.cs" />
+    <Compile Include="Dialogos\Genericos\Objetos\DialogosLocalizadosGenericosConTipoDeRespuesta.cs" />
+    <Compile Include="Dialogos\Genericos\Objetos\DummyHoderDeDialogosGenericos.cs" />
+    <Compile Include="Dialogos\Genericos\TipoDeIntensidad.cs" />
+    <Compile Include="Dialogos\Genericos\TipoDePalabraGenerica.cs" />
+    <Compile Include="Dialogos\Genericos\TipoDeStringAccion.cs" />
+    <Compile Include="Dialogos\Genericos\__TipoDePalabraGenericaEXT.cs" />
+    <Compile Include="Dialogos\Globales\Abstracts\CalculadorDePuntajeDeEnvoltura.cs" />
+    <Compile Include="Dialogos\Globales\Abstracts\DialogosDePersonalidadesBase.cs" />
+    <Compile Include="Dialogos\Globales\Abstracts\DialogosDePersonalidadesLogic.cs" />
+    <Compile Include="Dialogos\Globales\Abstracts\IDialogosDePersonalidades.cs" />
+    <Compile Include="Dialogos\Globales\Abstracts\IDialogosDePersonalidadesPuntajeCalculador.cs" />
+    <Compile Include="Dialogos\Globales\DialogosDePersonalidadDeIntesidad.cs" />
+    <Compile Include="Dialogos\Globales\DialogosDePersonalidadDeIntesidadAnchura.cs" />
+    <Compile Include="Dialogos\Globales\DialogosDePersonalidadesCortaLongitud.cs" />
+    <Compile Include="Dialogos\Globales\DialogosDePersonalidadesCortaLongitudConHielo.cs" />
+    <Compile Include="Dialogos\Globales\DialogosDePersonalidadesLargaLongitud.cs" />
+    <Compile Include="Dialogos\Globales\DialogosDePersonalidadesLargaLongitudConHielo.cs" />
+    <Compile Include="Dialogos\Globales\DialogosDePersonalidadesMedianaLongitud.cs" />
+    <Compile Include="Dialogos\Globales\DialogosDePersonalidadesMedianaLongitudConHielo.cs" />
+    <Compile Include="Dialogos\Globales\ExclamacionesDiags\DialogosDePersonalidadesExclamacionCortaLongitud.cs" />
+    <Compile Include="Dialogos\Globales\ExclamacionesDiags\DialogosDePersonalidadesExclamacionLargaLongitud.cs" />
+    <Compile Include="Dialogos\Globales\ExclamacionesDiags\DialogosDePersonalidadesExclamacionMedianaLongitud.cs" />
+    <Compile Include="Dialogos\Globales\MaxEmoValue\DiagsPasadoDeMaxEmocionValueCortaLongitud.cs" />
+    <Compile Include="Dialogos\Globales\MaxEmoValue\DiagsPasadoDeMaxEmocionValueLargaLongitud.cs" />
+    <Compile Include="Dialogos\Globales\MaxEmoValue\DiagsPasadoDeMaxEmocionValueMedianaLongitud.cs" />
+    <Compile Include="Dialogos\Globales\MaxEmoValue\DiagsPresenteDeMaxEmocionValueCortaLongitud.cs" />
+    <Compile Include="Dialogos\Globales\MaxEmoValue\DiagsPresenteDeMaxEmocionValueLargaLongitud.cs" />
+    <Compile Include="Dialogos\Globales\MaxEmoValue\DiagsPresenteDeMaxEmocionValueMedianaLongitud.cs" />
+    <Compile Include="Dialogos\ICollecionDeDialogoInfo.cs" />
+    <Compile Include="Dialogos\ICollecionDeDialogoInfoLocalizados.cs" />
+    <Compile Include="Dialogos\IDialogoInfoTextMods.cs" />
+    <Compile Include="Dialogos\IEnvolturaCondicionalDeHolders.cs" />
+    <Compile Include="Dialogos\IHolderDeCollecionDeDialogoInfo.cs" />
+    <Compile Include="Dialogos\ListaDeDialogos.cs" />
+    <Compile Include="Dialogos\ListaDeDialogosBase.cs" />
+    <Compile Include="Dialogos\ListaDeNombresDeParteDelCuerpo.cs" />
+    <Compile Include="Dialogos\ListaDeNombresDeParteQueEstimula.cs" />
+    <Compile Include="Dialogos\ListaDeNombresDePropsQueEstimula.cs" />
+    <Compile Include="Dialogos\ListaDeNombresDeSemenParticulasQueEstimula.cs" />
+    <Compile Include="Dialogos\NombresDePartesDelCuerpo\BaseListaDeNombresDeParte.cs" />
+    <Compile Include="Dialogos\NombresDePartesDelCuerpo\DialogoInfoParteDelCuerpo.cs" />
+    <Compile Include="Dialogos\NombresLocalizadosDePartes.cs" />
+    <Compile Include="Dialogos\Objetos\Abstractos\DialogosDeCulturasDeRasgosDePersonalidadBase.cs" />
+    <Compile Include="Dialogos\Objetos\Abstractos\RansgoDePersonalidadPuntajeInfo.cs" />
+    <Compile Include="Dialogos\Objetos\DialogosDeCulturasDeRasgosDePersonalidad.cs" />
+    <Compile Include="Dialogos\Objetos\DialogosLocalizados.cs" />
+    <Compile Include="Dialogos\Objetos\EnvolturaCondicionalDeGrupoDeDialogos.cs" />
+    <Compile Include="Dialogos\Objetos\EnvolturaCondicionalDeGruposDeDialogos.cs" />
+    <Compile Include="Dialogos\Objetos\EnvolturaCondicionalDeGruposDeDialogosDeRasgosDePersonalidad.cs" />
+    <Compile Include="Dialogos\Objetos\ListaDeDialogos.cs" />
+    <Compile Include="Dialogos\Objetos\ListaDeDialogosLocalizados.cs" />
+    <Compile Include="Dialogos\Objetos\SimpleHolderDeDialogos.cs" />
+    <Compile Include="Dialogos\Objetos\SimpleHolderDeDialogosDeCulturas.cs" />
+    <Compile Include="Dialogos\PopUps\CharPopUp.cs" />
+    <Compile Include="Estimulos\EstimuledBy.2.cs" />
+    <Compile Include="Estimulos\EstimuledBy.cs" />
+    <Compile Include="Estimulos\IEstimulablePorToques.cs" />
+    <Compile Include="Estimulos\IInteraccionEstimulante.cs" />
+    <Compile Include="Estimulos\IPhysicsCariciaEstimulante.cs" />
+    <Compile Include="Estimulos\ITouchedByCharacter.cs" />
+    <Compile Include="Estimulos\Sonidos\Toques\IReproductorDeBlendingSonidoDeToques.cs" />
+    <Compile Include="Estimulos\Sonidos\Toques\IReproductorDeSonidoDeToques.cs" />
+    <Compile Include="Estimulos\Sonidos\Toques\Modificadores\BlendingWeights\ModificadorDeTouchingSoundBlendingWeightSegunScalaDeBoneFeme.cs" />
+    <Compile Include="Estimulos\Sonidos\Toques\Modificadores\DiccDeModDeSonidoConstantesDeParteEstimulada.cs" />
+    <Compile Include="Estimulos\Sonidos\Toques\Modificadores\DiccDeModDeSonidoPatConcavaDeParteEstimulada.cs" />
+    <Compile Include="Estimulos\Sonidos\Toques\Modificadores\DiccDeModDeSonidoPatDeParteEstimulada.cs" />
+    <Compile Include="Estimulos\Sonidos\Toques\Modificadores\ModificadorDeTouchingBlendingSound.cs" />
+    <Compile Include="Estimulos\Sonidos\Toques\Modificadores\ModificadorDeTouchingSound.cs" />
+    <Compile Include="Estimulos\Sonidos\Toques\Modificadores\ModificadorDeTouchingSoundConstantesSegunParteEstimulada.cs" />
+    <Compile Include="Estimulos\Sonidos\Toques\Modificadores\ModificadorDeTouchingSoundPatConcavaSegunParteEstimulada.cs" />
+    <Compile Include="Estimulos\Sonidos\Toques\Modificadores\ModificadorDeTouchingSoundPatSegunParteEstimulada.cs" />
+    <Compile Include="Estimulos\Sonidos\Toques\Modificadores\ModificadorDeTouchingSoundSegunContactos.cs" />
+    <Compile Include="Estimulos\Sonidos\Toques\Modificadores\ModificadorDeTouchingSoundSegunForce.cs" />
+    <Compile Include="Estimulos\Sonidos\Toques\Modificadores\ModificadorDeTouchingSoundSegunScalaDeBoneFemenino.cs" />
+    <Compile Include="Estimulos\Sonidos\Toques\ModificarExtraDataDeBlendingSonidos.cs" />
+    <Compile Include="Estimulos\Sonidos\Toques\RegistrandoDeToqueDeSonidoHandler.cs" />
+    <Compile Include="Estimulos\Sonidos\Toques\SonidosBlendingConstantesDeToquesBase.cs" />
+    <Compile Include="Estimulos\Sonidos\Toques\SonidosBlendingUnaVezDeToquesBase.cs" />
+    <Compile Include="Estimulos\Sonidos\Toques\SonidosConstantesDeToquesBase.cs" />
+    <Compile Include="Estimulos\Sonidos\Toques\SonidosUnaVezDeToquesBase.cs" />
+    <Compile Include="Estimulos\Sonidos\Toques\SonidosUnaVezDeToquesBaseConfig.cs" />
+    <Compile Include="Estimulos\TocanteObjeto.cs" />
+    <Compile Include="Estimulos\Touch.cs" />
+    <Compile Include="Estimulos\TouchedBy.cs" />
+    <Compile Include="Holes\Controlladores\HoleController.cs" />
+    <Compile Include="Holes\Controlladores\VagDefaultStateMap.cs" />
+    <Compile Include="Holes\Internals\AnusInternals.cs" />
+    <Compile Include="Holes\Internals\Controlladores\ControlladorDePielInternalVag.cs" />
+    <Compile Include="Holes\Internals\Controlladores\ControlladorDeShapeDeAmigdalas.cs" />
+    <Compile Include="Holes\Internals\Controlladores\ControlladorDeShapeDeAnusInternals.cs" />
+    <Compile Include="Holes\Internals\Controlladores\ControlladorDeShapeDeInternals.cs" />
+    <Compile Include="Holes\Internals\Controlladores\ControlladorDeShapeDeVagInternals.cs" />
+    <Compile Include="Holes\Internals\Controlladores\Pieles\ControlladorDeIntestinesPiel.cs" />
+    <Compile Include="Holes\Internals\Controlladores\Pieles\ControlladorDeUterusPiel.cs" />
+    <Compile Include="Holes\Internals\HoleExternal.cs" />
+    <Compile Include="Holes\Internals\HoleInternal.cs" />
+    <Compile Include="Holes\Internals\HoleInternalPointsSolver.cs" />
+    <Compile Include="Holes\Internals\Sistemas\ElasticFromNextData.cs" />
+    <Compile Include="Holes\Internals\Sistemas\ElasticFromOtherData.cs" />
+    <Compile Include="Holes\Internals\Sistemas\ElasticFromPrevData.cs" />
+    <Compile Include="Holes\Internals\Sistemas\ElasticFromRootData.cs" />
+    <Compile Include="Holes\Internals\Sistemas\InternalData.cs" />
+    <Compile Include="Holes\Internals\Sistemas\SistemaLocalDePuntosElasticosDeInternal.cs" />
+    <Compile Include="Holes\Internals\Sistemas\SystemData.cs" />
+    <Compile Include="Holes\Internals\Sistemas\TransformsData.cs" />
+    <Compile Include="Holes\Internals\Sistemas\UserData.cs" />
+    <Compile Include="Holes\Internals\Skins\Globales\SemenSkinsParaHoleInternals.cs" />
+    <Compile Include="Holes\Internals\Skins\HoleInternalSkin.cs" />
+    <Compile Include="Holes\Internals\VagExternals.cs" />
+    <Compile Include="Holes\Internals\VagInternals.cs" />
+    <Compile Include="Holes\Sonidos\ReporductorDeSonidosConstantesDeHolePenetracion.cs" />
+    <Compile Include="IContraccionesDeOrgasmo.cs" />
+    <Compile Include="IDiscursosDePersonalidad.cs" />
+    <Compile Include="IDuracionDeOrgasmo.cs" />
+    <Compile Include="Interactables\BindOwnerInteractionsToMainCharacterApoyo.cs" />
+    <Compile Include="Interactables\BindOwnerInteractionsToMainCharacterRecorridoApoyo.cs" />
+    <Compile Include="Interactables\GuiaVisualInteractable.cs" />
+    <Compile Include="Interactables\InteraccionRootRecorridoCircular.cs" />
+    <Compile Include="Interactables\InteraccionRootRecorridoLinear.cs" />
+    <Compile Include="Interactables\Penetradores\BindInteractionsExternaToCharacterRecorridoLinearDePenetrado.cs" />
+    <Compile Include="Interactables\Penetradores\RecorridoDeLinearesOnMaleBody.cs" />
+    <Compile Include="Interactables\Penetradores\RecorridoLinearDePenetrador.cs" />
+    <Compile Include="Interactables\Penetradores\RecorridoLinearDePenetradorBase.cs" />
+    <Compile Include="Interactables\Penetradores\RecorridoLinearDePenetradorVirtual.cs" />
+    <Compile Include="Interactables\PuntoDeApoyoSobreMaleBody.cs" />
+    <Compile Include="Interactables\PuntosGuiasRecorridoCircular.cs" />
+    <Compile Include="Interactables\PuntosGuiasRecorridoLinear.cs" />
+    <Compile Include="Interactables\RecorridoDeMassgeOnMaleBody.cs" />
+    <Compile Include="Interactables\SurfaceAndCenterPivotDeInteraction.cs" />
+    <Compile Include="Interactables\SurfacePivotDeInteraction.cs" />
+    <Compile Include="Memoria\SavingFemaleCharacterJsonMemoryNode.cs" />
+    <Compile Include="Miscellaneous\ConeColliderActivatorWithMainCharacter.cs" />
+    <Compile Include="Miscellaneous\CopyCharacterAnimatorTransform.cs" />
+    <Compile Include="Miscellaneous\CopyCharacterRootBone.cs" />
+    <Compile Include="Miscellaneous\RadiusActivatorWithMainCharacter.cs" />
+    <Compile Include="Miscellaneous\ResetAnimationShapes.cs" />
+    <Compile Include="ModdingParser.cs" />
+    <Compile Include="Modificable.cs" />
+    <Compile Include="Particulas\ColleccionDeParticulas.cs" />
+    <Compile Include="Particulas\Estimulos\TocadoPorSemenDeCharacter.cs" />
+    <Compile Include="Particulas\ParticleCollisionBroadCaster.cs" />
+    <Compile Include="Particulas\ParticleSystemUpdater.cs" />
+    <Compile Include="Particulas\ParticulasParaHitSkin.cs" />
+    <Compile Include="Particulas\Penes\ParticulasDeSemenParaPene.cs" />
+    <Compile Include="Particulas\Penes\ParticulasDeSemenParaPeneUserControl.cs" />
+    <Compile Include="Particulas\SemenParticles.cs" />
+    <Compile Include="Particulas\Skins\ParticulasDeSemenParaSkins.cs" />
+    <Compile Include="Particulas\Skins\SemenHit.cs" />
+    <Compile Include="Particulas\Skins\SkinSensibleASemen.cs" />
+    <Compile Include="Penes\Adders\Sonidos\SonidoProductorToFingerParts.cs" />
+    <Compile Include="Penes\Adders\Sonidos\SonidoProductorToPenetratorPartsBase.cs" />
+    <Compile Include="Penes\Adders\Sonidos\SonidoProductorToPenisParts.cs" />
+    <Compile Include="Penes\Adders\Sonidos\SonidoProductorToToyParts.cs" />
+    <Compile Include="PersonalidadDinamica.cs" />
+    <Compile Include="PersonalidadDinamicaValores.cs" />
+    <Compile Include="PersonalidadRasgo.cs" />
+    <Compile Include="PersonalidadRasgoCompleto.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RootBonesFixer.cs" />
+    <Compile Include="Ropa\Clases\ConjuntoDeRopa.cs" />
+    <Compile Include="Ropa\Clases\SiendoDesvestidoFrameData.cs" />
+    <Compile Include="Ropa\ClothingModsLoader.cs" />
+    <Compile Include="Ropa\ConjuntoDeRopaLoader.cs" />
+    <Compile Include="Ropa\ConjuntoDeRopaRandomLoader.cs" />
+    <Compile Include="Ropa\EstetoscopioPiel.cs" />
+    <Compile Include="Ropa\GeneradorDeConjuntosDeRopaAleatoriosFemeninos.cs" />
+    <Compile Include="Ropa\Glases\GlasesSkin.cs" />
+    <Compile Include="Ropa\Globales\ConjuntosDeRopa.cs" />
+    <Compile Include="Ropa\Globales\GeneradorDeConjuntosDeRopaAleatoriosMasculinos.cs" />
+    <Compile Include="Ropa\IConjuntoDeRopa.cs" />
+    <Compile Include="Ropa\IConjuntoDeRopaMutable.cs" />
+    <Compile Include="Ropa\IRopaDeCharacterAdmin.cs" />
+    <Compile Include="Ropa\IRopaLoaderFrameData.cs" />
+    <Compile Include="Ropa\IRopaManager.cs" />
+    <Compile Include="Ropa\IRopaManagerEXT.cs" />
+    <Compile Include="Ropa\IRopaParaAvatar.cs" />
+    <Compile Include="Ropa\MapaConjuntoDeRopa.cs" />
+    <Compile Include="Ropa\MapaDeMaterialesParaRopa.cs" />
+    <Compile Include="Ropa\MapaDeRopa.cs" />
+    <Compile Include="Ropa\MapaLocalConjuntoDeRopa.cs" />
+    <Compile Include="Ropa\MaterialesParaRopa.cs" />
+    <Compile Include="Ropa\MaterialParaRopaData.cs" />
+    <Compile Include="Ropa\ModificadorDeShapesDeFemaleSegunRopa.cs" />
+    <Compile Include="Ropa\OnRopaManagerChangedHandler.cs" />
+    <Compile Include="Ropa\Pieza.cs" />
+    <Compile Include="Ropa\PiezaDeRopa.cs" />
+    <Compile Include="Ropa\PiezaDeRopaBase.cs" />
+    <Compile Include="Ropa\PiezasDeRopaLoader.cs" />
+    <Compile Include="Ropa\ProveedorMaterialesDeRopaIDAttribute.cs" />
+    <Compile Include="Ropa\ProveedorPiezasDeRopaIDAttribute.cs" />
+    <Compile Include="Ropa\RopaBraLoader.cs" />
+    <Compile Include="Ropa\RopaConfigParaCharacter.cs" />
+    <Compile Include="Ropa\RopaCubre.cs" />
+    <Compile Include="Ropa\RopaLayer.cs" />
+    <Compile Include="Ropa\RopaParaAvatarBase.cs" />
+    <Compile Include="Ropa\RopaParaAvatarMasculino.cs" />
+    <Compile Include="Ropa\RopaParaAvatarUnificado.cs" />
+    <Compile Include="Ropa\RopaPosicion.cs" />
+    <Compile Include="Ropa\RopaTipoDeSingleton.cs" />
+    <Compile Include="Ropa\SimpleRopaLoader.cs" />
+    <Compile Include="Ropa\SlotDeMaterialDeRopa.cs" />
+    <Compile Include="Ropa\TipoDePrendaHelper.cs" />
+    <Compile Include="Ropa\UI\OpcionesDeDonaDePiezaDeRopaPuesta.cs" />
+    <Compile Include="Ropa\UI\OpcionesDeDonaDeRopaCubre.cs" />
+    <Compile Include="Ropa\___RopaCubreEXT__.cs" />
+    <Compile Include="Ropa\___RopaTipoDeSingletonEXT___.cs" />
+    <Compile Include="Scenas\BuffAndDebuff\DefaultBuffAndDebuffGenerator.cs" />
+    <Compile Include="Scenas\InteraccionesEnScena.cs" />
+    <Compile Include="Scenas\InteraccionesEnScenaDEBUG.cs" />
+    <Compile Include="Scenas\InteraccionesEnScenaTester.cs" />
+    <Compile Include="Scenas\InteraccionesEnScenaUpdater.cs" />
+    <Compile Include="Scenas\ReportadorAInteraccionesEnScena.cs" />
+    <Compile Include="Skins\ApertureNalgasHitSkin.cs" />
+    <Compile Include="Skins\BodyPartEnum.cs" />
+    <Compile Include="Skins\BodyPartEnumHelpler.cs" />
+    <Compile Include="Skins\ColliderChecker.cs" />
+    <Compile Include="Skins\ColliderDeEmulatedHitSkin.cs" />
+    <Compile Include="Skins\ColliderDeEmulatedMaleHitSkin.cs" />
+    <Compile Include="Skins\Colliders\GenericBoneCollider.cs" />
+    <Compile Include="Skins\Colliders\LenguaColliders.cs" />
+    <Compile Include="Skins\Colliders\LenguaParteCollider.cs" />
+    <Compile Include="Skins\Colliders\PezonCollider.cs" />
+    <Compile Include="Skins\Colliders\PlantaMediaPieCollider.cs" />
+    <Compile Include="Skins\Colliders\PlantaPieCollider.cs" />
+    <Compile Include="Skins\Colliders\PlantaPieDedoGordoToDedoPequeno.cs" />
+    <Compile Include="Skins\Colliders\PlantaSuperiorPieCollider.cs" />
+    <Compile Include="Skins\Colliders\TalonPieCollider.cs" />
+    <Compile Include="Skins\Colliders\TobilloCollider.cs" />
+    <Compile Include="Skins\ConvexDynamicSkin.cs" />
+    <Compile Include="Skins\DynamicHitSkin.cs" />
+    <Compile Include="Skins\EmulatedHitSkin.cs" />
+    <Compile Include="Skins\EmulatedMaleHitSkin.cs" />
+    <Compile Include="Skins\Estimulos\Sonidos\Inicializadores\InicializadorDeHitSkinReproductor.cs" />
+    <Compile Include="Skins\Estimulos\Sonidos\RerpoductorBlendingUnaVezOnManyHitSkinsTouch.cs" />
+    <Compile Include="Skins\Estimulos\Sonidos\RerpoductorConstanteOnSkinTouch.cs" />
+    <Compile Include="Skins\Estimulos\Sonidos\RerpoductorHitSkinsTouchParaManyHelpler.cs" />
+    <Compile Include="Skins\Estimulos\Sonidos\RerpoductorUnaVezOnManyHitSkinsTouch.cs" />
+    <Compile Include="Skins\Estimulos\Sonidos\RerpoductorUnaVezOnSkinTouch.cs" />
+    <Compile Include="Skins\FemaleHeroBodyPartHitCalculador.cs" />
+    <Compile Include="Skins\GenericHitSkin.cs" />
+    <Compile Include="Skins\GenericProxyHitSkin.cs" />
+    <Compile Include="Skins\GenericVirtualHitSkin.cs" />
+    <Compile Include="Skins\HandHitSkin.cs" />
+    <Compile Include="Skins\HandMaleHitSkin.cs" />
+    <Compile Include="Skins\HitPartEnum.cs" />
+    <Compile Include="Skins\HitSkin.cs" />
+    <Compile Include="Skins\HitSkinBasica.cs" />
+    <Compile Include="Skins\HoleAnchuraHitSkin.cs" />
+    <Compile Include="Skins\HoleEntradaHitSkin.cs" />
+    <Compile Include="Skins\HoleFondoHitSkin.cs" />
+    <Compile Include="Skins\Holes\AnusAnchoHitSkin.cs" />
+    <Compile Include="Skins\Holes\AnusEntradaHitSkin.cs" />
+    <Compile Include="Skins\Holes\AnusFondoHitSkin.cs" />
+    <Compile Include="Skins\Holes\AnusWallsHitSkin.cs" />
+    <Compile Include="Skins\Holes\BocaAnchoHitSkin.cs" />
+    <Compile Include="Skins\Holes\BocaEntradaHitSkin.cs" />
+    <Compile Include="Skins\Holes\BocaFondoHitSkin.cs" />
+    <Compile Include="Skins\Holes\BocaWallsHitSkin.cs" />
+    <Compile Include="Skins\Holes\Testing\HoleFondoHitSkinInitiater.cs" />
+    <Compile Include="Skins\Holes\VagAnchoHitSkin.cs" />
+    <Compile Include="Skins\Holes\VagEntradaHitSkin.cs" />
+    <Compile Include="Skins\Holes\VagFondoHitSkin.cs" />
+    <Compile Include="Skins\Holes\VagWallsHitSkin.cs" />
+    <Compile Include="Skins\HoleWallsHitSkin.cs" />
+    <Compile Include="Skins\ICariciaEstimulanteAHitSkin.cs" />
+    <Compile Include="Skins\IColisionContraBodyPartes.cs" />
+    <Compile Include="Skins\IEmulatedHitSkinEstimulablePorToques.cs" />
+    <Compile Include="Skins\IHitSkinEstimulablePorToques.cs" />
+    <Compile Include="Skins\IHoleHitSkin.cs" />
+    <Compile Include="Skins\IJoinedHitSkin.cs" />
+    <Compile Include="Skins\JointedSkin.cs" />
+    <Compile Include="Skins\JointedSkinBase.cs" />
+    <Compile Include="Skins\LenguaHitSkin.cs" />
+    <Compile Include="Skins\MaleHitSkin.cs" />
+    <Compile Include="Skins\MaleHitSkinBasica.cs" />
+    <Compile Include="Skins\ManualDynamicHitSkin.cs" />
+    <Compile Include="Skins\ManualDynamicMaleHitSkin.cs" />
+    <Compile Include="Skins\MultipleCapsuleProxyHitSkin.cs" />
+    <Compile Include="Skins\MultipleCapsuleProxyMaleHitSkin.cs" />
+    <Compile Include="Skins\MultipleProxyHitSkin.cs" />
+    <Compile Include="Skins\MultipleProxyMaleHitSkin.cs" />
+    <Compile Include="Skins\MultipleSphereProxyHitSkin.cs" />
+    <Compile Include="Skins\NonBodyDynamicHitSkin.cs" />
+    <Compile Include="Skins\NonBodyManualDynamicHitSkin.cs" />
+    <Compile Include="Skins\NonSkinnedHitSkin.cs" />
+    <Compile Include="Skins\NonSkinnedHitSkinBase.cs" />
+    <Compile Include="Skins\NonSkinnedMaleHitSkin.cs" />
+    <Compile Include="Skins\NonSkinnedMaleHitSkinBase.cs" />
+    <Compile Include="Skins\NotBodyHitSkin.cs" />
+    <Compile Include="Skins\PieHitSkin.cs" />
+    <Compile Include="Skins\PieMaleHitSkin.cs" />
+    <Compile Include="Skins\Scriptables\ExtraArmatureMainBonesMap.cs" />
+    <Compile Include="Skins\Scriptables\MapaDeBodyParts.cs" />
+    <Compile Include="Skins\Scriptables\MapaDeHitParts.cs" />
+    <Compile Include="Skins\Scriptables\MapaDeMaleHitParts.cs" />
+    <Compile Include="Skins\Semen\Adders\SemenPuntoCollisionContraSkinAdder.cs" />
+    <Compile Include="Skins\Semen\ISemenAcumulable.cs" />
+    <Compile Include="Skins\Semen\ISemenRegistrable.cs" />
+    <Compile Include="Skins\Semen\SemenPuntoCollisionContraSkin.cs" />
+    <Compile Include="Skins\Semen\TestDisableBatcher.cs" />
+    <Compile Include="Skins\SingleCapsuleProxyHitSkin.cs" />
+    <Compile Include="Skins\SingleProxyHitSkin.cs" />
+    <Compile Include="Skins\SingleSphereProxyHitSkin.cs" />
+    <Compile Include="Skins\StandAloneFemaleSkin.cs" />
+    <Compile Include="Skins\VagLabioMultipleHitSkin.cs" />
+    <Compile Include="Skins\VagLabioSingleHitSkin.cs" />
+    <Compile Include="Skins\VisualmenteTransparenteHitSkin.cs" />
+    <Compile Include="TemperaturaCorporal.cs" />
+    <Compile Include="Testing\PhyscisAnus\AddDrawersToBones.cs" />
+    <Compile Include="Testing\PhyscisAnus\AddMeshesToBones.cs" />
+    <Compile Include="Testing\PhyscisAnus\CalculeAndShowJointAxis.cs" />
+    <Compile Include="Testing\PhyscisAnus\GizmoBone.cs" />
+    <Compile Include="Testing\PhyscisAnus\MeshBone.cs" />
+    <Compile Include="Testing\PhyscisAnus\TestingIngoreCollisionsInnerColliders.cs" />
+    <Compile Include="Testing\ShowPlacerTesting.cs" />
+    <Compile Include="UnitySourceGeneratedAssemblyMonoScriptTypes_v1.cs" />
+    <Compile Include="__JobReflectionRegistrationOutput__2956005656.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

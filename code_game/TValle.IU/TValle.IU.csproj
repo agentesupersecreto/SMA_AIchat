@@ -1,0 +1,452 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F492D912-686D-42A5-9FC5-B87A9224951E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Assets</RootNamespace>
+    <AssemblyName>TValle.IU</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Base.Activables">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.Activables.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.Configs">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.Configs.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.CustomMonoBehaviours">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.CustomMonoBehaviours.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.Globales">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.Globales.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.Memoria">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.Memoria.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.Plugins">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.Plugins.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.SingletonesAndSystemasGlobales">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.SingletonesAndSystemasGlobales.dll</HintPath>
+    </Reference>
+    <Reference Include="DialogueSystem">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\DialogueSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="netstandard">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\netstandard.dll</HintPath>
+    </Reference>
+    <Reference Include="SimpleTooltip">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\SimpleTooltip.dll</HintPath>
+    </Reference>
+    <Reference Include="THS.UltimateRadialMenu">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\THS.UltimateRadialMenu.dll</HintPath>
+    </Reference>
+    <Reference Include="TValle.Inputs">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\TValle.Inputs.dll</HintPath>
+    </Reference>
+    <Reference Include="TValle.Modding.Tools">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\TValle.Modding.Tools.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Addressables">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Unity.Addressables.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ResourceManager">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Unity.ResourceManager.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Unity.TextMeshPro.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.InputLegacyModule">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.InputLegacyModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.JSONSerializeModule">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.JSONSerializeModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TextRenderingModule">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.TextRenderingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UIModule">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.UIModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="LoadingPanel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SetCameraToCanvas.cs" />
+    <Compile Include="ShowOnPressed.cs" />
+    <Compile Include="TValle\IU\Runtime\BotonSostenible.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Abstracts\GenericUserPanelBase.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\CurriculumVitae\Modelos\CurrentWorkingModelsModel.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\CurriculumVitae\Modelos\CurriculumVitaeModelo.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\CurriculumVitae\Modelos\CurriculumVitaeModeloInfo.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\CurriculumVitae\Modelos\CurriculumVitaeModeloPortrait.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\CurriculumVitae\Modelos\CurriculumVitaeSmallInfo.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\CurriculumVitae\Modelos\MaleInfoModelo.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\CurriculumVitae\Paneles\CurriculumVitaePanel.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\CurriculumVitae\Paneles\CurriculumVitaePanelGetter.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\CurriculumVitae\Paneles\MaleInfoPanel.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\CurriculumVitae\Paneles\MaleInfoPanelGetter.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\DibujarPanelAtKey.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Elementos\AnalogueCalibrationElement.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Elementos\AutoRatingProfilesDeGrupos\AutoRatingProfilesDeGruposPanel.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Elementos\AutoRatingProfilesDeGrupos\GrupoProfile.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Elementos\AutoRatingProfilesDeGrupos\GrupoProfileIndependiente.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Elementos\AutoRatingProfilesDeGrupos\PortraitDeGrupo.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Elementos\ClickableFavoritableLabel.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Elementos\ClickableLabel.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Elementos\ClickableLabelConValor.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Elementos\DeslizableElementBase.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Elementos\GamePlayObjectiveUIElemento.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Elementos\ImagenFieldElement.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Elementos\InputElementToolTip.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Elementos\LevelElementToolTip.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Elementos\Paneles\Abstracts\IUIMultiPanel.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Elementos\Paneles\Abstracts\IUIPanel.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Elementos\Paneles\Abstracts\IUIPanelConBotones.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Elementos\Paneles\Abstracts\IUIPanelConControles.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Elementos\Paneles\Abstracts\IUIPanelConEventos.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Elementos\Paneles\Abstracts\IUIPanelConExtraData.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Elementos\Paneles\Abstracts\IUIPanelConSuperiorPanel.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Elementos\Paneles\Abstracts\IUIPanelConTitulo.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Elementos\Paneles\Abstracts\IUIPanelEXT.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Elementos\Paneles\Abstracts\UIPanelEvent.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Elementos\Paneles\AutoRatingProfilesEditor.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Elementos\Paneles\NestedContainer.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Elementos\Paneles\NestedContainerConTitulo.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Elementos\Paneles\Panel1by1.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Elementos\Paneles\Panel1by3.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Elementos\Paneles\PrimaryColorToggles.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Elementos\Paneles\ScrollableCurrentWorkingModelsPortraitPanel.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Elementos\Paneles\ScrollableGesturePortraitPanel.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Elementos\Paneles\ScrollableMakeoverPortraitPanel.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Elementos\Paneles\ScrollableOutfitsPortraitPanel.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Elementos\Paneles\ScrollablePortraitPanel.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Elementos\Paneles\ScrollablePortraitPanelBase.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Elementos\Paneles\ScrollablePosePortraitPanel.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Elementos\PatreonPanelButton.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Elementos\ScrollableJobPortraitPanel.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Elementos\ScrollableOfficePortraitPanel.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Elementos\ScrollableProfilePortraitPanel.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Elementos\SelectableFavoritableGenericPortrait.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Elementos\SelectableFavoritablePortrait.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Elementos\SelectableGesturePortrait.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Elementos\SelectableJobPortrait.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Elementos\SelectableMakeoverPortrait.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Elementos\SelectableOfficePortrait.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Elementos\SelectableOutfitPortrait.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Elementos\SelectablePortrait.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Elementos\SelectablePortraitBase.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Elementos\SelectablePortraitCargarThumbnailHandler.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Elementos\SelectablePosePortrait.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Elementos\SelectableProfilePortrait.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Elementos\SelectableWorkingModelPortrait.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Elementos\SimpleLabelElement.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Elementos\TituloYDesciptionElement.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Elementos\ToggleColorElement.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Elementos\ToggleElement.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Elementos\ToggleElementSinDescripcion.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\GenericUserPanel.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\GenericUserPanelOnMainCanvas.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\ItemsYDetallesDeItems\Modelos\DetallesDeItemModelo.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\ItemsYDetallesDeItems\Modelos\InformacionDetalladaDeItemsModelo.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\ItemsYDetallesDeItems\Modelos\ItemsListaModelo.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\ItemsYDetallesDeItems\Modelos\listaDeSubDetallesDeItemModelo.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\ItemsYDetallesDeItems\Modelos\SubDetallesDeItemModelo.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\ItemsYDetallesDeItems\Modelos\TabsListaModelo.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\ItemsYDetallesDeItems\Modelos\TabsWithCustomInfoModelo.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\ItemsYDetallesDeItems\Paneles\PanelLateralTabsWithCustomInfo.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\ItemsYDetallesDeItems\Testing\PanelDeItemsYDetallesDeItemsDummyData.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Jobs\Models\CurrentAvailableJobsModelo.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Jobs\Paneles\CurrentAvailableJobsPortraits.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Modelos\Abstracts\BindableModel.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Modelos\Abstracts\IModeloBindableOnUIPanel.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Officinas\Models\CurrentAvailableOfficesModelo.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Officinas\Panels\CurrentAvailableOfficesPortraits.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Paneles\CurrentModelsPanelDePortraits.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Paneles\DualModelPanel.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Paneles\GesturePanelDePortraits.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Paneles\MakeoverPanelDePortraits.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Paneles\Modelos\GamePlayObjectiveModel.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Paneles\Modelos\GamePlayObjectivesModel.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Paneles\Modelos\GesturePortraitsModel.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Paneles\Modelos\InterpretationPortraitsModel.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Paneles\Modelos\MakeoverPortraitsModel.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Paneles\Modelos\OutfitPortraitsModel.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Paneles\Modelos\PortraitsDeGruposModel.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Paneles\Modelos\PortraitsModel.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Paneles\Modelos\PortraitsModelBase.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Paneles\Modelos\PosePortraitsModel.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Paneles\OutfitPanelDePortraits.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Paneles\PanelDeInterpretationPortraits.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Paneles\PanelDeObjectives.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Paneles\PanelDePortraits.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Paneles\PosePanelDePortraits.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\Paneles\SingleModelPanel.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\PortraitsYAcionesParaPortraits\Modelos\InformacionGeneralDePortraitModelo.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\PortraitsYAcionesParaPortraits\Modelos\PortraitsListaModelo.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\PortraitsYAcionesParaPortraits\Paneles\PanelDePortraitsEInformacionGeneral.cs" />
+    <Compile Include="TValle\IU\Runtime\Drawing\TipoDePanel.cs" />
+    <Compile Include="TValle\IU\Runtime\FontDisableSmooth.cs" />
+    <Compile Include="TValle\IU\Runtime\Globales\GameplayObjectives.cs" />
+    <Compile Include="TValle\IU\Runtime\Interacciones\Donas\DonaDeInteraccionBase.2.cs" />
+    <Compile Include="TValle\IU\Runtime\Interacciones\Donas\DonaDeInteraccionBase.cs" />
+    <Compile Include="TValle\IU\Runtime\Interacciones\Donas\LoaderOpcionesDeDonaBase.cs" />
+    <Compile Include="TValle\IU\Runtime\Interacciones\THS\Donas\GenericOpcionDeTHSDona.cs" />
+    <Compile Include="TValle\IU\Runtime\Interacciones\THS\Donas\GenericOpcionesDeTHSDonaDeColleccion.cs" />
+    <Compile Include="TValle\IU\Runtime\Interacciones\THS\Donas\GenericOpcionesDeTHSDonaDeEnumerable.cs" />
+    <Compile Include="TValle\IU\Runtime\Interacciones\THS\Donas\GenericOpcionesDeTHSDonaDeKeys.cs" />
+    <Compile Include="TValle\IU\Runtime\Interacciones\THS\Donas\IClickableSelectableTHSDonaItem.cs" />
+    <Compile Include="TValle\IU\Runtime\Interacciones\THS\Donas\IGreyableTHSDonaItem.cs" />
+    <Compile Include="TValle\IU\Runtime\Interacciones\THS\Donas\IModeloDeTHSDonaProductor.cs" />
+    <Compile Include="TValle\IU\Runtime\Interacciones\THS\Donas\IModeloDeTHSDonaProductorDeItemInfo.cs" />
+    <Compile Include="TValle\IU\Runtime\Interacciones\THS\Donas\LoaderDeTHSDona.cs" />
+    <Compile Include="TValle\IU\Runtime\Interacciones\THS\Donas\OnClickItemOpcionDeTHSDonaEvent.cs" />
+    <Compile Include="TValle\IU\Runtime\Interacciones\THS\Donas\OnInteractDeTHSDonaEvent.cs" />
+    <Compile Include="TValle\IU\Runtime\Interacciones\THS\Donas\THSDonaController.cs" />
+    <Compile Include="TValle\IU\Runtime\Modales\Abstracts\IModalWindow.cs" />
+    <Compile Include="TValle\IU\Runtime\Modales\CurrentAvailableJobsPortraitsDialog.cs" />
+    <Compile Include="TValle\IU\Runtime\Modales\CurrentAvailableOfficesPortraitsDialog.cs" />
+    <Compile Include="TValle\IU\Runtime\Modales\CurrentWorkingModelsPortraitsDialog.cs" />
+    <Compile Include="TValle\IU\Runtime\Modales\GesturePortraitsDialog.cs" />
+    <Compile Include="TValle\IU\Runtime\Modales\ICustomDePortraitsDisponibles.cs" />
+    <Compile Include="TValle\IU\Runtime\Modales\InterpretationPortraitsDialog.cs" />
+    <Compile Include="TValle\IU\Runtime\Modales\MakeoverPortraitsDialog.cs" />
+    <Compile Include="TValle\IU\Runtime\Modales\OutfitPortraitsDialog.cs" />
+    <Compile Include="TValle\IU\Runtime\Modales\PortraitsDialog.cs" />
+    <Compile Include="TValle\IU\Runtime\Modales\PosePortraitsDialog.cs" />
+    <Compile Include="TValle\IU\Runtime\Modales\SavingPortraitDialog.cs" />
+    <Compile Include="TValle\IU\Runtime\Modales\TemporalInfoDialog.cs" />
+    <Compile Include="TValle\IU\Runtime\MsgFlotanteTemporal.cs" />
+    <Compile Include="TValle\IU\Runtime\OnScreen\AlwaysFaceActiveCamera.cs" />
+    <Compile Include="TValle\IU\Runtime\PointerHandlerBroadcaster.cs" />
+    <Compile Include="TValle\IU\Runtime\Scenas\Mapas\MapaDeScenas.cs" />
+    <Compile Include="TValle\IU\Runtime\TextCountDown.cs" />
+    <Compile Include="TValle\UI\AlwaysOnScreenBase.cs" />
+    <Compile Include="TValle\UI\AlwaysOnScreenGeneric.cs" />
+    <Compile Include="TValle\UI\Runtime\Drawing\ItemsYDetallesDeItems\Modales\ItemsYDetallesDeItemsDialog.cs" />
+    <Compile Include="TValle\UI\Runtime\Drawing\ItemsYDetallesDeItems\Paneles\PanelDeItemsYDetallesDeItems.cs" />
+    <Compile Include="TValle\UI\UIDeCharAlwaysOnScreen.cs" />
+    <Compile Include="UnitySourceGeneratedAssemblyMonoScriptTypes_v1.cs" />
+    <Compile Include="_ReusableScripts\Miscellaneous\BaseGlobalUserData.cs" />
+    <Compile Include="_ReusableScripts\Miscellaneous\Cameras\AlwaysFaceCameraTvalle.cs" />
+    <Compile Include="_ReusableScripts\Miscellaneous\GlobalUserBigData.cs" />
+    <Compile Include="_ReusableScripts\Miscellaneous\GlobalUserData.cs" />
+    <Compile Include="_ReusableScripts\Scenes\SceneLoader.cs" />
+    <Compile Include="_ReusableScripts\TavoBehaviours\SetCanvasCameraToUICamera.cs" />
+    <Compile Include="_ReusableScripts\TavoBehaviours\UICamera.cs" />
+    <Compile Include="_ReusableScripts\UI\DescriptionOverridedEventArgs.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\AccionNameAttribute.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\ActivatedDelegatesAttribute.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\AnalogeCalibratorAttribute.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\BotonDePanelAttribute.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\BotonDePanelConfirmableAttribute.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\CerrableAttribute.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\ClickableAttribute.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\ClickableConfirmableAttribute.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\ClickableFavoritableLabelAttribute.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\ClickableLabelAttribute.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\ClickableLabelConValorAttribute.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\ClickableLabelDescriptableAttribute.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\ClickableLabelDescriptableCompactoAttribute.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\ConfirmableListenerAttribute.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\ConfirmablePreguntaAttribute.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\DescripcionAttribute.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\DeslizableAttribute.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\DeslizableConToolTipAttribute.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\DeslizableHelpBotonAttribute.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\DeslizableLabelCortoAttribute.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\DesplegableAttribute.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\DesplegableCompactoAttribute.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\DesplegableConToolTipAttribute.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\DesplegableHelpBotonAttribute.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\DesplegableLabelCortoAttribute.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\DiscordPanelButtonAttribute.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\Elementos\Abstracts\BotonElementBase.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\Elementos\Abstracts\ConfirmacionHandler.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\Elementos\Abstracts\IMultipleValorElemento.2.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\Elementos\Abstracts\IMultipleValorElemento.3.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\Elementos\Abstracts\IMultipleValorElemento.4.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\Elementos\Abstracts\IMultipleValorElemento.5.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\Elementos\Abstracts\IMultipleValorElemento.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\Elementos\Abstracts\IUIBoton.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\Elementos\Abstracts\IUIElementoActivable.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\Elementos\Abstracts\IUIElementoClickable.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\Elementos\Abstracts\IUIElementoConAccionName.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\Elementos\Abstracts\IUIElementoConDescripcion.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\Elementos\Abstracts\IUIElementoConDescripcionSimple.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\Elementos\Abstracts\IUIElementoConExtraData.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\Elementos\Abstracts\IUIElementoConfirmable.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\Elementos\Abstracts\IUIElementoConInvertLinkedElements.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\Elementos\Abstracts\IUIElementoConInvertLinkedElementsEXT.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\Elementos\Abstracts\IUIElementoConLabel.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\Elementos\Abstracts\IUIElementoConMultiLabel.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\Elementos\Abstracts\IUIElementoConValor.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\Elementos\Abstracts\IUIElementoConValorDeLectura.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\Elementos\Abstracts\IUIElementoConValorModificable.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\Elementos\Abstracts\IUIElementoConValorMutable.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\Elementos\Abstracts\IUIElementoConValorSoloEscritura.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\Elementos\Abstracts\IUIElementoConValorSoloLectura.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\Elementos\Abstracts\IUIElementoRefreshable.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\Elementos\Abstracts\ModeloConIndex.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\Elementos\Abstracts\MultipleValorElemento.2.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\Elementos\Abstracts\MultipleValorElemento.3.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\Elementos\Abstracts\MultipleValorElemento.4.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\Elementos\Abstracts\MultipleValorElemento.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\Elementos\Abstracts\OnClickedBotonEvent.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\Elementos\Abstracts\OnClickedEvent.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\Elementos\Abstracts\OnElementoClicked.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\Elementos\Abstracts\OnValueChanged.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\Elementos\Abstracts\UIElemento.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\Elementos\Abstracts\UIElementoConLabel.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\Elementos\Abstracts\UIElementoConLabelYDescripcion.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\Elementos\BotonElement.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\Elementos\BotonElementConValor.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\Elementos\BotonIconElementConToolTip.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\Elementos\DeslizableElement.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\Elementos\DeslizableElementHelpButton.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\Elementos\DeslizableElementToolTip.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\Elementos\DesplegableElement.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\Elementos\DesplegableElementHelpButton.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\Elementos\DesplegableElementToolTip.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\Elementos\LabelParElement.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\Elementos\MapaSingletonDeUIPrefabs.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\Elementos\Modales\BotonElementConfirmable.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\Elementos\Modales\ClickableTituloYDesciption.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\Elementos\ScrollablePanel.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\Elementos\ScrollablePanelConBuscadorYFavoritos.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\Elementos\TituloElement.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\EspacioAttribute.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\FavoritableGenericPortraitAttribute.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\FontAttribute.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\FontDynamicUIAttribute.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\GameplayObjectiveAttribute.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\GenericFlotanteUserPanel.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\GenericUIElementAttribute.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\GesturePortraitAttribute.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\HelpPanelControlAttribute.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\IconPanelControlAttribute.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\ICustomDrawingModel.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\IElementLayoutAttribute.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\ImagenAttribute.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\InfoLabelAttribute.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\InputConToolTipAttribute.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\InterpretationProfilePortraitAttribute.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\IPanelLayoutAttribute.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\IPanelOfModel.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\IUILayoutAttribute.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\JobPortraitAttribute.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\LabelAttribute.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\LabelCortoLabelLargoParAttribute.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\LabelData.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\LabelData2.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\LabelParAttribute.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\LabelParData.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\LayoutDynamicUIAttribute.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\LayoutedElementAttribute.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\LevelLabelCortoAttribute.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\LevelParData.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\LinkedAttribute.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\MakeoverPortraitAttribute.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\MemberBotonClickedListenerAttribute.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\MemberClickedListenerAttribute.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\MemberValueChangedListenerAttribute.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\ModeloExtraDataAttribute.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\ModelValueChangedListenerAttribute.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\OfficePortraitAttribute.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\OutfitPortraitAttribute.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\PanelAttribute.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\PanelBase.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\PanelBaseDualModel.2.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\PanelBaseDualModel.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\PanelBaseQuadModel.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\PanelBaseSingleModel.2.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\PanelBaseSingleModel.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\PanelBaseTrialModel.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\PanelEventListenerAttribute.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\PanelLayoutDinamicaHandler.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\ParentPanelTargetAttribute.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\PatreonPanelButtonAttribute.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\PortraitAttribute.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\PosePortraitAttribute.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\Reflecciones\DibujadorDynamico.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\Reflecciones\TestDibujarPanel.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\SecondaryActionDelegateAttribute.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\SecondaryModelAttribute.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\SelfDrawingAttribute.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\SeparadorAttribute.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\TextoAttribute.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\TittleLabelAttribute.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\ToggleAttribute.cs" />
+    <Compile Include="_ReusableScripts\UI\Drawing\WorkingModelPortraitAttribute.cs" />
+    <Compile Include="_ReusableScripts\UI\EsGreyOutEventArgs.cs" />
+    <Compile Include="_ReusableScripts\UI\Handlers\LayoutElementAutoPreferredHeight.cs" />
+    <Compile Include="_ReusableScripts\UI\Interacciones\Donas\Abstracts\GenericOpcionesDeDonaDeColleccion.cs" />
+    <Compile Include="_ReusableScripts\UI\Interacciones\Donas\Abstracts\GenericOpcionesDeDonaDeEnumerable.cs" />
+    <Compile Include="_ReusableScripts\UI\Interacciones\Donas\Abstracts\GenericOpcionesDeDonaDeKeys.cs" />
+    <Compile Include="_ReusableScripts\UI\Interacciones\Donas\Abstracts\OpcionesDeDonaCurrentClicked.cs" />
+    <Compile Include="_ReusableScripts\UI\Interacciones\Donas\Abstracts\OpcionesDeDonaCurrentClickedKey.cs" />
+    <Compile Include="_ReusableScripts\UI\Interacciones\Donas\DesactivarEnDonaDeInteraccion.cs" />
+    <Compile Include="_ReusableScripts\UI\Interacciones\Donas\DonaDeInteraccion.cs" />
+    <Compile Include="_ReusableScripts\UI\Interacciones\Donas\DonaDeInteraccionMultiSelect.cs" />
+    <Compile Include="_ReusableScripts\UI\Interacciones\Donas\GenericCheckerIsGrayOut.cs" />
+    <Compile Include="_ReusableScripts\UI\Interacciones\Donas\GenericCheckerIsOverrideDescription.cs" />
+    <Compile Include="_ReusableScripts\UI\Interacciones\Donas\GenericOpcionDeDona.cs" />
+    <Compile Include="_ReusableScripts\UI\Interacciones\Donas\ICheckerIsGreyOut.cs" />
+    <Compile Include="_ReusableScripts\UI\Interacciones\Donas\IOpcionesDeDonaAcceptProductor.cs" />
+    <Compile Include="_ReusableScripts\UI\Interacciones\Donas\IOpcionesDeDonaProductor.cs" />
+    <Compile Include="_ReusableScripts\UI\Interacciones\Donas\IOverriderDescription.cs" />
+    <Compile Include="_ReusableScripts\UI\Interacciones\Donas\LoaderOpcionesDeDona.cs" />
+    <Compile Include="_ReusableScripts\UI\Interacciones\Donas\LoaderOpcionesDeDonaMultiSelect.cs" />
+    <Compile Include="_ReusableScripts\UI\Interacciones\Donas\OnClickOpcionDeDonaEvent.cs" />
+    <Compile Include="_ReusableScripts\UI\Interacciones\Donas\Testing\DonaDeInteraccionTEST.cs" />
+    <Compile Include="_ReusableScripts\UI\MainCanvas.cs" />
+    <Compile Include="_ReusableScripts\UI\Modales\ConfirmacionMiembros.cs" />
+    <Compile Include="_ReusableScripts\UI\Modales\ConfirmacionResolutionMiembros.cs" />
+    <Compile Include="_ReusableScripts\UI\Modales\ErrorDialog.cs" />
+    <Compile Include="_ReusableScripts\UI\Modales\Globales\ModalWindow.cs" />
+    <Compile Include="_ReusableScripts\UI\Modales\InfoDialog.cs" />
+    <Compile Include="_ReusableScripts\UI\Modales\NewGameInputDialog.cs" />
+    <Compile Include="_ReusableScripts\UI\Modales\NumberInputDialog.cs" />
+    <Compile Include="_ReusableScripts\UI\Modales\TextInputDialog.cs" />
+    <Compile Include="_ReusableScripts\UI\Nombrable.cs" />
+    <Compile Include="_ReusableScripts\UI\OnCheckDescriptionOverridedEvent.cs" />
+    <Compile Include="_ReusableScripts\UI\OnCheckGreyOutEvent.cs" />
+    <Compile Include="_ReusableScripts\UI\OnClickBotonElementEvent.cs" />
+    <Compile Include="_ReusableScripts\UI\OnClickEvent.cs" />
+    <Compile Include="_ReusableScripts\UI\PatronButton.cs" />
+    <Compile Include="_ReusableScripts\UI\RestartAllScenesOnRestartButton.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

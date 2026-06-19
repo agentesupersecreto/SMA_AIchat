@@ -1,0 +1,364 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F3523CA3-2817-4AE0-B83D-261FDF7A4E6C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>com.ootii</RootNamespace>
+    <AssemblyName>Otti</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="netstandard">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\netstandard.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AIModule">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.AIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AnimationModule">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.AnimationModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AudioModule">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.AudioModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.IMGUIModule">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.IMGUIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.InputLegacyModule">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.InputLegacyModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ParticleSystemModule">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.ParticleSystemModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.PhysicsModule">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.PhysicsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TerrainModule">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.TerrainModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TerrainPhysicsModule">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.TerrainPhysicsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TextRenderingModule">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.TextRenderingModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Actors\ActorController.cs" />
+    <Compile Include="Actors\ActorDriver.cs" />
+    <Compile Include="Actors\ActorState.cs" />
+    <Compile Include="Actors\AnimationControllers\AdventureForward.cs" />
+    <Compile Include="Actors\AnimationControllers\AnimatorLayerState.cs" />
+    <Compile Include="Actors\AnimationControllers\BalanceWalk.cs" />
+    <Compile Include="Actors\AnimationControllers\BasicCoverStrafe.cs" />
+    <Compile Include="Actors\AnimationControllers\BasicIdle.cs" />
+    <Compile Include="Actors\AnimationControllers\BasicIdleArms.cs" />
+    <Compile Include="Actors\AnimationControllers\BasicIdleFocus.cs" />
+    <Compile Include="Actors\AnimationControllers\BasicInteraction.cs" />
+    <Compile Include="Actors\AnimationControllers\BasicJump.cs" />
+    <Compile Include="Actors\AnimationControllers\BasicWalkRunFocus.cs" />
+    <Compile Include="Actors\AnimationControllers\BasicWalkRunPivot.cs" />
+    <Compile Include="Actors\AnimationControllers\BasicWalkRunStrafe.cs" />
+    <Compile Include="Actors\AnimationControllers\ClimbCrouch.cs" />
+    <Compile Include="Actors\AnimationControllers\ClimbLadder.cs" />
+    <Compile Include="Actors\AnimationControllers\ClimbWall.cs" />
+    <Compile Include="Actors\AnimationControllers\Climb_0_5m.cs" />
+    <Compile Include="Actors\AnimationControllers\Climb_1m.cs" />
+    <Compile Include="Actors\AnimationControllers\Climb_1_8m.cs" />
+    <Compile Include="Actors\AnimationControllers\Climb_2_5m.cs" />
+    <Compile Include="Actors\AnimationControllers\Cower.cs" />
+    <Compile Include="Actors\AnimationControllers\DefaultMotionControllerUpdater.cs" />
+    <Compile Include="Actors\AnimationControllers\Empty.cs" />
+    <Compile Include="Actors\AnimationControllers\EnumControllerStance.cs" />
+    <Compile Include="Actors\AnimationControllers\EnumMotionCategories.cs" />
+    <Compile Include="Actors\AnimationControllers\EnumSpeedTrend.cs" />
+    <Compile Include="Actors\AnimationControllers\Fall.cs" />
+    <Compile Include="Actors\AnimationControllers\Flight.cs" />
+    <Compile Include="Actors\AnimationControllers\Frozen.cs" />
+    <Compile Include="Actors\AnimationControllers\ICoverMotion.cs" />
+    <Compile Include="Actors\AnimationControllers\Idle.cs" />
+    <Compile Include="Actors\AnimationControllers\IEquipStoreMotion.cs" />
+    <Compile Include="Actors\AnimationControllers\IMotionControllerMotion.cs" />
+    <Compile Include="Actors\AnimationControllers\ITValleMotionControllerUpdater.cs" />
+    <Compile Include="Actors\AnimationControllers\IWalkRunMotion.cs" />
+    <Compile Include="Actors\AnimationControllers\Jump.cs" />
+    <Compile Include="Actors\AnimationControllers\KnockedDown.cs" />
+    <Compile Include="Actors\AnimationControllers\Levitate.cs" />
+    <Compile Include="Actors\AnimationControllers\MotionActivationDelegate.cs" />
+    <Compile Include="Actors\AnimationControllers\MotionController.cs" />
+    <Compile Include="Actors\AnimationControllers\MotionControllerAnimatorEventsListiner.cs" />
+    <Compile Include="Actors\AnimationControllers\MotionControllerBehaviour.cs" />
+    <Compile Include="Actors\AnimationControllers\MotionControllerLayer.cs" />
+    <Compile Include="Actors\AnimationControllers\MotionControllerMotion.cs" />
+    <Compile Include="Actors\AnimationControllers\MotionDelegate.cs" />
+    <Compile Include="Actors\AnimationControllers\MotionDescriptionAttribute.cs" />
+    <Compile Include="Actors\AnimationControllers\MotionMessage.cs" />
+    <Compile Include="Actors\AnimationControllers\MotionNameAttribute.cs" />
+    <Compile Include="Actors\AnimationControllers\MotionPackDefinition.cs" />
+    <Compile Include="Actors\AnimationControllers\MotionReachData.cs" />
+    <Compile Include="Actors\AnimationControllers\MotionState.cs" />
+    <Compile Include="Actors\AnimationControllers\MotionTemplate.cs" />
+    <Compile Include="Actors\AnimationControllers\MotionTypeTagsAttribute.cs" />
+    <Compile Include="Actors\AnimationControllers\MotionUpdateDelegate.cs" />
+    <Compile Include="Actors\AnimationControllers\Punch.cs" />
+    <Compile Include="Actors\AnimationControllers\PushedBack.cs" />
+    <Compile Include="Actors\AnimationControllers\RunningJump.cs" />
+    <Compile Include="Actors\AnimationControllers\SimpleMotion.cs" />
+    <Compile Include="Actors\AnimationControllers\Sleep.cs" />
+    <Compile Include="Actors\AnimationControllers\Slide.cs" />
+    <Compile Include="Actors\AnimationControllers\Sneak.cs" />
+    <Compile Include="Actors\AnimationControllers\Sneak_v2.cs" />
+    <Compile Include="Actors\AnimationControllers\Stunned.cs" />
+    <Compile Include="Actors\AnimationControllers\Vault_1m.cs" />
+    <Compile Include="Actors\AnimationControllers\WalkRunPivot.cs" />
+    <Compile Include="Actors\AnimationControllers\WalkRunPivot_v2.cs" />
+    <Compile Include="Actors\AnimationControllers\WalkRunRotate.cs" />
+    <Compile Include="Actors\AnimationControllers\WalkRunRotate_v2.cs" />
+    <Compile Include="Actors\AnimationControllers\WalkRunStrafe.cs" />
+    <Compile Include="Actors\AnimationControllers\WalkRunStrafe_v2.cs" />
+    <Compile Include="Actors\AnimationControllers\WalkRunTwitch.cs" />
+    <Compile Include="Actors\AnimatorDriver.cs" />
+    <Compile Include="Actors\Attributes\AttributeMessage.cs" />
+    <Compile Include="Actors\Attributes\AttributeMessageOld.cs" />
+    <Compile Include="Actors\Attributes\BasicAttribute.cs" />
+    <Compile Include="Actors\Attributes\BasicAttributeBool.cs" />
+    <Compile Include="Actors\Attributes\BasicAttributeFloat.cs" />
+    <Compile Include="Actors\Attributes\BasicAttributeGameObject.cs" />
+    <Compile Include="Actors\Attributes\BasicAttributeInt.cs" />
+    <Compile Include="Actors\Attributes\BasicAttributeQuaternion.cs" />
+    <Compile Include="Actors\Attributes\BasicAttributes.cs" />
+    <Compile Include="Actors\Attributes\BasicAttributeString.cs" />
+    <Compile Include="Actors\Attributes\BasicAttributeTag.cs" />
+    <Compile Include="Actors\Attributes\BasicAttributeTransform.cs" />
+    <Compile Include="Actors\Attributes\BasicAttributeTyped.cs" />
+    <Compile Include="Actors\Attributes\BasicAttributeValueChangedDelegate.cs" />
+    <Compile Include="Actors\Attributes\BasicAttributeVector2.cs" />
+    <Compile Include="Actors\Attributes\BasicAttributeVector3.cs" />
+    <Compile Include="Actors\Attributes\BasicAttributeVector4.cs" />
+    <Compile Include="Actors\Attributes\EnumAttributeIDs.cs" />
+    <Compile Include="Actors\Attributes\EnumAttributeTypes.cs" />
+    <Compile Include="Actors\Attributes\IAttribute.cs" />
+    <Compile Include="Actors\Attributes\IAttributeSource.cs" />
+    <Compile Include="Actors\BaseSystemController.cs" />
+    <Compile Include="Actors\BasicController.cs" />
+    <Compile Include="Actors\BodyCapsule.cs" />
+    <Compile Include="Actors\BodyShape.cs" />
+    <Compile Include="Actors\BodyShapeHit.cs" />
+    <Compile Include="Actors\BodySphere.cs" />
+    <Compile Include="Actors\Combat\AttackStyle.cs" />
+    <Compile Include="Actors\Combat\CombatHit.cs" />
+    <Compile Include="Actors\Combat\CombatMessage.cs" />
+    <Compile Include="Actors\Combat\CombatTarget.cs" />
+    <Compile Include="Actors\Combat\DamageMessage.cs" />
+    <Compile Include="Actors\Combat\EnumCombatStyleEffect.cs" />
+    <Compile Include="Actors\Combat\EnumDamageType.cs" />
+    <Compile Include="Actors\Combat\EnumImpactType.cs" />
+    <Compile Include="Actors\Combat\ICombatant.cs" />
+    <Compile Include="Actors\Combat\ICombatStyle.cs" />
+    <Compile Include="Actors\ControllerLateUpdateDelegate.cs" />
+    <Compile Include="Actors\ControllerMoveDelegate.cs" />
+    <Compile Include="Actors\DefaultActorControllerUpdater.cs" />
+    <Compile Include="Actors\ICharacterController.cs" />
+    <Compile Include="Actors\Inventory\BasicInventory.cs" />
+    <Compile Include="Actors\Inventory\BasicInventoryItem.cs" />
+    <Compile Include="Actors\Inventory\BasicInventorySet.cs" />
+    <Compile Include="Actors\Inventory\BasicInventorySetItem.cs" />
+    <Compile Include="Actors\Inventory\BasicInventorySlot.cs" />
+    <Compile Include="Actors\Inventory\IInventorySource.cs" />
+    <Compile Include="Actors\Inventory\InventoryMessage.cs" />
+    <Compile Include="Actors\ITValleActorControllerUpdater.cs" />
+    <Compile Include="Actors\LifeCores\ActorCore.cs" />
+    <Compile Include="Actors\LifeCores\ActorCoreEffect.cs" />
+    <Compile Include="Actors\LifeCores\ActorCoreState.cs" />
+    <Compile Include="Actors\LifeCores\CauseDamage.cs" />
+    <Compile Include="Actors\LifeCores\DecalCore.cs" />
+    <Compile Include="Actors\LifeCores\ForceMovement.cs" />
+    <Compile Include="Actors\LifeCores\IActorCore.cs" />
+    <Compile Include="Actors\LifeCores\IActorStateSource.cs" />
+    <Compile Include="Actors\LifeCores\IDamageable.cs" />
+    <Compile Include="Actors\LifeCores\IInteractableCore.cs" />
+    <Compile Include="Actors\LifeCores\IItemCore.cs" />
+    <Compile Include="Actors\LifeCores\ILifeCore.cs" />
+    <Compile Include="Actors\LifeCores\InteractableCore.cs" />
+    <Compile Include="Actors\LifeCores\IProjectileCore.cs" />
+    <Compile Include="Actors\LifeCores\ItemCore.cs" />
+    <Compile Include="Actors\LifeCores\IWeaponCore.cs" />
+    <Compile Include="Actors\LifeCores\LifeCoreDelegate.cs" />
+    <Compile Include="Actors\LifeCores\ModifyAttribute.cs" />
+    <Compile Include="Actors\LifeCores\ModifyMovement.cs" />
+    <Compile Include="Actors\LifeCores\ParticleCore.cs" />
+    <Compile Include="Actors\LifeCores\SpawnGameObject.cs" />
+    <Compile Include="Actors\LifeCores\SpawnParticles.cs" />
+    <Compile Include="Actors\MoveToDriver.cs" />
+    <Compile Include="Actors\Navigation\NavigationMessage.cs" />
+    <Compile Include="Actors\Navigation\OffMeshLinkDriver.cs" />
+    <Compile Include="Actors\Navigation\OffMeshLinkMoveType.cs" />
+    <Compile Include="Actors\NavMeshDriver.cs" />
+    <Compile Include="Actors\NavMeshFollower.cs" />
+    <Compile Include="Base\BaseDescriptionAttribute.cs" />
+    <Compile Include="Base\BaseMonoObject.cs" />
+    <Compile Include="Base\BaseNameAttribute.cs" />
+    <Compile Include="Base\BaseObject.cs" />
+    <Compile Include="Base\BaseScriptableObject.cs" />
+    <Compile Include="Base\GUIDChangedDelegate.cs" />
+    <Compile Include="Base\IBaseObject.cs" />
+    <Compile Include="Cameras\BaseCameraAnchor.cs" />
+    <Compile Include="Cameras\BaseCameraRig.cs" />
+    <Compile Include="Cameras\BasicMotor.cs" />
+    <Compile Include="Cameras\CameraController.cs" />
+    <Compile Include="Cameras\CameraMessage.cs" />
+    <Compile Include="Cameras\CameraMotor.cs" />
+    <Compile Include="Cameras\CameraMotorEvent.cs" />
+    <Compile Include="Cameras\CameraTransform.cs" />
+    <Compile Include="Cameras\CameraUpdateEvent.cs" />
+    <Compile Include="Cameras\DefaultCamControllerUpdater.cs" />
+    <Compile Include="Cameras\FixedMotor.cs" />
+    <Compile Include="Cameras\FollowRig.cs" />
+    <Compile Include="Cameras\FreeFlightMotor.cs" />
+    <Compile Include="Cameras\IBaseCameraAnchor.cs" />
+    <Compile Include="Cameras\IBaseCameraRig.cs" />
+    <Compile Include="Cameras\ITValleCamControllerUpdater.cs" />
+    <Compile Include="Cameras\LookAtTargetMotor.cs" />
+    <Compile Include="Cameras\OrbitFixedMotor.cs" />
+    <Compile Include="Cameras\OrbitFollowMotor.cs" />
+    <Compile Include="Cameras\OrbitRig.cs" />
+    <Compile Include="Cameras\ScrollerRig.cs" />
+    <Compile Include="Cameras\SplineMotor.cs" />
+    <Compile Include="Cameras\TransitionMotor.cs" />
+    <Compile Include="Cameras\ViewMotor.cs" />
+    <Compile Include="Cameras\WorldMotor.cs" />
+    <Compile Include="Cameras\YawPitchMotor.cs" />
+    <Compile Include="Collections\ArrayExt.cs" />
+    <Compile Include="Collections\GameObjectPool.cs" />
+    <Compile Include="Collections\ObjectPool.cs" />
+    <Compile Include="Collections\ScriptableObjectPool.cs" />
+    <Compile Include="Data\Serializers\JSONSerializer.cs" />
+    <Compile Include="Data\Serializers\SerializationDefaultAttribute.cs" />
+    <Compile Include="Data\Serializers\SerializationIgnoreAttribute.cs" />
+    <Compile Include="Data\Serializers\SerializationNameAttribute.cs" />
+    <Compile Include="Data\Serializers\SerializationOrderAttribute.cs" />
+    <Compile Include="Game\GameCore.cs" />
+    <Compile Include="Game\TargetingReticle.cs" />
+    <Compile Include="Geometry\BezierConstraintType.cs" />
+    <Compile Include="Geometry\BezierSpline.cs" />
+    <Compile Include="Geometry\ColliderProxy.cs" />
+    <Compile Include="Geometry\FloatValue.cs" />
+    <Compile Include="Geometry\GameObjectExt.cs" />
+    <Compile Include="Geometry\GeometryExt.cs" />
+    <Compile Include="Geometry\Matrix4x4Ext.cs" />
+    <Compile Include="Geometry\MeshExt.cs" />
+    <Compile Include="Geometry\MeshOctree.cs" />
+    <Compile Include="Geometry\MeshOctreeNode.cs" />
+    <Compile Include="Geometry\MeshPartitioner.cs" />
+    <Compile Include="Geometry\QuaternionExt.cs" />
+    <Compile Include="Geometry\RaycastExt.cs" />
+    <Compile Include="Geometry\RaycastHitDistanceComparer.cs" />
+    <Compile Include="Geometry\RaycastHitInvDistanceComparer.cs" />
+    <Compile Include="Geometry\RingColliderProxy.cs" />
+    <Compile Include="Geometry\TransformExt.cs" />
+    <Compile Include="Geometry\Vector3Ext.cs" />
+    <Compile Include="Graphics\GraphicsManager.cs" />
+    <Compile Include="Graphics\Line.cs" />
+    <Compile Include="Graphics\Text.cs" />
+    <Compile Include="Graphics\TextCharacter.cs" />
+    <Compile Include="Graphics\TextFont.cs" />
+    <Compile Include="Graphics\Triangle.cs" />
+    <Compile Include="Graphics\UI\Crosshair.cs" />
+    <Compile Include="Graphics\UI\CrosshairFillCircle.cs" />
+    <Compile Include="Graphics\UI\IReticle.cs" />
+    <Compile Include="Graphics\UI\Reticle.cs" />
+    <Compile Include="Helpers\FlagsHelper.cs" />
+    <Compile Include="Helpers\InputManagerEntry.cs" />
+    <Compile Include="Helpers\InputManagerEntryType.cs" />
+    <Compile Include="Helpers\InputManagerHelper.cs" />
+    <Compile Include="Helpers\InterfaceHelper.cs" />
+    <Compile Include="Helpers\NumberHelper.cs" />
+    <Compile Include="Helpers\ObjectHelper.cs" />
+    <Compile Include="Helpers\ReflectionHelper.cs" />
+    <Compile Include="Helpers\StringExtensions.cs" />
+    <Compile Include="Helpers\StringHelper.cs" />
+    <Compile Include="Helpers\VectorHelper.cs" />
+    <Compile Include="Helpers\XMLHelper.cs" />
+    <Compile Include="Input\IInputSource.cs" />
+    <Compile Include="Input\NavMeshInputSource.cs" />
+    <Compile Include="Input\UnityInputSource.cs" />
+    <Compile Include="Items\IItem.cs" />
+    <Compile Include="Items\IItemComponent.cs" />
+    <Compile Include="Items\IMeleeWeapon.cs" />
+    <Compile Include="Items\IRangedWeapon.cs" />
+    <Compile Include="Items\Item.cs" />
+    <Compile Include="Items\ItemComponent.cs" />
+    <Compile Include="Items\IWeapon.cs" />
+    <Compile Include="Messages\EnumMessageID.cs" />
+    <Compile Include="Messages\IMessage.cs" />
+    <Compile Include="Messages\Message.cs" />
+    <Compile Include="Messages\MessageEvent.cs" />
+    <Compile Include="MotionControllerPacks\BasicDamaged.cs" />
+    <Compile Include="MotionControllerPacks\BasicDeath.cs" />
+    <Compile Include="MotionControllerPacks\BasicItemEquip.cs" />
+    <Compile Include="MotionControllerPacks\BasicItemStore.cs" />
+    <Compile Include="MotionControllerPacks\Damaged.cs" />
+    <Compile Include="MotionControllerPacks\Death.cs" />
+    <Compile Include="Physics\Force.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reactors\BasicAttackedReactor.cs" />
+    <Compile Include="Reactors\BasicDamagedReactor.cs" />
+    <Compile Include="Reactors\BasicKilledReactor.cs" />
+    <Compile Include="Reactors\DebugLog.cs" />
+    <Compile Include="Reactors\ReactorAction.cs" />
+    <Compile Include="Reactors\ReactorActionEvent.cs" />
+    <Compile Include="Reactors\UnityEventProxy.cs" />
+    <Compile Include="Timing\TimeManager.cs" />
+    <Compile Include="Timing\TimeManagerCore.cs" />
+    <Compile Include="UnitySourceGeneratedAssemblyMonoScriptTypes_v1.cs" />
+    <Compile Include="Utilities\Debug\Bone.cs" />
+    <Compile Include="Utilities\Debug\Cube.cs" />
+    <Compile Include="Utilities\Debug\DebugDraw.cs" />
+    <Compile Include="Utilities\Debug\Disk.cs" />
+    <Compile Include="Utilities\Debug\Dodecahedron.cs" />
+    <Compile Include="Utilities\Debug\Icosahedron.cs" />
+    <Compile Include="Utilities\Debug\IcoSphere.cs" />
+    <Compile Include="Utilities\Debug\Log.cs" />
+    <Compile Include="Utilities\Debug\LogText.cs" />
+    <Compile Include="Utilities\Debug\Octahedron.cs" />
+    <Compile Include="Utilities\Debug\SceneFlags.cs" />
+    <Compile Include="Utilities\Debug\Tetrahedron.cs" />
+    <Compile Include="Utilities\JSON.cs" />
+    <Compile Include="Utilities\JSONArray.cs" />
+    <Compile Include="Utilities\JSONBinaryTag.cs" />
+    <Compile Include="Utilities\JSONClass.cs" />
+    <Compile Include="Utilities\JSONData.cs" />
+    <Compile Include="Utilities\JSONLazyCreator.cs" />
+    <Compile Include="Utilities\JSONNode.cs" />
+    <Compile Include="Utilities\Profiler.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -1,0 +1,126 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>.NETStandard,Version=v2.1</TargetFramework>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <!-- Excluir archivos decompilados del juego y el mod de ejemplo (solo son de referencia) -->
+  <ItemGroup>
+    <Compile Remove="find_class.ps1" />
+    <Compile Remove="example_mod\**" />
+    <Compile Remove="code_game\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- BepInEx y Harmony -->
+    <Reference Include="BepInEx">
+      <HintPath>E:\Some_Modeling_Agency_0.23.1_f1\BepInEx\core\BepInEx.dll</HintPath>
+    </Reference>
+    <Reference Include="0Harmony">
+      <HintPath>E:\Some_Modeling_Agency_0.23.1_f1\BepInEx\core\0Harmony.dll</HintPath>
+    </Reference>
+    
+    <!-- Unity Engine -->
+    <Reference Include="UnityEngine">
+      <HintPath>E:\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>E:\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.InputLegacyModule">
+      <HintPath>E:\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.InputLegacyModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.IMGUIModule">
+      <HintPath>E:\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.IMGUIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TextRenderingModule">
+      <HintPath>E:\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.TextRenderingModule.dll</HintPath>
+    </Reference>
+
+    <!-- DLLs del juego -->
+    <Reference Include="Assembly-CSharp">
+      <HintPath>E:\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-D_C_Dependientes_ReSc.DialogueSys">
+      <HintPath>E:\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Assembly-D_C_Dependientes_ReSc.DialogueSys.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-D_E_Chuchi_ReSc">
+      <HintPath>E:\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Assembly-D_E_Chuchi_ReSc.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-D_ReSc">
+      <HintPath>E:\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Assembly-D_ReSc.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-D_D_Characters_ReSc">
+      <HintPath>E:\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Assembly-D_D_Characters_ReSc.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-D_F_CharactersBasics_ReSc">
+      <HintPath>E:\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Assembly-D_F_CharactersBasics_ReSc.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-D_C_Dependientes_ReSc">
+      <HintPath>E:\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Assembly-D_C_Dependientes_ReSc.dll</HintPath>
+    </Reference>
+    <Reference Include="TValle.BeachGirl.Characters.Male">
+      <HintPath>E:\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\TValle.BeachGirl.Characters.Male.dll</HintPath>
+    </Reference>
+    <Reference Include="TValle.BeachGirl">
+      <HintPath>E:\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\TValle.BeachGirl.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.Controllers">
+      <HintPath>E:\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.Controllers.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.CustomMonoBehaviours">
+      <HintPath>E:\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.CustomMonoBehaviours.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.Globales">
+      <HintPath>E:\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.Globales.dll</HintPath>
+    </Reference>
+    <Reference Include="DialogueSystem">
+      <HintPath>E:\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\DialogueSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="DialogSys">
+      <HintPath>E:\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\DialogSys.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.SingletonesAndSystemasGlobales">
+      <HintPath>E:\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.SingletonesAndSystemasGlobales.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestModule">
+      <HintPath>E:\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.UnityWebRequestModule.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.Plugins">
+      <HintPath>E:\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.Plugins.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.RootMotion.BeachGirl">
+      <HintPath>E:\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.RootMotion.BeachGirl.dll</HintPath>
+    </Reference>
+    <Reference Include="TValle.BeachGirl.Alteradores.MapasDeAlteradores">
+      <HintPath>E:\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\TValle.BeachGirl.Alteradores.MapasDeAlteradores.dll</HintPath>
+    </Reference>
+    <Reference Include="TValle.BeachGirl.MapasDeAlteradores">
+      <HintPath>E:\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\TValle.BeachGirl.MapasDeAlteradores.dll</HintPath>
+    </Reference>
+    <Reference Include="TValle.Pro.Entrevista">
+      <HintPath>E:\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\TValle.Pro.Entrevista.dll</HintPath>
+    </Reference>
+    <Reference Include="TCharacters.Memory">
+      <HintPath>E:\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\TCharacters.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.PhysicsModule">
+      <HintPath>E:\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.PhysicsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="Base.Memoria">
+      <HintPath>E:\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.Memoria.dll</HintPath>
+    </Reference>
+    <Reference Include="TValle.BeachGirl.Genetica.Alteradores">
+      <HintPath>E:\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\TValle.BeachGirl.Genetica.Alteradores.dll</HintPath>
+    </Reference>
+    <Reference Include="TValle.IU">
+      <HintPath>E:\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\TValle.IU.dll</HintPath>
+    </Reference>
+    <Reference Include="TValle.BeachGirl.Estimulos">
+      <HintPath>E:\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\TValle.BeachGirl.Estimulos.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+</Project>

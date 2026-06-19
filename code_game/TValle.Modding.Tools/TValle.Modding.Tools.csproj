@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1E3FF4D6-F0E9-45AA-8CBA-8841CEC9D8FC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Assets.TValle.Tools.Runtime</RootNamespace>
+    <AssemblyName>TValle.Modding.Tools</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="netstandard">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\netstandard.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Addressables">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Unity.Addressables.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Mathematics">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Unity.Mathematics.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.HighDefinition.Runtime">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Unity.RenderPipelines.HighDefinition.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AnimationModule">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.AnimationModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyQualifiedNameAttribute.cs" />
+    <Compile Include="AssetReferenceDictionary.cs" />
+    <Compile Include="BatchCountEXT.cs" />
+    <Compile Include="Characters\AddOperation.cs" />
+    <Compile Include="Characters\Atts\Emotions\Desires.cs" />
+    <Compile Include="Characters\Atts\Emotions\Emotion.cs" />
+    <Compile Include="Characters\Atts\Emotions\EmotionDamagePair.cs" />
+    <Compile Include="Characters\Atts\Emotions\EmotionExt.cs" />
+    <Compile Include="Characters\Atts\Emotions\EmotionPercentageRange.cs" />
+    <Compile Include="Characters\Atts\Emotions\FemaleEmotion.cs" />
+    <Compile Include="Characters\Atts\Emotions\MaleEmotion.cs" />
+    <Compile Include="Characters\Atts\Emotions\SensitiveBodyPart.cs" />
+    <Compile Include="Characters\Atts\Emotions\SensitiveBodyPartHelper.cs" />
+    <Compile Include="Characters\Atts\Emotions\SensitiveFemaleHole.cs" />
+    <Compile Include="Characters\Atts\Emotions\SensitiveFemaleHoleBottom.cs" />
+    <Compile Include="Characters\Atts\Emotions\SensitiveFemaleHoleType.cs" />
+    <Compile Include="Characters\Atts\Emotions\SensitiveFemaleHoleWalls.cs" />
+    <Compile Include="Characters\Atts\Emotions\TriggeringBodyPart.cs" />
+    <Compile Include="Characters\Atts\Emotions\TriggeringBodyPartHelper.cs" />
+    <Compile Include="Characters\Atts\Emotions\TriggeringPenetratingBodyPart.cs" />
+    <Compile Include="Characters\Atts\FemaleHole.cs" />
+    <Compile Include="Characters\Atts\FemaleSizedPartN.cs" />
+    <Compile Include="Characters\Atts\FemaleSizedPartU.cs" />
+    <Compile Include="Characters\Atts\HalfPersonalityTraits.cs" />
+    <Compile Include="Characters\Atts\MaleSizedPartN.cs" />
+    <Compile Include="Characters\Atts\MaleSizedPartU.cs" />
+    <Compile Include="Characters\Atts\PersonalityTraits.cs" />
+    <Compile Include="Characters\Atts\SexualAberration.cs" />
+    <Compile Include="Characters\BuffAndDebuff\BuffOnDesires.cs" />
+    <Compile Include="Characters\BuffAndDebuff\BuffOnEmotion.cs" />
+    <Compile Include="Characters\BuffAndDebuff\BuffOnEmotionAura.cs" />
+    <Compile Include="Characters\BuffAndDebuff\BuffOnEmotionTowardCharacter.cs" />
+    <Compile Include="Characters\BuffAndDebuff\BuffOnEyaculationAmount.cs" />
+    <Compile Include="Characters\BuffAndDebuff\BuffOnEyaculationTimes.cs" />
+    <Compile Include="Characters\BuffAndDebuff\BuffOnFavorabilityReqOfInteraction.cs" />
+    <Compile Include="Characters\BuffAndDebuff\BuffOnHoleWearingBottom.cs" />
+    <Compile Include="Characters\BuffAndDebuff\BuffOnHoleWearingMotion.cs" />
+    <Compile Include="Characters\BuffAndDebuff\BuffOnHoleWearingWalls.cs" />
+    <Compile Include="Characters\BuffAndDebuff\BuffOnInteraction.cs" />
+    <Compile Include="Characters\BuffAndDebuff\BuffOnKarma.cs" />
+    <Compile Include="Characters\BuffAndDebuff\BuffOnOxygenDemand.cs" />
+    <Compile Include="Characters\BuffAndDebuff\BuffOnPersonalityTrait.cs" />
+    <Compile Include="Characters\BuffAndDebuff\DisplayableBuffCategory.cs" />
+    <Compile Include="Characters\BuffAndDebuff\EmotionModifier.cs" />
+    <Compile Include="Characters\BuffAndDebuff\IContextValidableBuff.cs" />
+    <Compile Include="Characters\BuffAndDebuff\IEndableOnDateBuff.cs" />
+    <Compile Include="Characters\BuffAndDebuff\IEndableOnDateBuffExt.cs" />
+    <Compile Include="Characters\BuffAndDebuff\IFloatValuableBuff.cs" />
+    <Compile Include="Characters\BuffAndDebuff\IFloatValuableBuffEXT.cs" />
+    <Compile Include="Characters\BuffAndDebuff\IIdentifiableBuff.2.cs" />
+    <Compile Include="Characters\BuffAndDebuff\IIdentifiableBuff.cs" />
+    <Compile Include="Characters\BuffAndDebuff\InteractionModifier.cs" />
+    <Compile Include="Characters\BuffAndDebuff\IPrintableBuff.cs" />
+    <Compile Include="Characters\BuffAndDebuff\IPrintableBuffEXT.cs" />
+    <Compile Include="Characters\BuffAndDebuff\IStackableBuff.2.cs" />
+    <Compile Include="Characters\BuffAndDebuff\IStackableBuff.cs" />
+    <Compile Include="Characters\BuffAndDebuff\IValidableBuff.cs" />
+    <Compile Include="Characters\BuffAndDebuff\IValuableBuff.cs" />
+    <Compile Include="Characters\BuffAndDebuff\SimpleEmotionModifier.cs" />
+    <Compile Include="Characters\BuffAndDebuff\SimpleModifier.cs" />
+    <Compile Include="Characters\Intections\AllTocuhInterationReceivedType.cs" />
+    <Compile Include="Characters\Intections\Interaction.cs" />
+    <Compile Include="Characters\Intections\InteractionToDisk.cs" />
+    <Compile Include="Characters\Intections\InterationDirectionType.cs" />
+    <Compile Include="Characters\Intections\InterationReceivedType.cs" />
+    <Compile Include="Characters\Intections\InterationReceivedTypeEXT.cs" />
+    <Compile Include="Characters\Intections\IntercouseInterationReceivedType.cs" />
+    <Compile Include="Characters\Operation.cs" />
+    <Compile Include="Characters\ProductOperation.cs" />
+    <Compile Include="Characters\Scenes\EmptyCharactersSceneInteractions.cs" />
+    <Compile Include="Characters\Scenes\IBuffableBySceneInteractionsCharacter.cs" />
+    <Compile Include="Characters\Scenes\ICharactersSceneInteractions.cs" />
+    <Compile Include="Characters\Scenes\ICharactersSceneInteractionsArchived.cs" />
+    <Compile Include="Characters\Scenes\ICharactersSceneInteractionsClearable.cs" />
+    <Compile Include="Characters\Scenes\ISceneInteractions.cs" />
+    <Compile Include="Characters\Scenes\OnCharactersInteractionHandler.cs" />
+    <Compile Include="Characters\Scenes\OnInteractionHandler.cs" />
+    <Compile Include="Characters\Scenes\OnInteractionStackHandler.cs" />
+    <Compile Include="Characters\Scenes\OnRegisterChangedHandler.cs" />
+    <Compile Include="Characters\Scenes\SceneCharacter.cs" />
+    <Compile Include="Characters\Scenes\SceneCharacterFromToBuffAndDebuff.cs" />
+    <Compile Include="Characters\Scenes\SceneCharacterWrapper.cs" />
+    <Compile Include="Clothing\AddClothingPiecesToAvatar.cs" />
+    <Compile Include="Clothing\ITValleClothingMaterial.cs" />
+    <Compile Include="Clothing\ITValleOutfit.cs" />
+    <Compile Include="Clothing\ITVallePiecesOfClothing.cs" />
+    <Compile Include="ICustomClothingItemScript.cs" />
+    <Compile Include="ItemQuality.cs" />
+    <Compile Include="ItemQualityEXT.cs" />
+    <Compile Include="JustToReadUIAttribute.cs" />
+    <Compile Include="Language.cs" />
+    <Compile Include="Memory\IContextMemory.cs" />
+    <Compile Include="MeshNormalImporter\IMeshCustomNormalsImporter.cs" />
+    <Compile Include="MeshNormalImporter\MeshCustomNormals.cs" />
+    <Compile Include="Moddding\Autor.cs" />
+    <Compile Include="Moddding\Clothing\Maps\AssetReferenceDiffusionProfiles.cs" />
+    <Compile Include="Moddding\Clothing\Maps\AssetReferenceMaterial.cs" />
+    <Compile Include="Moddding\Clothing\Maps\ClothingItemMap.cs" />
+    <Compile Include="Moddding\Clothing\Maps\MaterialMap.cs" />
+    <Compile Include="Moddding\Directorys.cs" />
+    <Compile Include="Moddding\InGameName.cs" />
+    <Compile Include="Moddding\InGameNameDesc.cs" />
+    <Compile Include="Moddding\InGameObjectiveText.cs" />
+    <Compile Include="Moddding\ModdingMap.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SerializableDictionary.cs" />
+    <Compile Include="SMA\Jobs\IMaleRandomGeneratorOverrider.cs" />
+    <Compile Include="SMA\Jobs\ISMAJob.cs" />
+    <Compile Include="SMA\Jobs\ISMAJobObjective.cs" />
+    <Compile Include="SMA\Jobs\ISMAJobsManager.cs" />
+    <Compile Include="SMA\Jobs\ISMAJobsObjectives.cs" />
+    <Compile Include="SMA\Jobs\ISMAJobsOutfits.cs" />
+    <Compile Include="SMA\Jobs\ISMAJobsUIManager.cs" />
+    <Compile Include="SMA\Jobs\ISMAUnlockableJob.cs" />
+    <Compile Include="SMA\Jobs\ObjectiveCheckerHandler.cs" />
+    <Compile Include="SMA\Jobs\ObjectiveCheckerHandler_CurrentCount.cs" />
+    <Compile Include="SMA\Jobs\ObjectiveCheckerHandler_GetLastUniqueAction.cs" />
+    <Compile Include="SMA\Jobs\ObjectiveCheckerHandler_IsFlagSet.cs" />
+    <Compile Include="SMA\Jobs\ObjectiveCheckerHandler_RecalculateWeight.cs" />
+    <Compile Include="SMA\Jobs\ObjectiveCheckFrequency.cs" />
+    <Compile Include="SMA\Jobs\ObjectiveCountChandedHandler.cs" />
+    <Compile Include="SMA\Jobs\ObjectiveFlagsChandedHandler.cs" />
+    <Compile Include="SMA\Jobs\ObjectiveProgressChandedHandler.cs" />
+    <Compile Include="SMA\Jobs\ObjectiveProgressType.cs" />
+    <Compile Include="SMA\Jobs\ObjectiveStatus.cs" />
+    <Compile Include="SMA\Jobs\ObjectiveStatusChandedHandler.cs" />
+    <Compile Include="SMA\Jobs\OnObjectiveCompletedHandler.cs" />
+    <Compile Include="SMA\Jobs\PercentageObjectiveProgressWeightChandedHandler.cs" />
+    <Compile Include="SMA\Moddding\Jobs\Maps\SMAJobMap.cs" />
+    <Compile Include="SMA\Moddding\Jobs\Maps\SMAJobObjectivesTextForLevelMap.cs" />
+    <Compile Include="UI\DescriptionAttribute.cs" />
+    <Compile Include="UI\IgnoreAttribute.cs" />
+    <Compile Include="UI\JobWithClientDefaultMenuModel.cs" />
+    <Compile Include="UI\JobWithEmployerDefaultMenuModel.cs" />
+    <Compile Include="UI\JobWithEmployerModelGoneDefaultMenuModel.cs" />
+    <Compile Include="UI\LabelAttribute.cs" />
+    <Compile Include="UI\ModelAttribute.cs" />
+    <Compile Include="UI\TValleUIAttribute.cs" />
+    <Compile Include="UI\TValleUILocalTextAttribute.cs" />
+    <Compile Include="UnitySourceGeneratedAssemblyMonoScriptTypes_v1.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

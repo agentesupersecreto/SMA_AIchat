@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{26CBDE48-5DA8-4D6A-9393-04FB469F669F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Assets</RootNamespace>
+    <AssemblyName>TValle.BeachGirl.Estimulos</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Base.Plugins">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\Base.Plugins.dll</HintPath>
+    </Reference>
+    <Reference Include="netstandard">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\netstandard.dll</HintPath>
+    </Reference>
+    <Reference Include="TValle.BeachGirl">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\TValle.BeachGirl.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>..\..\..\..\Some_Modeling_Agency_0.23.1_f1\Some Modeling Agency_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="dummyDELETEss.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TValle\BeachGirl\Estimulos\DictionaryDeEstimulosTactiles.cs" />
+    <Compile Include="TValle\BeachGirl\Estimulos\Informers\IInformerDeEstimulosUser.cs" />
+    <Compile Include="TValle\BeachGirl\Estimulos\ITouchablePuppetParte.cs" />
+    <Compile Include="TValle\BeachGirl\Estimulos\Runtime\IEstimuloPorCambiarPose.cs" />
+    <Compile Include="TValle\BeachGirl\Estimulos\Runtime\IEstimuloPorMovimientoDeBone.cs" />
+    <Compile Include="TValle\BeachGirl\Estimulos\Runtime\IInteracionEstimulanteBasica.cs" />
+    <Compile Include="TValle\BeachGirl\Estimulos\Runtime\IInteracionEstimulanteBasicaPertenecibleDeCharacter.cs" />
+    <Compile Include="TValle\BeachGirl\Estimulos\Runtime\IInteracionEstimulanteInversible.cs" />
+    <Compile Include="TValle\BeachGirl\Estimulos\Runtime\IInteracionEstimulanteReutilizable.cs" />
+    <Compile Include="TValle\BeachGirl\Estimulos\Runtime\PoolDeInteraccionEstimulante.cs" />
+    <Compile Include="TValle\BeachGirl\Estimulos\Runtime\TipoDeEstimuloCambiarPose.cs" />
+    <Compile Include="UnitySourceGeneratedAssemblyMonoScriptTypes_v1.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\AI\Estimulos\EstimuloVisual.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Estimulos\DireccionDeEstimulo.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Estimulos\DireccionDeEstimuloFlags.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Estimulos\EstimuloPenetrante.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Estimulos\EstimuloTactil.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Estimulos\EstimuloTactilDeParticulaBase.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Estimulos\EstimuloTactilDeSemen.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Estimulos\InteracionEstimulanteBasica.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Estimulos\PenetrationInfoLocal.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Estimulos\TipoDeEstimulo.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Estimulos\TipoDeEstimuloBasico.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Estimulos\TipoDeEstimuloCoital.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Estimulos\TipoDeEstimuloCoitalConPenes.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Estimulos\TipoDeEstimuloCoitalSegundaria.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Estimulos\TipoDeEstimuloDeCambioDePose.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Estimulos\TipoDeEstimuloFlags.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Estimulos\TipoDeEstimuloTactil.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Estimulos\TipoDeEstimuloTactilDerramante.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Estimulos\TipoDeEstimuloTactilInvertido.cs" />
+    <Compile Include="_ReusableScripts\CuchiCuchi\Estimulos\TipoDeEstimuloVisual.cs" />
+    <Compile Include="____TiposDeEstimulosEXT.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

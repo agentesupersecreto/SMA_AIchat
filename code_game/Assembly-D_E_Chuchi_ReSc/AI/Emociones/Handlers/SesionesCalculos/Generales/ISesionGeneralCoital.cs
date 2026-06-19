@@ -1,0 +1,10 @@
+﻿using System;
+using Assets._ReusableScripts.CuchiCuchi.Estimulos;
+
+namespace Assets._ReusableScripts.CuchiCuchi.AI.Emociones.Handlers.SesionesCalculos.Generales
+{
+	// Token: 0x020004BE RID: 1214
+	public interface ISesionGeneralCoital : ICalculadorDeSessionDeTipoConResultado<CalculoDeEstimuloPorPenetracionHoleResultado, EstimuloPenetrante, TipoDeEstimuloCoital, DireccionDeEstimulo>, ICalculadorDeSessionDeTipo<TipoDeEstimuloCoital, DireccionDeEstimulo>, ICalculadorDeSession, ICalculadorDeEstimuloConCalculos, ICalculadorDeEstimulo, IComponentAwakeable, ICalculadorDeSessionConResultadoDeCalculosDeEstimulo<CalculoDeEstimuloPorPenetracionHoleResultado, EstimuloPenetrante>, ICalculadorDeSessionConResultado<CalculoDeEstimuloPorPenetracionHoleResultado, EstimuloPenetrante>, ICalculadorDeSessionDeCalculosDeEstimulo<EstimuloPenetrante>
+	{
+	}
+}

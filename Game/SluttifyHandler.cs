@@ -1,0 +1,1014 @@
+using DialogInterceptorMod.Core;
+using System;
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+
+namespace DialogInterceptorMod.Game
+{
+	public static class SluttifyHandler
+	{
+		public static void Sluttify(UnityEngine.Transform root)
+		{
+			SluttifyHandler.SluttifyAppearance(root);
+			SluttifyHandler.SluttifyPersonality(root);
+		}
+
+		private static void SluttifyAppearance(UnityEngine.Transform root)
+		{
+			foreach (ValueTuple<string, float> valueTuple in SluttifyHandler._slutAppearanceModifiers)
+			{
+				try
+				{
+					ApplyAppearanceMod(root, valueTuple.Item1, valueTuple.Item2);
+				}
+				catch
+				{
+					Plugin.Log.LogInfo(valueTuple.Item1 + " no longer supported");
+				}
+			}
+			
+			
+		}
+
+		private static void SluttifyPersonality(UnityEngine.Transform root)
+		{
+			foreach (ValueTuple<string, SluttifyHandler.ModifierType, float[]> valueTuple in SluttifyHandler._slutPersonalityModifiers)
+			{
+				try
+				{
+					SluttifyHandler.ApplyPersonalityMod(root, valueTuple.Item1, valueTuple.Item3);
+				}
+				catch
+				{
+					Plugin.Log.LogInfo(valueTuple.Item1 + " no longer supported");
+				}
+			}
+			if(root != null) { var alt = root.GetComponentInChildren<Assets._ReusableScripts.CuchiCuchi.Chars.Alteradores.AlteradoresDePersonalidadFemenina>(); if(alt != null) alt.flagToForceUpdateValores = true; }
+		}
+
+		private static void ApplyPersonalityMod(UnityEngine.Transform root, string name, float[] values)
+		{
+			if (root == null) return;
+			var alt = root.GetComponentInChildren<Assets._ReusableScripts.CuchiCuchi.Chars.Alteradores.AlteradoresDePersonalidadFemenina>();
+			if (alt != null)
+			{
+				var traverse = HarmonyLib.Traverse.Create(alt);
+				var mapaTraverse = traverse.Field<Assets._ReusableScripts.CuchiCuchi.Chars.Alteradores.Mapas.Abstracts.MapaDeValoresDeAlteradoresBase>("m_mapaDeValoresUsando");
+				if (mapaTraverse != null && mapaTraverse.Value != null)
+				{
+					var modificadores = mapaTraverse.Value.ObtenerAlteradorModificadores();
+					foreach (var modif in modificadores)
+					{
+						if (modif.alteradorName == name)
+						{
+							for (int i = 0; i < modif.modificadores.Length && i < values.Length; i++)
+							{
+								modif.modificadores[i] = values[i];
+							}
+							break;
+						}
+					}
+				}
+			}
+		}
+
+		private static void ApplyAppearanceMod(UnityEngine.Transform root, string name, float value)
+		{
+			if (root == null) return;
+			var alt = root.GetComponentInChildren<Assets._ReusableScripts.CuchiCuchi.Chars.Alteradores.AlteradoresDeAparienciaFemenina>();
+			if (alt != null)
+			{
+				var traverse = HarmonyLib.Traverse.Create(alt);
+				var mapaTraverse = traverse.Field<Assets._ReusableScripts.CuchiCuchi.Chars.Alteradores.Mapas.Abstracts.MapaDeValoresDeAlteradoresBase>("m_mapaDeValoresUsando");
+				if (mapaTraverse != null && mapaTraverse.Value != null)
+				{
+					var modificadores = mapaTraverse.Value.ObtenerAlteradorModificadores();
+					foreach (var modif in modificadores)
+					{
+						if (modif.alteradorName == name)
+						{
+							if (modif.modificadores.Length > 0)
+								modif.modificadores[0] = value;
+							break;
+						}
+					}
+				}
+				alt.flagToForceUpdateValores = true;
+			}
+		}
+
+		static SluttifyHandler()
+		{
+			ValueTuple<string, SluttifyHandler.ModifierType, float[]>[] array = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>[885];
+			array[0] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Rasgo_abstraccion", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.13869111239910126f });
+			array[1] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Rasgo_preocupacion", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.026387343183159828f });
+			array[2] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Rasgo_dominancia", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.05937923118472099f });
+			array[3] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Rasgo_estabilidadEmocional", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.8001999855041504f });
+			array[4] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Rasgo_vivacidad", SluttifyHandler.ModifierType.SINGLE, new float[] { 7.0422329372377135e-06f });
+			array[5] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Rasgo_aperturaAlCambio", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.8001999855041504f });
+			array[6] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Rasgo_perfectionismo", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.3766298294067383f });
+			array[7] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Rasgo_privacidad", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.000579840037971735f });
+			array[8] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Rasgo_razonamiento", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.9998989105224609f });
+			array[9] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Rasgo_concienciaNormativa", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.1998109221458435f });
+			array[10] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Rasgo_confianzaEnUnoMismo", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.8001999855041504f });
+			array[11] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Rasgo_sensibilidad", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.9998897314071655f });
+			array[12] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Rasgo_atrevimientoSocial", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.9995629191398621f });
+			array[13] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Rasgo_tension", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.01009560190141201f });
+			array[14] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Rasgo_vigilancia", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.001762757427059114f });
+			array[15] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Rasgo_calidez", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.05296790227293968f });
+			array[16] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Rasgo_resilianza", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.0f });
+			array[17] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_none", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[18] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_erogenidad", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[19] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_bodyEndurance", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[20] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_vagTightness", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.029999999329447746f });
+			array[21] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_anusTightness", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.03999999910593033f });
+			array[22] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_verguenza", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.009999999776482582f });
+			array[23] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_curiosidad", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.009999999776482582f });
+			array[24] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_fijacion", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.009999999776482582f });
+			array[25] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_abstraccion", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.029999999329447746f });
+			array[26] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_responcibidad", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.029999999329447746f });
+			array[27] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_responcibidadPublica", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.03999999910593033f });
+			array[28] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_responcibidadPrivada", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[29] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_responcibidadNatural", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.029999999329447746f });
+			array[30] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_responcibidadNoNatural", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.0f });
+			array[31] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_verbosidad", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.029999999329447746f });
+			array[32] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_verbosidadPublica", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.009999999776482582f });
+			array[33] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_verbosidadPrivada", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[34] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_verbosidadNatural", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.009999999776482582f });
+			array[35] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_verbosidadNoNatural", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[36] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_muecas", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[37] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_expresividad", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.029999999329447746f });
+			array[38] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_gustoPorNormales", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[39] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_gustoPorTimidos", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.009999999776482582f });
+			array[40] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_gustoPorIntelectuales", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[41] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_gustoPorPatanes", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.029999999329447746f });
+			array[42] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_gustoPorConfiados", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.029999999329447746f });
+			array[43] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_gustoPorPervertidos", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[44] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_gustoPorAutistas", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[45] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_gustoPorDinero", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.029999999329447746f });
+			array[46] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_gustoPorHumildad", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[47] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_pudor", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.029999999329447746f });
+			array[48] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_humedadFacial", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.029999999329447746f });
+			array[49] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_humedadCorporal", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.029999999329447746f });
+			array[50] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_humedadVaginal", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[51] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_humedadAnal", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[52] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_humedadVelocidad", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[53] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_humedadPower", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[54] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_verbosidadPositiva", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[55] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_verbosidadNegativa", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.029999999329447746f });
+			array[56] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_sudorGrasoso", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.029999999329447746f });
+			array[57] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_mocosidad", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.009999999776482582f });
+			array[58] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_facilidadParaDesHielar", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.029999999329447746f });
+			array[59] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_gustoPorGordos", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[60] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_gustoPorViejos", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[61] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_gustoPorDelgados", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[62] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_gustoPorMusculosos", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[63] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_gustoPorJovenes", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[64] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_vagTightnessEndurance", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.009999999776482582f });
+			array[65] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_anusTightnessEndurance", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.029999999329447746f });
+			array[66] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_vagEndurance", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[67] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_anusEndurance", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.009999999776482582f });
+			array[68] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_estadoFisico", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[69] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_estadoFisicoEmociones", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.009999999776482582f });
+			array[70] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_rabiosa", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.009999999776482582f });
+			array[71] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_sensibilidadV2", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.009999999776482582f });
+			array[72] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_estandaresAltos", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[73] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_eyesResequedad", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.029999999329447746f });
+			array[74] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_patience", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.009999999776482582f });
+			array[75] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_ragePatience", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.029999999329447746f });
+			array[76] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_painPatience", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.03999999910593033f });
+			array[77] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_deceptionPatience", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[78] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_maxEmocionValueEndurance", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.009999999776482582f });
+			array[79] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_maxRageValueEndurance", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[80] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_maxPainValueEndurance", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[81] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_maxDeceptionValueEndurance", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[82] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_maxPlacerValueEndurance", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.009999999776482582f });
+			array[83] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_sumisionVerval", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[84] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_orgasmoDuracion", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.03999999910593033f });
+			array[85] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_orgasmoContraciones", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.029999999329447746f });
+			array[86] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_orgasmoReaccionDeAno", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[87] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_orgasmoReaccionDeVagina", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.009999999776482582f });
+			array[88] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_orgasmoReaccionDeHips", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[89] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_orgasmoReaccionDeGestoBoca", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.029999999329447746f });
+			array[90] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_orgasmoReaccionDeGestoOjos", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[91] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_orgasmoReaccionDeGestoRostro", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[92] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_orgasmoReaccionDeArousal", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.009999999776482582f });
+			array[93] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_reaccionDeArousal", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[94] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_orgasmoReaccionDeGestoHombros", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.029999999329447746f });
+			array[95] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_orgasmoReaccionDeGestoCabeza", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.009999999776482582f });
+			array[96] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_orgasmoAumentoTempDeArousal", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[97] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_orgasmoRecuperacionDeArousal", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[98] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_gustoPorModelaje", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.009999999776482582f });
+			array[99] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_gustoPorModelajeHerotico", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.03999999910593033f });
+			array[100] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_gustoPorTratoDeClientes", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.0f });
+			array[101] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_gustoPorTratoEspecialDeClientes", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.029999999329447746f });
+			array[102] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_gustoPorTratoExplicitoDeClientes", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[103] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_deseoGananciaPrimario", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.029999999329447746f });
+			array[104] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_deseoGananciaSegundario", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[105] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_deseoGananciaTerciario", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.009999999776482582f });
+			array[106] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_deseoGananciaPorEstimulosPositivos", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.029999999329447746f });
+			array[107] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_deseoGananciaPorEstimulosNegativos", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.029999999329447746f });
+			array[108] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_leGustaChupar", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[109] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_bocaTightness", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[110] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_bocaTightnessEndurance", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.029999999329447746f });
+			array[111] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_bocaEndurance", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[112] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_bodyHolesVirtualEndurance", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.029999999329447746f });
+			array[113] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_mimicas", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[114] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_aguanteAlDolorPorPenetracion", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.009999999776482582f });
+			array[115] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_chuparIntencidad", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[116] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_gaggingIntencidad", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.029999999329447746f });
+			array[117] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_leGustaHacerEjercicio", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[118] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_leGustaHacerEjercicioNoNatural", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[119] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_deseosResiliance", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.03999999910593033f });
+			array[120] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_gustoPorAltos", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[121] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_gustoPorBuenaPresencia", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[122] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_gustoPorMujeres", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[123] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_pobreza", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[124] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_gustoPorModelajeUnderwear", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.029999999329447746f });
+			array[125] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_maxFearValueEndurance", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.0f });
+			array[126] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_fearPatience", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.0f });
+			array[127] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_TraitHumano_inteligencia", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.0f });
+			array[128] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Anim_Direccion_Facial", SluttifyHandler.ModifierType.DOUBLE, new float[] { 0.7186542749404907f, 0.3844488859176636f });
+			array[129] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Anim_Direccion_Boca", SluttifyHandler.ModifierType.DOUBLE, new float[] { 0.5849862694740295f, 0.7627783417701721f });
+			array[130] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConsentPorGustos_musculos", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.9964785575866699f });
+			array[131] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConsentPorGustos_slender", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.9344898462295532f });
+			array[132] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConsentPorGustos_madurez", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.889644980430603f });
+			array[133] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConsentPorGustos_bodyFat", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.9006966948509216f });
+			array[134] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConsentPorGustos_juventud", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.7972776889801025f });
+			array[135] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConsentPorGustos_altura", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.5f });
+			array[136] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConsentPorGustos_lujos", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.5f });
+			array[137] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConsentPorGustos_paquete", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.5f });
+			array[138] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConsentCambiosPorSessiones_maxConsentPorSessiones", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.7947413921356201f });
+			array[139] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConsentCambiosPorSessiones_visualMod", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.8985416889190674f });
+			array[140] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConsentCambiosPorSessiones_tactilMod", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.9989613890647888f });
+			array[141] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConsentCambiosPorSessiones_coitalMod", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.9612774848937988f });
+			array[142] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DeseosIniciales_entrepierna", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.9990757703781128f });
+			array[143] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DeseosIniciales_labios", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.5819990634918213f });
+			array[144] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DeseosIniciales_senos", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.400417685508728f });
+			array[145] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DeseosIniciales_trasero", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.909481406211853f });
+			array[146] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DeseosGainsIniciales_entrepierna", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.9608560800552368f });
+			array[147] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DeseosGainsIniciales_labios", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.6912240386009216f });
+			array[148] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DeseosGainsIniciales_senos", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.7440944910049438f });
+			array[149] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DeseosGainsIniciales_trasero", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.39997631311416626f });
+			array[150] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DeseosSensibilidadesIniciales_visuales", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.9202690124511719f });
+			array[151] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DeseosSensibilidadesIniciales_verbales", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.6675761342048645f });
+			array[152] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DeseosSensibilidadesIniciales_tactiles", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.7579193115234375f });
+			array[153] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DeseosSensibilidadesIniciales_exposicion", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.9567573070526123f });
+			array[154] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DeseosSensibilidadesIniciales_coitales", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.6280478835105896f });
+			array[155] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DeseosMaxIniciales_entrepierna", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.9178572297096252f });
+			array[156] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DeseosMaxIniciales_labios", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.9178572297096252f });
+			array[157] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DeseosMaxIniciales_senos", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.9178572297096252f });
+			array[158] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DeseosMaxIniciales_trasero", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.9178572297096252f });
+			array[159] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_ParteEstimulada_pecho", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[160] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_ParteEstimulada_espalda", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.0f });
+			array[161] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_ParteEstimulada_abdomen", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[162] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_ParteEstimulada_cintura", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.0f });
+			array[163] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_ParteEstimulada_caderas", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.009999999776482582f });
+			array[164] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_ParteEstimulada_cabeza", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[165] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_ParteEstimulada_cuello", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.009999999776482582f });
+			array[166] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_ParteEstimulada_mandibula", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[167] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_ParteEstimulada_labios", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[168] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_ParteEstimulada_bocaInterno", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.03999999910593033f });
+			array[169] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_ParteEstimulada_nariz", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.029999999329447746f });
+			array[170] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_ParteEstimulada_mejillas", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.009999999776482582f });
+			array[171] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_ParteEstimulada_ojos", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.0f });
+			array[172] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_ParteEstimulada_globosOculares", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[173] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_ParteEstimulada_cejas", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[174] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_ParteEstimulada_cienes", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.009999999776482582f });
+			array[175] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_ParteEstimulada_frente", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[176] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_ParteEstimulada_hombros", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[177] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_ParteEstimulada_axilas", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.0f });
+			array[178] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_ParteEstimulada_brazos", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[179] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_ParteEstimulada_anteBrazos", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[180] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_ParteEstimulada_manos", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.0f });
+			array[181] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_ParteEstimulada_senos", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[182] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_ParteEstimulada_pezones", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[183] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_ParteEstimulada_coxis", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.029999999329447746f });
+			array[184] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_ParteEstimulada_vientre", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[185] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_ParteEstimulada_nalgas", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[186] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_ParteEstimulada_vientreBajo", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.009999999776482582f });
+			array[187] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_ParteEstimulada_labiosVaginales", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.0f });
+			array[188] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_ParteEstimulada_clitoris", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.009999999776482582f });
+			array[189] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_ParteEstimulada_perineo", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.05000000074505806f });
+			array[190] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_ParteEstimulada_ano", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.009999999776482582f });
+			array[191] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_ParteEstimulada_vag", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.009999999776482582f });
+			array[192] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_ParteEstimulada_hombligo", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.0f });
+			array[193] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_ParteEstimulada_piernas", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[194] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_ParteEstimulada_rodillas", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[195] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_ParteEstimulada_canillas", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.009999999776482582f });
+			array[196] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_ParteEstimulada_pies", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.009999999776482582f });
+			array[197] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_ParteEstimulada_lengua", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[198] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_ParteEstimulada_orejas", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[199] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_ParteEstimulada_pene", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.009999999776482582f });
+			array[200] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_ParteEstimulada_testiculos", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.03999999910593033f });
+			array[201] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_Visual_ParteEstimulada_pecho", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.009999999776482582f });
+			array[202] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_Visual_ParteEstimulada_espalda", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.009999999776482582f });
+			array[203] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_Visual_ParteEstimulada_abdomen", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.0f });
+			array[204] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_Visual_ParteEstimulada_cintura", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.009999999776482582f });
+			array[205] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_Visual_ParteEstimulada_caderas", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.0f });
+			array[206] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_Visual_ParteEstimulada_cabeza", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.009999999776482582f });
+			array[207] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_Visual_ParteEstimulada_cuello", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.009999999776482582f });
+			array[208] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_Visual_ParteEstimulada_mandibula", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.009999999776482582f });
+			array[209] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_Visual_ParteEstimulada_labios", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.009999999776482582f });
+			array[210] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_Visual_ParteEstimulada_bocaInterno", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[211] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_Visual_ParteEstimulada_nariz", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.009999999776482582f });
+			array[212] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_Visual_ParteEstimulada_mejillas", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.009999999776482582f });
+			array[213] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_Visual_ParteEstimulada_ojos", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.0f });
+			array[214] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_Visual_ParteEstimulada_globosOculares", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.009999999776482582f });
+			array[215] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_Visual_ParteEstimulada_cejas", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.0f });
+			array[216] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_Visual_ParteEstimulada_cienes", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[217] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_Visual_ParteEstimulada_frente", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.009999999776482582f });
+			array[218] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_Visual_ParteEstimulada_hombros", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.0f });
+			array[219] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_Visual_ParteEstimulada_axilas", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[220] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_Visual_ParteEstimulada_brazos", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.009999999776482582f });
+			array[221] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_Visual_ParteEstimulada_anteBrazos", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.0f });
+			array[222] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_Visual_ParteEstimulada_manos", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.0f });
+			array[223] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_Visual_ParteEstimulada_senos", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.029999999329447746f });
+			array[224] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_Visual_ParteEstimulada_pezones", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.05000000074505806f });
+			array[225] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_Visual_ParteEstimulada_coxis", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.03999999910593033f });
+			array[226] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_Visual_ParteEstimulada_vientre", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.03999999910593033f });
+			array[227] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_Visual_ParteEstimulada_nalgas", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.03999999910593033f });
+			array[228] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_Visual_ParteEstimulada_vientreBajo", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.03999999910593033f });
+			array[229] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_Visual_ParteEstimulada_labiosVaginales", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.0f });
+			array[230] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_Visual_ParteEstimulada_clitoris", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.029999999329447746f });
+			array[231] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_Visual_ParteEstimulada_perineo", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.05000000074505806f });
+			array[232] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_Visual_ParteEstimulada_ano", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.05000000074505806f });
+			array[233] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_Visual_ParteEstimulada_vag", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.05000000074505806f });
+			array[234] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_Visual_ParteEstimulada_hombligo", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[235] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_Visual_ParteEstimulada_piernas", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.029999999329447746f });
+			array[236] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_Visual_ParteEstimulada_rodillas", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.009999999776482582f });
+			array[237] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_Visual_ParteEstimulada_canillas", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.0f });
+			array[238] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_Visual_ParteEstimulada_pies", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[239] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_Visual_ParteEstimulada_lengua", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.009999999776482582f });
+			array[240] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_Visual_ParteEstimulada_orejas", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[241] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_Visual_ParteEstimulada_pene", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.03999999910593033f });
+			array[242] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_Visual_ParteEstimulada_testiculos", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.03999999910593033f });
+			array[243] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_ParteEstimulada_pecho", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.05000000074505806f });
+			array[244] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_ParteEstimulada_espalda", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.05000000074505806f });
+			array[245] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_ParteEstimulada_abdomen", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.05000000074505806f });
+			array[246] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_ParteEstimulada_cintura", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.03999999910593033f });
+			array[247] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_ParteEstimulada_caderas", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.009999999776482582f });
+			array[248] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_ParteEstimulada_cabeza", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[249] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_ParteEstimulada_cuello", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[250] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_ParteEstimulada_mandibula", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.05999999865889549f });
+			array[251] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_ParteEstimulada_labios", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[252] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_ParteEstimulada_bocaInterno", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.05000000074505806f });
+			array[253] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_ParteEstimulada_nariz", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.05000000074505806f });
+			array[254] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_ParteEstimulada_mejillas", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.05000000074505806f });
+			array[255] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_ParteEstimulada_ojos", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.05000000074505806f });
+			array[256] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_ParteEstimulada_globosOculares", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.05000000074505806f });
+			array[257] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_ParteEstimulada_cejas", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.009999999776482582f });
+			array[258] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_ParteEstimulada_cienes", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[259] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_ParteEstimulada_frente", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.009999999776482582f });
+			array[260] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_ParteEstimulada_hombros", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.05000000074505806f });
+			array[261] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_ParteEstimulada_axilas", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.05999999865889549f });
+			array[262] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_ParteEstimulada_brazos", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.03999999910593033f });
+			array[263] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_ParteEstimulada_anteBrazos", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.029999999329447746f });
+			array[264] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_ParteEstimulada_manos", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.009999999776482582f });
+			array[265] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_ParteEstimulada_senos", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.05000000074505806f });
+			array[266] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_ParteEstimulada_pezones", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.0f });
+			array[267] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_ParteEstimulada_coxis", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.05000000074505806f });
+			array[268] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_ParteEstimulada_vientre", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.05999999865889549f });
+			array[269] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_ParteEstimulada_nalgas", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.009999999776482582f });
+			array[270] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_ParteEstimulada_vientreBajo", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.03999999910593033f });
+			array[271] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_ParteEstimulada_labiosVaginales", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.05000000074505806f });
+			array[272] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_ParteEstimulada_clitoris", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.03999999910593033f });
+			array[273] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_ParteEstimulada_perineo", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.029999999329447746f });
+			array[274] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_ParteEstimulada_ano", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.05999999865889549f });
+			array[275] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_ParteEstimulada_vag", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.05999999865889549f });
+			array[276] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_ParteEstimulada_hombligo", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.029999999329447746f });
+			array[277] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_ParteEstimulada_piernas", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.05000000074505806f });
+			array[278] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_ParteEstimulada_rodillas", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.009999999776482582f });
+			array[279] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_ParteEstimulada_canillas", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.009999999776482582f });
+			array[280] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_ParteEstimulada_pies", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.029999999329447746f });
+			array[281] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_ParteEstimulada_lengua", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[282] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_ParteEstimulada_orejas", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.029999999329447746f });
+			array[283] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_ParteEstimulada_pene", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.03999999910593033f });
+			array[284] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_ParteEstimulada_testiculos", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.05000000074505806f });
+			array[285] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_Visual_ParteEstimulada_pecho", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.0f });
+			array[286] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_Visual_ParteEstimulada_espalda", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.029999999329447746f });
+			array[287] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_Visual_ParteEstimulada_abdomen", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.03999999910593033f });
+			array[288] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_Visual_ParteEstimulada_cintura", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.009999999776482582f });
+			array[289] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_Visual_ParteEstimulada_caderas", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.009999999776482582f });
+			array[290] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_Visual_ParteEstimulada_cabeza", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[291] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_Visual_ParteEstimulada_cuello", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[292] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_Visual_ParteEstimulada_mandibula", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.029999999329447746f });
+			array[293] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_Visual_ParteEstimulada_labios", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.009999999776482582f });
+			array[294] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_Visual_ParteEstimulada_bocaInterno", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.05000000074505806f });
+			array[295] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_Visual_ParteEstimulada_nariz", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.009999999776482582f });
+			array[296] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_Visual_ParteEstimulada_mejillas", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.03999999910593033f });
+			array[297] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_Visual_ParteEstimulada_ojos", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.03999999910593033f });
+			array[298] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_Visual_ParteEstimulada_globosOculares", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[299] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_Visual_ParteEstimulada_cejas", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.009999999776482582f });
+			array[300] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_Visual_ParteEstimulada_cienes", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.029999999329447746f });
+			array[301] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_Visual_ParteEstimulada_frente", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.009999999776482582f });
+			array[302] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_Visual_ParteEstimulada_hombros", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.009999999776482582f });
+			array[303] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_Visual_ParteEstimulada_axilas", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.009999999776482582f });
+			array[304] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_Visual_ParteEstimulada_brazos", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.009999999776482582f });
+			array[305] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_Visual_ParteEstimulada_anteBrazos", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.0f });
+			array[306] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_Visual_ParteEstimulada_manos", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.05000000074505806f });
+			array[307] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_Visual_ParteEstimulada_senos", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.009999999776482582f });
+			array[308] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_Visual_ParteEstimulada_pezones", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.029999999329447746f });
+			array[309] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_Visual_ParteEstimulada_coxis", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.029999999329447746f });
+			array[310] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_Visual_ParteEstimulada_vientre", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[311] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_Visual_ParteEstimulada_nalgas", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.05000000074505806f });
+			array[312] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_Visual_ParteEstimulada_vientreBajo", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.05999999865889549f });
+			array[313] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_Visual_ParteEstimulada_labiosVaginales", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.03999999910593033f });
+			array[314] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_Visual_ParteEstimulada_clitoris", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.03999999910593033f });
+			array[315] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_Visual_ParteEstimulada_perineo", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.03999999910593033f });
+			array[316] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_Visual_ParteEstimulada_ano", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.05000000074505806f });
+			array[317] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_Visual_ParteEstimulada_vag", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.03999999910593033f });
+			array[318] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_Visual_ParteEstimulada_hombligo", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.05000000074505806f });
+			array[319] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_Visual_ParteEstimulada_piernas", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.029999999329447746f });
+			array[320] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_Visual_ParteEstimulada_rodillas", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.009999999776482582f });
+			array[321] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_Visual_ParteEstimulada_canillas", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[322] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_Visual_ParteEstimulada_pies", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.009999999776482582f });
+			array[323] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_Visual_ParteEstimulada_lengua", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[324] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_Visual_ParteEstimulada_orejas", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.05999999865889549f });
+			array[325] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_Visual_ParteEstimulada_pene", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.03999999910593033f });
+			array[326] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_Visual_ParteEstimulada_testiculos", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.05000000074505806f });
+			array[327] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Sensibilidad_ParteEstimulada_pecho", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.029999999329447746f });
+			array[328] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Sensibilidad_ParteEstimulada_espalda", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[329] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Sensibilidad_ParteEstimulada_abdomen", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.029999999329447746f });
+			array[330] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Sensibilidad_ParteEstimulada_cintura", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.0f });
+			array[331] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Sensibilidad_ParteEstimulada_caderas", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[332] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Sensibilidad_ParteEstimulada_cabeza", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.029999999329447746f });
+			array[333] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Sensibilidad_ParteEstimulada_cuello", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.03999999910593033f });
+			array[334] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Sensibilidad_ParteEstimulada_mandibula", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[335] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Sensibilidad_ParteEstimulada_labios", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.03999999910593033f });
+			array[336] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Sensibilidad_ParteEstimulada_bocaInterno", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.03999999910593033f });
+			array[337] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Sensibilidad_ParteEstimulada_nariz", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.029999999329447746f });
+			array[338] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Sensibilidad_ParteEstimulada_mejillas", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.05000000074505806f });
+			array[339] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Sensibilidad_ParteEstimulada_ojos", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.03999999910593033f });
+			array[340] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Sensibilidad_ParteEstimulada_globosOculares", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.03999999910593033f });
+			array[341] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Sensibilidad_ParteEstimulada_cejas", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.029999999329447746f });
+			array[342] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Sensibilidad_ParteEstimulada_cienes", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.029999999329447746f });
+			array[343] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Sensibilidad_ParteEstimulada_frente", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[344] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Sensibilidad_ParteEstimulada_hombros", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[345] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Sensibilidad_ParteEstimulada_axilas", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[346] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Sensibilidad_ParteEstimulada_brazos", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[347] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Sensibilidad_ParteEstimulada_anteBrazos", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.009999999776482582f });
+			array[348] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Sensibilidad_ParteEstimulada_manos", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.009999999776482582f });
+			array[349] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Sensibilidad_ParteEstimulada_senos", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.03999999910593033f });
+			array[350] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Sensibilidad_ParteEstimulada_pezones", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.03999999910593033f });
+			array[351] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Sensibilidad_ParteEstimulada_coxis", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.029999999329447746f });
+			array[352] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Sensibilidad_ParteEstimulada_vientre", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.029999999329447746f });
+			array[353] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Sensibilidad_ParteEstimulada_nalgas", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[354] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Sensibilidad_ParteEstimulada_vientreBajo", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.029999999329447746f });
+			array[355] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Sensibilidad_ParteEstimulada_labiosVaginales", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.05000000074505806f });
+			array[356] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Sensibilidad_ParteEstimulada_clitoris", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.05999999865889549f });
+			array[357] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Sensibilidad_ParteEstimulada_perineo", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[358] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Sensibilidad_ParteEstimulada_ano", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.05999999865889549f });
+			array[359] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Sensibilidad_ParteEstimulada_vag", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.05000000074505806f });
+			array[360] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Sensibilidad_ParteEstimulada_hombligo", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[361] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Sensibilidad_ParteEstimulada_piernas", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[362] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Sensibilidad_ParteEstimulada_rodillas", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.0f });
+			array[363] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Sensibilidad_ParteEstimulada_canillas", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.009999999776482582f });
+			array[364] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Sensibilidad_ParteEstimulada_pies", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[365] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Sensibilidad_ParteEstimulada_lengua", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.05000000074505806f });
+			array[366] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Sensibilidad_ParteEstimulada_orejas", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.029999999329447746f });
+			array[367] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Sensibilidad_ParteEstimulada_pene", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.03999999910593033f });
+			array[368] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Sensibilidad_ParteEstimulada_testiculos", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.009999999776482582f });
+			array[369] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_ParteEstimulante_None", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[370] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_ParteEstimulante_noEspecificada", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.009999999776482582f });
+			array[371] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_ParteEstimulante_piernas", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[372] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_ParteEstimulante_manos", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.009999999776482582f });
+			array[373] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_ParteEstimulante_pene", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[374] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_ParteEstimulante_propSexToy", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.03999999910593033f });
+			array[375] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_ParteEstimulante_torzo", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[376] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_ParteEstimulante_lengua", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.0f });
+			array[377] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_ParteEstimulante_boca", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.009999999776482582f });
+			array[378] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_ParteEstimulante_ojos", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.009999999776482582f });
+			array[379] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_ParteEstimulante_semen", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.0f });
+			array[380] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Privacidad_ParteEstimulante_dedo", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.029999999329447746f });
+			array[381] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_ParteEstimulante_None", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.05999999865889549f });
+			array[382] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_ParteEstimulante_noEspecificada", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.05000000074505806f });
+			array[383] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_ParteEstimulante_piernas", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.05999999865889549f });
+			array[384] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_ParteEstimulante_manos", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.05000000074505806f });
+			array[385] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_ParteEstimulante_pene", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.05999999865889549f });
+			array[386] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_ParteEstimulante_propSexToy", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.05000000074505806f });
+			array[387] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_ParteEstimulante_torzo", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.05000000074505806f });
+			array[388] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_ParteEstimulante_lengua", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.009999999776482582f });
+			array[389] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_ParteEstimulante_boca", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.03999999910593033f });
+			array[390] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_ParteEstimulante_ojos", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.029999999329447746f });
+			array[391] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_ParteEstimulante_semen", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.05000000074505806f });
+			array[392] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Erogenidad_ParteEstimulante_dedo", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.0f });
+			array[393] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Sensibilidad_ParteEstimulante_None", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.009999999776482582f });
+			array[394] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Sensibilidad_ParteEstimulante_noEspecificada", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.029999999329447746f });
+			array[395] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Sensibilidad_ParteEstimulante_piernas", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.05999999865889549f });
+			array[396] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Sensibilidad_ParteEstimulante_manos", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.05000000074505806f });
+			array[397] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Sensibilidad_ParteEstimulante_pene", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.03999999910593033f });
+			array[398] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Sensibilidad_ParteEstimulante_propSexToy", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[399] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Sensibilidad_ParteEstimulante_torzo", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.03999999910593033f });
+			array[400] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Sensibilidad_ParteEstimulante_lengua", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.009999999776482582f });
+			array[401] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Sensibilidad_ParteEstimulante_boca", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[402] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Sensibilidad_ParteEstimulante_ojos", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.0f });
+			array[403] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Sensibilidad_ParteEstimulante_semen", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.0f });
+			array[404] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Grupo_Sensibilidad_ParteEstimulante_dedo", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.019999999552965164f });
+			array[405] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_MaxEmocion_placer_f", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.534540593624115f });
+			array[406] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_MaxEmocion_placer_e", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.7291188836097717f });
+			array[407] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_MaxEmocion_placer_d", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.566240131855011f });
+			array[408] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_MaxEmocion_placer_c", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.8577596545219421f });
+			array[409] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_MaxEmocion_placer_b", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.8284443616867065f });
+			array[410] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_MaxEmocion_placer_a", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.9111053943634033f });
+			array[411] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_MaxEmocion_placer_aPlus", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.42811453342437744f });
+			array[412] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_MaxEmocion_ModAlMaxValue_placer_arousalf", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.553131639957428f });
+			array[413] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_MaxEmocion_ModAlMaxValue_placer_arousale", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.43380820751190186f });
+			array[414] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_MaxEmocion_ModAlMaxValue_placer_arousald", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.8427541851997375f });
+			array[415] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_MaxEmocion_ModAlMaxValue_placer_arousalc", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.8272141814231873f });
+			array[416] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_MaxEmocion_ModAlMaxValue_placer_arousalb", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.953725278377533f });
+			array[417] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_MaxEmocion_ModAlMaxValue_placer_arousala", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.4406599700450897f });
+			array[418] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_MaxEmocion_ModAlMaxValue_placer_arousalaPlus", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.5287221670150757f });
+			array[419] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_PlacerPorCaricias_IntervaloDeGeneracion", SluttifyHandler.ModifierType.DOUBLE, new float[] { 0.02142857387661934f, 0.0071428571827709675f });
+			array[420] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_PlacerPorCaricias_EstimulacionGenerada", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.2962518632411957f });
+			array[421] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_PlacerPorCaricias_SpotBonuses", SluttifyHandler.ModifierType.TRIPLE, new float[] { 0.2144935578107834f, 0.5603184700012207f, 0.5051701664924622f });
+			array[422] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_PlacerPorPenetracion_IntervaloDeGeneracion", SluttifyHandler.ModifierType.DOUBLE, new float[] { 0.02142857387661934f, 0.0071428571827709675f });
+			array[423] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_PlacerPorPenetracion_EstimulacionGenerada", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.2718622386455536f });
+			array[424] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_PlacerPorPenetracion_SpotBonuses", SluttifyHandler.ModifierType.TRIPLE, new float[] { 0.6584510207176208f, 0.3535671532154083f, 0.5964285731315613f });
+			array[425] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_PlacerPorPenetracionApertura_IntervaloDeGeneracion", SluttifyHandler.ModifierType.DOUBLE, new float[] { 0.02142857387661934f, 0.0071428571827709675f });
+			array[426] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_PlacerPorPenetracionApertura_EstimulacionGenerada", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.3535693883895874f });
+			array[427] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_PlacerPorPenetracionApertura_SpotBonuses", SluttifyHandler.ModifierType.TRIPLE, new float[] { 0.2827092111110687f, 0.2544423043727875f, 0.3014928996562958f });
+			array[428] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_PlacerPorPenetracionMovimiento_IntervaloDeGeneracion", SluttifyHandler.ModifierType.DOUBLE, new float[] { 0.02142857387661934f, 0.0071428571827709675f });
+			array[429] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_PlacerPorPenetracionMovimiento_EstimulacionGenerada", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.3536560833454132f });
+			array[430] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_PlacerPorPenetracionMovimiento_SpotBonuses", SluttifyHandler.ModifierType.TRIPLE, new float[] { 0.8515793085098267f, 0.3168475031852722f, 0.32222893834114075f });
+			array[431] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_PlacerPorPenetracionProfundidad_Facial_IntervaloDeGeneracion", SluttifyHandler.ModifierType.DOUBLE, new float[] { 0.02142857387661934f, 0.0071428571827709675f });
+			array[432] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_PlacerPorPenetracionProfundidad_Facial_EstimulacionGenerada", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.2261146605014801f });
+			array[433] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_PlacerPorPenetracionProfundidad_Facial_SpotBonuses", SluttifyHandler.ModifierType.TRIPLE, new float[] { 0.5765789151191711f, 0.25001877546310425f, 0.5035786628723145f });
+			array[434] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_PlacerPorPenetracionProfundidad_Vaginal_IntervaloDeGeneracion", SluttifyHandler.ModifierType.DOUBLE, new float[] { 0.02142857387661934f, 0.0071428571827709675f });
+			array[435] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_PlacerPorPenetracionProfundidad_Vaginal_EstimulacionGenerada", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.3456874191761017f });
+			array[436] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_PlacerPorPenetracionProfundidad_Vaginal_SpotBonuses", SluttifyHandler.ModifierType.TRIPLE, new float[] { 0.35552501678466797f, 0.21609236299991608f, 0.9938783049583435f });
+			array[437] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_PlacerPorPenetracionProfundidad_Anal_IntervaloDeGeneracion", SluttifyHandler.ModifierType.DOUBLE, new float[] { 0.02142857387661934f, 0.0071428571827709675f });
+			array[438] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_PlacerPorPenetracionProfundidad_Anal_EstimulacionGenerada", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.2985544204711914f });
+			array[439] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_PlacerPorPenetracionProfundidad_Anal_SpotBonuses", SluttifyHandler.ModifierType.TRIPLE, new float[] { 0.4158121347427368f, 0.37758785486221313f, 0.29756173491477966f });
+			array[440] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_PlacerPorPenetracionAnchura_Facial_IntervaloDeGeneracion", SluttifyHandler.ModifierType.DOUBLE, new float[] { 0.02142857387661934f, 0.0071428571827709675f });
+			array[441] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_PlacerPorPenetracionAnchura_Facial_EstimulacionGenerada", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.7070701122283936f });
+			array[442] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_PlacerPorPenetracionAnchura_Facial_SpotBonuses", SluttifyHandler.ModifierType.TRIPLE, new float[] { 0.4458894431591034f, 0.016116391867399216f, 0.29951030015945435f });
+			array[443] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_PlacerPorPenetracionAnchura_Vaginal_IntervaloDeGeneracion", SluttifyHandler.ModifierType.DOUBLE, new float[] { 0.02142857387661934f, 0.0071428571827709675f });
+			array[444] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_PlacerPorPenetracionAnchura_Vaginal_EstimulacionGenerada", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.4832219183444977f });
+			array[445] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_PlacerPorPenetracionAnchura_Vaginal_SpotBonuses", SluttifyHandler.ModifierType.TRIPLE, new float[] { 0.14384454488754272f, 0.4130764305591583f, 0.008932779543101788f });
+			array[446] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_PlacerPorPenetracionAnchura_Anal_IntervaloDeGeneracion", SluttifyHandler.ModifierType.DOUBLE, new float[] { 0.02142857387661934f, 0.0071428571827709675f });
+			array[447] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_PlacerPorPenetracionAnchura_Anal_EstimulacionGenerada", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.3817369341850281f });
+			array[448] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_PlacerPorPenetracionAnchura_Anal_SpotBonuses", SluttifyHandler.ModifierType.TRIPLE, new float[] { 0.6995965838432312f, 0.3713272213935852f, 0.7178514003753662f });
+			array[449] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_PlacerPorMirar_IntervaloDeGeneracion", SluttifyHandler.ModifierType.DOUBLE, new float[] { 0.16359372437000275f, 0.7814075946807861f });
+			array[450] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_PlacerPorMirar_EstimulacionGenerada", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.5426434278488159f });
+			array[451] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_PlacerPorMirar_SpotBonuses", SluttifyHandler.ModifierType.TRIPLE, new float[] { 0.7286303639411926f, 0.9240562319755554f, 0.7513009905815125f });
+			array[452] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_PlacerPorSerMirado_IntervaloDeGeneracion", SluttifyHandler.ModifierType.DOUBLE, new float[] { 0.4191197454929352f, 0.6553188562393188f });
+			array[453] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_PlacerPorSerMirado_EstimulacionGenerada", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.7452632188796997f });
+			array[454] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_PlacerPorSerMirado_SpotBonuses", SluttifyHandler.ModifierType.TRIPLE, new float[] { 0.5691227912902832f, 0.28536882996559143f, 0.16909494996070862f });
+			array[455] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_RagePorCaricias_IntervaloDeGeneracion", SluttifyHandler.ModifierType.DOUBLE, new float[] { 0.699999988079071f, 0.2041751891374588f });
+			array[456] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_RagePorCaricias_EstimulacionGenerada", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.30800339579582214f });
+			array[457] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_RagePorCaricias_SpotBonuses", SluttifyHandler.ModifierType.TRIPLE, new float[] { 0.30000001192092896f, 0.30000001192092896f, 0.08433501422405243f });
+			array[458] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_RagePorGolpes_IntervaloDeGeneracion", SluttifyHandler.ModifierType.DOUBLE, new float[] { 0.6872473955154419f, 0.30457937717437744f });
+			array[459] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_RagePorGolpes_EstimulacionGenerada", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.10480787605047226f });
+			array[460] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_RagePorGolpes_SpotBonuses", SluttifyHandler.ModifierType.TRIPLE, new float[] { 0.33419835567474365f, 0.300006240606308f, 0.15158267319202423f });
+			array[461] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_RagePorPenetracion_IntervaloDeGeneracion", SluttifyHandler.ModifierType.DOUBLE, new float[] { 0.686789870262146f, 0.22850002348423004f });
+			array[462] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_RagePorPenetracion_EstimulacionGenerada", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.30000001192092896f });
+			array[463] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_RagePorPenetracion_SpotBonuses", SluttifyHandler.ModifierType.TRIPLE, new float[] { 0.30000001192092896f, 0.023599913343787193f, 0.0090116485953331f });
+			array[464] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_RagePorMirar_IntervaloDeGeneracion", SluttifyHandler.ModifierType.DOUBLE, new float[] { 0.699999988079071f, 0.10188645124435425f });
+			array[465] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_RagePorMirar_EstimulacionGenerada", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.429485023021698f });
+			array[466] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_RagePorMirar_SpotBonuses", SluttifyHandler.ModifierType.TRIPLE, new float[] { 0.30000001192092896f, 0.025128932669758797f, 0.011047309264540672f });
+			array[467] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_RagePorSerMirado_IntervaloDeGeneracion", SluttifyHandler.ModifierType.DOUBLE, new float[] { 0.699999988079071f, 0.05869777500629425f });
+			array[468] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_RagePorSerMirado_EstimulacionGenerada", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.32771769165992737f });
+			array[469] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_RagePorSerMirado_SpotBonuses", SluttifyHandler.ModifierType.TRIPLE, new float[] { 0.09466127306222916f, 0.6000000238418579f, 0.14382833242416382f });
+			array[470] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_RagePorDesvestidura_IntervaloDeGeneracion", SluttifyHandler.ModifierType.DOUBLE, new float[] { 0.7483909726142883f, 0.30000001192092896f });
+			array[471] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_RagePorDesvestidura_EstimulacionGenerada", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.30000001192092896f });
+			array[472] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_RagePorDesvestidura_SpotBonuses", SluttifyHandler.ModifierType.TRIPLE, new float[] { 0.1511678546667099f, 0.0005808381829410791f, 0.0004393354756757617f });
+			array[473] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_RagePorPeticionDesvestidura_IntervaloDeGeneracion", SluttifyHandler.ModifierType.DOUBLE, new float[] { 0.699999988079071f, 0.010498556308448315f });
+			array[474] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_RagePorPeticionDesvestidura_EstimulacionGenerada", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.007891909219324589f });
+			array[475] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_RagePorPeticionDesvestidura_SpotBonuses", SluttifyHandler.ModifierType.TRIPLE, new float[] { 0.3255034387111664f, 0.3249804675579071f, 0.30000001192092896f });
+			array[476] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_RagePorEjecutarPose_IntervaloDeGeneracion", SluttifyHandler.ModifierType.DOUBLE, new float[] { 0.6999385952949524f, 0.46678057312965393f });
+			array[477] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_RagePorEjecutarPose_EstimulacionGenerada", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.5955023169517517f });
+			array[478] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_RagePorEjecutarPose_SpotBonuses", SluttifyHandler.ModifierType.TRIPLE, new float[] { 0.017404770478606224f, 0.30000001192092896f, 0.2803989350795746f });
+			array[479] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_RagePorPeticionEjecutarPose_IntervaloDeGeneracion", SluttifyHandler.ModifierType.DOUBLE, new float[] { 0.9432743191719055f, 0.3000141978263855f });
+			array[480] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_RagePorPeticionEjecutarPose_EstimulacionGenerada", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.27188578248023987f });
+			array[481] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_RagePorPeticionEjecutarPose_SpotBonuses", SluttifyHandler.ModifierType.TRIPLE, new float[] { 0.052120015025138855f, 0.03965938836336136f, 0.3042697310447693f });
+			array[482] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_DolorPorCaricias_IntervaloDeGeneracion", SluttifyHandler.ModifierType.DOUBLE, new float[] { 0.699999988079071f, 0.011832481250166893f });
+			array[483] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_DolorPorCaricias_EstimulacionGenerada", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.2959359884262085f });
+			array[484] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_DolorPorCaricias_SpotBonuses", SluttifyHandler.ModifierType.TRIPLE, new float[] { 0.30000001192092896f, 0.12942668795585632f, 0.30000001192092896f });
+			array[485] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_DolorPorGolpes_IntervaloDeGeneracion", SluttifyHandler.ModifierType.DOUBLE, new float[] { 0.699999988079071f, 0.003985064569860697f });
+			array[486] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_DolorPorGolpes_EstimulacionGenerada", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.30000001192092896f });
+			array[487] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_DolorPorGolpes_SpotBonuses", SluttifyHandler.ModifierType.TRIPLE, new float[] { 0.00467915553599596f, 0.30000001192092896f, 0.24423767626285553f });
+			array[488] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_DolorPorPenetracion_IntervaloDeGeneracion", SluttifyHandler.ModifierType.DOUBLE, new float[] { 0.699999988079071f, 0.036413196474313736f });
+			array[489] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_DolorPorPenetracion_EstimulacionGenerada", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.2425527125597f });
+			array[490] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_DolorPorPenetracion_SpotBonuses", SluttifyHandler.ModifierType.TRIPLE, new float[] { 0.02353503555059433f, 0.30000001192092896f, 0.048050977289676666f });
+			array[491] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_DolorPorPenetracionApertura_IntervaloDeGeneracion", SluttifyHandler.ModifierType.DOUBLE, new float[] { 0.9594022631645203f, 0.30000001192092896f });
+			array[492] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_DolorPorPenetracionApertura_EstimulacionGenerada", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.0011183276074007154f });
+			array[493] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_DolorPorPenetracionApertura_SpotBonuses", SluttifyHandler.ModifierType.TRIPLE, new float[] { 0.30000001192092896f, 0.13879123330116272f, 0.10038778930902481f });
+			array[494] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_DolorPorPenetracionMovimiento_IntervaloDeGeneracion", SluttifyHandler.ModifierType.DOUBLE, new float[] { 0.699999988079071f, 0.04656551033258438f });
+			array[495] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_DolorPorPenetracionMovimiento_EstimulacionGenerada", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.027284227311611176f });
+			array[496] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_DolorPorPenetracionMovimiento_SpotBonuses", SluttifyHandler.ModifierType.TRIPLE, new float[] { 0.008101544342935085f, 0.015632379800081253f, 1.624747483219835e-06f });
+			array[497] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_DolorPorPenetracionProfundidad_Facial_IntervaloDeGeneracion", SluttifyHandler.ModifierType.DOUBLE, new float[] { 0.699999988079071f, 0.16314011812210083f });
+			array[498] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_DolorPorPenetracionProfundidad_Facial_EstimulacionGenerada", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.30000001192092896f });
+			array[499] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_DolorPorPenetracionProfundidad_Facial_SpotBonuses", SluttifyHandler.ModifierType.TRIPLE, new float[] { 6.599546850338811e-06f, 0.0017760653281584382f, 0.03563917428255081f });
+			array[500] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_DolorPorPenetracionProfundidad_Vaginal_IntervaloDeGeneracion", SluttifyHandler.ModifierType.DOUBLE, new float[] { 0.699999988079071f, 0.23281551897525787f });
+			array[501] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_DolorPorPenetracionProfundidad_Vaginal_EstimulacionGenerada", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.3299471139907837f });
+			array[502] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_DolorPorPenetracionProfundidad_Vaginal_SpotBonuses", SluttifyHandler.ModifierType.TRIPLE, new float[] { 0.30000001192092896f, 0.30000001192092896f, 0.30000001192092896f });
+			array[503] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_DolorPorPenetracionProfundidad_Anal_IntervaloDeGeneracion", SluttifyHandler.ModifierType.DOUBLE, new float[] { 0.9677829146385193f, 0.30000001192092896f });
+			array[504] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_DolorPorPenetracionProfundidad_Anal_EstimulacionGenerada", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.02801424078643322f });
+			array[505] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_DolorPorPenetracionProfundidad_Anal_SpotBonuses", SluttifyHandler.ModifierType.TRIPLE, new float[] { 0.08853591978549957f, 0.30000001192092896f, 0.013352110050618649f });
+			array[506] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_DolorPorPenetracionAnchura_Facial_IntervaloDeGeneracion", SluttifyHandler.ModifierType.DOUBLE, new float[] { 0.8567562103271484f, 0.14414703845977783f });
+			array[507] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_DolorPorPenetracionAnchura_Facial_EstimulacionGenerada", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.006720354780554771f });
+			array[508] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_DolorPorPenetracionAnchura_Facial_SpotBonuses", SluttifyHandler.ModifierType.TRIPLE, new float[] { 0.07457242161035538f, 0.004098808858543634f, 0.176754891872406f });
+			array[509] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_DolorPorPenetracionAnchura_Vaginal_IntervaloDeGeneracion", SluttifyHandler.ModifierType.DOUBLE, new float[] { 0.998879611492157f, 0.30000001192092896f });
+			array[510] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_DolorPorPenetracionAnchura_Vaginal_EstimulacionGenerada", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.30000001192092896f });
+			array[511] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_DolorPorPenetracionAnchura_Vaginal_SpotBonuses", SluttifyHandler.ModifierType.TRIPLE, new float[] { 0.30000001192092896f, 0.30000001192092896f, 0.17653678357601166f });
+			array[512] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_DolorPorPenetracionAnchura_Anal_IntervaloDeGeneracion", SluttifyHandler.ModifierType.DOUBLE, new float[] { 0.9990779757499695f, 0.0003541615733411163f });
+			array[513] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_DolorPorPenetracionAnchura_Anal_EstimulacionGenerada", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.0694204643368721f });
+			array[514] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_DatosDeUmbral_DolorPorPenetracionAnchura_Anal_SpotBonuses", SluttifyHandler.ModifierType.TRIPLE, new float[] { 0.003937683068215847f, 0.11564907431602478f, 0.010189514607191086f });
+			array[515] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_EstGenPorGruEstimulado_Erogeno_f", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.9717424511909485f });
+			array[516] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_EstGenPorGruEstimulado_Erogeno_e", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.7358684539794922f });
+			array[517] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_EstGenPorGruEstimulado_Erogeno_d", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.6874016523361206f });
+			array[518] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_EstGenPorGruEstimulado_Erogeno_c", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.41828110814094543f });
+			array[519] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_EstGenPorGruEstimulado_Erogeno_b", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.9465278387069702f });
+			array[520] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_EstGenPorGruEstimulado_Erogeno_a", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.699961245059967f });
+			array[521] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_EstGenPorGruEstimulado_Erogeno_aPlus", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.589361846446991f });
+			array[522] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_EstGenPorGruEstimulado_ErogenoVisual_f", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.9877749085426331f });
+			array[523] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_EstGenPorGruEstimulado_ErogenoVisual_e", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.6318526864051819f });
+			array[524] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_EstGenPorGruEstimulado_ErogenoVisual_d", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.6971350908279419f });
+			array[525] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_EstGenPorGruEstimulado_ErogenoVisual_c", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.794511079788208f });
+			array[526] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_EstGenPorGruEstimulado_ErogenoVisual_b", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.6656275391578674f });
+			array[527] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_EstGenPorGruEstimulado_ErogenoVisual_a", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.5794069766998291f });
+			array[528] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_EstGenPorGruEstimulado_ErogenoVisual_aPlus", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.8731178045272827f });
+			array[529] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_EstGenPorGruEstimulado_Privacidad_f", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.7820602655410767f });
+			array[530] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_EstGenPorGruEstimulado_Privacidad_e", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.9428640007972717f });
+			array[531] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_EstGenPorGruEstimulado_Privacidad_d", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.9999989867210388f });
+			array[532] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_EstGenPorGruEstimulado_Privacidad_c", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.699999988079071f });
+			array[533] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_EstGenPorGruEstimulado_Privacidad_b", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.839769721031189f });
+			array[534] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_EstGenPorGruEstimulado_Privacidad_a", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.71067214012146f });
+			array[535] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_EstGenPorGruEstimulado_Privacidad_aPlus", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.699999988079071f });
+			array[536] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_EstGenPorGruEstimulado_Sensibilidad_f", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.2875266671180725f });
+			array[537] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_EstGenPorGruEstimulado_Sensibilidad_e", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.24724695086479187f });
+			array[538] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_EstGenPorGruEstimulado_Sensibilidad_d", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.6100000143051147f });
+			array[539] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_EstGenPorGruEstimulado_Sensibilidad_c", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.38702285289764404f });
+			array[540] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_EstGenPorGruEstimulado_Sensibilidad_b", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.33720073103904724f });
+			array[541] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_EstGenPorGruEstimulado_Sensibilidad_a", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.1465478539466858f });
+			array[542] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_EstGenPorGruEstimulado_Sensibilidad_aPlus", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.03590947762131691f });
+			array[543] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_EstGenPorGruEstimulado_PrivacidadVisual_f", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.9818602204322815f });
+			array[544] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_EstGenPorGruEstimulado_PrivacidadVisual_e", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.699999988079071f });
+			array[545] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_EstGenPorGruEstimulado_PrivacidadVisual_d", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.838035523891449f });
+			array[546] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_EstGenPorGruEstimulado_PrivacidadVisual_c", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.6740460395812988f });
+			array[547] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_EstGenPorGruEstimulado_PrivacidadVisual_b", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.9883497357368469f });
+			array[548] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_EstGenPorGruEstimulado_PrivacidadVisual_a", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.6890924572944641f });
+			array[549] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_EstGenPorGruEstimulado_PrivacidadVisual_aPlus", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.6992744207382202f });
+			array[550] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_EstGenPorGruEstimulantes_Erogeno_f", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.6349270939826965f });
+			array[551] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_EstGenPorGruEstimulantes_Erogeno_e", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.4148169457912445f });
+			array[552] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_EstGenPorGruEstimulantes_Erogeno_d", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.3428862690925598f });
+			array[553] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_EstGenPorGruEstimulantes_Erogeno_c", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.6893708109855652f });
+			array[554] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_EstGenPorGruEstimulantes_Erogeno_b", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.8551055788993835f });
+			array[555] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_EstGenPorGruEstimulantes_Erogeno_a", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.381093829870224f });
+			array[556] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_EstGenPorGruEstimulantes_Erogeno_aPlus", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.6566334366798401f });
+			array[557] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_EstGenPorGruEstimulantes_Privacidad_f", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.5916877388954163f });
+			array[558] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_EstGenPorGruEstimulantes_Privacidad_e", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.699999988079071f });
+			array[559] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_EstGenPorGruEstimulantes_Privacidad_d", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.9150686860084534f });
+			array[560] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_EstGenPorGruEstimulantes_Privacidad_c", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.6764007806777954f });
+			array[561] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_EstGenPorGruEstimulantes_Privacidad_b", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.698941171169281f });
+			array[562] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_EstGenPorGruEstimulantes_Privacidad_a", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.9988882541656494f });
+			array[563] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_EstGenPorGruEstimulantes_Privacidad_aPlus", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.5886045694351196f });
+			array[564] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_EstGenPorGruEstimulantes_Sensibilidad_f", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.4338672161102295f });
+			array[565] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_EstGenPorGruEstimulantes_Sensibilidad_e", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.4683910310268402f });
+			array[566] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_EstGenPorGruEstimulantes_Sensibilidad_d", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.6100000143051147f });
+			array[567] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_EstGenPorGruEstimulantes_Sensibilidad_c", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.07263851910829544f });
+			array[568] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_EstGenPorGruEstimulantes_Sensibilidad_b", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.13881517946720123f });
+			array[569] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_EstGenPorGruEstimulantes_Sensibilidad_a", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.25407281517982483f });
+			array[570] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_EstGenPorGruEstimulantes_Sensibilidad_aPlus", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.30993446707725525f });
+			array[571] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ModsDeInterSegunEmocion_placer_Vs_placer_porCaricias", SluttifyHandler.ModifierType.TRIPLE, new float[] { 0.9835189580917358f, 0.9045601487159729f, 0.6603971719741821f });
+			array[572] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ModsDeInterSegunEmocion_placer_Vs_placer_porPenetracion", SluttifyHandler.ModifierType.TRIPLE, new float[] { 0.6766332983970642f, 0.8878002166748047f, 0.4907357096672058f });
+			array[573] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ModsDeInterSegunEmocion_placer_Vs_placer_porPenetracionAnchura", SluttifyHandler.ModifierType.TRIPLE, new float[] { 0.5496134757995605f, 0.8498380184173584f, 0.8961082696914673f });
+			array[574] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ModsDeInterSegunEmocion_placer_Vs_placer_porPenetracionApertura", SluttifyHandler.ModifierType.TRIPLE, new float[] { 0.6797621846199036f, 0.6982220411300659f, 0.6986146569252014f });
+			array[575] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ModsDeInterSegunEmocion_placer_Vs_placer_porPenetracionMovimiento", SluttifyHandler.ModifierType.TRIPLE, new float[] { 0.3999449610710144f, 0.48013144731521606f, 0.7000066637992859f });
+			array[576] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ModsDeInterSegunEmocion_placer_Vs_placer_porPenetracionProfundidad", SluttifyHandler.ModifierType.TRIPLE, new float[] { 0.8903042078018188f, 0.8983259797096252f, 0.5922829508781433f });
+			array[577] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ModsDeInterSegunEmocion_placer_Vs_placer_porVer", SluttifyHandler.ModifierType.TRIPLE, new float[] { 0.1877039670944214f, 0.3431563973426819f, 0.41110020875930786f });
+			array[578] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ModsDeInterSegunEmocion_placer_Vs_placer_porSiendoVisto", SluttifyHandler.ModifierType.TRIPLE, new float[] { 0.6657096147537231f, 0.40778931975364685f, 0.87309730052948f });
+			array[579] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ModsDeInterSegunEmocion_placer_Vs_arousal_porCaricias", SluttifyHandler.ModifierType.TRIPLE, new float[] { 0.8873703479766846f, 0.8317054510116577f, 0.4893803000450134f });
+			array[580] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ModsDeInterSegunEmocion_placer_Vs_arousal_porPenetracion", SluttifyHandler.ModifierType.TRIPLE, new float[] { 0.652500331401825f, 0.6382452845573425f, 0.959638237953186f });
+			array[581] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ModsDeInterSegunEmocion_placer_Vs_arousal_porPenetracionAnchura", SluttifyHandler.ModifierType.TRIPLE, new float[] { 0.6064021587371826f, 0.451616108417511f, 0.6990958452224731f });
+			array[582] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ModsDeInterSegunEmocion_placer_Vs_arousal_porPenetracionApertura", SluttifyHandler.ModifierType.TRIPLE, new float[] { 0.5110270380973816f, 0.7063816785812378f, 0.6898975968360901f });
+			array[583] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ModsDeInterSegunEmocion_placer_Vs_arousal_porPenetracionMovimiento", SluttifyHandler.ModifierType.TRIPLE, new float[] { 0.8126137256622314f, 0.16486068069934845f, 0.6825076341629028f });
+			array[584] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ModsDeInterSegunEmocion_placer_Vs_arousal_porPenetracionProfundidad", SluttifyHandler.ModifierType.TRIPLE, new float[] { 0.6365669965744019f, 0.421580046415329f, 0.7327131032943726f });
+			array[585] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ModsDeInterSegunEmocion_placer_Vs_arousal_porVer", SluttifyHandler.ModifierType.TRIPLE, new float[] { 0.3840959966182709f, 0.9864103198051453f, 0.6940233707427979f });
+			array[586] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ModsDeInterSegunEmocion_placer_Vs_arousal_porSiendoVisto", SluttifyHandler.ModifierType.TRIPLE, new float[] { 0.6665595769882202f, 0.4197455644607544f, 0.7018666863441467f });
+			array[587] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ModsDeInterSegunEmocion_dolor_Vs_placer_porCaricias", SluttifyHandler.ModifierType.TRIPLE, new float[] { 0.7103183269500732f, 0.8655166625976562f, 0.6112669110298157f });
+			array[588] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ModsDeInterSegunEmocion_dolor_Vs_placer_porPenetracion", SluttifyHandler.ModifierType.TRIPLE, new float[] { 0.8610139489173889f, 0.6732321381568909f, 0.7843378186225891f });
+			array[589] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ModsDeInterSegunEmocion_dolor_Vs_placer_porPenetracionAnchura", SluttifyHandler.ModifierType.TRIPLE, new float[] { 0.9459357261657715f, 0.8525417447090149f, 0.3999999761581421f });
+			array[590] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ModsDeInterSegunEmocion_dolor_Vs_placer_porPenetracionApertura", SluttifyHandler.ModifierType.TRIPLE, new float[] { 0.6999773979187012f, 0.6999817490577698f, 0.3999999761581421f });
+			array[591] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ModsDeInterSegunEmocion_dolor_Vs_placer_porPenetracionMovimiento", SluttifyHandler.ModifierType.TRIPLE, new float[] { 0.655051052570343f, 0.703886091709137f, 0.9831684231758118f });
+			array[592] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ModsDeInterSegunEmocion_dolor_Vs_placer_porPenetracionProfundidad", SluttifyHandler.ModifierType.TRIPLE, new float[] { 0.9509376287460327f, 0.699567973613739f, 0.7979927062988281f });
+			array[593] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ModsDeInterSegunEmocion_dolor_Vs_arousal_porCaricias", SluttifyHandler.ModifierType.TRIPLE, new float[] { 0.6878640055656433f, 0.6726034283638f, 0.7095651030540466f });
+			array[594] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ModsDeInterSegunEmocion_dolor_Vs_arousal_porPenetracion", SluttifyHandler.ModifierType.TRIPLE, new float[] { 0.9327599406242371f, 0.8789217472076416f, 0.7666481137275696f });
+			array[595] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ModsDeInterSegunEmocion_dolor_Vs_arousal_porPenetracionAnchura", SluttifyHandler.ModifierType.TRIPLE, new float[] { 0.6999995708465576f, 0.892019510269165f, 0.9560085535049438f });
+			array[596] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ModsDeInterSegunEmocion_dolor_Vs_arousal_porPenetracionApertura", SluttifyHandler.ModifierType.TRIPLE, new float[] { 0.8700636029243469f, 0.9145248532295227f, 0.668937623500824f });
+			array[597] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ModsDeInterSegunEmocion_dolor_Vs_arousal_porPenetracionMovimiento", SluttifyHandler.ModifierType.TRIPLE, new float[] { 0.6106745004653931f, 0.8477554321289062f, 0.854341447353363f });
+			array[598] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ModsDeInterSegunEmocion_dolor_Vs_arousal_porPenetracionProfundidad", SluttifyHandler.ModifierType.TRIPLE, new float[] { 0.7939507365226746f, 0.6606914401054382f, 0.6855958700180054f });
+			array[599] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ModsDeInterSegunEmocion_rabia_Vs_placer_porGolpes", SluttifyHandler.ModifierType.TRIPLE, new float[] { 0.6854889392852783f, 0.7802064418792725f, 0.7119362354278564f });
+			array[600] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ModsDeInterSegunEmocion_rabia_Vs_arousal_porCaricias", SluttifyHandler.ModifierType.TRIPLE, new float[] { 0.6744168996810913f, 0.9189294576644897f, 0.6494162082672119f });
+			array[601] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ModsDeInterSegunEmocion_rabia_Vs_arousal_porPenetracion", SluttifyHandler.ModifierType.TRIPLE, new float[] { 0.9630520343780518f, 0.8013874292373657f, 0.699999988079071f });
+			array[602] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ModsDeInterSegunEmocion_rabia_Vs_arousal_porGolpes", SluttifyHandler.ModifierType.TRIPLE, new float[] { 0.6827781200408936f, 0.699999988079071f, 0.9999982714653015f });
+			array[603] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ModsDeInterSegunEmocion_rabia_Vs_arousal_porVistas", SluttifyHandler.ModifierType.TRIPLE, new float[] { 0.6035099625587463f, 0.3999999761581421f, 0.6039533615112305f });
+			array[604] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConcentRequerido_tactil-recibida_f", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.020820779725909233f });
+			array[605] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConcentRequerido_tactil-recibida_e", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.16799530386924744f });
+			array[606] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConcentRequerido_tactil-recibida_d", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.20965319871902466f });
+			array[607] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConcentRequerido_tactil-recibida_c", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.27911317348480225f });
+			array[608] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConcentRequerido_tactil-recibida_b", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.1998000144958496f });
+			array[609] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConcentRequerido_tactil-recibida_a", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.23098208010196686f });
+			array[610] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConcentRequerido_tactil-recibida_aPlus", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.7937025427818298f });
+			array[611] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConcentRequerido_coital-recibida_f", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.2582152783870697f });
+			array[612] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConcentRequerido_coital-recibida_e", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.12493917346000671f });
+			array[613] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConcentRequerido_coital-recibida_d", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.49650105834007263f });
+			array[614] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConcentRequerido_coital-recibida_c", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.17178305983543396f });
+			array[615] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConcentRequerido_coital-recibida_b", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.22528745234012604f });
+			array[616] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConcentRequerido_coital-recibida_a", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.6215342283248901f });
+			array[617] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConcentRequerido_coital-recibida_aPlus", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.331447035074234f });
+			array[618] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConcentRequerido_visual-dada_f", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.04821338504552841f });
+			array[619] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConcentRequerido_visual-dada_e", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.2183385044336319f });
+			array[620] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConcentRequerido_visual-dada_d", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.2834627628326416f });
+			array[621] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConcentRequerido_visual-dada_c", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.2683759033679962f });
+			array[622] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConcentRequerido_visual-dada_b", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.5068386793136597f });
+			array[623] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConcentRequerido_visual-dada_a", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.3699186444282532f });
+			array[624] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConcentRequerido_visual-dada_aPlus", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.37189677357673645f });
+			array[625] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConcentRequerido_desvestidura-recibida_f", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.03101280890405178f });
+			array[626] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConcentRequerido_desvestidura-recibida_e", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.2380792498588562f });
+			array[627] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConcentRequerido_desvestidura-recibida_d", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.067149817943573f });
+			array[628] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConcentRequerido_desvestidura-recibida_c", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.7114198803901672f });
+			array[629] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConcentRequerido_desvestidura-recibida_b", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.05913384258747101f });
+			array[630] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConcentRequerido_desvestidura-recibida_a", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.476980060338974f });
+			array[631] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConcentRequerido_desvestidura-recibida_aPlus", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.17887943983078003f });
+			array[632] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConcentRequerido_ejecucionDePose-recibida_f", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.44607222080230713f });
+			array[633] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConcentRequerido_ejecucionDePose-recibida_e", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.6618973612785339f });
+			array[634] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConcentRequerido_ejecucionDePose-recibida_d", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.8440259695053101f });
+			array[635] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConcentRequerido_ejecucionDePose-recibida_c", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.11479829996824265f });
+			array[636] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConcentRequerido_ejecucionDePose-recibida_b", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.3196110725402832f });
+			array[637] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConcentRequerido_ejecucionDePose-recibida_a", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.6839851140975952f });
+			array[638] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConcentRequerido_ejecucionDePose-recibida_aPlus", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.8580069541931152f });
+			array[639] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConcentRequerido_visual-recibida_f", SluttifyHandler.ModifierType.SINGLE, new float[] { 4.0042702487141923e-10f });
+			array[640] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConcentRequerido_visual-recibida_e", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.0009497524006292224f });
+			array[641] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConcentRequerido_visual-recibida_d", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.20650872588157654f });
+			array[642] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConcentRequerido_visual-recibida_c", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.25063464045524597f });
+			array[643] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConcentRequerido_visual-recibida_b", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.23619751632213593f });
+			array[644] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConcentRequerido_visual-recibida_a", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.3996000289916992f });
+			array[645] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConcentRequerido_visual-recibida_aPlus", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.0765056386590004f });
+			array[646] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConcentRequerido_peticionDesvestidura-recibida_f", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.1998000144958496f });
+			array[647] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConcentRequerido_peticionDesvestidura-recibida_e", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.2798164486885071f });
+			array[648] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConcentRequerido_peticionDesvestidura-recibida_d", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.1964522749185562f });
+			array[649] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConcentRequerido_peticionDesvestidura-recibida_c", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.28814268112182617f });
+			array[650] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConcentRequerido_peticionDesvestidura-recibida_b", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.005513973068445921f });
+			array[651] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConcentRequerido_peticionDesvestidura-recibida_a", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.032260339707136154f });
+			array[652] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConcentRequerido_peticionDesvestidura-recibida_aPlus", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.19964376091957092f });
+			array[653] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConcentRequerido_peticionEjecucionDePose-recibida_f", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.0022906071972101927f });
+			array[654] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConcentRequerido_peticionEjecucionDePose-recibida_e", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.11659076064825058f });
+			array[655] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConcentRequerido_peticionEjecucionDePose-recibida_d", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.2015182077884674f });
+			array[656] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConcentRequerido_peticionEjecucionDePose-recibida_c", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.004195464309304953f });
+			array[657] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConcentRequerido_peticionEjecucionDePose-recibida_b", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.005972798448055983f });
+			array[658] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConcentRequerido_peticionEjecucionDePose-recibida_a", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.224419504404068f });
+			array[659] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConcentRequerido_peticionEjecucionDePose-recibida_aPlus", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.025071317330002785f });
+			array[660] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ModsDeInterSegunEmocion_concentToHero_Vs_arousal_porCaricias", SluttifyHandler.ModifierType.TRIPLE, new float[] { 0.3999999761581421f, 0.7159649133682251f, 0.5763526558876038f });
+			array[661] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ModsDeInterSegunEmocion_concentToHero_Vs_arousal_porPenetracion", SluttifyHandler.ModifierType.TRIPLE, new float[] { 0.2927634119987488f, 0.7820240259170532f, 0.9914959669113159f });
+			array[662] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ModsDeInterSegunEmocion_concentToHero_Vs_arousal_porSiendoVisto", SluttifyHandler.ModifierType.TRIPLE, new float[] { 0.6110159754753113f, 0.9210259318351746f, 0.6537455916404724f });
+			array[663] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ModsDeInterSegunEmocion_concentToHero_Vs_arousal_porVer", SluttifyHandler.ModifierType.TRIPLE, new float[] { 0.41522642970085144f, 0.6096455454826355f, 0.6941356062889099f });
+			array[664] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ModsDeInterSegunEmocion_concentToHero_Vs_arousal_porSerDesvestidoPorOtro", SluttifyHandler.ModifierType.TRIPLE, new float[] { 0.6448084115982056f, 0.9105241894721985f, 0.026162737980484962f });
+			array[665] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ModsDeInterSegunEmocion_concentToHero_Vs_arousal_porSerDesvestidoPorSiMismo", SluttifyHandler.ModifierType.TRIPLE, new float[] { 0.9638647437095642f, 0.40346360206604004f, 0.8118945360183716f });
+			array[666] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ModsDeInterSegunEmocion_concentToHero_Vs_arousal_porEjecucionDePosePorOtro", SluttifyHandler.ModifierType.TRIPLE, new float[] { 0.3420966863632202f, 0.688167929649353f, 0.6898243427276611f });
+			array[667] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ModsDeInterSegunEmocion_concentToHero_Vs_arousal_porEjecucionDePosePorSiMismo", SluttifyHandler.ModifierType.TRIPLE, new float[] { 0.7290881276130676f, 0.9093038439750671f, 0.9884253740310669f });
+			array[668] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConcentRequerido_tactil-PorGrupoEstimulante_f", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.2006014585494995f });
+			array[669] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConcentRequerido_tactil-PorGrupoEstimulante_e", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.492252379655838f });
+			array[670] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConcentRequerido_tactil-PorGrupoEstimulante_d", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.04708791896700859f });
+			array[671] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConcentRequerido_tactil-PorGrupoEstimulante_c", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.0065132747404277325f });
+			array[672] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConcentRequerido_tactil-PorGrupoEstimulante_b", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.4020293056964874f });
+			array[673] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConcentRequerido_tactil-PorGrupoEstimulante_a", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.4420211911201477f });
+			array[674] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConcentRequerido_tactil-PorGrupoEstimulante_aPlus", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.021881157532334328f });
+			array[675] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConcentRequerido_coital-PorGrupoEstimulante_f", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.40149903297424316f });
+			array[676] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConcentRequerido_coital-PorGrupoEstimulante_e", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.06624403595924377f });
+			array[677] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConcentRequerido_coital-PorGrupoEstimulante_d", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.28970691561698914f });
+			array[678] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConcentRequerido_coital-PorGrupoEstimulante_c", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.2093745470046997f });
+			array[679] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConcentRequerido_coital-PorGrupoEstimulante_b", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.30343347787857056f });
+			array[680] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConcentRequerido_coital-PorGrupoEstimulante_a", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.25962963700294495f });
+			array[681] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConcentRequerido_coital-PorGrupoEstimulante_aPlus", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.7738421559333801f });
+			array[682] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConcentRequerido_visual-PorGrupoEstimulante_f", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.2056347131729126f });
+			array[683] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConcentRequerido_visual-PorGrupoEstimulante_e", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.07369416207075119f });
+			array[684] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConcentRequerido_visual-PorGrupoEstimulante_d", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.1487380713224411f });
+			array[685] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConcentRequerido_visual-PorGrupoEstimulante_c", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.19980008900165558f });
+			array[686] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConcentRequerido_visual-PorGrupoEstimulante_b", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.3404496908187866f });
+			array[687] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConcentRequerido_visual-PorGrupoEstimulante_a", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.41378724575042725f });
+			array[688] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_ConcentRequerido_visual-PorGrupoEstimulante_aPlus", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.13148133456707f });
+			array[689] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulado_ErogenoPorCaricias_f", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.7452234625816345f });
+			array[690] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulado_ErogenoPorCaricias_e", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.9270798563957214f });
+			array[691] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulado_ErogenoPorCaricias_d", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.5348621010780334f });
+			array[692] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulado_ErogenoPorCaricias_c", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.9258672595024109f });
+			array[693] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulado_ErogenoPorCaricias_b", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.5171893835067749f });
+			array[694] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulado_ErogenoPorCaricias_a", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.7398077249526978f });
+			array[695] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulado_ErogenoPorCaricias_aPlus", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.9559182524681091f });
+			array[696] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulado_ErogenoPorPenetracion_f", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.6902380585670471f });
+			array[697] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulado_ErogenoPorPenetracion_e", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.8377468585968018f });
+			array[698] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulado_ErogenoPorPenetracion_d", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.8849162459373474f });
+			array[699] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulado_ErogenoPorPenetracion_c", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.6600707769393921f });
+			array[700] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulado_ErogenoPorPenetracion_b", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.6999209523200989f });
+			array[701] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulado_ErogenoPorPenetracion_a", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.8324138522148132f });
+			array[702] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulado_ErogenoPorPenetracion_aPlus", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.9999858736991882f });
+			array[703] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulado_PrivacidadPorCaricias_f", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.699999988079071f });
+			array[704] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulado_PrivacidadPorCaricias_e", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.9979858994483948f });
+			array[705] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulado_PrivacidadPorCaricias_d", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.9295968413352966f });
+			array[706] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulado_PrivacidadPorCaricias_c", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.9218054413795471f });
+			array[707] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulado_PrivacidadPorCaricias_b", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.9949625134468079f });
+			array[708] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulado_PrivacidadPorCaricias_a", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.699999988079071f });
+			array[709] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulado_PrivacidadPorCaricias_aPlus", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.9467430114746094f });
+			array[710] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulado_PrivacidadPorPenetracion_f", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.6846560835838318f });
+			array[711] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulado_PrivacidadPorPenetracion_e", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.8497632741928101f });
+			array[712] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulado_PrivacidadPorPenetracion_d", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.699999988079071f });
+			array[713] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulado_PrivacidadPorPenetracion_c", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.9610770344734192f });
+			array[714] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulado_PrivacidadPorPenetracion_b", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.699999988079071f });
+			array[715] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulado_PrivacidadPorPenetracion_a", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.699999988079071f });
+			array[716] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulado_PrivacidadPorPenetracion_aPlus", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.6999871730804443f });
+			array[717] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulado_SensibilidadPorCaricias_f", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.7293883562088013f });
+			array[718] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulado_SensibilidadPorCaricias_e", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.7620276808738708f });
+			array[719] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulado_SensibilidadPorCaricias_d", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.4023740887641907f });
+			array[720] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulado_SensibilidadPorCaricias_c", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.8209497332572937f });
+			array[721] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulado_SensibilidadPorCaricias_b", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.6999735832214355f });
+			array[722] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulado_SensibilidadPorCaricias_a", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.7128173112869263f });
+			array[723] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulado_SensibilidadPorCaricias_aPlus", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.9928037524223328f });
+			array[724] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulado_SensibilidadPorPenetracion_f", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.705056369304657f });
+			array[725] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulado_SensibilidadPorPenetracion_e", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.6743436455726624f });
+			array[726] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulado_SensibilidadPorPenetracion_d", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.6675730347633362f });
+			array[727] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulado_SensibilidadPorPenetracion_c", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.6584905982017517f });
+			array[728] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulado_SensibilidadPorPenetracion_b", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.726203978061676f });
+			array[729] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulado_SensibilidadPorPenetracion_a", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.6689611673355103f });
+			array[730] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulado_SensibilidadPorPenetracion_aPlus", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.7498934864997864f });
+			array[731] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimuladoP2_ErogenoPorPenetracionAnc_f", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.966322660446167f });
+			array[732] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimuladoP2_ErogenoPorPenetracionAnc_e", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.788059413433075f });
+			array[733] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimuladoP2_ErogenoPorPenetracionAnc_d", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.6770950555801392f });
+			array[734] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimuladoP2_ErogenoPorPenetracionAnc_c", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.5316535830497742f });
+			array[735] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimuladoP2_ErogenoPorPenetracionAnc_b", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.650827944278717f });
+			array[736] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimuladoP2_ErogenoPorPenetracionAnc_a", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.9249398112297058f });
+			array[737] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimuladoP2_ErogenoPorPenetracionAnc_aPlus", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.5582610964775085f });
+			array[738] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimuladoP2_ErogenoPorPenetracionPro_f", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.7555348873138428f });
+			array[739] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimuladoP2_ErogenoPorPenetracionPro_e", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.5645014643669128f });
+			array[740] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimuladoP2_ErogenoPorPenetracionPro_d", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.6898479461669922f });
+			array[741] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimuladoP2_ErogenoPorPenetracionPro_c", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.6544631123542786f });
+			array[742] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimuladoP2_ErogenoPorPenetracionPro_b", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.9431148767471313f });
+			array[743] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimuladoP2_ErogenoPorPenetracionPro_a", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.3999999761581421f });
+			array[744] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimuladoP2_ErogenoPorPenetracionPro_aPlus", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.9473720788955688f });
+			array[745] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimuladoP2_SensibilidadPorPenetracionAnc_f", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.8016802072525024f });
+			array[746] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimuladoP2_SensibilidadPorPenetracionAnc_e", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.8176245093345642f });
+			array[747] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimuladoP2_SensibilidadPorPenetracionAnc_d", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.6999918222427368f });
+			array[748] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimuladoP2_SensibilidadPorPenetracionAnc_c", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.6999977231025696f });
+			array[749] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimuladoP2_SensibilidadPorPenetracionAnc_b", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.8083317279815674f });
+			array[750] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimuladoP2_SensibilidadPorPenetracionAnc_a", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.6951368451118469f });
+			array[751] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimuladoP2_SensibilidadPorPenetracionAnc_aPlus", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.9530280828475952f });
+			array[752] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimuladoP2_SensibilidadPorPenetracionPro_f", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.8164787888526917f });
+			array[753] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimuladoP2_SensibilidadPorPenetracionPro_e", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.7722387909889221f });
+			array[754] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimuladoP2_SensibilidadPorPenetracionPro_d", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.6946402788162231f });
+			array[755] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimuladoP2_SensibilidadPorPenetracionPro_c", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.9422796368598938f });
+			array[756] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimuladoP2_SensibilidadPorPenetracionPro_b", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.4517606794834137f });
+			array[757] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimuladoP2_SensibilidadPorPenetracionPro_a", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.9168545603752136f });
+			array[758] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimuladoP2_SensibilidadPorPenetracionPro_aPlus", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.6723463535308838f });
+			array[759] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimulado_ErogenoPorCaricias_f", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.6659918427467346f });
+			array[760] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimulado_ErogenoPorCaricias_e", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.29698580503463745f });
+			array[761] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimulado_ErogenoPorCaricias_d", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.8374099731445312f });
+			array[762] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimulado_ErogenoPorCaricias_c", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.6918090581893921f });
+			array[763] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimulado_ErogenoPorCaricias_b", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.534872829914093f });
+			array[764] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimulado_ErogenoPorCaricias_a", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.5656905770301819f });
+			array[765] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimulado_ErogenoPorCaricias_aPlus", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.6952256560325623f });
+			array[766] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimulado_ErogenoPorPenetracion_f", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.7978835105895996f });
+			array[767] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimulado_ErogenoPorPenetracion_e", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.6443315744400024f });
+			array[768] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimulado_ErogenoPorPenetracion_d", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.7606351375579834f });
+			array[769] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimulado_ErogenoPorPenetracion_c", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.6991552114486694f });
+			array[770] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimulado_ErogenoPorPenetracion_b", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.9153674244880676f });
+			array[771] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimulado_ErogenoPorPenetracion_a", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.3971383571624756f });
+			array[772] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimulado_ErogenoPorPenetracion_aPlus", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.24724549055099487f });
+			array[773] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimulado_SensibilidadPorCaricias_f", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.8647735118865967f });
+			array[774] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimulado_SensibilidadPorCaricias_e", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.9764788746833801f });
+			array[775] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimulado_SensibilidadPorCaricias_d", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.920573353767395f });
+			array[776] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimulado_SensibilidadPorCaricias_c", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.657683253288269f });
+			array[777] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimulado_SensibilidadPorCaricias_b", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.645185649394989f });
+			array[778] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimulado_SensibilidadPorCaricias_a", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.7461696863174438f });
+			array[779] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimulado_SensibilidadPorCaricias_aPlus", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.6962021589279175f });
+			array[780] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimulado_SensibilidadPorPenetracion_f", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.9991059303283691f });
+			array[781] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimulado_SensibilidadPorPenetracion_e", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.9340577125549316f });
+			array[782] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimulado_SensibilidadPorPenetracion_d", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.9163312315940857f });
+			array[783] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimulado_SensibilidadPorPenetracion_c", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.7108819484710693f });
+			array[784] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimulado_SensibilidadPorPenetracion_b", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.8002017736434937f });
+			array[785] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimulado_SensibilidadPorPenetracion_a", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.7474634051322937f });
+			array[786] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimulado_SensibilidadPorPenetracion_aPlus", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.6992868185043335f });
+			array[787] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimuladoP2_ErogenoPorPenetracionAnc_f", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.7387965321540833f });
+			array[788] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimuladoP2_ErogenoPorPenetracionAnc_e", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.8046009540557861f });
+			array[789] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimuladoP2_ErogenoPorPenetracionAnc_d", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.622734010219574f });
+			array[790] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimuladoP2_ErogenoPorPenetracionAnc_c", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.3088981509208679f });
+			array[791] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimuladoP2_ErogenoPorPenetracionAnc_b", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.9320855736732483f });
+			array[792] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimuladoP2_ErogenoPorPenetracionAnc_a", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.8909814357757568f });
+			array[793] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimuladoP2_ErogenoPorPenetracionAnc_aPlus", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.4617053270339966f });
+			array[794] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimuladoP2_ErogenoPorPenetracioPron_f", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.5337690114974976f });
+			array[795] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimuladoP2_ErogenoPorPenetracioPron_e", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.6581608057022095f });
+			array[796] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimuladoP2_ErogenoPorPenetracioPron_d", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.6981369256973267f });
+			array[797] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimuladoP2_ErogenoPorPenetracioPron_c", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.42741134762763977f });
+			array[798] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimuladoP2_ErogenoPorPenetracioPron_b", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.6311869025230408f });
+			array[799] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimuladoP2_ErogenoPorPenetracioPron_a", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.6214576959609985f });
+			array[800] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimuladoP2_ErogenoPorPenetracioPron_aPlus", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.5855662226676941f });
+			array[801] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimuladoP2_SensibilidadPorPenetracionAnc_f", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.4530116021633148f });
+			array[802] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimuladoP2_SensibilidadPorPenetracionAnc_e", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.8625878095626831f });
+			array[803] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimuladoP2_SensibilidadPorPenetracionAnc_d", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.9990331530570984f });
+			array[804] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimuladoP2_SensibilidadPorPenetracionAnc_c", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.4104011654853821f });
+			array[805] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimuladoP2_SensibilidadPorPenetracionAnc_b", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.6898289322853088f });
+			array[806] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimuladoP2_SensibilidadPorPenetracionAnc_a", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.6764180660247803f });
+			array[807] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimuladoP2_SensibilidadPorPenetracionAnc_aPlus", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.9331928491592407f });
+			array[808] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimuladoP2_SensibilidadPorPenetracionPro_f", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.885586678981781f });
+			array[809] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimuladoP2_SensibilidadPorPenetracionPro_e", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.6805750131607056f });
+			array[810] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimuladoP2_SensibilidadPorPenetracionPro_d", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.5493153929710388f });
+			array[811] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimuladoP2_SensibilidadPorPenetracionPro_c", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.3999999761581421f });
+			array[812] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimuladoP2_SensibilidadPorPenetracionPro_b", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.6942365169525146f });
+			array[813] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimuladoP2_SensibilidadPorPenetracionPro_a", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.9688654541969299f });
+			array[814] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimuladoP2_SensibilidadPorPenetracionPro_aPlus", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.7540242075920105f });
+			array[815] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulante_ErogenoPorCaricias_f", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.7215312719345093f });
+			array[816] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulante_ErogenoPorCaricias_e", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.6778250336647034f });
+			array[817] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulante_ErogenoPorCaricias_d", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.9453180432319641f });
+			array[818] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulante_ErogenoPorCaricias_c", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.4772239923477173f });
+			array[819] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulante_ErogenoPorCaricias_b", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.45045894384384155f });
+			array[820] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulante_ErogenoPorCaricias_a", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.9024950265884399f });
+			array[821] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulante_ErogenoPorCaricias_aPlus", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.6949372887611389f });
+			array[822] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulante_ErogenoPorPenetracion_f", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.5241907835006714f });
+			array[823] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulante_ErogenoPorPenetracion_e", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.5274249911308289f });
+			array[824] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulante_ErogenoPorPenetracion_d", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.8999685049057007f });
+			array[825] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulante_ErogenoPorPenetracion_c", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.6930193901062012f });
+			array[826] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulante_ErogenoPorPenetracion_b", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.9593620300292969f });
+			array[827] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulante_ErogenoPorPenetracion_a", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.5863520503044128f });
+			array[828] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulante_ErogenoPorPenetracion_aPlus", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.5919459462165833f });
+			array[829] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulante_PrivacidadPorCaricias_f", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.8728225231170654f });
+			array[830] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulante_PrivacidadPorCaricias_e", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.6517566442489624f });
+			array[831] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulante_PrivacidadPorCaricias_d", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.699999988079071f });
+			array[832] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulante_PrivacidadPorCaricias_c", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.699999988079071f });
+			array[833] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulante_PrivacidadPorCaricias_b", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.6994518041610718f });
+			array[834] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulante_PrivacidadPorCaricias_a", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.9976879358291626f });
+			array[835] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulante_PrivacidadPorCaricias_aPlus", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.699999988079071f });
+			array[836] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulante_PrivacidadPorPenetracion_f", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.9927836656570435f });
+			array[837] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulante_PrivacidadPorPenetracion_e", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.7941725254058838f });
+			array[838] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulante_PrivacidadPorPenetracion_d", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.9144085049629211f });
+			array[839] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulante_PrivacidadPorPenetracion_c", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.7794287204742432f });
+			array[840] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulante_PrivacidadPorPenetracion_b", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.6901118755340576f });
+			array[841] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulante_PrivacidadPorPenetracion_a", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.6999965906143188f });
+			array[842] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulante_PrivacidadPorPenetracion_aPlus", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.999535322189331f });
+			array[843] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulante_SensibilidadPorCaricias_f", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.6940069794654846f });
+			array[844] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulante_SensibilidadPorCaricias_e", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.6999999284744263f });
+			array[845] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulante_SensibilidadPorCaricias_d", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.3999999761581421f });
+			array[846] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulante_SensibilidadPorCaricias_c", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.6921589374542236f });
+			array[847] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulante_SensibilidadPorCaricias_b", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.6827220320701599f });
+			array[848] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulante_SensibilidadPorCaricias_a", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.5512975454330444f });
+			array[849] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulante_SensibilidadPorCaricias_aPlus", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.8000503778457642f });
+			array[850] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulante_SensibilidadPorPenetracion_f", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.8009019494056702f });
+			array[851] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulante_SensibilidadPorPenetracion_e", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.6946744322776794f });
+			array[852] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulante_SensibilidadPorPenetracion_d", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.8333133459091187f });
+			array[853] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulante_SensibilidadPorPenetracion_c", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.6664124131202698f });
+			array[854] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulante_SensibilidadPorPenetracion_b", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.9680871367454529f });
+			array[855] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulante_SensibilidadPorPenetracion_a", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.9322071671485901f });
+			array[856] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Inc_InterPorGrupoEstimulante_SensibilidadPorPenetracion_aPlus", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.6508331894874573f });
+			array[857] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimulante_ErogenoPorCaricias_f", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.6970593929290771f });
+			array[858] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimulante_ErogenoPorCaricias_e", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.8518829941749573f });
+			array[859] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimulante_ErogenoPorCaricias_d", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.6698520183563232f });
+			array[860] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimulante_ErogenoPorCaricias_c", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.8353931903839111f });
+			array[861] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimulante_ErogenoPorCaricias_b", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.7594835758209229f });
+			array[862] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimulante_ErogenoPorCaricias_a", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.7745639085769653f });
+			array[863] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimulante_ErogenoPorCaricias_aPlus", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.48972445726394653f });
+			array[864] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimulante_ErogenoPorPenetracion_f", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.6014525890350342f });
+			array[865] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimulante_ErogenoPorPenetracion_e", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.8540682196617126f });
+			array[866] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimulante_ErogenoPorPenetracion_d", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.662961483001709f });
+			array[867] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimulante_ErogenoPorPenetracion_c", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.9342032074928284f });
+			array[868] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimulante_ErogenoPorPenetracion_b", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.2913784980773926f });
+			array[869] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimulante_ErogenoPorPenetracion_a", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.41568052768707275f });
+			array[870] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimulante_ErogenoPorPenetracion_aPlus", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.8348414897918701f });
+			array[871] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimulante_SensibilidadPorCaricias_f", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.4414869248867035f });
+			array[872] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimulante_SensibilidadPorCaricias_e", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.8729444146156311f });
+			array[873] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimulante_SensibilidadPorCaricias_d", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.8175146579742432f });
+			array[874] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimulante_SensibilidadPorCaricias_c", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.9898279309272766f });
+			array[875] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimulante_SensibilidadPorCaricias_b", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.6770524382591248f });
+			array[876] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimulante_SensibilidadPorCaricias_a", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.6887125968933105f });
+			array[877] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimulante_SensibilidadPorCaricias_aPlus", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.5534003973007202f });
+			array[878] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimulante_SensibilidadPorPenetracion_f", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.6556304097175598f });
+			array[879] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimulante_SensibilidadPorPenetracion_e", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.9138116240501404f });
+			array[880] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimulante_SensibilidadPorPenetracion_d", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.5901908278465271f });
+			array[881] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimulante_SensibilidadPorPenetracion_c", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.9818233251571655f });
+			array[882] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimulante_SensibilidadPorPenetracion_b", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.568838357925415f });
+			array[883] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimulante_SensibilidadPorPenetracion_a", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.6707162261009216f });
+			array[884] = new ValueTuple<string, SluttifyHandler.ModifierType, float[]>("Personalidad_Exp_InterPorGrupoEstimulante_SensibilidadPorPenetracion_aPlus", SluttifyHandler.ModifierType.SINGLE, new float[] { 0.8736258149147034f });
+			SluttifyHandler._slutPersonalityModifiers = array;
+		}
+
+		private static readonly ValueTuple<string, float>[] _slutAppearanceModifiers = new ValueTuple<string, float>[]
+		{
+			new ValueTuple<string, float>("Scaler_Anus_", 1f),
+			new ValueTuple<string, float>("Morpher_AnusProfundidad_", 1f),
+			new ValueTuple<string, float>("Controller_AnusDesgaste_", 1f),
+			new ValueTuple<string, float>("Controller_AnusProfundidadVirtual_", 1f),
+			new ValueTuple<string, float>("Controller_AnusAperturaVirtual_", 1f),
+			new ValueTuple<string, float>("Scaler_VagLabia_", 1f),
+			new ValueTuple<string, float>("Scaler_VagHole_", 1f),
+			new ValueTuple<string, float>("Controller_VagProfundidadVirtual_", 1f),
+			new ValueTuple<string, float>("Controller_VagAperturaVirtual_", 1f),
+			new ValueTuple<string, float>("Controller_VagDesgaste_", 1f)
+		};
+
+		private static readonly ValueTuple<string, SluttifyHandler.ModifierType, float[]>[] _slutPersonalityModifiers;
+
+		private enum ModifierType
+		{
+			SINGLE,
+			DOUBLE,
+			TRIPLE
+		}
+	}
+}

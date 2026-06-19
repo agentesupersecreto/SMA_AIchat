@@ -1,0 +1,622 @@
+﻿using System;
+using com.ootii.Actors.Combat;
+using com.ootii.Messages;
+using UnityEngine;
+
+namespace com.ootii.Actors.AnimationControllers
+{
+	// Token: 0x02000114 RID: 276
+	[MotionName("Stunned")]
+	[MotionDescription("Forces the actor into a trance or stunned motion.")]
+	public class Stunned : MotionControllerMotion
+	{
+		// Token: 0x1700048F RID: 1167
+		// (get) Token: 0x06001066 RID: 4198 RVA: 0x000575B6 File Offset: 0x000557B6
+		// (set) Token: 0x06001067 RID: 4199 RVA: 0x000575BE File Offset: 0x000557BE
+		public bool WakeOnAttacked
+		{
+			get
+			{
+				return this._WakeOnAttacked;
+			}
+			set
+			{
+				this._WakeOnAttacked = value;
+			}
+		}
+
+		// Token: 0x06001068 RID: 4200 RVA: 0x000575C7 File Offset: 0x000557C7
+		public Stunned()
+		{
+			this._Priority = 50f;
+			this._ActionAlias = "";
+			this._Category = 500;
+		}
+
+		// Token: 0x06001069 RID: 4201 RVA: 0x000575F7 File Offset: 0x000557F7
+		public Stunned(MotionController rController)
+			: base(rController)
+		{
+			this._Priority = 50f;
+			this._ActionAlias = "";
+			this._Category = 500;
+		}
+
+		// Token: 0x0600106A RID: 4202 RVA: 0x00057628 File Offset: 0x00055828
+		public override void Initialize()
+		{
+		}
+
+		// Token: 0x0600106B RID: 4203 RVA: 0x0005762C File Offset: 0x0005582C
+		public override bool TestActivate()
+		{
+			return this.mIsStartable && this.mMotionController.IsGrounded && (this._ActionAlias.Length > 0 && this.mMotionController._InputSource != null && this.mMotionController._InputSource.IsJustPressed(this._ActionAlias));
+		}
+
+		// Token: 0x0600106C RID: 4204 RVA: 0x00057688 File Offset: 0x00055888
+		public override bool TestUpdate()
+		{
+			return this.mIsActivatedFrame || this.mMotionLayer._AnimatorStateID != Stunned.STATE_IdlePose;
+		}
+
+		// Token: 0x0600106D RID: 4205 RVA: 0x000576A9 File Offset: 0x000558A9
+		public override bool TestInterruption(MotionControllerMotion rMotion)
+		{
+			return true;
+		}
+
+		// Token: 0x0600106E RID: 4206 RVA: 0x000576AC File Offset: 0x000558AC
+		public override bool Activate(MotionControllerMotion rPrevMotion)
+		{
+			this.mWake = false;
+			this.mStoredStance = this.mActorController.State.Stance;
+			this.mActorController.State.Stance = 14;
+			this.mMotionController.SetAnimatorMotionPhase(this.mMotionLayer._AnimatorLayerIndex, 1870, true);
+			return base.Activate(rPrevMotion);
+		}
+
+		// Token: 0x0600106F RID: 4207 RVA: 0x0005770B File Offset: 0x0005590B
+		public override void Deactivate()
+		{
+			this.mActorController.State.Stance = this.mStoredStance;
+			base.Deactivate();
+		}
+
+		// Token: 0x06001070 RID: 4208 RVA: 0x00057729 File Offset: 0x00055929
+		public void Wake()
+		{
+			this.mWake = true;
+		}
+
+		// Token: 0x06001071 RID: 4209 RVA: 0x00057732 File Offset: 0x00055932
+		public override void UpdateRootMotion(float rDeltaTime, int rUpdateIndex, ref Vector3 rMovementDelta, ref Quaternion rRotationDelta)
+		{
+			rMovementDelta = Vector3.zero;
+			rRotationDelta = Quaternion.identity;
+		}
+
+		// Token: 0x06001072 RID: 4210 RVA: 0x0005774C File Offset: 0x0005594C
+		public override void Update(float rDeltaTime, int rUpdateIndex)
+		{
+			if (this.mMotionLayer._AnimatorStateID == Stunned.STATE_Stunned && this.mMotionLayer._AnimatorTransitionID == 0)
+			{
+				if (this._ActionAlias.Length > 0 && this.mMotionController._InputSource != null && this.mMotionController._InputSource.IsJustPressed(this._ActionAlias))
+				{
+					this.mWake = true;
+				}
+				if (this.mWake)
+				{
+					this.mWake = false;
+					this.mMotionController.SetAnimatorMotionPhase(this.mMotionLayer._AnimatorLayerIndex, 1875, true);
+				}
+			}
+		}
+
+		// Token: 0x06001073 RID: 4211 RVA: 0x000577E0 File Offset: 0x000559E0
+		public override void OnMessageReceived(IMessage rMessage)
+		{
+			if (rMessage == null)
+			{
+				return;
+			}
+			if (this.mActorController.State.Stance != 14)
+			{
+				return;
+			}
+			if (this.mIsActive)
+			{
+				if (rMessage is MotionMessage)
+				{
+					MotionMessage motionMessage = rMessage as MotionMessage;
+					if (motionMessage.ID == MotionMessage.MSG_MOTION_CONTINUE || motionMessage.ID == MotionMessage.MSG_MOTION_DEACTIVATE)
+					{
+						this.mWake = true;
+						rMessage.IsHandled = true;
+						rMessage.Recipient = this;
+						return;
+					}
+				}
+				else if (this.WakeOnAttacked)
+				{
+					if (rMessage is CombatMessage)
+					{
+						if ((rMessage as CombatMessage).Defender == this.mMotionController.gameObject && rMessage.ID == CombatMessage.MSG_DEFENDER_ATTACKED)
+						{
+							this.mWake = true;
+							rMessage.IsHandled = true;
+							rMessage.Recipient = this;
+							return;
+						}
+					}
+					else if (rMessage is DamageMessage && rMessage.ID != CombatMessage.MSG_DEFENDER_KILLED)
+					{
+						this.mWake = true;
+						rMessage.IsHandled = true;
+						rMessage.Recipient = this;
+					}
+				}
+			}
+		}
+
+		// Token: 0x17000490 RID: 1168
+		// (get) Token: 0x06001074 RID: 4212 RVA: 0x000578CD File Offset: 0x00055ACD
+		public override bool HasAutoGeneratedCode
+		{
+			get
+			{
+				return false;
+			}
+		}
+
+		// Token: 0x17000491 RID: 1169
+		// (get) Token: 0x06001075 RID: 4213 RVA: 0x000578D0 File Offset: 0x00055AD0
+		public override bool IsInMotionState
+		{
+			get
+			{
+				int animatorStateID = this.mMotionLayer._AnimatorStateID;
+				int animatorTransitionID = this.mMotionLayer._AnimatorTransitionID;
+				if (animatorTransitionID == 0)
+				{
+					if (animatorStateID == Stunned.STATE_Start)
+					{
+						return true;
+					}
+					if (animatorStateID == Stunned.STATE_Idle_PushButton)
+					{
+						return true;
+					}
+					if (animatorStateID == Stunned.STATE_IdlePose)
+					{
+						return true;
+					}
+					if (animatorStateID == Stunned.STATE_Idle_PickUp)
+					{
+						return true;
+					}
+					if (animatorStateID == Stunned.STATE_Sleeping)
+					{
+						return true;
+					}
+					if (animatorStateID == Stunned.STATE_GettingUp)
+					{
+						return true;
+					}
+					if (animatorStateID == Stunned.STATE_LayingDown)
+					{
+						return true;
+					}
+					if (animatorStateID == Stunned.STATE_Death_180)
+					{
+						return true;
+					}
+					if (animatorStateID == Stunned.STATE_Death_0)
+					{
+						return true;
+					}
+					if (animatorStateID == Stunned.STATE_Damaged_0)
+					{
+						return true;
+					}
+					if (animatorStateID == Stunned.STATE_Stunned)
+					{
+						return true;
+					}
+					if (animatorStateID == Stunned.STATE_Cower)
+					{
+						return true;
+					}
+					if (animatorStateID == Stunned.STATE_CowerOut)
+					{
+						return true;
+					}
+					if (animatorStateID == Stunned.STATE_KnockedDown)
+					{
+						return true;
+					}
+					if (animatorStateID == Stunned.STATE_GettingUpBackward)
+					{
+						return true;
+					}
+					if (animatorStateID == Stunned.STATE_DeathPose)
+					{
+						return true;
+					}
+					if (animatorStateID == Stunned.STATE_Frozen)
+					{
+						return true;
+					}
+					if (animatorStateID == Stunned.STATE_PushedBack_Pose)
+					{
+						return true;
+					}
+					if (animatorStateID == Stunned.STATE_PushedBack_Recover)
+					{
+						return true;
+					}
+					if (animatorStateID == Stunned.STATE_PushedBack_Loop)
+					{
+						return true;
+					}
+				}
+				return animatorTransitionID == Stunned.TRANS_AnyState_Idle_PushButton || animatorTransitionID == Stunned.TRANS_EntryState_Idle_PushButton || animatorTransitionID == Stunned.TRANS_AnyState_Idle_PickUp || animatorTransitionID == Stunned.TRANS_EntryState_Idle_PickUp || animatorTransitionID == Stunned.TRANS_AnyState_LayingDown || animatorTransitionID == Stunned.TRANS_EntryState_LayingDown || animatorTransitionID == Stunned.TRANS_AnyState_Damaged_0 || animatorTransitionID == Stunned.TRANS_EntryState_Damaged_0 || animatorTransitionID == Stunned.TRANS_AnyState_Death_180 || animatorTransitionID == Stunned.TRANS_EntryState_Death_180 || animatorTransitionID == Stunned.TRANS_AnyState_Death_0 || animatorTransitionID == Stunned.TRANS_EntryState_Death_0 || animatorTransitionID == Stunned.TRANS_AnyState_Stunned || animatorTransitionID == Stunned.TRANS_EntryState_Stunned || animatorTransitionID == Stunned.TRANS_AnyState_Cower || animatorTransitionID == Stunned.TRANS_EntryState_Cower || animatorTransitionID == Stunned.TRANS_AnyState_KnockedDown || animatorTransitionID == Stunned.TRANS_EntryState_KnockedDown || animatorTransitionID == Stunned.TRANS_AnyState_DeathPose || animatorTransitionID == Stunned.TRANS_EntryState_DeathPose || animatorTransitionID == Stunned.TRANS_AnyState_Death_180 || animatorTransitionID == Stunned.TRANS_EntryState_Death_180 || animatorTransitionID == Stunned.TRANS_AnyState_Frozen || animatorTransitionID == Stunned.TRANS_EntryState_Frozen || animatorTransitionID == Stunned.TRANS_AnyState_PushedBack_Pose || animatorTransitionID == Stunned.TRANS_EntryState_PushedBack_Pose || animatorTransitionID == Stunned.TRANS_Idle_PushButton_IdlePose || animatorTransitionID == Stunned.TRANS_Idle_PickUp_IdlePose || animatorTransitionID == Stunned.TRANS_Sleeping_GettingUp || animatorTransitionID == Stunned.TRANS_GettingUp_IdlePose || animatorTransitionID == Stunned.TRANS_LayingDown_Sleeping || animatorTransitionID == Stunned.TRANS_Damaged_0_IdlePose || animatorTransitionID == Stunned.TRANS_Stunned_IdlePose || animatorTransitionID == Stunned.TRANS_Cower_CowerOut || animatorTransitionID == Stunned.TRANS_CowerOut_IdlePose || animatorTransitionID == Stunned.TRANS_KnockedDown_GettingUpBackward || animatorTransitionID == Stunned.TRANS_GettingUpBackward_IdlePose || animatorTransitionID == Stunned.TRANS_Frozen_IdlePose || animatorTransitionID == Stunned.TRANS_PushedBack_Pose_PushedBack_Loop || animatorTransitionID == Stunned.TRANS_PushedBack_Recover_IdlePose || animatorTransitionID == Stunned.TRANS_PushedBack_Loop_PushedBack_Recover;
+			}
+		}
+
+		// Token: 0x06001076 RID: 4214 RVA: 0x00057B60 File Offset: 0x00055D60
+		public override bool IsMotionState(int rStateID)
+		{
+			return rStateID == Stunned.STATE_Start || rStateID == Stunned.STATE_Idle_PushButton || rStateID == Stunned.STATE_IdlePose || rStateID == Stunned.STATE_Idle_PickUp || rStateID == Stunned.STATE_Sleeping || rStateID == Stunned.STATE_GettingUp || rStateID == Stunned.STATE_LayingDown || rStateID == Stunned.STATE_Death_180 || rStateID == Stunned.STATE_Death_0 || rStateID == Stunned.STATE_Damaged_0 || rStateID == Stunned.STATE_Stunned || rStateID == Stunned.STATE_Cower || rStateID == Stunned.STATE_CowerOut || rStateID == Stunned.STATE_KnockedDown || rStateID == Stunned.STATE_GettingUpBackward || rStateID == Stunned.STATE_DeathPose || rStateID == Stunned.STATE_Frozen || rStateID == Stunned.STATE_PushedBack_Pose || rStateID == Stunned.STATE_PushedBack_Recover || rStateID == Stunned.STATE_PushedBack_Loop;
+		}
+
+		// Token: 0x06001077 RID: 4215 RVA: 0x00057C38 File Offset: 0x00055E38
+		public override bool IsMotionState(int rStateID, int rTransitionID)
+		{
+			if (rTransitionID == 0)
+			{
+				if (rStateID == Stunned.STATE_Start)
+				{
+					return true;
+				}
+				if (rStateID == Stunned.STATE_Idle_PushButton)
+				{
+					return true;
+				}
+				if (rStateID == Stunned.STATE_IdlePose)
+				{
+					return true;
+				}
+				if (rStateID == Stunned.STATE_Idle_PickUp)
+				{
+					return true;
+				}
+				if (rStateID == Stunned.STATE_Sleeping)
+				{
+					return true;
+				}
+				if (rStateID == Stunned.STATE_GettingUp)
+				{
+					return true;
+				}
+				if (rStateID == Stunned.STATE_LayingDown)
+				{
+					return true;
+				}
+				if (rStateID == Stunned.STATE_Death_180)
+				{
+					return true;
+				}
+				if (rStateID == Stunned.STATE_Death_0)
+				{
+					return true;
+				}
+				if (rStateID == Stunned.STATE_Damaged_0)
+				{
+					return true;
+				}
+				if (rStateID == Stunned.STATE_Stunned)
+				{
+					return true;
+				}
+				if (rStateID == Stunned.STATE_Cower)
+				{
+					return true;
+				}
+				if (rStateID == Stunned.STATE_CowerOut)
+				{
+					return true;
+				}
+				if (rStateID == Stunned.STATE_KnockedDown)
+				{
+					return true;
+				}
+				if (rStateID == Stunned.STATE_GettingUpBackward)
+				{
+					return true;
+				}
+				if (rStateID == Stunned.STATE_DeathPose)
+				{
+					return true;
+				}
+				if (rStateID == Stunned.STATE_Frozen)
+				{
+					return true;
+				}
+				if (rStateID == Stunned.STATE_PushedBack_Pose)
+				{
+					return true;
+				}
+				if (rStateID == Stunned.STATE_PushedBack_Recover)
+				{
+					return true;
+				}
+				if (rStateID == Stunned.STATE_PushedBack_Loop)
+				{
+					return true;
+				}
+			}
+			return rTransitionID == Stunned.TRANS_AnyState_Idle_PushButton || rTransitionID == Stunned.TRANS_EntryState_Idle_PushButton || rTransitionID == Stunned.TRANS_AnyState_Idle_PickUp || rTransitionID == Stunned.TRANS_EntryState_Idle_PickUp || rTransitionID == Stunned.TRANS_AnyState_LayingDown || rTransitionID == Stunned.TRANS_EntryState_LayingDown || rTransitionID == Stunned.TRANS_AnyState_Damaged_0 || rTransitionID == Stunned.TRANS_EntryState_Damaged_0 || rTransitionID == Stunned.TRANS_AnyState_Death_180 || rTransitionID == Stunned.TRANS_EntryState_Death_180 || rTransitionID == Stunned.TRANS_AnyState_Death_0 || rTransitionID == Stunned.TRANS_EntryState_Death_0 || rTransitionID == Stunned.TRANS_AnyState_Stunned || rTransitionID == Stunned.TRANS_EntryState_Stunned || rTransitionID == Stunned.TRANS_AnyState_Cower || rTransitionID == Stunned.TRANS_EntryState_Cower || rTransitionID == Stunned.TRANS_AnyState_KnockedDown || rTransitionID == Stunned.TRANS_EntryState_KnockedDown || rTransitionID == Stunned.TRANS_AnyState_DeathPose || rTransitionID == Stunned.TRANS_EntryState_DeathPose || rTransitionID == Stunned.TRANS_AnyState_Death_180 || rTransitionID == Stunned.TRANS_EntryState_Death_180 || rTransitionID == Stunned.TRANS_AnyState_Frozen || rTransitionID == Stunned.TRANS_EntryState_Frozen || rTransitionID == Stunned.TRANS_AnyState_PushedBack_Pose || rTransitionID == Stunned.TRANS_EntryState_PushedBack_Pose || rTransitionID == Stunned.TRANS_Idle_PushButton_IdlePose || rTransitionID == Stunned.TRANS_Idle_PickUp_IdlePose || rTransitionID == Stunned.TRANS_Sleeping_GettingUp || rTransitionID == Stunned.TRANS_GettingUp_IdlePose || rTransitionID == Stunned.TRANS_LayingDown_Sleeping || rTransitionID == Stunned.TRANS_Damaged_0_IdlePose || rTransitionID == Stunned.TRANS_Stunned_IdlePose || rTransitionID == Stunned.TRANS_Cower_CowerOut || rTransitionID == Stunned.TRANS_CowerOut_IdlePose || rTransitionID == Stunned.TRANS_KnockedDown_GettingUpBackward || rTransitionID == Stunned.TRANS_GettingUpBackward_IdlePose || rTransitionID == Stunned.TRANS_Frozen_IdlePose || rTransitionID == Stunned.TRANS_PushedBack_Pose_PushedBack_Loop || rTransitionID == Stunned.TRANS_PushedBack_Recover_IdlePose || rTransitionID == Stunned.TRANS_PushedBack_Loop_PushedBack_Recover;
+		}
+
+		// Token: 0x06001078 RID: 4216 RVA: 0x00057EB0 File Offset: 0x000560B0
+		public override void LoadAnimatorData()
+		{
+			Stunned.TRANS_AnyState_Idle_PushButton = this.mMotionController.AddAnimatorName("AnyState -> Base Layer.Utilities-SM.Idle_PushButton");
+			Stunned.TRANS_EntryState_Idle_PushButton = this.mMotionController.AddAnimatorName("Entry -> Base Layer.Utilities-SM.Idle_PushButton");
+			Stunned.TRANS_AnyState_Idle_PickUp = this.mMotionController.AddAnimatorName("AnyState -> Base Layer.Utilities-SM.Idle_PickUp");
+			Stunned.TRANS_EntryState_Idle_PickUp = this.mMotionController.AddAnimatorName("Entry -> Base Layer.Utilities-SM.Idle_PickUp");
+			Stunned.TRANS_AnyState_LayingDown = this.mMotionController.AddAnimatorName("AnyState -> Base Layer.Utilities-SM.LayingDown");
+			Stunned.TRANS_EntryState_LayingDown = this.mMotionController.AddAnimatorName("Entry -> Base Layer.Utilities-SM.LayingDown");
+			Stunned.TRANS_AnyState_Damaged_0 = this.mMotionController.AddAnimatorName("AnyState -> Base Layer.Utilities-SM.Damaged_0");
+			Stunned.TRANS_EntryState_Damaged_0 = this.mMotionController.AddAnimatorName("Entry -> Base Layer.Utilities-SM.Damaged_0");
+			Stunned.TRANS_AnyState_Death_180 = this.mMotionController.AddAnimatorName("AnyState -> Base Layer.Utilities-SM.Death_180");
+			Stunned.TRANS_EntryState_Death_180 = this.mMotionController.AddAnimatorName("Entry -> Base Layer.Utilities-SM.Death_180");
+			Stunned.TRANS_AnyState_Death_0 = this.mMotionController.AddAnimatorName("AnyState -> Base Layer.Utilities-SM.Death_0");
+			Stunned.TRANS_EntryState_Death_0 = this.mMotionController.AddAnimatorName("Entry -> Base Layer.Utilities-SM.Death_0");
+			Stunned.TRANS_AnyState_Stunned = this.mMotionController.AddAnimatorName("AnyState -> Base Layer.Utilities-SM.Stunned");
+			Stunned.TRANS_EntryState_Stunned = this.mMotionController.AddAnimatorName("Entry -> Base Layer.Utilities-SM.Stunned");
+			Stunned.TRANS_AnyState_Cower = this.mMotionController.AddAnimatorName("AnyState -> Base Layer.Utilities-SM.Cower");
+			Stunned.TRANS_EntryState_Cower = this.mMotionController.AddAnimatorName("Entry -> Base Layer.Utilities-SM.Cower");
+			Stunned.TRANS_AnyState_KnockedDown = this.mMotionController.AddAnimatorName("AnyState -> Base Layer.Utilities-SM.KnockedDown");
+			Stunned.TRANS_EntryState_KnockedDown = this.mMotionController.AddAnimatorName("Entry -> Base Layer.Utilities-SM.KnockedDown");
+			Stunned.TRANS_AnyState_DeathPose = this.mMotionController.AddAnimatorName("AnyState -> Base Layer.Utilities-SM.DeathPose");
+			Stunned.TRANS_EntryState_DeathPose = this.mMotionController.AddAnimatorName("Entry -> Base Layer.Utilities-SM.DeathPose");
+			Stunned.TRANS_AnyState_Death_180 = this.mMotionController.AddAnimatorName("AnyState -> Base Layer.Utilities-SM.Death_180");
+			Stunned.TRANS_EntryState_Death_180 = this.mMotionController.AddAnimatorName("Entry -> Base Layer.Utilities-SM.Death_180");
+			Stunned.TRANS_AnyState_Frozen = this.mMotionController.AddAnimatorName("AnyState -> Base Layer.Utilities-SM.Frozen");
+			Stunned.TRANS_EntryState_Frozen = this.mMotionController.AddAnimatorName("Entry -> Base Layer.Utilities-SM.Frozen");
+			Stunned.TRANS_AnyState_PushedBack_Pose = this.mMotionController.AddAnimatorName("AnyState -> Base Layer.Utilities-SM.PushedBack_Pose");
+			Stunned.TRANS_EntryState_PushedBack_Pose = this.mMotionController.AddAnimatorName("Entry -> Base Layer.Utilities-SM.PushedBack_Pose");
+			Stunned.STATE_Start = this.mMotionController.AddAnimatorName("Base Layer.Start");
+			Stunned.STATE_Idle_PushButton = this.mMotionController.AddAnimatorName("Base Layer.Utilities-SM.Idle_PushButton");
+			Stunned.TRANS_Idle_PushButton_IdlePose = this.mMotionController.AddAnimatorName("Base Layer.Utilities-SM.Idle_PushButton -> Base Layer.Utilities-SM.IdlePose");
+			Stunned.STATE_IdlePose = this.mMotionController.AddAnimatorName("Base Layer.Utilities-SM.IdlePose");
+			Stunned.STATE_Idle_PickUp = this.mMotionController.AddAnimatorName("Base Layer.Utilities-SM.Idle_PickUp");
+			Stunned.TRANS_Idle_PickUp_IdlePose = this.mMotionController.AddAnimatorName("Base Layer.Utilities-SM.Idle_PickUp -> Base Layer.Utilities-SM.IdlePose");
+			Stunned.STATE_Sleeping = this.mMotionController.AddAnimatorName("Base Layer.Utilities-SM.Sleeping");
+			Stunned.TRANS_Sleeping_GettingUp = this.mMotionController.AddAnimatorName("Base Layer.Utilities-SM.Sleeping -> Base Layer.Utilities-SM.GettingUp");
+			Stunned.STATE_GettingUp = this.mMotionController.AddAnimatorName("Base Layer.Utilities-SM.GettingUp");
+			Stunned.TRANS_GettingUp_IdlePose = this.mMotionController.AddAnimatorName("Base Layer.Utilities-SM.GettingUp -> Base Layer.Utilities-SM.IdlePose");
+			Stunned.STATE_LayingDown = this.mMotionController.AddAnimatorName("Base Layer.Utilities-SM.LayingDown");
+			Stunned.TRANS_LayingDown_Sleeping = this.mMotionController.AddAnimatorName("Base Layer.Utilities-SM.LayingDown -> Base Layer.Utilities-SM.Sleeping");
+			Stunned.STATE_Death_180 = this.mMotionController.AddAnimatorName("Base Layer.Utilities-SM.Death_180");
+			Stunned.STATE_Death_0 = this.mMotionController.AddAnimatorName("Base Layer.Utilities-SM.Death_0");
+			Stunned.STATE_Damaged_0 = this.mMotionController.AddAnimatorName("Base Layer.Utilities-SM.Damaged_0");
+			Stunned.TRANS_Damaged_0_IdlePose = this.mMotionController.AddAnimatorName("Base Layer.Utilities-SM.Damaged_0 -> Base Layer.Utilities-SM.IdlePose");
+			Stunned.STATE_Stunned = this.mMotionController.AddAnimatorName("Base Layer.Utilities-SM.Stunned");
+			Stunned.TRANS_Stunned_IdlePose = this.mMotionController.AddAnimatorName("Base Layer.Utilities-SM.Stunned -> Base Layer.Utilities-SM.IdlePose");
+			Stunned.STATE_Cower = this.mMotionController.AddAnimatorName("Base Layer.Utilities-SM.Cower");
+			Stunned.TRANS_Cower_CowerOut = this.mMotionController.AddAnimatorName("Base Layer.Utilities-SM.Cower -> Base Layer.Utilities-SM.Cower Out");
+			Stunned.STATE_CowerOut = this.mMotionController.AddAnimatorName("Base Layer.Utilities-SM.Cower Out");
+			Stunned.TRANS_CowerOut_IdlePose = this.mMotionController.AddAnimatorName("Base Layer.Utilities-SM.Cower Out -> Base Layer.Utilities-SM.IdlePose");
+			Stunned.STATE_KnockedDown = this.mMotionController.AddAnimatorName("Base Layer.Utilities-SM.KnockedDown");
+			Stunned.TRANS_KnockedDown_GettingUpBackward = this.mMotionController.AddAnimatorName("Base Layer.Utilities-SM.KnockedDown -> Base Layer.Utilities-SM.GettingUpBackward");
+			Stunned.STATE_GettingUpBackward = this.mMotionController.AddAnimatorName("Base Layer.Utilities-SM.GettingUpBackward");
+			Stunned.TRANS_GettingUpBackward_IdlePose = this.mMotionController.AddAnimatorName("Base Layer.Utilities-SM.GettingUpBackward -> Base Layer.Utilities-SM.IdlePose");
+			Stunned.STATE_DeathPose = this.mMotionController.AddAnimatorName("Base Layer.Utilities-SM.DeathPose");
+			Stunned.STATE_Frozen = this.mMotionController.AddAnimatorName("Base Layer.Utilities-SM.Frozen");
+			Stunned.TRANS_Frozen_IdlePose = this.mMotionController.AddAnimatorName("Base Layer.Utilities-SM.Frozen -> Base Layer.Utilities-SM.IdlePose");
+			Stunned.STATE_PushedBack_Pose = this.mMotionController.AddAnimatorName("Base Layer.Utilities-SM.PushedBack_Pose");
+			Stunned.TRANS_PushedBack_Pose_PushedBack_Loop = this.mMotionController.AddAnimatorName("Base Layer.Utilities-SM.PushedBack_Pose -> Base Layer.Utilities-SM.PushedBack_Loop");
+			Stunned.STATE_PushedBack_Recover = this.mMotionController.AddAnimatorName("Base Layer.Utilities-SM.PushedBack_Recover");
+			Stunned.TRANS_PushedBack_Recover_IdlePose = this.mMotionController.AddAnimatorName("Base Layer.Utilities-SM.PushedBack_Recover -> Base Layer.Utilities-SM.IdlePose");
+			Stunned.STATE_PushedBack_Loop = this.mMotionController.AddAnimatorName("Base Layer.Utilities-SM.PushedBack_Loop");
+			Stunned.TRANS_PushedBack_Loop_PushedBack_Recover = this.mMotionController.AddAnimatorName("Base Layer.Utilities-SM.PushedBack_Loop -> Base Layer.Utilities-SM.PushedBack_Recover");
+		}
+
+		// Token: 0x04000B14 RID: 2836
+		public const int PHASE_UNKNOWN = 0;
+
+		// Token: 0x04000B15 RID: 2837
+		public const int PHASE_START = 1870;
+
+		// Token: 0x04000B16 RID: 2838
+		public const int PHASE_WAKE = 1875;
+
+		// Token: 0x04000B17 RID: 2839
+		public bool _WakeOnAttacked = true;
+
+		// Token: 0x04000B18 RID: 2840
+		protected bool mWake;
+
+		// Token: 0x04000B19 RID: 2841
+		protected int mStoredStance;
+
+		// Token: 0x04000B1A RID: 2842
+		public static int STATE_Start = -1;
+
+		// Token: 0x04000B1B RID: 2843
+		public static int STATE_Idle_PushButton = -1;
+
+		// Token: 0x04000B1C RID: 2844
+		public static int STATE_IdlePose = -1;
+
+		// Token: 0x04000B1D RID: 2845
+		public static int STATE_Idle_PickUp = -1;
+
+		// Token: 0x04000B1E RID: 2846
+		public static int STATE_Sleeping = -1;
+
+		// Token: 0x04000B1F RID: 2847
+		public static int STATE_GettingUp = -1;
+
+		// Token: 0x04000B20 RID: 2848
+		public static int STATE_LayingDown = -1;
+
+		// Token: 0x04000B21 RID: 2849
+		public static int STATE_Death_180 = -1;
+
+		// Token: 0x04000B22 RID: 2850
+		public static int STATE_Death_0 = -1;
+
+		// Token: 0x04000B23 RID: 2851
+		public static int STATE_Damaged_0 = -1;
+
+		// Token: 0x04000B24 RID: 2852
+		public static int STATE_Stunned = -1;
+
+		// Token: 0x04000B25 RID: 2853
+		public static int STATE_Cower = -1;
+
+		// Token: 0x04000B26 RID: 2854
+		public static int STATE_CowerOut = -1;
+
+		// Token: 0x04000B27 RID: 2855
+		public static int STATE_KnockedDown = -1;
+
+		// Token: 0x04000B28 RID: 2856
+		public static int STATE_GettingUpBackward = -1;
+
+		// Token: 0x04000B29 RID: 2857
+		public static int STATE_DeathPose = -1;
+
+		// Token: 0x04000B2A RID: 2858
+		public static int STATE_Frozen = -1;
+
+		// Token: 0x04000B2B RID: 2859
+		public static int STATE_PushedBack_Pose = -1;
+
+		// Token: 0x04000B2C RID: 2860
+		public static int STATE_PushedBack_Recover = -1;
+
+		// Token: 0x04000B2D RID: 2861
+		public static int STATE_PushedBack_Loop = -1;
+
+		// Token: 0x04000B2E RID: 2862
+		public static int TRANS_AnyState_Idle_PushButton = -1;
+
+		// Token: 0x04000B2F RID: 2863
+		public static int TRANS_EntryState_Idle_PushButton = -1;
+
+		// Token: 0x04000B30 RID: 2864
+		public static int TRANS_AnyState_Idle_PickUp = -1;
+
+		// Token: 0x04000B31 RID: 2865
+		public static int TRANS_EntryState_Idle_PickUp = -1;
+
+		// Token: 0x04000B32 RID: 2866
+		public static int TRANS_AnyState_LayingDown = -1;
+
+		// Token: 0x04000B33 RID: 2867
+		public static int TRANS_EntryState_LayingDown = -1;
+
+		// Token: 0x04000B34 RID: 2868
+		public static int TRANS_AnyState_Damaged_0 = -1;
+
+		// Token: 0x04000B35 RID: 2869
+		public static int TRANS_EntryState_Damaged_0 = -1;
+
+		// Token: 0x04000B36 RID: 2870
+		public static int TRANS_AnyState_Death_180 = -1;
+
+		// Token: 0x04000B37 RID: 2871
+		public static int TRANS_EntryState_Death_180 = -1;
+
+		// Token: 0x04000B38 RID: 2872
+		public static int TRANS_AnyState_Death_0 = -1;
+
+		// Token: 0x04000B39 RID: 2873
+		public static int TRANS_EntryState_Death_0 = -1;
+
+		// Token: 0x04000B3A RID: 2874
+		public static int TRANS_AnyState_Stunned = -1;
+
+		// Token: 0x04000B3B RID: 2875
+		public static int TRANS_EntryState_Stunned = -1;
+
+		// Token: 0x04000B3C RID: 2876
+		public static int TRANS_AnyState_Cower = -1;
+
+		// Token: 0x04000B3D RID: 2877
+		public static int TRANS_EntryState_Cower = -1;
+
+		// Token: 0x04000B3E RID: 2878
+		public static int TRANS_AnyState_KnockedDown = -1;
+
+		// Token: 0x04000B3F RID: 2879
+		public static int TRANS_EntryState_KnockedDown = -1;
+
+		// Token: 0x04000B40 RID: 2880
+		public static int TRANS_AnyState_DeathPose = -1;
+
+		// Token: 0x04000B41 RID: 2881
+		public static int TRANS_EntryState_DeathPose = -1;
+
+		// Token: 0x04000B42 RID: 2882
+		public static int TRANS_AnyState_Frozen = -1;
+
+		// Token: 0x04000B43 RID: 2883
+		public static int TRANS_EntryState_Frozen = -1;
+
+		// Token: 0x04000B44 RID: 2884
+		public static int TRANS_AnyState_PushedBack_Pose = -1;
+
+		// Token: 0x04000B45 RID: 2885
+		public static int TRANS_EntryState_PushedBack_Pose = -1;
+
+		// Token: 0x04000B46 RID: 2886
+		public static int TRANS_Idle_PushButton_IdlePose = -1;
+
+		// Token: 0x04000B47 RID: 2887
+		public static int TRANS_Idle_PickUp_IdlePose = -1;
+
+		// Token: 0x04000B48 RID: 2888
+		public static int TRANS_Sleeping_GettingUp = -1;
+
+		// Token: 0x04000B49 RID: 2889
+		public static int TRANS_GettingUp_IdlePose = -1;
+
+		// Token: 0x04000B4A RID: 2890
+		public static int TRANS_LayingDown_Sleeping = -1;
+
+		// Token: 0x04000B4B RID: 2891
+		public static int TRANS_Damaged_0_IdlePose = -1;
+
+		// Token: 0x04000B4C RID: 2892
+		public static int TRANS_Stunned_IdlePose = -1;
+
+		// Token: 0x04000B4D RID: 2893
+		public static int TRANS_Cower_CowerOut = -1;
+
+		// Token: 0x04000B4E RID: 2894
+		public static int TRANS_CowerOut_IdlePose = -1;
+
+		// Token: 0x04000B4F RID: 2895
+		public static int TRANS_KnockedDown_GettingUpBackward = -1;
+
+		// Token: 0x04000B50 RID: 2896
+		public static int TRANS_GettingUpBackward_IdlePose = -1;
+
+		// Token: 0x04000B51 RID: 2897
+		public static int TRANS_Frozen_IdlePose = -1;
+
+		// Token: 0x04000B52 RID: 2898
+		public static int TRANS_PushedBack_Pose_PushedBack_Loop = -1;
+
+		// Token: 0x04000B53 RID: 2899
+		public static int TRANS_PushedBack_Recover_IdlePose = -1;
+
+		// Token: 0x04000B54 RID: 2900
+		public static int TRANS_PushedBack_Loop_PushedBack_Recover = -1;
+	}
+}
