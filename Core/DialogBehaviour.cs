@@ -50,6 +50,8 @@ namespace DialogInterceptorMod.Core
         public bool AllowDispatchCommand { get; set; } = false;
         public bool AllowCanICommand { get; set; } = true;
         public bool AllowSentimentReactions { get; set; } = true;
+        public bool AllowDesireManipulation { get; set; } = true;
+        public bool UseNativeDialogueScoring { get; set; } = true;
         public int MaxHistoryMessages { get; set; } = 30;
 
         public string CurrentCharId = "";

@@ -253,6 +253,8 @@ namespace DialogInterceptorMod.UI
             _behaviour.StrictObedience = GUILayout.Toggle(_behaviour.StrictObedience, "Strict Obedience (Forces AI to obey commands)");
             _behaviour.AllowDispatchCommand = GUILayout.Toggle(_behaviour.AllowDispatchCommand, "Allow Dispatch (Fire/Leave) Command");
             _behaviour.AllowCanICommand = GUILayout.Toggle(_behaviour.AllowCanICommand, "Allow \"Can I?\" Touch Command");
+            _behaviour.AllowDesireManipulation = GUILayout.Toggle(_behaviour.AllowDesireManipulation, "Allow AI to modify Thaw and Desire");
+            _behaviour.UseNativeDialogueScoring = GUILayout.Toggle(_behaviour.UseNativeDialogueScoring, "Use Native Dialogue Scoring (Affects Favorability/Anger)");
 
             GUILayout.Space(5);
             GUILayout.BeginHorizontal();
@@ -453,6 +455,8 @@ namespace DialogInterceptorMod.UI
                     writer.WriteLine($"StrictObedience={_behaviour.StrictObedience}");
                     writer.WriteLine($"AllowDispatchCommand={_behaviour.AllowDispatchCommand}");
                     writer.WriteLine($"AllowCanICommand={_behaviour.AllowCanICommand}");
+                    writer.WriteLine($"AllowDesireManipulation={_behaviour.AllowDesireManipulation}");
+                    writer.WriteLine($"UseNativeDialogueScoring={_behaviour.UseNativeDialogueScoring}");
                     writer.WriteLine($"MaxHistoryMessages={_behaviour.MaxHistoryMessages}");
                 }
                 Plugin.Log.LogInfo("Config saved.");
@@ -507,6 +511,8 @@ namespace DialogInterceptorMod.UI
                         case "StrictObedience": if (bool.TryParse(value, out bool obey)) _behaviour.StrictObedience = obey; break;
                         case "AllowDispatchCommand": if (bool.TryParse(value, out bool disp)) _behaviour.AllowDispatchCommand = disp; break;
                         case "AllowCanICommand": if (bool.TryParse(value, out bool cani)) _behaviour.AllowCanICommand = cani; break;
+                        case "AllowDesireManipulation": if (bool.TryParse(value, out bool desire)) _behaviour.AllowDesireManipulation = desire; break;
+                        case "UseNativeDialogueScoring": if (bool.TryParse(value, out bool nat)) _behaviour.UseNativeDialogueScoring = nat; break;
                         case "MaxHistoryMessages": if (int.TryParse(value, out int maxh)) _behaviour.MaxHistoryMessages = maxh; break;
                     }
                 }

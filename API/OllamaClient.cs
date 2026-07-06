@@ -71,7 +71,7 @@ namespace DialogInterceptorMod.API
                 yield break;
             }
 
-            ProcessAIResponse(textoIA);
+            AIResponseProcessor.ProcessResponse(textoIA, _behaviour, "Ollama");
             _behaviour.Window.AwaitingResponse = false;
         }
 
@@ -120,103 +120,6 @@ namespace DialogInterceptorMod.API
             sb.AppendLine("Respond now with your dialogue in plain text. If you need to act, append [CMD: command_name] anywhere in your response.");
 
             return sb.ToString();
-        }
-
-        private void ProcessAIResponse(string respuestaJson)
-        {
-            try
-            {
-                // Strip markdown if the model wrapped it
-                respuestaJson = JsonHelper.StripMarkdownCodeBlocks(respuestaJson);
-
-                string dialogo = respuestaJson;
-                // Extract ALL [CMD: command_name]
-                var matches = System.Text.RegularExpressions.Regex.Matches(dialogo, @"\[CMD:\s*([^\]]+)\]", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
-                System.Collections.Generic.List<string> comandosEncontrados = new System.Collections.Generic.List<string>();
-
-                foreach (System.Text.RegularExpressions.Match m in matches)
-                {
-                    string contenido = m.Groups[1].Value.Trim();
-                    // Remove the command tag from the dialogue
-                    dialogo = dialogo.Replace(m.Value, "");
-
-                    // Support comma-separated commands like [CMD: give_consent, pose:kneel]
-                    string[] subCmds = contenido.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-                    foreach (var sub in subCmds)
-                    {
-                        string c = sub.Trim();
-                        if (!string.IsNullOrEmpty(c) && c.ToLower() != "null")
-                        {
-                            comandosEncontrados.Add(c);
-                        }
-                    }
-                }
-                dialogo = dialogo.Trim();
-
-                // Small models might sometimes try to output JSON anyway
-                if (dialogo.StartsWith("{") && dialogo.Contains("\"dialogo\""))
-                {
-                    string innerDialogo = JsonHelper.ExtractJsonValue(dialogo, "dialogo");
-                    if (!string.IsNullOrEmpty(innerDialogo)) 
-                    {
-                        string innerComando = JsonHelper.ExtractJsonValue(dialogo, "comando");
-                        if (!string.IsNullOrEmpty(innerComando)) 
-                        {
-                            string[] subCmds = innerComando.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-                            foreach (var sub in subCmds)
-                            {
-                                string c = sub.Trim();
-                                if (!string.IsNullOrEmpty(c) && c.ToLower() != "null" && !comandosEncontrados.Contains(c))
-                                {
-                                    comandosEncontrados.Add(c);
-                                }
-                            }
-                        }
-                        dialogo = innerDialogo;
-                    }
-                }
-
-                _behaviour.ChatHistory.Add(new ChatMessage(false, dialogo));
-                _behaviour.Window.ScrollToBottom();
-                _behaviour.Window.SetStatus("[OK] Response received (Ollama).", false);
-
-                ShowInBark(dialogo);
-
-                foreach (string cmd in comandosEncontrados)
-                {
-                    string feedback = CommandExecutor.ExecuteCommand(cmd, _behaviour.Window.SetStatus, _behaviour.Window.ShowEmotionFeedback);
-                    _behaviour.ChatHistory.Add(ChatMessage.SystemMessage($"⚡ {feedback}"));
-                }
-
-                if (comandosEncontrados.Count > 0)
-                {
-                    _behaviour.Window.ScrollToBottom();
-                }
-
-                // Sliding window: trim old messages beyond the window
-                int maxMessages = (SLIDING_WINDOW_SIZE * 2) + 4; // A bit of buffer
-                while (_behaviour.ChatHistory.Count > maxMessages)
-                {
-                    _behaviour.ChatHistory.RemoveAt(0);
-                }
-            }
-            catch (Exception ex)
-            {
-                Plugin.Log.LogError($"Error procesando respuesta Ollama: {ex.Message}");
-                _behaviour.Window.SetStatus("[ERROR] Error procesando respuesta de Ollama.", true);
-            }
-        }
-
-        private void ShowInBark(string texto)
-        {
-            ControlladorDeBarkDePersonalidad[] controladores = UnityEngine.Object.FindObjectsOfType<ControlladorDeBarkDePersonalidad>(true);
-            if (controladores != null && controladores.Length > 0)
-            {
-                foreach (var c in controladores)
-                {
-                    c.Bark(texto, true, 100, ControllerPrioridadConfig.interrumpir, 1f, 1f);
-                }
-            }
         }
     }
 }

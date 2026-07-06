@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Model Hiring Cost System — Architecture</title>
+<style>
+  :root{
+    --bg:#0f1216; --panel:#161b22; --panel2:#1c232c; --ink:#d7dee7; --muted:#8b97a6;
+    --line:#2a323d; --code:#e6edf3;
+    --trait:#6cb6ff; --sal:#7ee787; --com:#ffb86c; --neg:#d2a8ff; --pay:#ff9aa2;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0; background:var(--bg); color:var(--ink);
+    font:15px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;}
+  .wrap{max-width:1060px; margin:0 auto; padding:40px 24px 96px}
+  header.doc{border-bottom:1px solid var(--line); padding-bottom:20px; margin-bottom:8px}
+  header.doc h1{font-size:30px; margin:0 0 6px; letter-spacing:-.5px}
+  header.doc p{color:var(--muted); margin:0; max-width:74ch}
+  .path{color:var(--sal); font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:13px}
+  h2{font-size:21px; margin:46px 0 12px; padding-top:14px; letter-spacing:-.3px; border-top:1px solid var(--line)}
+  h2 .num{color:var(--trait); font-variant-numeric:tabular-nums; margin-right:10px}
+  h3{font-size:16px; margin:26px 0 8px; color:#eaf1f8}
+  p{margin:10px 0} ul{margin:10px 0 10px 0; padding-left:22px} li{margin:5px 0}
+  a{color:var(--trait); text-decoration:none} a:hover{text-decoration:underline}
+  code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:.86em;
+    background:var(--panel2); color:var(--code); padding:.1em .4em; border-radius:5px; border:1px solid var(--line)}
+  pre{background:#11161c; border:1px solid var(--line); border-radius:10px; padding:14px 16px; overflow:auto; margin:16px 0}
+  pre code{background:none; border:none; padding:0; font-size:12.5px; line-height:1.55; white-space:pre}
+  table{border-collapse:collapse; width:100%; margin:18px 0; font-size:14px}
+  th,td{border:1px solid var(--line); padding:9px 12px; text-align:left; vertical-align:top}
+  th{background:var(--panel2); color:#eaf1f8; font-weight:600}
+  tr:nth-child(even) td{background:rgba(255,255,255,.015)}
+  td code{white-space:nowrap}
+  .lead{background:var(--panel); border:1px solid var(--line); border-left:3px solid var(--trait);
+    border-radius:8px; padding:14px 18px; margin:18px 0}
+  .note{background:var(--panel); border:1px solid var(--line); border-left:3px solid var(--com);
+    border-radius:8px; padding:12px 16px; margin:16px 0; font-size:14px}
+  .note b{color:#eaf1f8}
+  .toc{background:var(--panel); border:1px solid var(--line); border-radius:10px;
+    padding:14px 20px; margin:24px 0; columns:2; column-gap:36px}
+  .toc a{display:block; padding:3px 0; color:var(--ink)} .toc a:hover{color:var(--trait)}
+  .toc .n{color:var(--trait); font-variant-numeric:tabular-nums; display:inline-block; width:1.6em}
+  footer{margin-top:60px; padding-top:18px; border-top:1px solid var(--line); color:var(--muted); font-size:13px}
+  .pill{display:inline-block; font-size:11px; font-weight:700; letter-spacing:.4px; padding:.12em .55em;
+    border-radius:20px; border:1px solid var(--line); vertical-align:middle}
+  .pill.yes{color:#7ee787; border-color:#2f5b3a} .pill.no{color:#ff9aa2; border-color:#5b3036}
+
+  figure.dg{margin:22px 0; background:#11161c; border:1px solid var(--line); border-radius:12px; padding:14px 12px 8px}
+  figure.dg svg{width:100%; height:auto; display:block}
+  figure.dg figcaption{color:var(--muted); font-size:12px; text-align:center; padding:8px 6px 2px}
+  svg text{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+  .box{fill:#1a212b; stroke-width:1.6}
+  .box.soft{fill:#161c24}
+  .c-trait{stroke:var(--trait)} .c-sal{stroke:var(--sal)} .c-com{stroke:var(--com)}
+  .c-neg{stroke:var(--neg)} .c-pay{stroke:var(--pay)} .c-mut{stroke:#475061}
+  .tag{font-size:11px; font-weight:700; letter-spacing:.5px}
+  .t-trait{fill:var(--trait)} .t-sal{fill:var(--sal)} .t-com{fill:var(--com)} .t-neg{fill:var(--neg)} .t-pay{fill:var(--pay)}
+  .ttl{font-size:12.5px; fill:#eaf1f8; font-weight:600}
+  .sub{font-size:10.5px; fill:#9aa6b4}
+  .cap{font-size:10px; fill:#74808f}
+  .edge{fill:none; stroke:#5b6675; stroke-width:1.7; marker-end:url(#arw)}
+  .edge.dash{stroke-dasharray:4 4; stroke:#475061; stroke-width:1.4; marker-end:url(#arws)}
+  .elbl{font-size:9.5px; fill:#8b97a6}
+  @media (max-width:720px){ .toc{columns:1} }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <marker id="arw" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+    <path d="M0,0 L10,5 L0,10 z" fill="#5b6675"/></marker>
+  <marker id="arws" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M0,0 L10,5 L0,10 z" fill="#475061"/></marker>
+</defs></svg>
+
+<div class="wrap">
+
+<header class="doc">
+  <h1>Model Hiring Cost System — Architecture</h1>
+  <p>What decides how much money a model requires — her <strong>weekly salary</strong> and her <strong>commission %</strong>
+  — when you hire and negotiate with her. The short version: it is a pure function of her <em>personality traits</em>
+  (greed, poverty, modeling-willingness, intelligence). Her looks/rating, and everything about the player, are
+  irrelevant to the number. All paths under <span class="path">SMANew/ExportedProject/Assets/Scripts/</span> unless noted.</p>
+</header>
+
+<nav class="toc">
+  <a href="#s1"><span class="n">1</span>The big idea</a>
+  <a href="#s2"><span class="n">2</span>The inputs (traits &amp; scale)</a>
+  <a href="#s3"><span class="n">3</span>Desired salary formula</a>
+  <a href="#s4"><span class="n">4</span>Desired commission formula</a>
+  <a href="#s5"><span class="n">5</span>Negotiation — the 80% floor</a>
+  <a href="#s6"><span class="n">6</span>Overpaying buys favorability</a>
+  <a href="#s7"><span class="n">7</span>Every other cost</a>
+  <a href="#s8"><span class="n">8</span>Where the traits come from</a>
+  <a href="#s9"><span class="n">9</span>What does NOT factor in</a>
+  <a href="#s10"><span class="n">10</span>Component &amp; file reference</a>
+</nav>
+
+<!-- ============ 1 ============ -->
+<h2 id="s1"><span class="num">1</span>The big idea</h2>
+<div class="lead">
+A model's required money is decided <strong>entirely by her personality traits</strong>. Two numbers are
+negotiated at hire — a <strong>weekly salary</strong> and a <strong>commission %</strong> (her cut of each job).
+Both run through the same formula on the same trait inputs; only the output band differs. <strong>Greedy + not-poor
+→ expensive; poor + low-greed → cheap.</strong> Nothing about the player (stats, charisma, karma, favorability)
+lowers the number — you can only haggle down to a floor, or overpay to <em>buy</em> favorability.
+</div>
+
+<figure class="dg">
+<svg viewBox="0 0 1060 232" role="img" aria-label="Hiring cost pipeline">
+  <line class="edge" x1="206" y1="96" x2="248" y2="96"/>
+  <line class="edge" x1="468" y1="96" x2="510" y2="96"/>
+  <line class="edge" x1="730" y1="70" x2="772" y2="58"/>
+  <line class="edge" x1="730" y1="122" x2="772" y2="134"/>
+  <!-- traits -->
+  <rect class="box c-trait" x="18" y="44" width="188" height="104" rx="10"/>
+  <text class="tag t-trait" x="112" y="68" text-anchor="middle">HER TRAITS</text>
+  <text class="sub" x="112" y="88"  text-anchor="middle">pobreza · gustoPorDinero</text>
+  <text class="sub" x="112" y="104" text-anchor="middle">3× modeling tastes</text>
+  <text class="sub" x="112" y="120" text-anchor="middle">inteligencia</text>
+  <text class="cap" x="112" y="140" text-anchor="middle">5 levels → 0…1 weight</text>
+  <!-- formula -->
+  <rect class="box c-sal" x="250" y="44" width="218" height="104" rx="10"/>
+  <text class="tag t-sal" x="359" y="68" text-anchor="middle">FORMULA</text>
+  <text class="sub" x="359" y="90"  text-anchor="middle">t = 0.25·(1−poverty)</text>
+  <text class="sub" x="359" y="106" text-anchor="middle">+ 0.75·greed</text>
+  <text class="sub" x="359" y="124" text-anchor="middle">±taste · ±intel</text>
+  <text class="cap" x="359" y="140" text-anchor="middle">GetDesired*ByPobrezaYAvaricia</text>
+  <!-- desired -->
+  <rect class="box c-com" x="512" y="44" width="216" height="104" rx="10"/>
+  <text class="tag t-com" x="620" y="68" text-anchor="middle">DESIRED</text>
+  <text class="sub" x="620" y="92"  text-anchor="middle">salary ≈ 100–1000</text>
+  <text class="sub" x="620" y="112" text-anchor="middle">commission 30–80%</text>
+  <text class="cap" x="620" y="140" text-anchor="middle">per-model, fixed</text>
+  <!-- outcomes -->
+  <rect class="box c-neg soft" x="774" y="24" width="270" height="58" rx="10"/>
+  <text class="tag t-neg" x="909" y="46" text-anchor="middle">HAGGLE</text>
+  <text class="sub" x="909" y="66" text-anchor="middle">accept if offer ≥ 80% · else counter</text>
+  <rect class="box c-pay soft" x="774" y="110" width="270" height="58" rx="10"/>
+  <text class="tag t-pay" x="909" y="132" text-anchor="middle">OVERPAY</text>
+  <text class="sub" x="909" y="152" text-anchor="middle">+favorability buff (≤ +35 / +10)</text>
+</svg>
+<figcaption>Traits → a fixed desired salary/commission → you either haggle to the 80% floor or overpay for favorability.</figcaption>
+</figure>
+
+<!-- ============ 2 ============ -->
+<h2 id="s2"><span class="num">2</span>The inputs (traits &amp; scale)</h2>
+<p>Every input is a discrete <strong>personality trait</strong> on her <code>Personalidad</code> component
+(<code>TraitHumano</code> enum, scored by the 5-level <code>HumanTraitScore</code> enum). There is <em>no</em>
+continuous "avaricia" stat — <strong>greed = <code>gustoPorDinero</code></strong> ("Taste for Money"); the method
+name "PobrezaYAvaricia" just means "poverty &amp; greed".</p>
+<table>
+  <thead><tr><th>Trait</th><th><code>TraitHumano</code></th><th>Effect on cost</th></tr></thead>
+  <tbody>
+    <tr><td>Poverty</td><td><code>pobreza</code></td><td>Higher → asks for <strong>less</strong> (enters as <code>1 − weight</code>)</td></tr>
+    <tr><td>Greed / "Taste for Money"</td><td><code>gustoPorDinero</code></td><td>The dominant driver (75% of the base blend)</td></tr>
+    <tr><td>Modeling willingness</td><td><code>gustoPorModelaje</code></td><td>±10% adjust (weight 0.2)</td></tr>
+    <tr><td>Underwear modeling</td><td><code>gustoPorModelajeUnderwear</code></td><td>±10% adjust (weight 0.3)</td></tr>
+    <tr><td>Erotic modeling</td><td><code>gustoPorModelajeHerotico</code></td><td>±10% adjust (weight 0.5)</td></tr>
+    <tr><td>Intelligence</td><td><code>inteligencia</code></td><td>Smarter → asks more (−10%…+9%)</td></tr>
+  </tbody>
+</table>
+<p>Each trait is one of 5 discrete levels, converted to a 0–1 weight by <code>GetWeigthDeScore()</code>:</p>
+<table>
+  <thead><tr><th><code>HumanTraitScore</code></th><th><code>muyBajo</code></th><th><code>bajo</code></th><th><code>normal</code></th><th><code>alto</code></th><th><code>muyAlto</code></th></tr></thead>
+  <tbody>
+    <tr><td>Weight</td><td>0.00</td><td>0.25</td><td>0.50</td><td>0.75</td><td>1.00</td></tr>
+  </tbody>
+</table>
+<p>A trait absent from her personality map defaults to <code>normal</code> (weight 0.5).</p>
+
+<!-- ============ 3 ============ -->
+<h2 id="s3"><span class="num">3</span>Desired salary formula</h2>
+<p><span class="path">FemaleCharacterModelo.cs:101–115</span> — <code>GetDesiredSalaryByPobrezaYAvaricia()</code>:</p>
+<pre><code>num   = 1 − weight(pobreza)                          // poorer → smaller
+t     = num·0.25 + weight(gustoPorDinero)·0.75       // greed dominates
+base  = Lerp(100, 1000, t)                           // ── base salary band 100–1000
+
+t2    = weight(modelaje)·0.2 + weight(underwear)·0.3 + weight(herotico)·0.5
+base2 = LerpConMedio(base·0.9, base, base·1.1, t2)   // modeling taste: ±10%
+
+base3 = Lerp(base2·0.9, base2·1.0909, weight(inteligencia))   // intel: −10%…+9%
+return Round(base3 / 5) · 5                           // snap to nearest 5</code></pre>
+<ul>
+  <li><strong>Base band 100–1000</strong>, set 75% by greed and 25% by (low) poverty.</li>
+  <li>Modeling-willingness nudges ±10% — note higher willingness asks slightly <em>more</em> (per the code).</li>
+  <li>Intelligence nudges −10% to +9%. Final rounded to the nearest 5.</li>
+  <li><strong>Effective range ≈ 80 → ~1200.</strong> This is a <em>weekly</em> salary (§7).</li>
+</ul>
+<div class="note">Alternate variants <code>GetDesiredSalaryByGustosModelaje()</code> / <code>…ComisionByGustosModelaje()</code>
+exist (weight modeling tastes first), but the hiring dialogue uses <strong>only the
+<code>…ByPobrezaYAvaricia()</code> versions</strong>.</div>
+
+<!-- ============ 4 ============ -->
+<h2 id="s4"><span class="num">4</span>Desired commission formula</h2>
+<p><span class="path">FemaleCharacterModelo.cs:85–99</span> — <code>GetDesiredComisionByPobrezaYAvaricia()</code> is
+structurally identical to salary, only the bands change:</p>
+<pre><code>t     = (1 − weight(pobreza))·0.25 + weight(gustoPorDinero)·0.75
+base  = Lerp(30, 80, t)                              // ── base commission 30–80%
+base2 = LerpConMedio(base·0.875, base, base·1.0625, t2)        // taste:  ±~6–12.5%
+base3 = Lerp(base2·0.875, base2·1.0588, weight(inteligencia))  // intel:  −12.5%/+5.9%
+return RoundToInt(base3)                              // integer percent</code></pre>
+<p>Commission is her percentage cut of each job's gross income. <strong>Effective range ≈ 23% → ~89%.</strong></p>
+
+<!-- ============ 5 ============ -->
+<h2 id="s5"><span class="num">5</span>Negotiation — the 80% floor</h2>
+<p>Negotiation runs through Lua dialogue functions in
+<span class="path">DialogueSys/Trabajos/RegistroDeFuncionesDeContratacionDeModelos.cs</span>. Variables:
+<code>SALARIO_OFERTA</code> (your offer), <code>SALARIO_CONTRA_OFERTA</code> (her counter),
+<code>SALARIO_RESULT</code> (agreed) and the <code>COMISION_*</code> equivalents.</p>
+<p><code>GetSalaryOfferAceptanceW()</code> (~248–278) computes <code>ratio = offer / desired</code>:</p>
+<ul>
+  <li><strong>offer ≥ 0.8 × desired → accepted</strong>, no counter.</li>
+  <li>Below that she <strong>counters</strong>: the first counter is an inflated <code>desired × 2</code> anchor;
+  subsequent counters interpolate down toward <code>0.8 × desired</code> on a squared curve.</li>
+  <li>Commission haggling (<code>GetComisionOfferAceptanceW()</code>, ~215–246) uses the same 0.8 threshold.</li>
+</ul>
+<div class="note"><b>You can haggle, but only down to 80% of her desired figure.</b> Nothing the player
+has — charisma, karma, favorability, stats — moves the desired number itself.</div>
+
+<!-- ============ 6 ============ -->
+<h2 id="s6"><span class="num">6</span>Overpaying buys favorability</h2>
+<p>The only player-facing lever runs the <em>opposite</em> direction from haggling — paying <strong>more</strong>
+than she wants grants her a favorability buff toward the player:</p>
+<table>
+  <thead><tr><th>Action</th><th>Method</th><th>Buff</th></tr></thead>
+  <tbody>
+    <tr><td>Overpay salary</td><td><code>SetSalarioResultToEmplyerOffer</code> (~155–200)</td><td><code>Tvalle.Buff.FavorabilityBySalary</code> — scales with <code>offer/desired</code>, <strong>up to +35</strong></td></tr>
+    <tr><td>Over-commission</td><td><code>SetComisionResultToEmplyerOffer</code> (~97–140)</td><td><code>Tvalle.Buff.FavorabilityByCommission</code> — <code>clamp(offer − desired, 1, 10)</code>, <strong>up to +10</strong></td></tr>
+    <tr><td>Back out of hire</td><td><code>DesistHiring</code> / <code>RemoveBuffBySalary</code> (~295–320)</td><td>Strips the above buffs</td></tr>
+  </tbody>
+</table>
+<p>Karma only appears in <code>ModeloIsSorryForFired()</code> — it gates a <em>firing</em> dialogue reaction, not any money.</p>
+
+<!-- ============ 7 ============ -->
+<h2 id="s7"><span class="num">7</span>Every other cost</h2>
+<table>
+  <thead><tr><th>Cost</th><th>Amount</th><th>Where</th></tr></thead>
+  <tbody>
+    <tr><td>Signing bonus</td><td><span class="pill no">NONE</span></td><td><code>HireCurrentModel</code> only persists the agreed salary &amp; commission.</td></tr>
+    <tr><td>Weekly salary</td><td>Full salary, every Saturday</td><td><code>PagoDeCuentasSabadoEvento.cs:98–104</code> — summed with rent + dark-web fee.</td></tr>
+    <tr><td>Per-job commission</td><td><code>jobIncome × commission/100</code> per finished job</td><td><code>JobsManager.cs:751–758</code> — deducted from your wallet after you collect job income.</td></tr>
+    <tr><td>Firing cost</td><td>Back-pay + severance</td><td><code>FireCurrentModel</code> (~383–418): <code>backpay = daysSinceMonday × (salary/5)</code> <em>plus</em> a severance term <code>daysWorked × 0.5 × daysToFriday</code>.</td></tr>
+    <tr><td>Defaults if unset</td><td>salary 100, commission 30</td><td><code>MemoriaDeSMAModelosFemeninas.cs:321–327</code>.</td></tr>
+  </tbody>
+</table>
+
+<!-- ============ 8 ============ -->
+<h2 id="s8"><span class="num">8</span>Where the traits come from</h2>
+<p>The cost inputs split into two provenances:</p>
+<ul>
+  <li><strong>Generated from genetics:</strong> <code>gustoPorDinero</code> and the three modeling tastes are
+  produced by the gusto interpreters — <code>InterpretadorDeGustos.cs:62</code>
+  (<code>result.gustoPorDinero = …GetParaGenesPorValor(helperTraits.gustoPorDineroValorPolarizado)</code>),
+  schema in <code>InterpretacionDeGustos.cs:428–440</code> ("Taste for Money"). So a model's greed and
+  willingness ride along with the genetic pool that the rating system breeds.</li>
+  <li><strong>Authored directly in personality-map assets:</strong> <code>pobreza</code> and <code>inteligencia</code>
+  are <em>not</em> produced by the interpreters — they are written as <code>Trait</code> entries in the
+  personality maps (e.g. <code>Assets/MonoBehaviour/PersonalidadFemenina_DEFECTO.asset</code>,
+  <code>MapaRamModFem_HumanTraits.asset</code>). Absent → defaults to <code>normal</code> (0.5).</li>
+</ul>
+<p>All traits are stored on <code>Personalidad</code> as a serialized <code>List&lt;Trait&gt;</code>
+(<code>Trait { TraitHumano trait; HumanTraitScore score; }</code>), read via <code>GetTraitScore()</code> /
+written via <code>SetTraitScore()</code>. <code>FemaleCharacterModelo</code> grabs the component in
+<code>AwakeUnityEvent()</code> (<code>GetComponentEnRoot&lt;Personalidad&gt;()</code>).</p>
+
+<!-- ============ 9 ============ -->
+<h2 id="s9"><span class="num">9</span>What does NOT factor in</h2>
+<table>
+  <thead><tr><th>Candidate input</th><th>Affects cost?</th><th>Note</th></tr></thead>
+  <tbody>
+    <tr><td>Looks / appearance rating</td><td><span class="pill no">NO</span></td><td>No <code>GetDesired*</code> method references the rating, looks, or <code>SimplifiedAutoRatings</code>.</td></tr>
+    <tr><td>Personality rating score</td><td><span class="pill no">NO</span></td><td>The rating buckets are separate from the trait-based cost.</td></tr>
+    <tr><td>Femininity / modeling-exp</td><td><span class="pill no">NO</span></td><td>Computed on <code>FemaleCharacterModelo</code>, but feed the <em>rating</em> system, never the wallet.</td></tr>
+    <tr><td>Player stats / charisma / karma</td><td><span class="pill no">NO</span></td><td>Don't move the desired number; only overpaying (player choice) changes the outcome.</td></tr>
+    <tr><td>Her personality traits</td><td><span class="pill yes">YES</span></td><td>The sole determinant — §2–§4.</td></tr>
+  </tbody>
+</table>
+<div class="note">Cross-reference: the <strong>rating</strong> ("Looks"/"Personality" sliders) is documented in
+<code>docs/model-rating-scoring-system.html</code>. Cost and rating are independent systems that happen to share
+the same <code>Personalidad</code> / genetics substrate.</div>
+
+<!-- ============ 10 ============ -->
+<h2 id="s10"><span class="num">10</span>Component &amp; file reference</h2>
+<table>
+  <thead><tr><th>File</th><th>Role</th></tr></thead>
+  <tbody>
+    <tr><td><code>TValle/Pro/Entrevista/Runtime/FemaleCharacterModelo.cs</code></td><td>Defines the desired-money formulas: salary 101–115, commission 85–99, gusto-first variants 117–145.</td></tr>
+    <tr><td><code>DialogueSys/Trabajos/RegistroDeFuncionesDeContratacionDeModelos.cs</code></td><td>Negotiation Lua functions: haggle/acceptance 215–278, overpay→favorability 97–200, hire 322–352, fire/severance 383–418.</td></tr>
+    <tr><td><code>_ReusableScripts/CuchiCuchi/AI/TraitHumano.cs</code></td><td>Trait enum — <code>gustoPorDinero=28</code>, <code>pobreza=107</code>, <code>inteligencia=111</code>, modeling tastes 82/83/108.</td></tr>
+    <tr><td><code>CuchiCuchi/AI/HumanTraitScore.cs</code> + <code>HumanTraitScoreEXT.cs</code></td><td>The 5-level score enum and its <code>GetWeigthDeScore()</code> → 0/0.25/0.5/0.75/1.0 mapping.</td></tr>
+    <tr><td><code>CuchiCuchi/AI/Personalidad.cs</code></td><td>Trait storage (<code>List&lt;Trait&gt;</code>), <code>GetTraitScore</code> 707, <code>SetTraitScore</code> 738.</td></tr>
+    <tr><td><code>…/Interpretadores/InterpretadorDeGustos.cs</code> + <code>InterpretacionDeGustos.cs</code></td><td>Where <code>gustoPorDinero</code> / modeling tastes are generated from genetics.</td></tr>
+    <tr><td><code>…/Memoria/MemoriaDeSMAModelosFemeninas.cs</code></td><td>Stored salary/commission + defaults (100 / 30).</td></tr>
+    <tr><td><code>…/PagoDeCuentasSabadoEvento.cs</code></td><td>Weekly (Saturday) salary payment.</td></tr>
+    <tr><td><code>…/JobsManager.cs</code></td><td>Per-job commission deduction (751–758).</td></tr>
+  </tbody>
+</table>
+
+<footer>
+  Gameplay-systems reference for the SMA rebuild — describes shipped behavior, not a repair. Companion to
+  <code>docs/model-rating-scoring-system.html</code>, <code>docs/male-stat-system.html</code>,
+  <code>docs/male-female-coupling.html</code>, and <code>docs/female-reaction-system.html</code>.
+  Verify any code change against the original shipped IL.
+</footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Desire System — Architecture</title>
+<style>
+  :root{
+    --bg:#0f1216; --panel:#161b22; --panel2:#1c232c; --ink:#d7dee7; --muted:#8b97a6;
+    --line:#2a323d; --code:#e6edf3;
+    --src:#6cb6ff; --alt:#7ee787; --pen:#ffb86c; --buf:#d2a8ff; --out:#ff9aa2;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0; background:var(--bg); color:var(--ink);
+    font:15px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;}
+  .wrap{max-width:1060px; margin:0 auto; padding:40px 24px 96px}
+  header.doc{border-bottom:1px solid var(--line); padding-bottom:20px; margin-bottom:8px}
+  header.doc h1{font-size:30px; margin:0 0 6px; letter-spacing:-.5px}
+  header.doc p{color:var(--muted); margin:0; max-width:74ch}
+  .path{color:var(--alt); font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:13px}
+  h2{font-size:21px; margin:46px 0 12px; padding-top:14px; letter-spacing:-.3px; border-top:1px solid var(--line)}
+  h2 .num{color:var(--src); font-variant-numeric:tabular-nums; margin-right:10px}
+  h3{font-size:16px; margin:26px 0 8px; color:#eaf1f8}
+  p{margin:10px 0} ul{margin:10px 0 10px 0; padding-left:22px} li{margin:5px 0}
+  a{color:var(--src); text-decoration:none} a:hover{text-decoration:underline}
+  code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:.86em;
+    background:var(--panel2); color:var(--code); padding:.1em .4em; border-radius:5px; border:1px solid var(--line)}
+  pre{background:#11161c; border:1px solid var(--line); border-radius:10px; padding:14px 16px; overflow:auto;
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:12.5px; color:var(--code); line-height:1.55}
+  table{border-collapse:collapse; width:100%; margin:18px 0; font-size:14px}
+  th,td{border:1px solid var(--line); padding:9px 12px; text-align:left; vertical-align:top}
+  th{background:var(--panel2); color:#eaf1f8; font-weight:600}
+  tr:nth-child(even) td{background:rgba(255,255,255,.015)}
+  td code{white-space:nowrap}
+  .num td:not(:first-child){font-variant-numeric:tabular-nums}
+  .lead{background:var(--panel); border:1px solid var(--line); border-left:3px solid var(--src);
+    border-radius:8px; padding:14px 18px; margin:18px 0}
+  .note{background:var(--panel); border:1px solid var(--line); border-left:3px solid var(--pen);
+    border-radius:8px; padding:12px 16px; margin:16px 0; font-size:14px; color:#cdd6e0}
+  .toc{background:var(--panel); border:1px solid var(--line); border-radius:10px;
+    padding:14px 20px; margin:24px 0; columns:2; column-gap:36px}
+  .toc a{display:block; padding:3px 0; color:var(--ink)} .toc a:hover{color:var(--src)}
+  .toc .n{color:var(--src); font-variant-numeric:tabular-nums; display:inline-block; width:1.6em}
+  .pill{display:inline-block; font-size:11px; font-weight:700; letter-spacing:.4px; padding:1px 7px;
+    border-radius:20px; border:1px solid var(--line); vertical-align:middle}
+  .pill.src{color:var(--src);border-color:#27445f} .pill.alt{color:var(--alt);border-color:#274a31}
+  .pill.pen{color:var(--pen);border-color:#5a4426} .pill.buf{color:var(--buf);border-color:#43335a}
+  footer{margin-top:60px; padding-top:18px; border-top:1px solid var(--line); color:var(--muted); font-size:13px}
+
+  figure.dg{margin:22px 0; background:#11161c; border:1px solid var(--line); border-radius:12px; padding:14px 12px 8px}
+  figure.dg svg{width:100%; height:auto; display:block}
+  figure.dg figcaption{color:var(--muted); font-size:12px; text-align:center; padding:8px 6px 2px}
+  svg text{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+  .box{fill:#1a212b; stroke-width:1.6}
+  .c-src{stroke:var(--src)} .c-alt{stroke:var(--alt)} .c-pen{stroke:var(--pen)}
+  .c-buf{stroke:var(--buf)} .c-out{stroke:var(--out)} .c-mut{stroke:#475061}
+  .tag{font-size:11px; font-weight:700; letter-spacing:.5px}
+  .t-src{fill:var(--src)} .t-alt{fill:var(--alt)} .t-pen{fill:var(--pen)} .t-buf{fill:var(--buf)} .t-out{fill:var(--out)}
+  .ttl{font-size:12.5px; fill:#eaf1f8; font-weight:600}
+  .sub{font-size:10.5px; fill:#9aa6b4}
+  .cap{font-size:10px; fill:#74808f}
+  .edge{fill:none; stroke:#5b6675; stroke-width:1.7; marker-end:url(#arw)}
+  .edge.dash{stroke-dasharray:4 4; stroke:#475061; stroke-width:1.4; marker-end:url(#arws)}
+  .elbl{font-size:9.5px; fill:#8b97a6}
+  @media (max-width:720px){ .toc{columns:1} }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <marker id="arw" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+    <path d="M0,0 L10,5 L0,10 z" fill="#5b6675"/></marker>
+  <marker id="arws" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M0,0 L10,5 L0,10 z" fill="#475061"/></marker>
+</defs></svg>
+
+<div class="wrap">
+
+<header class="doc">
+  <h1>Desire System — Architecture</h1>
+  <p>How a female model's four <strong>desires</strong> (mouth, breast, crotch, ass) are stored, raised by
+  stimulation, and bounded by a <strong>dynamic ceiling</strong> — including how that ceiling is <em>improved</em>
+  over a session ("trained capacity") and suppressed by fatigue. This is the value that the diegetic desire bars
+  (<code>BarraDeDeseo*</code>) read, and the gate the reactors check before teasing / sex.
+  All paths are under <span class="path">SMANew/ExportedProject/Assets/Scripts/</span> unless noted.</p>
+</header>
+
+<nav class="toc">
+  <a href="#s1"><span class="n">1</span>The four desires</a>
+  <a href="#s2"><span class="n">2</span>The value model — current vs ceiling</a>
+  <a href="#s3"><span class="n">3</span>Per-desire constants</a>
+  <a href="#s4"><span class="n">4</span>How a desire is raised (gain rate)</a>
+  <a href="#s5"><span class="n">5</span>How the ceiling is improved</a>
+  <a href="#s6"><span class="n">6</span>Trait-tier tables</a>
+  <a href="#s7"><span class="n">7</span>Buffs that move the ceiling</a>
+  <a href="#s8"><span class="n">8</span>Component reference</a>
+</nav>
+
+<!-- ============ 1 ============ -->
+<h2 id="s1"><span class="num">1</span>The four desires</h2>
+<p>The <code>Deseos</code> component tracks four independent desires, one per erogenous zone. Each is a signed
+percentage and has its own <em>current value</em> and its own <em>dynamic ceiling</em>:</p>
+<table>
+  <tr><th>Desire</th><th>Field (Spanish)</th><th>Driven mainly by</th></tr>
+  <tr><td><span class="pill alt">Mouth / Lips</span></td><td><code>labios</code></td>
+      <td>tongue, inner-mouth (primary) · lips, jaw (secondary) · face/head (tertiary)</td></tr>
+  <tr><td><span class="pill alt">Breast</span></td><td><code>senos</code></td>
+      <td>nipples (primary) · breasts (secondary) · chest (tertiary)</td></tr>
+  <tr><td><span class="pill alt">Crotch</span></td><td><code>entrepierna</code></td>
+      <td>vagina / clitoris / labia (primary) · lower-belly (secondary) · belly (tertiary)</td></tr>
+  <tr><td><span class="pill alt">Ass</span></td><td><code>trasero</code></td>
+      <td>anus (primary) · buttocks / coccyx (secondary) · hips / legs (tertiary)</td></tr>
+</table>
+<p>A genital / testicle / inverted "package" stimulus raises <strong>all four at once</strong>, each scaled by its
+own growth unit. The same enum, <code>Desires</code> (<code>All · None · Crotch · Ass · Breast · Mouth</code>), is
+how buffs address a single desire.</p>
+
+<!-- ============ 2 ============ -->
+<h2 id="s2"><span class="num">2</span>The value model — current vs ceiling</h2>
+<p>Each desire's displayed percentage is produced on demand by one function,
+<code>Valores.GetDeseoPercentage(...)</code> (<span class="path">…/CuchiCuchi/AI/Deseos.cs</span>). It is
+recomputed once per <code>ForcedUpdateId</code> tick and cached:</p>
+<pre>// current value = (additive layer) then (multiplicative layer), clamped to [-100, ceiling]
+float ceiling = maxValoresSumador.AdicinarValorIncluyendo( maximoInicial + maximoValorAdded ); // additive
+      ceiling = maxValoresModificador.ModificarValor( ceiling );                                // multiplicative
+return Mathf.Clamp( modificador.ModificarValor( sumador.AdicinarValorIncluyendo( valorInicial + valorAdded ) ),
+                    -100f, ceiling );</pre>
+
+<figure class="dg">
+<svg viewBox="0 0 1060 248" role="img" aria-label="Desire ceiling composition">
+  <!-- edges into the ceiling -->
+  <line class="edge" x1="218" y1="56"  x2="360" y2="92"/>
+  <line class="edge" x1="218" y1="110" x2="360" y2="104"/>
+  <line class="edge" x1="218" y1="164" x2="360" y2="116"/>
+  <line class="edge" x1="624" y1="104" x2="700" y2="104"/>
+  <line class="edge" x1="218" y1="210" x2="700" y2="128"/>
+
+  <!-- additive inputs -->
+  <rect class="box c-pen" x="14" y="36"  width="204" height="42" rx="9"/>
+  <text class="sub" x="116" y="54"  text-anchor="middle">maximosIniciales</text>
+  <text class="cap" x="116" y="69"  text-anchor="middle">genetic baseline  -100..100</text>
+  <rect class="box c-alt" x="14" y="90"  width="204" height="42" rx="9"/>
+  <text class="sub" x="116" y="108" text-anchor="middle">m_addingMaxValores</text>
+  <text class="cap" x="116" y="123" text-anchor="middle">banked / trained  ±500</text>
+  <rect class="box c-buf" x="14" y="144" width="204" height="42" rx="9"/>
+  <text class="sub" x="116" y="162" text-anchor="middle">valoresMaximosSumable…</text>
+  <text class="cap" x="116" y="177" text-anchor="middle">additive buffs</text>
+
+  <!-- multiplicative input -->
+  <rect class="box c-buf" x="14" y="194" width="204" height="42" rx="9"/>
+  <text class="sub" x="116" y="212" text-anchor="middle">valoresMaximosModificable…</text>
+  <text class="cap" x="116" y="227" text-anchor="middle">multiplicative buffs</text>
+
+  <!-- sum node -->
+  <rect class="box c-src" x="360" y="80"  width="264" height="48" rx="10"/>
+  <text class="tag t-src" x="492" y="100" text-anchor="middle">Σ ADDITIVE</text>
+  <text class="sub" x="492" y="118" text-anchor="middle">base + banked + additive buffs</text>
+
+  <!-- ceiling node -->
+  <rect class="box c-out" x="700" y="78"  width="346" height="56" rx="10"/>
+  <text class="tag t-out" x="873" y="100" text-anchor="middle">CEILING (max)</text>
+  <text class="ttl" x="873" y="120" text-anchor="middle">= ( Σ additive ) × multiplicative buffs</text>
+
+  <text class="cap" x="873" y="160" text-anchor="middle">current desire is then Mathf.Clamp( value, -100, ceiling )</text>
+</svg>
+<figcaption>The ceiling is an additive stack (genetic baseline + banked "trained" capacity + additive buffs)
+scaled by a multiplicative buff layer. The current desire floats in <code>[-100, ceiling]</code>.</figcaption>
+</figure>
+
+<table>
+  <tr><th>Term</th><th>Field</th><th>What it is</th><th>Range</th></tr>
+  <tr><td><code>maximoInicial</code></td><td><code>…deseos.maximosIniciales.X</code></td>
+      <td>Per-girl genetic / personality baseline ceiling</td><td>−100 … 100</td></tr>
+  <tr><td><code>maximoValorAdded</code></td><td><code>m_addingMaxValores.X</code></td>
+      <td>Accumulated "trained" growth from stimulation (§5)</td><td>±500</td></tr>
+  <tr><td>additive buffs</td><td><code>m_valoresMaximosSumablePercentage.X</code></td>
+      <td>Flat buff/debuff modifiers (<code>ModificableDeFloat</code>)</td><td>—</td></tr>
+  <tr><td>multiplicative buffs</td><td><code>m_valoresMaximosModificablePercentage.X</code></td>
+      <td>Scaling buff/debuff modifiers, applied last</td><td>—</td></tr>
+</table>
+<p>The genetic baseline is itself editable per-girl through the <code>Personalidad_DeseosMaxIniciales_*</code>
+alterador (<span class="path">…/Alteradores/AI/Holders/Deseos/AlteracionesDeDeseosMaxIniciales.cs</span>),
+clamped −100 … 100 — that is the character-creation / genetics knob for "how high can this desire ever go".</p>
+
+<!-- ============ 3 ============ -->
+<h2 id="s3"><span class="num">3</span>Per-desire constants</h2>
+<p>The fixed values that differ per zone (<code>Deseos.Config</code> + the two alterador holders):</p>
+<table class="num">
+  <tr><th>Desire</th><th>Field</th><th>Growth unit / tick<br><code>unidadDeAumento</code></th>
+      <th>Genetic baseline<br><code>maximosIniciales</code></th><th>Gain multiplier<br><code>initialAumentoMods</code></th></tr>
+  <tr><td>Mouth / Lips</td><td><code>labios</code></td><td>0.003333</td><td>−100 … 100</td><td>0.1 … 10</td></tr>
+  <tr><td>Breast</td><td><code>senos</code></td><td>0.003000</td><td>−100 … 100</td><td>0.1 … 10</td></tr>
+  <tr><td>Crotch</td><td><code>entrepierna</code></td><td>0.002667</td><td>−100 … 100</td><td>0.1 … 10</td></tr>
+  <tr><td>Ass</td><td><code>trasero</code></td><td>0.002333</td><td>−100 … 100</td><td>0.1 … 10</td></tr>
+</table>
+<p>The <code>unidadDeAumento</code> is "per second" — at runtime it is multiplied by <code>100 · Time.deltaTime</code>,
+so e.g. continuous primary-zone lip stimulation accrues ≈ <code>0.333 %/s</code> before any trait or emotion
+modifiers. Note the descending order: the mouth fills fastest, the ass slowest.</p>
+<h3>Shared clamps &amp; constants (all four desires)</h3>
+<table>
+  <tr><th>Mechanic</th><th>Value</th><th>Source</th></tr>
+  <tr><td>Max banked per gain (<code>addingMaxValorMod</code>)</td><td><strong>5 %</strong> of each gain</td>
+      <td><code>AumentarDeseo*</code></td></tr>
+  <tr><td>Banked-max clamp (<code>m_addingMaxValores</code>)</td><td><strong>±500</strong></td>
+      <td><code>RegistrarEstimulo</code> → <code>ClampAll(-500, 500)</code></td></tr>
+  <tr><td>Current accumulator clamp (<code>m_addingValores</code>)</td><td><strong>±250</strong></td>
+      <td><code>ClampAll(-250, 250)</code></td></tr>
+  <tr><td>Current-desire floor</td><td><strong>−100</strong></td><td><code>GetDeseoPercentage</code></td></tr>
+</table>
+
+<!-- ============ 4 ============ -->
+<h2 id="s4"><span class="num">4</span>How a desire is raised (the gain rate)</h2>
+<p>Every stimulus routed through <code>RegistrarEstimulo(...)</code> resolves the touched body part to one of the
+four desires + a tier (primary / secondary / tertiary) and calls the matching
+<code>AumentarDeseo&lt;Zone&gt;(amount)</code>. The <code>amount</code> is a product:</p>
+<pre>amount = unidadDeAumento · 100 · Time.deltaTime
+         · deseoGanancia&lt;Primario|Segundario|Terciario&gt;   // body-zone tier weight (trait-scored)
+         · ModPorEmocion(calculo)                            // pleasure / pain / rage / other × pos|neg trait
+         · ModPorTipoDeInteraccion(calculo)                  // visual / verbal / tactile / exposure / coital sensitivity</pre>
+<p>Then inside <code>AumentarDeseo*</code> it is scaled once more by the per-girl gain
+(<code>m_modificablesGains.X.ModificarValor(initialAumentoMods.X)</code>) before being banked:</p>
+<pre>m_addingValores.X    += amount · gain;             // raises the CURRENT desire
+m_addingMaxValores.X += amount · gain · 0.05;      // raises the CEILING by 5% of the same gain</pre>
+<div class="note">The <code>ModPorEmocion</code> sign matters: a <em>negative</em> emotion (pain / rage) with a
+low <code>deseoGananciaPorEstimulosNegativos</code> trait yields a <strong>negative</strong> amount — the same
+stimulus that would build desire on a willing girl actively <em>drains</em> it (and lowers her ceiling) on an
+unwilling one. Pleasure uses <code>modPorPlacer = 1.0</code>; pain <code>0.75</code>; rage <code>0.5</code>;
+other emotions <code>0.25</code>.</div>
+
+<!-- ============ 5 ============ -->
+<h2 id="s5"><span class="num">5</span>How the ceiling is improved</h2>
+<p>The interesting term is <code>m_addingMaxValores</code> — the "trained capacity". It is what makes repeated
+play permanently raise how high a desire can climb, and it moves through three paths:</p>
+<ul>
+  <li><span class="pill alt">BANKING</span> &nbsp;<strong>5 % of every desire gain</strong> is added to the
+    ceiling (the <code>· 0.05</code> above). The more a zone is stimulated, the higher its ceiling drifts —
+    clamped to ±500. This is the core "practice raises your capacity" mechanic.</li>
+  <li><span class="pill pen">ORGASM SURVIVES</span> &nbsp;On orgasm the system <em>subtracts</em> a resilience
+    amount from <code>m_addingValores</code> (the <strong>current</strong> desire drops — a refractory reset) but
+    <strong>does not touch <code>m_addingMaxValores</code></strong>. So each climax resets the level while leaving
+    the <em>raised ceiling</em> in place — that is the within-session progression.</li>
+  <li><span class="pill buf">BUFFS</span> &nbsp;The additive / multiplicative max-buff layers (§7) move the
+    ceiling temporarily without touching the banked value.</li>
+</ul>
+<p>The orgasm drop is itself trait-scored (<code>deseosResiliance</code>): a higher resilience means a
+<em>bigger</em> post-orgasm desire reset.</p>
+<table class="num">
+  <tr><th>Trait tier (<code>deseosResiliance</code>)</th><th>Current-desire drop on orgasm (per affected zone)</th></tr>
+  <tr><td>muyAlto (very high)</td><td>24</td></tr>
+  <tr><td>alto (high)</td><td>12</td></tr>
+  <tr><td>normal</td><td>6</td></tr>
+  <tr><td>bajo (low)</td><td>3</td></tr>
+  <tr><td>muyBajo (very low)</td><td>0</td></tr>
+</table>
+
+<!-- ============ 6 ============ -->
+<h2 id="s6"><span class="num">6</span>Trait-tier tables</h2>
+<p>A girl's traits land on one of five tiers (<code>HumanTraitScore</code>:
+<code>muyBajo · bajo · normal · alto · muyAlto</code>). These tables are the discrete "options" those tiers map to.</p>
+
+<h3>Desire needed to <em>act</em> — <code>ThresholdPositivo</code></h3>
+<p>How much desire (in that zone) the reactors require before she'll accept teasing / sex. Lower = friskier.
+The trait used is <code>leGustaChupar</code> (mouth &amp; breast), <code>leGustaHacerEjercicio</code> (crotch),
+<code>leGustaHacerEjercicioNoNatural</code> (ass).</p>
+<table class="num">
+  <tr><th>Trait tier</th><th>Desire for Teasing</th><th>Desire for Sex</th></tr>
+  <tr><td>muyAlto</td><td>20</td><td>60</td></tr>
+  <tr><td>alto</td><td>30</td><td>70</td></tr>
+  <tr><td>normal</td><td>40</td><td>80</td></tr>
+  <tr><td>bajo</td><td>50</td><td>90</td></tr>
+  <tr><td>muyBajo</td><td>60</td><td>100</td></tr>
+</table>
+
+<h3>Desire that triggers <em>rejection</em> — <code>ThresholdNegativo</code></h3>
+<table class="num">
+  <tr><th>Trait tier</th><th>Rejects Teasing at</th><th>Rejects Sex at</th></tr>
+  <tr><td>muyAlto</td><td>−100</td><td>−60</td></tr>
+  <tr><td>alto</td><td>−90</td><td>−50</td></tr>
+  <tr><td>normal</td><td>−80</td><td>−40</td></tr>
+  <tr><td>bajo</td><td>−70</td><td>−30</td></tr>
+  <tr><td>muyBajo</td><td>−60</td><td>−20</td></tr>
+</table>
+
+<h3>Gain multipliers by trait tier</h3>
+<p>Body-zone tier weights (<code>deseoGananciaPrimario/Segundario/Terciario</code>) and the emotion sign
+multipliers (<code>deseoGananciaPorEstimulos Positivos/Negativos</code>):</p>
+<table class="num">
+  <tr><th>Trait tier</th><th>Primary zone</th><th>Secondary</th><th>Tertiary</th><th>+Positive emotion</th><th>−Negative emotion</th></tr>
+  <tr><td>muyAlto</td><td>1.25</td><td>1.0</td><td>0.5</td><td>2.0</td><td>+0.1</td></tr>
+  <tr><td>alto</td><td>1.1111</td><td>0.75</td><td>0.375</td><td>1.5</td><td>−0.0001</td></tr>
+  <tr><td>normal</td><td>1.0</td><td>0.5</td><td>0.25</td><td>1.0</td><td>−0.333</td></tr>
+  <tr><td>bajo</td><td>0.9</td><td>0.3333</td><td>0.16666</td><td>0.666</td><td>−0.666</td></tr>
+  <tr><td>muyBajo</td><td>0.8</td><td>0.25</td><td>0.125</td><td>0.5</td><td>−1.0</td></tr>
+</table>
+<p>Per-stimulus-type sensitivity (<code>ModPorTipoDeInteraccion</code>) is not tiered here — it reads continuous
+per-girl values from <code>…deseos.initialSensibilidades</code> (visual / verbal / tactile / exposure / coital),
+set in genetics.</p>
+
+<!-- ============ 7 ============ -->
+<h2 id="s7"><span class="num">7</span>Buffs that move the ceiling</h2>
+<p><code>BuffOnDeseoGainAndMaxValueEffecto</code> applies a single buff that sets <strong>both</strong> the gain
+multiplier (<code>modificablesGains.X</code>) <strong>and</strong> the additive-max modifier
+(<code>valoresMaximosSumablePercentage.X</code>) to the same <code>mod</code> value, keyed on the buff's id and
+addressed by the <code>Desires</code> enum. On <code>Remove</code> both modifiers are pulled back off.</p>
+<p>The one shipped user is <code>DeseosGainMaxByFatigue</code>: when a girl is tired it lerps that mod
+<code>1.0 → 0.2</code> by her stored fatigue (<code>Mathf.Lerp(1f, 0.2f, applyableFatigueMod)</code>) for every
+desire, for a <strong>3-hour</strong> duration. So fatigue simultaneously throttles her gain rate <em>and</em>
+caps how high desire can reach; rest restores it. The buff also drives a quality band (<code>ItemQuality</code>)
+for the UI from <code>mod × stacks</code>.</p>
+<div class="note">Both layers are <code>ModificableDeFloat</code> modifier stacks — the same
+<code>[SerializeReference]</code> modifier mechanism used across the game, rebuilt at runtime (the stripped
+modifier lists are not load-bearing; see <span class="path">memory: serializereference-non-loadbearing</span>).</div>
+
+<!-- ============ 8 ============ -->
+<h2 id="s8"><span class="num">8</span>Component reference</h2>
+<table>
+  <tr><th>Type</th><th>Path (under <code>…/Assets/Scripts/</code>)</th><th>Role</th></tr>
+  <tr><td><code>Deseos</code></td>
+      <td><span class="path">Assembly-D_E_Chuchi_ReSc/…/CuchiCuchi/AI/Deseos.cs</span></td>
+      <td>Core: the four desires, the ceiling formula, <code>RegistrarEstimulo</code>, <code>AumentarDeseo*</code></td></tr>
+  <tr><td><code>MapaDeDeseos</code></td>
+      <td><span class="path">…/CuchiCuchi/AI/Personalidades/Mapas/MapaDeDeseos.cs</span></td>
+      <td>Per-girl genetic data: <code>valoresIniciales · maximosIniciales · initialAumentoMods · initialSensibilidades</code></td></tr>
+  <tr><td><code>AlteracionesDeDeseosMaxIniciales</code></td>
+      <td><span class="path">…/Characters/Alteradores/AI/Holders/Deseos/</span></td>
+      <td>Editable baseline ceiling (<code>Personalidad_DeseosMaxIniciales_*</code>, −100…100)</td></tr>
+  <tr><td><code>AlteracionesDeDeseosGainsIniciales</code></td>
+      <td><span class="path">…/Characters/Alteradores/AI/Holders/Deseos/</span></td>
+      <td>Editable gain multiplier (<code>initialAumentoMods</code>, 0.1…10)</td></tr>
+  <tr><td><code>BuffOnDeseoGainAndMaxValueEffecto</code> · <code>…Arg</code></td>
+      <td><span class="path">…/Dependentes/Scenas/BuffAndDebuff/Clases/</span></td>
+      <td>Buff that scales both gain and additive-max for one <code>Desires</code> zone</td></tr>
+  <tr><td><code>DeseosGainMaxByFatigue</code></td>
+      <td><span class="path">…/Dependentes/Scenas/BuffAndDebuff/</span></td>
+      <td>Applies the fatigue debuff (mod 1.0→0.2, 3 h) to all four desires</td></tr>
+  <tr><td><code>BarraDeDeseo</code> · <code>…Boca</code> · <code>…Entrepierna</code> · <code>…Trasero</code></td>
+      <td><span class="path">Assembly-D_E_Chuchi_ReSc/…/CuchiCuchi/AI/UI/</span></td>
+      <td>The diegetic desire bars that read each <code>*Percentage</code></td></tr>
+</table>
+
+<footer>
+  SMA rebuild — <span class="path">SMANew/ExportedProject</span>. Companions:
+  <a href="female-reaction-system.html">female-reaction-system.html</a> ·
+  <a href="male-female-coupling.html">male-female-coupling.html</a> ·
+  <a href="model-rating-scoring-system.html">model-rating-scoring-system.html</a>.
+  Generated from source inspection of the AssetRipper rebuild (<code>Deseos.cs</code> et al).
+</footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Model Rating &amp; Scoring System — Architecture</title>
+<style>
+  :root{
+    --bg:#0f1216; --panel:#161b22; --panel2:#1c232c; --ink:#d7dee7; --muted:#8b97a6;
+    --line:#2a323d; --code:#e6edf3;
+    --pro:#6cb6ff; --gen:#7ee787; --sco:#ffb86c; --fit:#d2a8ff; --use:#ff9aa2;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0; background:var(--bg); color:var(--ink);
+    font:15px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;}
+  .wrap{max-width:1060px; margin:0 auto; padding:40px 24px 96px}
+  header.doc{border-bottom:1px solid var(--line); padding-bottom:20px; margin-bottom:8px}
+  header.doc h1{font-size:30px; margin:0 0 6px; letter-spacing:-.5px}
+  header.doc p{color:var(--muted); margin:0; max-width:74ch}
+  .path{color:var(--gen); font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:13px}
+  h2{font-size:21px; margin:46px 0 12px; padding-top:14px; letter-spacing:-.3px; border-top:1px solid var(--line)}
+  h2 .num{color:var(--pro); font-variant-numeric:tabular-nums; margin-right:10px}
+  h3{font-size:16px; margin:26px 0 8px; color:#eaf1f8}
+  p{margin:10px 0} ul{margin:10px 0 10px 0; padding-left:22px} li{margin:5px 0}
+  a{color:var(--pro); text-decoration:none} a:hover{text-decoration:underline}
+  code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:.86em;
+    background:var(--panel2); color:var(--code); padding:.1em .4em; border-radius:5px; border:1px solid var(--line)}
+  pre{background:#11161c; border:1px solid var(--line); border-radius:10px; padding:14px 16px; overflow:auto; margin:16px 0}
+  pre code{background:none; border:none; padding:0; font-size:12.5px; line-height:1.55; white-space:pre}
+  table{border-collapse:collapse; width:100%; margin:18px 0; font-size:14px}
+  th,td{border:1px solid var(--line); padding:9px 12px; text-align:left; vertical-align:top}
+  th{background:var(--panel2); color:#eaf1f8; font-weight:600}
+  tr:nth-child(even) td{background:rgba(255,255,255,.015)}
+  td code{white-space:nowrap}
+  .lead{background:var(--panel); border:1px solid var(--line); border-left:3px solid var(--pro);
+    border-radius:8px; padding:14px 18px; margin:18px 0}
+  .note{background:var(--panel); border:1px solid var(--line); border-left:3px solid var(--sco);
+    border-radius:8px; padding:12px 16px; margin:16px 0; font-size:14px}
+  .note b{color:#eaf1f8}
+  .toc{background:var(--panel); border:1px solid var(--line); border-radius:10px;
+    padding:14px 20px; margin:24px 0; columns:2; column-gap:36px}
+  .toc a{display:block; padding:3px 0; color:var(--ink)} .toc a:hover{color:var(--pro)}
+  .toc .n{color:var(--pro); font-variant-numeric:tabular-nums; display:inline-block; width:1.6em}
+  footer{margin-top:60px; padding-top:18px; border-top:1px solid var(--line); color:var(--muted); font-size:13px}
+  .pill{display:inline-block; font-size:11px; font-weight:700; letter-spacing:.4px; padding:.12em .55em;
+    border-radius:20px; border:1px solid var(--line); vertical-align:middle}
+  .pill.yes{color:#7ee787; border-color:#2f5b3a} .pill.no{color:#ff9aa2; border-color:#5b3036}
+
+  /* diagrams */
+  figure.dg{margin:22px 0; background:#11161c; border:1px solid var(--line); border-radius:12px; padding:14px 12px 8px}
+  figure.dg svg{width:100%; height:auto; display:block}
+  figure.dg figcaption{color:var(--muted); font-size:12px; text-align:center; padding:8px 6px 2px}
+  svg text{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+  .box{fill:#1a212b; stroke-width:1.6}
+  .box.soft{fill:#161c24}
+  .c-pro{stroke:var(--pro)} .c-gen{stroke:var(--gen)} .c-sco{stroke:var(--sco)}
+  .c-fit{stroke:var(--fit)} .c-use{stroke:var(--use)} .c-mut{stroke:#475061}
+  .tag{font-size:11px; font-weight:700; letter-spacing:.5px}
+  .t-pro{fill:var(--pro)} .t-gen{fill:var(--gen)} .t-sco{fill:var(--sco)} .t-fit{fill:var(--fit)} .t-use{fill:var(--use)}
+  .ttl{font-size:12.5px; fill:#eaf1f8; font-weight:600}
+  .sub{font-size:10.5px; fill:#9aa6b4}
+  .cap{font-size:10px; fill:#74808f}
+  .edge{fill:none; stroke:#5b6675; stroke-width:1.7; marker-end:url(#arw)}
+  .edge.g{stroke:#6f7d8c}
+  .edge.dash{stroke-dasharray:4 4; stroke:#475061; stroke-width:1.4; marker-end:url(#arws)}
+  .elbl{font-size:9.5px; fill:#8b97a6}
+  .legend text{font-size:10.5px; fill:#9aa6b4}
+  @media (max-width:720px){ .toc{columns:1} }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <marker id="arw" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+    <path d="M0,0 L10,5 L0,10 z" fill="#5b6675"/></marker>
+  <marker id="arws" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M0,0 L10,5 L0,10 z" fill="#475061"/></marker>
+</defs></svg>
+
+<div class="wrap">
+
+<header class="doc">
+  <h1>Model Rating &amp; Scoring System — Architecture</h1>
+  <p>How the interviewer / model-picking menu's two scores — <strong>Physical Appearance</strong> ("looks") and
+  <strong>Personality</strong> — are defined, computed, and used. The short version: neither is an objective
+  beauty/niceness number. Both are a <em>match score</em> against an ideal model <em>you</em> designed, and the
+  same value doubles as the fitness function of a genetic algorithm that breeds the applicant pool toward your
+  taste. All paths under <span class="path">SMANew/ExportedProject/Assets/Scripts/</span> unless noted.</p>
+</header>
+
+<nav class="toc">
+  <a href="#s1"><span class="n">1</span>The big idea</a>
+  <a href="#s2"><span class="n">2</span>What's on screen</a>
+  <a href="#s3"><span class="n">3</span>Slider ↔ value math</a>
+  <a href="#s4"><span class="n">4</span>How <code>fitnes</code> is computed</a>
+  <a href="#s5"><span class="n">5</span>The three scoring curves</a>
+  <a href="#s6"><span class="n">6</span>Weights — what dominates</a>
+  <a href="#s7"><span class="n">7</span>Where "your taste" comes from</a>
+  <a href="#s8"><span class="n">8</span>What the scores DO</a>
+  <a href="#s9"><span class="n">9</span>What they do NOT do</a>
+  <a href="#s10"><span class="n">10</span>Personality ≠ the live AI</a>
+  <a href="#s11"><span class="n">11</span>Component &amp; file reference</a>
+</nav>
+
+<!-- ============ 1 ============ -->
+<h2 id="s1"><span class="num">1</span>The big idea</h2>
+<div class="lead">
+The rating you see is <strong>"how closely this model's genes match the ideal model you designed"</strong> —
+broken down per trait, scaled to 0–10. It is <em>not</em> "how attractive she is" in the abstract. The exact same
+number (<code>fitnes</code>, 0–1 per trait-group) is simultaneously: the slider value on screen, and the
+<strong>selection pressure</strong> of a genetic algorithm that evolves each campaign's applicant pool toward
+whatever you rate highly.
+</div>
+
+<figure class="dg">
+<svg viewBox="0 0 1060 250" role="img" aria-label="Rating pipeline">
+  <line class="edge" x1="196" y1="92" x2="238" y2="92"/>
+  <line class="edge" x1="416" y1="92" x2="458" y2="92"/>
+  <line class="edge" x1="636" y1="92" x2="678" y2="92"/>
+  <line class="edge" x1="856" y1="92" x2="898" y2="92"/>
+  <!-- profile -->
+  <rect class="box c-pro" x="18" y="50" width="178" height="84" rx="10"/>
+  <text class="tag t-pro" x="107" y="74" text-anchor="middle">YOUR IDEAL</text>
+  <text class="sub" x="107" y="94"  text-anchor="middle">a profile you</text>
+  <text class="sub" x="107" y="110" text-anchor="middle">sculpt &amp; save</text>
+  <text class="cap" x="107" y="158" text-anchor="middle">AutoRatingProfile</text>
+  <text class="cap" x="107" y="172" text-anchor="middle">.completa</text>
+  <!-- her genes -->
+  <rect class="box c-gen" x="240" y="50" width="176" height="84" rx="10"/>
+  <text class="tag t-gen" x="328" y="74" text-anchor="middle">HER GENES</text>
+  <text class="sub" x="328" y="94"  text-anchor="middle">interpreted from</text>
+  <text class="sub" x="328" y="110" text-anchor="middle">the NPC</text>
+  <text class="cap" x="328" y="158" text-anchor="middle">Interpretacion-</text>
+  <text class="cap" x="328" y="172" text-anchor="middle">CompletaDeFemale</text>
+  <!-- compare -->
+  <rect class="box c-sco" x="460" y="50" width="176" height="84" rx="10"/>
+  <text class="tag t-sco" x="548" y="74" text-anchor="middle">COMPARE</text>
+  <text class="sub" x="548" y="94"  text-anchor="middle">per-trait diff</text>
+  <text class="sub" x="548" y="110" text-anchor="middle">× weight</text>
+  <text class="cap" x="548" y="158" text-anchor="middle">AutoRatingHelper</text>
+  <text class="cap" x="548" y="172" text-anchor="middle">.Score()</text>
+  <!-- fitnes -->
+  <rect class="box c-fit" x="680" y="50" width="176" height="84" rx="10"/>
+  <text class="tag t-fit" x="768" y="74" text-anchor="middle">FITNES 0–1</text>
+  <text class="sub" x="768" y="94"  text-anchor="middle">one per</text>
+  <text class="sub" x="768" y="110" text-anchor="middle">trait-group</text>
+  <text class="cap" x="768" y="158" text-anchor="middle">×10 → sliders</text>
+  <text class="cap" x="768" y="172" text-anchor="middle">SetScore()</text>
+  <!-- uses -->
+  <rect class="box c-use" x="900" y="50" width="160" height="84" rx="10"/>
+  <text class="tag t-use" x="980" y="74" text-anchor="middle">USES</text>
+  <text class="sub" x="980" y="94"  text-anchor="middle">GA breeding</text>
+  <text class="sub" x="980" y="110" text-anchor="middle">who walks in</text>
+  <text class="cap" x="980" y="158" text-anchor="middle">+ cosmetic</text>
+  <text class="cap" x="980" y="172" text-anchor="middle">0–100 dossier</text>
+</svg>
+<figcaption>One <em>compare</em> step turns "your ideal vs her genes" into a per-trait <code>fitnes</code>, which is
+both the slider you see and the breeding weight that reshapes next phase's pool.</figcaption>
+</figure>
+
+<!-- ============ 2 ============ -->
+<h2 id="s2"><span class="num">2</span>What's on screen</h2>
+<p>The rating panel <code>PanelDeEntrevistaCalificacion</code> binds <code>EstrevistaRatingModelo</code>, which has
+exactly two halves, drawn by the reflection/attribute UI framework (<code>[Modelo]</code>/<code>[Label]</code>/
+<code>[DeslizableConToolTip]</code>):</p>
+<ul>
+  <li><strong>"Physical Appearance Score"</strong> → field <code>aparienciaFisica</code> — <strong>15 sliders</strong></li>
+  <li><strong>"Personality Score"</strong> → field <code>personalidad</code> — <strong>5 sliders + 1 dropdown</strong></li>
+</ul>
+<p>Every slider is <code>[Range(0,10)]</code>, whole numbers only. Each carries a tooltip listing the finer
+attributes that roll into it.</p>
+
+<h3>Looks — 15 sliders <span class="path">EstrevistaCalificacionAparienciaFisicaModelo.cs</span></h3>
+<table>
+  <thead><tr><th>Slider</th><th>Rolls up (tooltip attributes)</th></tr></thead>
+  <tbody>
+    <tr><td><code>height</code> · "Height"</td><td>Height</td></tr>
+    <tr><td><code>body</code> · "Body"</td><td>Body-fat %, rib-cage thickness</td></tr>
+    <tr><td><code>skin</code> · "Skin"</td><td>Skin color, roughness, glossiness, amount of makeup</td></tr>
+    <tr><td><code>hair</code> · "Hair"</td><td>Hair color / curls / volume, pubic-hair color / density</td></tr>
+    <tr><td><code>head</code> · "Head"</td><td>Head size, neck thickness / length, forehead shape</td></tr>
+    <tr><td><code>face</code> · "Face"</td><td>Face shape, facial aging, cheek / chin / jaw shape, eyebrow color / shape</td></tr>
+    <tr><td><code>eyes</code> · "Eyes"</td><td>Eye size / position / shape, eyelid, iris size / type / color, eyelash shape</td></tr>
+    <tr><td><code>nose</code> · "Nose"</td><td>Nose size / position / shape, nostril size / shape, septum shape</td></tr>
+    <tr><td><code>mouth</code> · "Mouth"</td><td>Mouth size / shape, lip size / shape / roughness, lip groove, lipstick color / gloss</td></tr>
+    <tr><td><code>breast</code> · "Breast"</td><td>Breast size / position / shape / sagginess, nipple size / color / roughness</td></tr>
+    <tr><td><code>arms</code> · "Arms"</td><td>Arm / forearm thickness, hand size, finger position</td></tr>
+    <tr><td><code>waist_hip</code> · "Waist-Hip"</td><td>Waist thickness, hip shape / thickness</td></tr>
+    <tr><td><code>crotch</code> · "Crotch"</td><td>Thigh gap, vagina size / position / shape / skin / initial capacity</td></tr>
+    <tr><td><code>buttocks</code> · "Buttocks"</td><td>Butt size / shape / sagging, anus gap / size / position / shape / skin / capacity</td></tr>
+    <tr><td><code>legs</code> · "Legs"</td><td>Thigh / calf thickness, feet size</td></tr>
+  </tbody>
+</table>
+
+<h3>Personality — 5 sliders + 1 dropdown <span class="path">EstrevistaCalificacionPersonalidadModelo.cs</span></h3>
+<table>
+  <thead><tr><th>Control</th><th>UI label</th><th>What it scores (tooltip)</th></tr></thead>
+  <tbody>
+    <tr><td><code>angerManagement</code></td><td>Anger Management</td><td>Anger gain (all interactions), anger-vs-horniness, favorability from your appearance / responses</td></tr>
+    <tr><td><code>painTolerance</code></td><td>Pain Tolerance</td><td>Pain gain (all interactions), per-body-part modifiers, pain-vs-pleasure, pain-vs-horniness</td></tr>
+    <tr><td><code>slutness</code></td><td>Horniness</td><td>Pleasure gain, favorability gain, max pleasure per part, and favorability <em>requirements</em> (look / fondle / force undress / force pose / sex)</td></tr>
+    <tr><td><code>exhibitionism</code></td><td>Exhibitionism</td><td>Favorability requirements for being watched, asking to undress, asking to pose</td></tr>
+    <tr><td><code>servicing</code></td><td>Servicing</td><td>Initial desire + desire gain for oral / vaginal / anal, per stimulus type</td></tr>
+    <tr><td><code>summarizing</code></td><td>Qualified For "Modeling"</td><td><em>Dropdown</em>, not a slider. Ignoring looks, is she fit for "modeling"? (minor traits — rudeness, submission…)</td></tr>
+  </tbody>
+</table>
+<p>The dropdown is the <code>PersonalidadConsenting</code> enum — 5 ordered steps, integer values 0–4 (these
+values are load-bearing; see §3):</p>
+<table>
+  <thead><tr><th>Value</th><th><code>no</code></th><th><code>notSoMuch</code></th><th><code>some</code></th><th><code>yes</code></th><th><code>alot</code></th></tr></thead>
+  <tbody>
+    <tr><td>Int</td><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td></tr>
+    <tr><td>Label</td><td>No</td><td>Not so much</td><td>Some</td><td>Yes</td><td>A lot</td></tr>
+  </tbody>
+</table>
+
+<!-- ============ 3 ============ -->
+<h2 id="s3"><span class="num">3</span>Slider ↔ value math</h2>
+<p>The sliders are a 0–10 view of an internal 0–1 <code>fitnes</code>. The conversion is a flat ×10 (×4 for the
+dropdown), in <code>SetScore</code> (genes → UI) and its inverse <code>GetScore</code> (UI → normalized dict).</p>
+<table>
+  <thead><tr><th>Direction</th><th>Looks (15 floats)</th><th>Personality floats (5)</th><th>Dropdown <code>summarizing</code></th></tr></thead>
+  <tbody>
+    <tr><td><code>SetScore</code> &nbsp;genes→UI</td><td><code>slider = fitnes * 10</code></td><td><code>slider = round(fitnes * 10)</code></td><td><code>enum = (PersonalidadConsenting)round(fitnes * 4)</code></td></tr>
+    <tr><td><code>GetScore</code> &nbsp;UI→0–1</td><td><code>clamp(slider/10, 0, 1)</code></td><td><code>clamp(slider/10, 0, 1)</code></td><td><code>clamp((int)enum / 4, 0, 1)</code></td></tr>
+  </tbody>
+</table>
+<p>So the dropdown maps No=0.0, Not-so-much=0.25, Some=0.5, Yes=0.75, A-lot=1.0. <code>GetScore</code> clamps to
+[0,1]; the looks <code>SetScore</code> does <em>not</em> round or clamp (the <code>[Range]</code> UI and
+<code>ConjuntoGeneral.fitnes</code>'s own <code>Clamp01</code> on set keep it bounded anyway).</p>
+<div class="note"><b>Display reads the stored result, not a live recompute.</b> The panel's
+<code>TryAutoRatingAModelo()</code> calls <code>SetScore(sujeto.aparienciaFisica.conjuntoPorNombre)</code> —
+i.e. it reads each gene-group's <em>already-stamped</em> <code>fitnes</code>. A live re-score against your profile
+only happens on the "Redo" action (<code>OnRedoAutoRating → DoAutoRating</code>).</div>
+
+<!-- ============ 4 ============ -->
+<h2 id="s4"><span class="num">4</span>How <code>fitnes</code> is computed</h2>
+<p><code>AutoRatingHelper.Score(ref profile, ref interpretacion, aparienciaResult, personalidadResult)</code> walks
+every gene "leaf" by reflection. For each leaf: take the integer enum-distance between <em>your ideal</em> and
+<em>her</em>, convert it to a 0–1 score, multiply by that leaf's weight, accumulate into a bucket keyed by the
+trait-group (<code>para</code>), then divide each bucket by its summed weights. The result is a weighted average
+in 0–1 — one number per trait-group.</p>
+<pre><code>// per trait-group `para`:
+fitnes[para] = Σ( scorePerLeaf(profileLeaf, herLeaf) · weight ) / Σ( weight )
+
+// physical leaves  → scorePerLeaf = ScoreEasy      (skinTone leaf → ScoreSkinTone)
+// personality leaves → scorePerLeaf = ScoreSensible</code></pre>
+<p>Each leaf's <code>para</code> (target group) and <code>weight</code> come from a C# attribute on the trait —
+<code>[AplicaAConjuntoDeFisico(para="skin", weigth=100)]</code> for looks,
+<code>[AplicaAConjuntoDePersonalidad(...)]</code> for personality. The denominator
+(<code>…_A_CantidadDeInterpretaciones[para]</code>) is the <em>sum of weights</em> for that group, not a count —
+so a few heavy leaves dominate (§6). The reflection map is built once and memoized.</p>
+
+<figure class="dg">
+<svg viewBox="0 0 1060 220" role="img" aria-label="Score accumulation">
+  <rect class="box c-pro" x="20" y="40" width="150" height="50" rx="9"/>
+  <text class="ttl" x="95" y="60" text-anchor="middle">ideal leaf</text>
+  <text class="sub" x="95" y="78" text-anchor="middle">enum −2..2</text>
+  <rect class="box c-gen" x="20" y="128" width="150" height="50" rx="9"/>
+  <text class="ttl" x="95" y="148" text-anchor="middle">her leaf</text>
+  <text class="sub" x="95" y="166" text-anchor="middle">enum −2..2</text>
+  <line class="edge" x1="170" y1="65" x2="232" y2="100"/>
+  <line class="edge" x1="170" y1="153" x2="232" y2="118"/>
+  <rect class="box c-sco" x="234" y="78" width="180" height="62" rx="9"/>
+  <text class="ttl" x="324" y="100" text-anchor="middle">|diff| → curve</text>
+  <text class="sub" x="324" y="120" text-anchor="middle">Easy / Sensible / SkinTone</text>
+  <line class="edge" x1="414" y1="109" x2="476" y2="109"/>
+  <text class="elbl" x="445" y="101" text-anchor="middle">× weight</text>
+  <rect class="box c-sco soft" x="478" y="78" width="180" height="62" rx="9"/>
+  <text class="ttl" x="568" y="100" text-anchor="middle">Σ into bucket</text>
+  <text class="sub" x="568" y="120" text-anchor="middle">keyed by para</text>
+  <line class="edge" x1="658" y1="109" x2="720" y2="109"/>
+  <text class="elbl" x="689" y="101" text-anchor="middle">÷ Σweight</text>
+  <rect class="box c-fit" x="722" y="78" width="180" height="62" rx="9"/>
+  <text class="ttl" x="812" y="100" text-anchor="middle">fitnes[para]</text>
+  <text class="sub" x="812" y="120" text-anchor="middle">0–1</text>
+  <line class="edge" x1="902" y1="109" x2="964" y2="109"/>
+  <rect class="box c-fit soft" x="966" y="84" width="80" height="50" rx="9"/>
+  <text class="ttl" x="1006" y="106" text-anchor="middle">×10</text>
+  <text class="sub" x="1006" y="123" text-anchor="middle">slider</text>
+</svg>
+<figcaption>Every leaf tagged with the same <code>para</code> adds into one bucket; the bucket is the slider.</figcaption>
+</figure>
+
+<!-- ============ 5 ============ -->
+<h2 id="s5"><span class="num">5</span>The three scoring curves</h2>
+<p>The per-leaf score is a function of the integer enum-distance between your ideal and her. <strong>This is the
+single most important balance fact:</strong> personality uses a far stricter curve than looks.</p>
+<table>
+  <thead><tr><th>Curve</th><th>Used for</th><th>diff 0</th><th>diff 1</th><th>diff 2</th><th>diff 3</th><th>diff ≥4</th></tr></thead>
+  <tbody>
+    <tr><td><code>ScoreEasy</code></td><td>all <strong>looks</strong> traits</td><td>1.0</td><td>0.5</td><td>0.25</td><td>0.125</td><td>0</td></tr>
+    <tr><td><code>ScoreSkinTone</code></td><td>the skin-tone leaf only</td><td>1.0</td><td>0.75</td><td>0.5</td><td>0.25</td><td>0</td></tr>
+    <tr><td><code>ScoreSensible</code></td><td>all <strong>personality</strong> traits</td><td>1.0</td><td>0.1 <span class="sub">(0.11 if she overshoots)</span></td><td><strong>0</strong></td><td>0</td><td>0</td></tr>
+  </tbody>
+</table>
+<p>Consequences:</p>
+<ul>
+  <li><strong>Looks degrade gently</strong> — being one notch off a trait still yields half credit; it takes 4+
+  steps to hit zero.</li>
+  <li><strong>Personality is a cliff</strong> — one step off ≈ 0.1, two steps off = <em>0</em>. A model can read
+  near-zero on a personality bucket just by being two enum-steps from your ideal on its heavy leaves.</li>
+  <li>The "overshoot" bit (<code>overflow</code>) gives a hair more credit (0.11 vs 0.10) when her trait magnitude
+  exceeds your ideal's, rather than falling short.</li>
+</ul>
+
+<!-- ============ 6 ============ -->
+<h2 id="s6"><span class="num">6</span>Weights — what dominates</h2>
+<p>Weights are hardcoded as attribute literals on the trait structs (default <code>weigth = 1</code>). Because the
+bucket is a weight-normalized average, a handful of heavy leaves effectively decide each group's score:</p>
+<table>
+  <thead><tr><th>Leaf</th><th>Group (<code>para</code>)</th><th>Weight</th></tr></thead>
+  <tbody>
+    <tr><td><code>skinTone</code></td><td>skin</td><td>100</td></tr>
+    <tr><td>hair leaf</td><td>hair</td><td>100</td></tr>
+    <tr><td>facial-skin leaf</td><td>skin</td><td>50</td></tr>
+    <tr><td>eyes leaf</td><td>eyes</td><td>20</td></tr>
+    <tr><td><code>buttocks</code> leaf</td><td>buttocks</td><td>20</td></tr>
+    <tr><td>body leaf</td><td>body</td><td>10</td></tr>
+    <tr><td>crotch leaf</td><td>crotch</td><td>10</td></tr>
+    <tr><td><code>tanLines</code>, struct-default leaves</td><td>various</td><td>1–2</td></tr>
+  </tbody>
+</table>
+<p>For <code>summarizing</code> ("Qualified for Modeling"), specific personality traits contribute weighted:
+Dominant / Masochist / Hybristophilia / Submissive = 10 each; Perverted / Exhibitionist / Shy = 5 each. These are
+exactly the "minor aspects — rudeness, submission" the tooltip names.</p>
+
+<!-- ============ 7 ============ -->
+<h2 id="s7"><span class="num">7</span>Where "your taste" comes from</h2>
+<p>The <code>profile</code> argument to <code>Score</code> — the thing every model is measured against — is
+<strong>an ideal model you author yourself</strong>. It is not hardcoded, not a fixed set of "types," and
+<em>not</em> learned from your past picks.</p>
+<ul>
+  <li>A <strong>profile</strong> (<code>AutoRatingProfile</code>) is a full ideal-female gene-spec
+  (<code>InterpretacionCompletaDeFemale completa</code>) + a name + a portrait. Held by the singleton
+  <code>SimplifiedAutoRatings.m_grupo</code>.</li>
+  <li>You sculpt it in the editor <code>PanelEditorDeAutoRatingProfiles</code> (live 3D preview; Simple or
+  Complete authoring modes), reached from the campaign-launch panel
+  <code>PanelComenzarCampaing</code> ("New / Edit / Change profile").</li>
+  <li>It's saved as a <strong>portrait PNG with the genes embedded as JSON</strong>; the active profile lives in
+  the save at <code>root/AutoRatings/Profile/</code>.</li>
+  <li>At campaign start you pick which saved profile to use; it becomes the scoring target for every model that
+  campaign and is wiped at campaign end (<code>RemoveProfile</code>).</li>
+</ul>
+<div class="note"><b>Campaign tier does NOT change your taste target.</b> Free / amateur / professional only
+change how many applicants spawn and bias <em>their</em> genes (poverty / greed / modeling-appetite) via
+<code>OverrideGenes</code>. The yardstick stays fixed; only the population being measured changes.</div>
+
+<!-- ============ 8 ============ -->
+<h2 id="s8"><span class="num">8</span>What the scores DO</h2>
+<p>When a model is rated, each category score is written onto her gene-groups as <code>fitnes</code> (the commit
+point is <code>PiscinaDeCampaingActual.SetFemaleRate</code> → <code>value.fitnes = item.Value</code>). That
+<code>fitnes</code> then drives three things:</p>
+<table>
+  <thead><tr><th>#</th><th>Effect</th><th>How</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td><strong>Drives the genetic algorithm</strong> (the central mechanic)</td><td>Between phases the pool "reproduces": high-<code>fitnes</code> models breed, low ones are culled, fitness resets. Over phases the applicant pool drifts toward whatever you rate highly. <code>PiscinaDeNpcsManager.Reproducir</code> / <code>PiscinaDeSujetosReproduccionHelperV2</code>.</td></tr>
+    <tr><td>2</td><td><strong>Orders who walks in</strong></td><td>When you don't hand-pick, the next interviewee is the highest-rated un-interviewed model, ranked <code>looks·0.7 + personality·0.3</code> — the only place the two scores are weighed against each other (looks counts &gt;2×). <code>PiscinaDeNpcsManager…HigherRated</code>.</td></tr>
+    <tr><td>3</td><td><strong>Cosmetic 0–100 dossier headline</strong></td><td>Averaged to <code>appearanceScore</code> / <code>personalityScore</code> on the NPC dataContainer, shown (gated by dark-web subscription tier) in the dossier UI. A new-feature readout, not a mechanic.</td></tr>
+  </tbody>
+</table>
+
+<!-- ============ 9 ============ -->
+<h2 id="s9"><span class="num">9</span>What they do NOT do</h2>
+<table>
+  <thead><tr><th>Concern</th><th>Affected?</th><th>What actually drives it</th></tr></thead>
+  <tbody>
+    <tr><td>Hiring decision</td><td><span class="pill no">NO</span></td><td>Only "already hired?" + office vacancy count (<code>vacanciesPerLvl × (officeLvl+1)</code>). No score gate.</td></tr>
+    <tr><td>Salary / commission</td><td><span class="pill no">NO</span></td><td>Her <strong>poverty &amp; greed</strong> traits (<code>GetDesiredSalaryByPobrezaYAvaricia</code>), rating-independent.</td></tr>
+    <tr><td>Job qualification / tier</td><td><span class="pill no">NO</span></td><td>Campaign tier is your choice; no per-model score minimum rejects her.</td></tr>
+    <tr><td>Performance / client satisfaction</td><td><span class="pill no">NO</span></td><td>No job/performance code ever reads the stored <code>fitnes</code>.</td></tr>
+    <tr><td>Money / reputation directly</td><td><span class="pill no">NO</span></td><td>Campaign cost is a flat deduction at launch regardless of scores.</td></tr>
+    <tr><td>The pool's gene drift</td><td><span class="pill yes">YES</span></td><td>This is the one real consequence — see §8.1.</td></tr>
+  </tbody>
+</table>
+
+<!-- ============ 10 ============ -->
+<h2 id="s10"><span class="num">10</span>Personality score ≠ the live AI</h2>
+<p>A subtle but important point: the 6 personality controls are <strong>genetic gene-group buckets</strong>
+(<code>conjuntos</code>), <em>not</em> the fields the in-game AI uses to act. They are a rating <em>projection</em>
+over her genes.</p>
+<ul>
+  <li>The runtime AI (<code>CuchiCuchi/AI/Personalidad.cs</code>) works off a different representation:
+  <code>rasgos</code> (0–100) + live emotions → a dominant "type" (shy / submissive / perverted / exhibitionist /
+  rude…) via <code>ObtenerTipoMayor</code> / <code>ObtenerMayorSexual</code>, thresholded at ⅓.</li>
+  <li>The link is indirect: the <em>same underlying genes</em> both (a) aggregate into the buckets you rate, and
+  (b) author the <code>rasgos</code> / traits the AI later runs on.</li>
+  <li>So "Servicing 8" or "Horniness 7" is a rating of her <em>genes vs your ideal</em>, not a stat the AI reads
+  each frame. <code>summarizing</code> = "Qualified for Modeling" is your subjective guess, not a read of any
+  <code>InterestedInModeling</code> flag.</li>
+</ul>
+<div class="note">There is no symbol literally named <code>MaxTipoDePersonalidad</code> / <code>MAYOR_PERSONALIDAD_*</code>
+in the export — the dominant-type logic is <code>Personalidad.ObtenerTipoMayor</code> (and
+<code>ObtenerMayorSexual</code> for the sexual type).</div>
+
+<!-- ============ 11 ============ -->
+<h2 id="s11"><span class="num">11</span>Component &amp; file reference</h2>
+<table>
+  <thead><tr><th>File</th><th>Role</th></tr></thead>
+  <tbody>
+    <tr><td><code>Entrevistas/PanelDeEntrevistaCalificacion.cs</code></td><td>The interviewer menu MonoBehaviour. Reads scores for display (<code>TryAutoRatingAModelo</code> ~376–389), writes them on Done/Rest (~431–474), "Redo" re-score (~420–424).</td></tr>
+    <tr><td><code>Entrevistas/Modelos/EstrevistaRatingModelo.cs</code></td><td>The bound model holding the two labeled halves.</td></tr>
+    <tr><td><code>…/EstrevistaCalificacionAparienciaFisicaModelo.cs</code></td><td>"Looks" — 15 trait fields, tooltips, <code>SetScore</code> (×10) / <code>GetScore</code> (÷10).</td></tr>
+    <tr><td><code>…/EstrevistaCalificacionPersonalidadModelo.cs</code></td><td>"Personality" — 5 floats + <code>summarizing</code> enum; <code>SetScore</code>/<code>GetScore</code> (÷4 for the enum).</td></tr>
+    <tr><td><code>…/PersonalidadConsenting.cs</code></td><td>The 5-step "Qualified for Modeling" enum (0–4).</td></tr>
+    <tr><td><code>AutoRatingsProfiles/AutoRatingHelper.cs</code></td><td><code>Score</code> + <code>ScoreEasy</code>/<code>ScoreSensible</code>/<code>ScoreSkinTone</code>; reflection weight map.</td></tr>
+    <tr><td><code>AutoRatingsProfiles/SimplifiedAutoRatings.cs</code></td><td>Active taste-profile singleton; save/load to <code>root/AutoRatings/Profile/</code>.</td></tr>
+    <tr><td><code>AutoRatingsProfiles/AutoRatingProfile.cs</code></td><td>The profile data class (<code>mode/nombre/picture/simple/completa</code>).</td></tr>
+    <tr><td><code>AutoRatingsProfiles/UI/PanelEditorDeAutoRatingProfiles.cs</code></td><td>The "set your type" editor (3D preview, Simple/Complete modes, save PNG+JSON).</td></tr>
+    <tr><td><code>AutoRatingsProfiles/AutoRatingFemaleLogic.cs</code></td><td>Per-character scorer: interpret NPC → <code>SimplifiedAutoRatings.Score</code> → fill flag dicts.</td></tr>
+    <tr><td><code>Entrevistas/PanelComenzarCampaing.cs</code></td><td>Campaign-launch panel; profile selection (New/Edit/Change).</td></tr>
+    <tr><td><code>…/Genetica/PiscinaDeCampaingActual.cs</code></td><td><code>SetFemaleRate</code> — the commit point where each score becomes <code>conjunto.fitnes</code>.</td></tr>
+    <tr><td><code>Base.Genetica/…/PiscinaDeNpcsManager.cs</code></td><td>The <code>looks·0.7 + personality·0.3</code> argmax selector; <code>Reproducir</code> (GA breeding).</td></tr>
+    <tr><td><code>…/Globales/SMAGameplayController.cs</code></td><td>Pool-build mass auto-rating; campaign tiers; <code>OverrideGenes</code>; dossier 0–100 write.</td></tr>
+    <tr><td><code>Base.Genetica/…/IConjuntoDeGenes.cs</code>, <code>ISujeto.cs</code></td><td>The genetics interfaces — <code>fitnes</code> (0–1, clamped on set), <code>conjuntoPorNombre</code>.</td></tr>
+  </tbody>
+</table>
+
+<footer>
+  Gameplay-systems reference for the SMA rebuild — describes shipped behavior, not a repair. Companion to
+  <code>docs/male-stat-system.html</code>, <code>docs/male-female-coupling.html</code>,
+  <code>docs/female-reaction-system.html</code>, and <code>docs/chat-dialogue-personality-scoring-agencies.html</code>.
+  Verify any code change against the original shipped IL.
+</footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Consent, Thaw &amp; Auto-Movement — Architecture</title>
+<style>
+  :root{
+    --bg:#0f1216; --panel:#161b22; --panel2:#1c232c; --ink:#d7dee7; --muted:#8b97a6;
+    --line:#2a323d; --code:#e6edf3;
+    --src:#6cb6ff; --alt:#7ee787; --pen:#ffb86c; --buf:#d2a8ff; --out:#ff9aa2;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0; background:var(--bg); color:var(--ink);
+    font:15px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;}
+  .wrap{max-width:1060px; margin:0 auto; padding:40px 24px 96px}
+  header.doc{border-bottom:1px solid var(--line); padding-bottom:20px; margin-bottom:8px}
+  header.doc h1{font-size:30px; margin:0 0 6px; letter-spacing:-.5px}
+  header.doc p{color:var(--muted); margin:0; max-width:74ch}
+  .path{color:var(--alt); font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:13px}
+  h2{font-size:21px; margin:46px 0 12px; padding-top:14px; letter-spacing:-.3px; border-top:1px solid var(--line)}
+  h2 .num{color:var(--src); font-variant-numeric:tabular-nums; margin-right:10px}
+  h3{font-size:16px; margin:26px 0 8px; color:#eaf1f8}
+  p{margin:10px 0} ul{margin:10px 0 10px 0; padding-left:22px} li{margin:5px 0}
+  a{color:var(--src); text-decoration:none} a:hover{text-decoration:underline}
+  code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:.86em;
+    background:var(--panel2); color:var(--code); padding:.1em .4em; border-radius:5px; border:1px solid var(--line)}
+  pre{background:#11161c; border:1px solid var(--line); border-radius:10px; padding:14px 16px; overflow:auto;
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:12.5px; color:var(--code); line-height:1.55}
+  table{border-collapse:collapse; width:100%; margin:18px 0; font-size:14px}
+  th,td{border:1px solid var(--line); padding:9px 12px; text-align:left; vertical-align:top}
+  th{background:var(--panel2); color:#eaf1f8; font-weight:600}
+  tr:nth-child(even) td{background:rgba(255,255,255,.015)}
+  td code{white-space:nowrap}
+  .num td:not(:first-child){font-variant-numeric:tabular-nums}
+  .lead{background:var(--panel); border:1px solid var(--line); border-left:3px solid var(--src);
+    border-radius:8px; padding:14px 18px; margin:18px 0}
+  .note{background:var(--panel); border:1px solid var(--line); border-left:3px solid var(--pen);
+    border-radius:8px; padding:12px 16px; margin:16px 0; font-size:14px; color:#cdd6e0}
+  .warn{background:var(--panel); border:1px solid var(--line); border-left:3px solid var(--out);
+    border-radius:8px; padding:12px 16px; margin:16px 0; font-size:14px; color:#cdd6e0}
+  .toc{background:var(--panel); border:1px solid var(--line); border-radius:10px;
+    padding:14px 20px; margin:24px 0; columns:2; column-gap:36px}
+  .toc a{display:block; padding:3px 0; color:var(--ink)} .toc a:hover{color:var(--src)}
+  .toc .n{color:var(--src); font-variant-numeric:tabular-nums; display:inline-block; width:1.6em}
+  .pill{display:inline-block; font-size:11px; font-weight:700; letter-spacing:.4px; padding:1px 7px;
+    border-radius:20px; border:1px solid var(--line); vertical-align:middle}
+  .pill.src{color:var(--src);border-color:#27445f} .pill.alt{color:var(--alt);border-color:#274a31}
+  .pill.pen{color:var(--pen);border-color:#5a4426} .pill.buf{color:var(--buf);border-color:#43335a}
+  .pill.out{color:var(--out);border-color:#5a2e33}
+  footer{margin-top:60px; padding-top:18px; border-top:1px solid var(--line); color:var(--muted); font-size:13px}
+
+  figure.dg{margin:22px 0; background:#11161c; border:1px solid var(--line); border-radius:12px; padding:14px 12px 8px}
+  figure.dg svg{width:100%; height:auto; display:block}
+  figure.dg figcaption{color:var(--muted); font-size:12px; text-align:center; padding:8px 6px 2px}
+  svg text{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+  .box{fill:#1a212b; stroke-width:1.6}
+  .c-src{stroke:var(--src)} .c-alt{stroke:var(--alt)} .c-pen{stroke:var(--pen)}
+  .c-buf{stroke:var(--buf)} .c-out{stroke:var(--out)} .c-mut{stroke:#475061}
+  .tag{font-size:11px; font-weight:700; letter-spacing:.5px}
+  .t-src{fill:var(--src)} .t-alt{fill:var(--alt)} .t-pen{fill:var(--pen)} .t-buf{fill:var(--buf)} .t-out{fill:var(--out)}
+  .ttl{font-size:12.5px; fill:#eaf1f8; font-weight:600}
+  .sub{font-size:10.5px; fill:#9aa6b4}
+  .cap{font-size:10px; fill:#74808f}
+  .edge{fill:none; stroke:#5b6675; stroke-width:1.7; marker-end:url(#arw)}
+  .edge.dash{stroke-dasharray:4 4; stroke:#475061; stroke-width:1.4; marker-end:url(#arws)}
+  .elbl{font-size:9.5px; fill:#8b97a6}
+  @media (max-width:720px){ .toc{columns:1} }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <marker id="arw" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+    <path d="M0,0 L10,5 L0,10 z" fill="#5b6675"/></marker>
+  <marker id="arws" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M0,0 L10,5 L0,10 z" fill="#475061"/></marker>
+</defs></svg>
+
+<div class="wrap">
+
+<header class="doc">
+  <h1>Consent, Thaw &amp; Auto-Movement</h1>
+  <p>How a female model goes from refusing an act, to allowing it, to performing it autonomously. Three
+  interlocking systems — <b>consent</b> (the gate), <b>DesHielo</b>/"thaw" + <b>corruption</b> (acclimation &amp;
+  override), and <b>Deseos</b>/desire (the drive) — feed the <b>AutoSex</b> controller that makes her move on her own.
+  All values verified against the SMANew rebuild source.</p>
+</header>
+
+<div class="toc">
+  <a href="#overview"><span class="n">1</span> The big picture</a>
+  <a href="#consent"><span class="n">2</span> Consent — the hard gate</a>
+  <a href="#thaw"><span class="n">3</span> DesHielo (thaw) &amp; its gain</a>
+  <a href="#corrupt"><span class="n">4</span> Corruption &amp; bribery (instant unlock)</a>
+  <a href="#desire"><span class="n">5</span> Deseos (desire) model</a>
+  <a href="#desiregain"><span class="n">6</span> How desire is raised</a>
+  <a href="#automove"><span class="n">7</span> Auto-movement requirements</a>
+  <a href="#thresholds"><span class="n">8</span> Auto-move thresholds per zone</a>
+  <a href="#playbook"><span class="n">9</span> Fastest-path playbook</a>
+  <a href="#tables"><span class="n">10</span> Reference tables</a>
+  <a href="#persist"><span class="n">11</span> Persistence</a>
+</div>
+
+<div class="lead">
+  <b>One-sentence model.</b> Auto-movement requires, from her side, <b>(1)</b> consent for that act, <b>(2)</b>
+  ongoing penetration that isn't anatomically too tight, and <b>(3)</b> desire above her per-zone threshold —
+  with <b>personality</b> deciding how high desire must climb and <b>stamina</b> governing vigour. Consent is
+  raised by <b>thaw</b> (slow) or <b>bribery</b> (instant); desire is raised by <b>pleasurable</b> stimulation of
+  the matching erogenous zone.
+</div>
+
+<h2 id="overview"><span class="num">1</span>The big picture</h2>
+<p>Four subsystems chain together. Consent decides whether an act is even permitted; DesHielo and corruption
+move that gate; desire is the moment-to-moment drive; and the AutoSex controller reads consent + desire +
+personality every frame to decide whether she assists or takes over.</p>
+
+<figure class="dg">
+<svg viewBox="0 0 1000 250" role="img" aria-label="System pipeline">
+  <!-- boxes -->
+  <rect class="box c-src" x="20"  y="80" rx="9" width="170" height="86"/>
+  <text class="tag t-src" x="34" y="102">CONSENT</text>
+  <text class="ttl" x="34" y="122">ConsensualTree</text>
+  <text class="sub" x="34" y="138">ConsentNecesario</text>
+  <text class="cap" x="34" y="154">is this act allowed?</text>
+
+  <rect class="box c-pen" x="230" y="20" rx="9" width="180" height="80"/>
+  <text class="tag t-pen" x="244" y="42">THAW</text>
+  <text class="ttl" x="244" y="62">DesHielo 0–100</text>
+  <text class="cap" x="244" y="80">per-act acclimation</text>
+
+  <rect class="box c-buf" x="230" y="150" rx="9" width="180" height="80"/>
+  <text class="tag t-buf" x="244" y="172">CORRUPT</text>
+  <text class="ttl" x="244" y="192">Bribery / Sobornaje</text>
+  <text class="cap" x="244" y="210">instant permanent unlock</text>
+
+  <rect class="box c-alt" x="455" y="80" rx="9" width="180" height="86"/>
+  <text class="tag t-alt" x="469" y="102">DRIVE</text>
+  <text class="ttl" x="469" y="122">Deseos (desire)</text>
+  <text class="sub" x="469" y="138">−100 … +100 / zone</text>
+  <text class="cap" x="469" y="154">how much she wants it</text>
+
+  <rect class="box c-out" x="685" y="80" rx="9" width="190" height="86"/>
+  <text class="tag t-out" x="699" y="102">DECIDE</text>
+  <text class="ttl" x="699" y="122">AutoSexScore</text>
+  <text class="sub" x="699" y="138">score −1 … +1</text>
+  <text class="cap" x="699" y="154">assist? take over?</text>
+
+  <rect class="box c-mut" x="915" y="92" rx="9" width="70" height="62"/>
+  <text class="ttl" x="929" y="118" style="font-size:11px">Auto</text>
+  <text class="ttl" x="929" y="134" style="font-size:11px">SexV2</text>
+
+  <!-- edges -->
+  <path class="edge" d="M190 110 L455 116"/>
+  <path class="edge dash" d="M320 100 L320 150"/>
+  <text class="elbl" x="326" y="128">sets 100</text>
+  <path class="edge" d="M410 60  L470 92"/>
+  <path class="edge" d="M410 190 L470 150"/>
+  <path class="edge" d="M635 123 L685 123"/>
+  <path class="edge" d="M875 123 L915 123"/>
+  <text class="elbl" x="200" y="98">gate ≥1?</text>
+</svg>
+<figcaption>Consent gates the act; thaw + corruption move the gate; desire drives; AutoSexScore turns consent+desire+personality into a score the AutoSex controller acts on.</figcaption>
+</figure>
+
+<h2 id="consent"><span class="num">2</span>Consent — the hard gate</h2>
+<p>Consent is checked per <code>(stimulus type × direction × body zone × stimulating part)</code> via
+<code>ConsentNecesario.EsConsentidoConJerarquia(...)</code>, which returns an <code>offsetMod</code>. An act is
+consented when <code>offsetMod ≥ 1.0</code>. The default allowed/refused set lives in the static
+<span class="path">ConsensualTree.cs</span>.</p>
+<p>Consent is a <b>hard prerequisite</b> for auto-movement: in <span class="path">AutoSexScore.cs</span> /
+<span class="path">AutoSexPosibilidadScore.cs</span>, if <code>offsetModTactil</code> or
+<code>offsetModPenetracion</code> is below 1, the score is forced negative
+(<code>Lerp(-1, maxScoreAtNoConsent=-0.333, …)</code>) → she <b>evades</b>, never assists. No amount of desire
+overrides missing consent.</p>
+
+<h2 id="thaw"><span class="num">3</span>DesHielo (thaw) &amp; its gain</h2>
+<p><span class="path">DesHielo.cs</span> is the gradual acclimation meter. For each stimulus key it holds a
+<b>0–100</b> value; repeated exposure raises it, and it does <b>not</b> passively decay
+(<code>UpdateValue</code> adds no drift toward zero). Once an act hits 100 its further generation is throttled
+×0.1, and when overall <code>value.total ≥ 100</code> the limited channel zeroes
+(<span class="path">DesHieloPorCambioDeEmociones.cs:363</span>).</p>
+
+<h3>Per-frame thaw gain — <code>GetValor</code> (DesHieloPorCambioDeEmociones.cs:372)</h3>
+<pre>valor = (timeGain + arousalBonus) × typeMod × directionMod × hitMod
+  timeGain     = 5/sec × personalityMod × (one-time? 2.5 : Δt)
+  arousalBonus = stimulationGeneratedThisFrame × 0.01
+  typeMod      = visual 1.0 | verbal 0.833 | tactile 0.667 | coital 0.5
+  directionMod = she-receives 1.0 | she-performs (dada) 4.0
+  hitMod       = "golpe": received 0.125 | given 8.0 | else 1.0
+  personalityMod = desHieloGananciaPorPersonalidad × (1 / miedoGananciaPorPersonalidad)</pre>
+<div class="note"><b>Why it feels stuck.</b> It is <b>per-act</b> (touching one zone won't thaw another), the
+<b>fear</b>-driven <code>personalityMod</code> can slow it dramatically, and each act caps at 100. Spreading
+attention dilutes; a fearful girl barely moves. Biggest natural lever: <b>her performing the act (dada) = 4×</b>.</p></div>
+
+<h2 id="corrupt"><span class="num">4</span>Corruption &amp; bribery — the instant unlock</h2>
+<p><span class="path">ConsentCorrupted.cs</span> permanently flips a refused act to consented:
+<code>CorruptEstimulo(...)</code> adds it to <code>m_corrupted</code> via
+<code>ConsensualTree.OverridesInvertedSet(...)</code> and slams its DesHielo to <b>100</b>
+(<code>SetTo(100f)</code>). In gameplay this is driven by the <b>Sobornaje / bribery</b> dialogue
+(<span class="path">RegistroDeFuncionesDeSobornos.cs</span>): pay money → that act is consented + fully thawed
+in one click. It also clears negative desire for the zone (e.g. anal bribe calls
+<code>AumentarDeseoNalgas(-trasero)</code>).</p>
+
+<h3>Bribe cost — <code>CantidadNecesariaParaConversanteVaginal</code> (≈250–2500)</h3>
+<pre>num = Lerp(2500, 250, offsetMod²)                 // closer to natural consent → cheaper
+num = Lerp(num,       num×0.666, gustoPorTratoExplicitoDeClientes)  // likes explicit → cheaper
+num = Lerp(num×0.666, num,       gustoPorDinero)   // greedier → more expensive
+num = Lerp(num×0.666, num,       1 − pobreza)      // poorer → cheaper
+num = Clamp(num, 250, 2500)</pre>
+<p>Cheapest unlock = a poor, likes-explicit, low-greed girl who is <b>already partly thawed</b> — so grind a
+little first, then bribe near the 250 floor.</p>
+
+<h2 id="desire"><span class="num">5</span>Deseos (desire) model</h2>
+<p><span class="path">Deseos.cs</span> tracks four desire channels, each on a <b>−100 … +100</b> percentage scale:</p>
+<table>
+<thead><tr><th>Channel</th><th>Body</th><th>Used by auto-sex act</th></tr></thead>
+<tbody>
+<tr><td><code>labios</code></td><td>mouth / lips</td><td>Oral (<code>bocaInterno</code>)</td></tr>
+<tr><td><code>senos</code></td><td>breasts</td><td>—</td></tr>
+<tr><td><code>entrepierna</code></td><td>crotch / vagina</td><td>Vaginal (<code>vag</code>)</td></tr>
+<tr><td><code>trasero</code></td><td>buttocks / anus</td><td>Anal (<code>ano</code>)</td></tr>
+</tbody>
+</table>
+<p>The percentage = current accumulated value over a dynamic ceiling
+(<code>GetDeseoPercentage</code>, line 135). Ceiling = <code>(maximosIniciales + bankedMax) × mult</code>,
+clamped to the genetic max. Baseline value &amp; ceiling come from genes
+(<code>currentPersonalidad.deseos.valoresIniciales / maximosIniciales</code>).</p>
+
+<h2 id="desiregain"><span class="num">6</span>How desire is raised</h2>
+<p>Stimulating a body part raises its zone's desire each frame (<code>RegistrarEstimulo</code>, line 690+):</p>
+<pre>gain = unidadDeAumentoZone × 100 × Δt × tier × ModEmocion × ModTipo × GainPersonalidad
+       (+ 5% of every gain is banked into the ceiling — permanent, ±500 cap)</pre>
+<ul>
+<li><b>unidadDeAumentoZone</b> — base unit: labios 0.00333, senos 0.0030, entrepierna 0.00267, trasero 0.00233
+(≈ 0.33 / 0.30 / 0.27 / 0.23 %/sec at neutral mods).</li>
+<li><b>tier</b> — how central the touched part is: <span class="pill alt">primario</span> direct erogenous
+(clitoris/vag, mouth/tongue, anus, nipples) · <span class="pill src">segundario</span> adjacent (labia,
+breasts, buttocks, perineo, lower belly) · <span class="pill pen">terciario</span> peripheral (head/ears,
+chest, hips/legs, belly). Each tier is itself a personality multiplier (see §10).</li>
+<li><b>ModEmocion</b> — pleasure (<code>placer</code>) ×1.0; pain ×0.75; rage ×0.5 — and pain/rage use the
+<b>negative</b> gain constant, which for most girls <i>drains</i> desire.</li>
+<li><b>ModTipo</b> — her per-personality sensitivity to the stimulus type (visual/verbal/tactile/exposure/coital).</li>
+<li><b>GainPersonalidad</b> — <code>GetGainDeX()</code> = her <code>initialAumentoMods</code> trait scaling.</li>
+</ul>
+<div class="warn"><b>Pleasure only.</b> Because the negative branch is negative for almost everyone, hurting or
+frightening her <i>lowers</i> desire — and a non-consensual act generates rage, so desire can't climb until the
+act is consented. Consent + pleasure first; then desire builds.</div>
+
+<h2 id="automove"><span class="num">7</span>Auto-movement requirements</h2>
+<p>The engine is <span class="path">ControlladorDeAutoSexV2.cs</span>, gated by the
+<code>AutoSexScore</code> / <code>AutoSexPosibilidadScore</code> decision layer.</p>
+<h3>Hard prerequisites (all required)</h3>
+<ul>
+<li><b>Consent</b> for that act+zone (<code>offsetModTactil</code> &amp; <code>offsetModPenetracion ≥ 1</code>),
+else score forced negative → evades.</li>
+<li><b>Active penetration</b> — stops after <code>maxTiempoSinPenetracion = 3s</code> without it.</li>
+<li><b>Not "too tight"</b> (<code>muyEstrecho</code>) — if penis width exceeds her tolerance, score = −1, blocked.</li>
+</ul>
+<h3>Graded driver + tiers</h3>
+<p>Score comes from desire via <code>GetScorePorDeseoPercentage(desire, deseoParaSex, deseoParaRechazarSex)</code>
+(−1…+1). The trait tier (§8) sets how high the score must reach:</p>
+<table class="num">
+<thead><tr><th>Score reaches…</th><th>She…</th></tr></thead>
+<tbody>
+<tr><td><code>scoreParaAsistencia</code></td><td>begins assisting / guiding your movement</td></tr>
+<tr><td><code>scoreParaConstantAsistencia</code></td><td>assists constantly</td></tr>
+<tr><td><code>scoreMinParaAutoSex</code> → <code>…Max</code></td><td><b>takes over — thrusts autonomously</b></td></tr>
+</tbody>
+</table>
+<h3>Keeping it going</h3>
+<p>Continuation needs <code>puedeSeguirEnAutoSex</code> true, penetration maintained, no jam. <b>Stamina/oxygen</b>
+modulates vigour: when winded (<code>cansancioEstado</code>) her speed falls toward ~0.1× until she recovers
+(<code>UpdateOxigeno</code>). Speed/depth ranges come from personality (<code>GetRangeDeVelocidadDeAutoSex</code>).</p>
+
+<h2 id="thresholds"><span class="num">8</span>Auto-move thresholds per zone</h2>
+<p>Each zone's threshold <i>tier</i> is chosen by a different personality trait:</p>
+<table>
+<thead><tr><th>Act</th><th>Desire channel</th><th>Trait selecting the tier</th></tr></thead>
+<tbody>
+<tr><td>Oral (<code>bocaInterno</code>)</td><td><code>labiosPercentage</code></td><td><code>leGustaChupar</code> (likes sucking)</td></tr>
+<tr><td>Vaginal (<code>vag</code>)</td><td><code>entrepiernaPercentage</code></td><td><code>leGustaHacerEjercicio</code> ("likes exercise")</td></tr>
+<tr><td>Anal (<code>ano</code>)</td><td><code>traseroPercentage</code></td><td><code>leGustaHacerEjercicioNoNatural</code> ("unnatural")</td></tr>
+</tbody>
+</table>
+<p>Desire thresholds by tier (identical numbers across zones; only the selecting trait differs):</p>
+<table class="num">
+<thead><tr><th>Trait tier</th><th>deseoParaTeasing</th><th>deseoParaSex</th><th>RechazarTeasing</th><th>RechazarSex</th></tr></thead>
+<tbody>
+<tr><td>muyAlto (loves it)</td><td>20</td><td>60</td><td>−100</td><td>−60</td></tr>
+<tr><td>alto</td><td>30</td><td>70</td><td>−90</td><td>−50</td></tr>
+<tr><td>normal</td><td>40</td><td>80</td><td>−80</td><td>−40</td></tr>
+<tr><td>bajo</td><td>50</td><td>90</td><td>−70</td><td>−30</td></tr>
+<tr><td>muyBajo (hates it)</td><td>60</td><td>100</td><td>−60</td><td>−20</td></tr>
+</tbody>
+</table>
+<p>And the auto-sex <i>score</i> bar (<code>AutoSexPosibilidadScore.Thresholds</code>):</p>
+<table class="num">
+<thead><tr><th>Trait tier</th><th>scoreParaAsistencia</th><th>scoreParaConstantAsistencia</th><th>scoreMinParaAutoSex</th><th>scoreMaxParaAutoSex</th></tr></thead>
+<tbody>
+<tr><td>muyAlto</td><td>0.15</td><td>0.40</td><td>0.33</td><td>0.425</td></tr>
+<tr><td>alto</td><td>0.225</td><td>0.60</td><td>0.495</td><td>0.6375</td></tr>
+<tr><td>normal</td><td>0.30</td><td>0.80</td><td>0.66</td><td>0.85</td></tr>
+<tr><td>bajo</td><td>0.33</td><td>0.88</td><td>0.726</td><td>0.935</td></tr>
+<tr><td>muyBajo</td><td>0.36</td><td>1.00</td><td>0.792</td><td>1.00</td></tr>
+</tbody>
+</table>
+<div class="note"><b>Worked example.</b> A <code>normal</code>-trait oral girl: teasing/assist begins around desire 40;
+the auto-sex score floor (0) is at desire 80; but full takeover needs <code>scoreMinParaAutoSex = 0.66</code> →
+<code>desire ≈ 80 + 0.66 × (100−80) ≈ 93</code>. A <code>muyAlto</code> girl hits takeover around desire 73.</div>
+
+<h2 id="playbook"><span class="num">9</span>Fastest-path playbook</h2>
+<h3>To unlock / raise consent</h3>
+<ol>
+<li><b>Bribery</b> — the only <i>instant</i> path: permanent consent + 100 thaw + clears negative desire. Cheapest
+when she's already partly thawed and is poor / likes-explicit / low-greed (≈250).</li>
+<li><b>Have her perform the act (dada)</b> — 4× faster thaw than passive.</li>
+<li><b>Keep her aroused</b> — <code>arousalBonus</code> adds to thaw on top of time gain.</li>
+<li><b>Avoid "golpe" on received acts</b> (×0.125); prefer low-fear / high-thaw-gain girls.</li>
+</ol>
+<h3>To raise desire</h3>
+<ol>
+<li><b>Stimulate the primary erogenous spot</b> of the target zone (tier ×1, vs ×0.5 / ×0.25).</li>
+<li><b>Keep it pleasurable</b> — pain/rage drain desire for most girls.</li>
+<li><b>Use the stimulus type she's sensitive to</b> (her <code>ModTipo</code> kinks).</li>
+<li><b>Pick/breed muyAlto pleasure + primario + "likes this act"</b> — stacks lower thresholds with up to ~2.5×
+faster gain (≈6× vs a muyBajo girl).</li>
+<li><b>Banking</b> — 5% of every gain permanently raises her ceiling and survives resets, so her arousal floor
+creeps up across sessions.</li>
+</ol>
+
+<h2 id="tables"><span class="num">10</span>Reference tables — gain multipliers</h2>
+<p>From <span class="path">Deseos.cs:511–594</span>; each row is selected by its own personality trait.</p>
+<table class="num">
+<thead><tr><th>Multiplier (trait)</th><th>muyBajo</th><th>bajo</th><th>normal</th><th>alto</th><th>muyAlto</th></tr></thead>
+<tbody>
+<tr><td>Primario (<code>deseoGananciaPrimario</code>)</td><td>0.80</td><td>0.90</td><td>1.00</td><td>1.111</td><td>1.25</td></tr>
+<tr><td>Segundario (<code>deseoGananciaSegundario</code>)</td><td>0.25</td><td>0.333</td><td>0.50</td><td>0.75</td><td>1.00</td></tr>
+<tr><td>Terciario (<code>deseoGananciaTerciario</code>)</td><td>0.125</td><td>0.167</td><td>0.25</td><td>0.375</td><td>0.50</td></tr>
+<tr><td>Positivos / pleasure (<code>…PorEstimulosPositivos</code>)</td><td>0.50</td><td>0.666</td><td>1.00</td><td>1.50</td><td>2.00</td></tr>
+<tr><td>Negativos / pain·rage (<code>…PorEstimulosNegativos</code>)</td><td>−1.00</td><td>−0.666</td><td>−0.333</td><td>−0.0001</td><td>+0.10</td></tr>
+</tbody>
+</table>
+<p>Emotion modifiers (<code>m_devConfig</code>): <code>modPorPlacer = 1.0</code>, <code>modPorDolorV2 = 0.75</code>,
+<code>modPorRabiaV2 = 0.5</code>. The negative-gain row multiplies pain/rage: only a <code>muyAlto</code>
+"masochist" gains desire from them; everyone else loses it.</p>
+
+<h2 id="persist"><span class="num">11</span>Persistence</h2>
+<ul>
+<li><b>Baseline (genetic, persistent):</b> <code>valoresIniciales</code> (starting desire) and
+<code>maximosIniciales</code> (base ceiling) live in her personality/genes — part of her saved profile, and
+altered by <span class="path">AlteracionesDeDeseosIniciales / …MaxIniciales</span>.</li>
+<li><b>Live current desire:</b> <code>m_addingValores</code> — serialized on the character instance.
+<code>ResetDeseos()</code> (line 923) zeroes it.</li>
+<li><b>Banked ceiling bonus:</b> <code>m_addingMaxValores</code> — 5% of every gain, clamped ±500.
+<code>ResetDeseos()</code> does <b>not</b> clear it, so the banked ceiling survives in-session resets.</li>
+<li><b>DesHielo (thaw):</b> per-act accumulator, no passive decay; reset only by explicit "Reset deshielos".</li>
+</ul>
+<div class="note">No explicit per-in-game-day wipe of <code>m_addingValores</code>/<code>m_addingMaxValores</code>
+was found; accumulated runtime state persists as long as the character instance/its serialized state does.
+Whether it round-trips through the day/save system was not conclusively traced.</div>
+
+<footer>
+  Sources (SMANew/ExportedProject): <span class="path">Deseos.cs</span>, <span class="path">DesHielo.cs</span>,
+  <span class="path">DesHieloPorCambioDeEmociones.cs</span>, <span class="path">ConsentCorrupted.cs</span>,
+  <span class="path">ConsensualTree.cs</span>, <span class="path">RegistroDeFuncionesDeSobornos.cs</span>,
+  <span class="path">AutoSexScore.cs</span>, <span class="path">AutoSexPosibilidadScore.cs</span>,
+  <span class="path">{Vaginal,Oral,Anal}SexScore.cs</span>, <span class="path">ControlladorDeAutoSexV2.cs</span>.
+  Companion to <span class="path">docs/desire-system.html</span> and
+  <span class="path">docs/female-reaction-system.html</span>.
+</footer>
+
+</div>
+</body>
+</html>

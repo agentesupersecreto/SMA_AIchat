@@ -83,74 +83,13 @@ namespace DialogInterceptorMod.API
                 yield break;
             }
 
-            ProcessAIResponse(textoIA);
+            AIResponseProcessor.ProcessResponse(textoIA, _behaviour, "Gemini");
             _behaviour.Window.AwaitingResponse = false;
-        }
 
-        private void ProcessAIResponse(string respuestaJson)
-        {
-            try
+            // Gemini uses summarization for memory
+            if (_behaviour.ChatHistory.Count > 10)
             {
-                string dialogo = JsonHelper.ExtractJsonValue(respuestaJson, "dialogo");
-                string comandoRaw = JsonHelper.ExtractJsonValueFromEnd(respuestaJson, "comando");
-
-                if (string.IsNullOrEmpty(dialogo))
-                {
-                    dialogo = respuestaJson;
-                }
-
-                // Support comma-separated commands: e.g. "give_consent, pose:kneel"
-                var comandosEncontrados = new System.Collections.Generic.List<string>();
-                if (!string.IsNullOrEmpty(comandoRaw) && comandoRaw.ToLower() != "null")
-                {
-                    string[] subCmds = comandoRaw.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-                    foreach (var sub in subCmds)
-                    {
-                        string c = sub.Trim();
-                        if (!string.IsNullOrEmpty(c) && c.ToLower() != "null")
-                            comandosEncontrados.Add(c);
-                    }
-                }
-
-                _behaviour.ChatHistory.Add(new ChatMessage(false, dialogo));
-                _behaviour.Window.ScrollToBottom();
-                _behaviour.Window.SetStatus("[OK] Response received.", false);
-
-                ShowInBark(dialogo);
-
-                foreach (string cmd in comandosEncontrados)
-                {
-                    string feedback = CommandExecutor.ExecuteCommand(cmd, _behaviour.Window.SetStatus, _behaviour.Window.ShowEmotionFeedback);
-                    _behaviour.ChatHistory.Add(ChatMessage.SystemMessage($"⚡ {feedback}"));
-                }
-
-                if (comandosEncontrados.Count > 0)
-                {
-                    _behaviour.Window.ScrollToBottom();
-                }
-
-                // Gemini uses summarization for memory
-                if (_behaviour.ChatHistory.Count > 10)
-                {
-                    _behaviour.StartCoroutine(GenerateSummaryAndClean());
-                }
-            }
-            catch (Exception ex)
-            {
-                Plugin.Log.LogError($"Error procesando respuesta IA: {ex.Message}");
-                _behaviour.Window.SetStatus("[ERROR] Error procesando el JSON devuelto por Gemini.", true);
-            }
-        }
-
-        private void ShowInBark(string texto)
-        {
-            ControlladorDeBarkDePersonalidad[] controladores = UnityEngine.Object.FindObjectsOfType<ControlladorDeBarkDePersonalidad>(true);
-            if (controladores != null && controladores.Length > 0)
-            {
-                foreach (var c in controladores)
-                {
-                    c.Bark(texto, true, 100, ControllerPrioridadConfig.interrumpir, 1f, 1f);
-                }
+                _behaviour.StartCoroutine(GenerateSummaryAndClean());
             }
         }
 

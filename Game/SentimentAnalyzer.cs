@@ -63,6 +63,113 @@ namespace DialogInterceptorMod.Game
         };
 
         /// <summary>
+        /// Reads the exact AI style (e.g. "pervertida") and checks the character's matching
+        /// "gustoPor..." trait (Taste Ceiling).
+        /// Re-implements Personalidad.CalcularModificadorDeRespuestaV2 math cleanly.
+        /// </summary>
+        public static string ApplySentimentFromStyle(string estilo)
+        {
+            if (string.IsNullOrEmpty(estilo)) return null;
+
+            ControlladorDeBarkDePersonalidad controlador = DialogBehaviour.Instance.CachedBarkController
+                ?? UnityEngine.Object.FindObjectOfType<ControlladorDeBarkDePersonalidad>();
+            if (controlador == null) return null;
+
+            Transform root = controlador.GetComponentInParent<Transform>().root;
+            var personalidad = root.GetComponentInChildren<Assets._ReusableScripts.CuchiCuchi.AI.Personalidad>();
+            if (personalidad == null) return null;
+
+            string estiloLower = estilo.ToLowerInvariant().Trim();
+            
+            // Map AI style to Trait string
+            string traitToFind = "";
+            switch (estiloLower)
+            {
+                case "normal": traitToFind = "Personalidad_TraitHumano_gustoPorNormales"; break;
+                case "timida": traitToFind = "Personalidad_TraitHumano_gustoPorTimidos"; break;
+                case "humilde": traitToFind = "Personalidad_TraitHumano_gustoPorHumildad"; break;
+                case "intelectual": traitToFind = "Personalidad_TraitHumano_gustoPorIntelectuales"; break;
+                case "confiada": traitToFind = "Personalidad_TraitHumano_gustoPorConfiados"; break;
+                case "pedante": traitToFind = "Personalidad_TraitHumano_gustoPorPatanes"; break;
+                case "pervertida": traitToFind = "Personalidad_TraitHumano_gustoPorPervertidos"; break;
+                case "mlady": traitToFind = "Personalidad_TraitHumano_gustoPorAutistas"; break;
+                case "lujosa": traitToFind = "Personalidad_TraitHumano_gustoPorDinero"; break;
+                default: return null; // Unknown style
+            }
+
+            // Get trait value. It will be 0-100 float usually.
+            // If the key is slightly off we will assume a neutral tier (50)
+            float tasteValue = 50f; 
+            try
+            {
+                var alteradores = root.GetComponentInChildren<Assets._ReusableScripts.CuchiCuchi.Chars.Alteradores.AlteradoresDePersonalidadFemenina>(true);
+                if (alteradores != null)
+                {
+                    var traverse = HarmonyLib.Traverse.Create(alteradores);
+                    var mapaTraverse = traverse.Field<Assets._ReusableScripts.CuchiCuchi.Chars.Alteradores.Mapas.Abstracts.MapaDeValoresDeAlteradoresBase>("m_mapaDeValoresUsando");
+                    if (mapaTraverse != null && mapaTraverse.Value != null)
+                    {
+                        var modificadores = mapaTraverse.Value.ObtenerAlteradorModificadores();
+                        foreach (var modif in modificadores)
+                        {
+                            if (modif.alteradorName == traitToFind && modif.modificadores != null && modif.modificadores.Length > 0)
+                            {
+                                tasteValue = modif.modificadores[0]; // Just take the first array value (usually float percentage)
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Plugin.Log.LogWarning($"Failed to read taste trait {traitToFind}: {ex.Message}");
+            }
+
+            // We determine how much she likes it based on the taste ceiling (0-100).
+            // Doc says: "muyAlto loves it 100, alto likes it 55, normal neutral 25, bajo dislikes 12, muyBajo hates 5"
+            // So if tasteValue is high (>= 75), it's alto/muyAlto. If low (<= 25), it's bajo/muyBajo.
+            float favorability = 0f;
+            float rageGain = 0f;
+
+            if (tasteValue >= 80f)
+            {
+                favorability = 5f; // She really likes it
+            }
+            else if (tasteValue >= 60f)
+            {
+                favorability = 3f;  // She likes it
+            }
+            else if (tasteValue >= 40f)
+            {
+                favorability = 1f;  // Neutral / slight bump
+            }
+            else if (tasteValue >= 20f)
+            {
+                rageGain = 2f;      // She dislikes it
+            }
+            else
+            {
+                rageGain = 4f;     // She hates it
+            }
+
+            NudgeEmotions(rageDelta: rageGain, joyDelta: favorability, consentDelta: favorability * 0.8f, arousalDelta: 0f);
+
+            if (favorability > 0)
+            {
+                return $"Style Score [{estilo}]: Matches Taste ({tasteValue:F0}%) → Joy +{favorability:F0}";
+            }
+            else if (rageGain > 0)
+            {
+                return $"Style Score [{estilo}]: Disliked Taste ({tasteValue:F0}%) → Rage +{rageGain:F0}";
+            }
+            else
+            {
+                return $"Style Score [{estilo}]: Neutral Taste ({tasteValue:F0}%)";
+            }
+        }
+
+        /// <summary>
         /// Scans the user message for sentiment keywords and applies emotion
         /// nudges via <see cref="EmocionesFemeninas"/>. Returns a short
         /// human-readable description (or null if no sentiment matched).

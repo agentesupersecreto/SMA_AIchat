@@ -1,11 +1,11 @@
 {
   "version": 4,
   "targets": {
-    ".NETStandard,Version=v2.1": {}
+    "netstandard2.1": {}
   },
   "libraries": {},
   "projectFileDependencyGroups": {
-    ".NETStandard,Version=v2.1": []
+    "netstandard2.1": []
   },
   "packageFolders": {
     "C:\\Users\\Admin\\.nuget\\packages\\": {}
@@ -23,15 +23,15 @@
         "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
-        ".NETStandard,Version=v2.1"
+        "netstandard2.1"
       ],
       "sources": {
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        ".NETStandard,Version=v2.1": {
+        "netstandard2.1": {
           "framework": "netstandard2.1",
-          "targetAlias": ".NETStandard,Version=v2.1",
+          "targetAlias": "netstandard2.1",
           "projectReferences": {}
         }
       },
@@ -48,9 +48,9 @@
       "SdkAnalysisLevel": "10.0.300"
     },
     "frameworks": {
-      ".NETStandard,Version=v2.1": {
+      "netstandard2.1": {
         "framework": "netstandard2.1",
-        "targetAlias": ".NETStandard,Version=v2.1",
+        "targetAlias": "netstandard2.1",
         "imports": [
           "net461",
           "net462",
@@ -62,12 +62,6 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "NETStandard.Library.Ref",
-            "version": "[2.1.0, 2.1.0]"
-          }
-        ],
         "frameworkReferences": {
           "NETStandard.Library": {
             "privateAssets": "all"

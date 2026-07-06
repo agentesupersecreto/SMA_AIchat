@@ -90,7 +90,7 @@ namespace DialogInterceptorMod.API
             // Stop at the model's own <end_of_turn> / next <start_of_turn> if it kept going.
             textoIA = TruncateAtTurnBoundary(textoIA);
 
-            ProcessAIResponse(textoIA);
+            AIResponseProcessor.ProcessResponse(textoIA, _behaviour, "Gemma");
             _behaviour.Window.AwaitingResponse = false;
         }
 
@@ -151,85 +151,6 @@ namespace DialogInterceptorMod.API
         }
 
         /// <summary>
-        /// Extracts [CMD: ...] tags from the model's free-text reply and applies them,
-        /// then trims the history to the sliding window.
-        /// </summary>
-        private void ProcessAIResponse(string respuesta)
-        {
-            try
-            {
-                respuesta = JsonHelper.StripMarkdownCodeBlocks(respuesta);
-
-                string dialogo = respuesta;
-                var matches = System.Text.RegularExpressions.Regex.Matches(
-                    dialogo, @"\[CMD:\s*([^\]]+)\]", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
-                var comandosEncontrados = new System.Collections.Generic.List<string>();
-
-                foreach (System.Text.RegularExpressions.Match m in matches)
-                {
-                    string contenido = m.Groups[1].Value.Trim();
-                    dialogo = dialogo.Replace(m.Value, "");
-
-                    // Support comma-separated commands like [CMD: give_consent, pose:kneel]
-                    string[] subCmds = contenido.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-                    foreach (var sub in subCmds)
-                    {
-                        string c = sub.Trim();
-                        if (!string.IsNullOrEmpty(c) && c.ToLower() != "null")
-                            comandosEncontrados.Add(c);
-                    }
-                }
-                dialogo = dialogo.Trim();
-
-                // Small models sometimes emit JSON despite plain-text instructions.
-                if (dialogo.StartsWith("{") && dialogo.Contains("\"dialogo\""))
-                {
-                    string innerDialogo = JsonHelper.ExtractJsonValue(dialogo, "dialogo");
-                    if (!string.IsNullOrEmpty(innerDialogo))
-                    {
-                        string innerComando = JsonHelper.ExtractJsonValue(dialogo, "comando");
-                        if (!string.IsNullOrEmpty(innerComando))
-                        {
-                            string[] subCmds = innerComando.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-                            foreach (var sub in subCmds)
-                            {
-                                string c = sub.Trim();
-                                if (!string.IsNullOrEmpty(c) && c.ToLower() != "null" && !comandosEncontrados.Contains(c))
-                                    comandosEncontrados.Add(c);
-                            }
-                        }
-                        dialogo = innerDialogo;
-                    }
-                }
-
-                _behaviour.ChatHistory.Add(new ChatMessage(false, dialogo));
-                _behaviour.Window.ScrollToBottom();
-                _behaviour.Window.SetStatus("[OK] Response received (Gemma).", false);
-
-                ShowInBark(dialogo);
-
-                foreach (string cmd in comandosEncontrados)
-                {
-                    string feedback = CommandExecutor.ExecuteCommand(cmd, _behaviour.Window.SetStatus, _behaviour.Window.ShowEmotionFeedback);
-                    _behaviour.ChatHistory.Add(ChatMessage.SystemMessage($"⚡ {feedback}"));
-                }
-
-                if (comandosEncontrados.Count > 0)
-                    _behaviour.Window.ScrollToBottom();
-
-                // Sliding window: trim old messages beyond the window.
-                int maxMessages = (SLIDING_WINDOW_SIZE * 2) + 4; // small buffer
-                while (_behaviour.ChatHistory.Count > maxMessages)
-                    _behaviour.ChatHistory.RemoveAt(0);
-            }
-            catch (Exception ex)
-            {
-                Plugin.Log.LogError($"Error proccesing Gemma response: {ex.Message}");
-                _behaviour.Window.SetStatus("[ERROR] Error proccesing Gemma response.", true);
-            }
-        }
-
-        /// <summary>
         /// If the model continues past its own turn (emitting a new control token),
         /// cut the reply at that boundary so we only keep the model's actual line.
         /// </summary>
@@ -242,18 +163,6 @@ namespace DialogInterceptorMod.API
             int nextEnd = text.IndexOf(END_OF_TURN, StringComparison.Ordinal);
             if (nextEnd >= 0) cut = Math.Min(cut, nextEnd);
             return text.Substring(0, cut).Trim();
-        }
-
-        private void ShowInBark(string texto)
-        {
-            ControlladorDeBarkDePersonalidad[] controladores = UnityEngine.Object.FindObjectsOfType<ControlladorDeBarkDePersonalidad>(true);
-            if (controladores != null && controladores.Length > 0)
-            {
-                foreach (var c in controladores)
-                {
-                    c.Bark(texto, true, 100, ControllerPrioridadConfig.interrumpir, 1f, 1f);
-                }
-            }
         }
     }
 }

@@ -162,3 +162,4 @@ E:\dev\AIchat\bin\Debug\.netstandard,version=v2.1\MonoMod.RuntimeDetour.xml
 E:\dev\AIchat\obj\Debug\.netstandard,version=v2.1\AIchat.csproj.Up2Date
 E:\dev\AIchat\obj\Debug\.netstandard,version=v2.1\AIchat.dll
 E:\dev\AIchat\obj\Debug\.netstandard,version=v2.1\AIchat.pdb
+E:\dev\AIchat\obj\Debug\.netstandard,version=v2.1\AIchat.sourcelink.json

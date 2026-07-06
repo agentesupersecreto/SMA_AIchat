@@ -1,10 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ciRUYyeRtwg=",
+  "dgSpecHash": "bWK6va+SrKo=",
   "success": true,
   "projectFilePath": "E:\\dev\\AIchat\\AIchat.csproj",
-  "expectedPackageFiles": [
-    "C:\\Users\\Admin\\.nuget\\packages\\netstandard.library.ref\\2.1.0\\netstandard.library.ref.2.1.0.nupkg.sha512"
-  ],
+  "expectedPackageFiles": [],
   "logs": []
 }

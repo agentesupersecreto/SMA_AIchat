@@ -37,6 +37,8 @@ namespace DialogInterceptorMod.Game
                             string poseName = comando.Substring(5).Trim();
                             var interacciones = root.GetComponentInChildren<Assets._ReusableScripts.CuchiCuchi.Dependentes.Controllers.Interacciones.IInteraccionesDeCharacter>();
                             
+                            if (poseName.ToLower() == "standa" || poseName.ToLower() == "stand_a" || poseName.ToLower() == "stand" || poseName.ToLower() == "depierigida") poseName = "dePieRigida";
+
                             if (poseName == "dePieRigida")
                             {
                                 var poseLoader = root.GetComponentInChildren<Assets._ReusableScripts.CuchiCuchi.Controllers.AnimController>();
@@ -246,6 +248,129 @@ namespace DialogInterceptorMod.Game
                         else
                         {
                             feedback = "Action denied. Can I? command is disabled by the user.";
+                        }
+                    }
+                    else if (comando.StartsWith("add_desire:"))
+                    {
+                        if (DialogBehaviour.Instance.AllowDesireManipulation)
+                        {
+                            string[] parts = comando.Split(':');
+                            if (parts.Length >= 3)
+                            {
+                                string zone = parts[1].Trim().ToLower();
+                                if (float.TryParse(parts[2].Trim(), out float amount))
+                                {
+                                    var personalidad = root.GetComponentInChildren<Assets._ReusableScripts.CuchiCuchi.AI.Personalidad>();
+                                    if (personalidad != null)
+                                    {
+                                        object deseosObj = null;
+                                        var fieldInfo = personalidad.GetType().GetField("deseos", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+                                        if (fieldInfo != null) deseosObj = fieldInfo.GetValue(personalidad);
+
+                                        if (deseosObj != null)
+                                        {
+                                            string methodName = "";
+                                            switch (zone)
+                                            {
+                                                case "labios":
+                                                case "boca": methodName = "AumentarDeseoLabios"; break;
+                                                case "senos":
+                                                case "pechos": methodName = "AumentarDeseoSenos"; break;
+                                                case "entrepierna":
+                                                case "genitales": methodName = "AumentarDeseoEntrepierna"; break;
+                                                case "trasero":
+                                                case "nalgas": methodName = "AumentarDeseoNalgas"; break;
+                                            }
+
+                                            if (!string.IsNullOrEmpty(methodName))
+                                            {
+                                                var method = deseosObj.GetType().GetMethod(methodName, new Type[] { typeof(float), typeof(bool), typeof(float) });
+                                                if (method != null)
+                                                {
+                                                    method.Invoke(deseosObj, new object[] { amount, true, 0.05f });
+                                                    feedback = $"Added {amount} desire to {zone}.";
+                                                }
+                                                else
+                                                {
+                                                    feedback = $"Method {methodName} not found on Deseos.";
+                                                }
+                                            }
+                                            else
+                                            {
+                                                feedback = $"Unknown desire zone: {zone}.";
+                                            }
+                                        }
+                                        else
+                                        {
+                                            feedback = "Could not access Deseos object.";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            feedback = "Action denied. Desire manipulation is disabled by the user.";
+                        }
+                    }
+                    else if (comando.StartsWith("thaw:"))
+                    {
+                        if (DialogBehaviour.Instance.AllowDesireManipulation)
+                        {
+                            string[] parts = comando.Split(':');
+                            if (parts.Length >= 3)
+                            {
+                                string zone = parts[1].Trim().ToLower();
+                                if (float.TryParse(parts[2].Trim(), out float amount))
+                                {
+                                    var desHielo = root.GetComponentInChildren<Assets._ReusableScripts.CuchiCuchi.AI.Emociones.DesHielo>(true);
+                                    if (desHielo != null)
+                                    {
+                                        Assets.ParteDelCuerpoHumano parte = Assets.ParteDelCuerpoHumano.pecho;
+                                        bool found = true;
+                                        switch (zone)
+                                        {
+                                            case "boca":
+                                            case "labios": parte = Assets.ParteDelCuerpoHumano.labios; break;
+                                            case "senos":
+                                            case "pechos": parte = Assets.ParteDelCuerpoHumano.senos; break;
+                                            case "entrepierna":
+                                            case "genitales": parte = Assets.ParteDelCuerpoHumano.labiosVaginales; break;
+                                            case "trasero":
+                                            case "nalgas": parte = Assets.ParteDelCuerpoHumano.nalgas; break;
+                                            default: found = false; break;
+                                        }
+
+                                        if (found)
+                                        {
+                                            try
+                                            {
+                                                desHielo.SetTactilTo(amount, parte, Assets._ReusableScripts.CuchiCuchi.Estimulos.DireccionDeEstimulo.recibida, Assets._ReusableScripts.CuchiCuchi.Estimulos.TipoDeEstimuloTactil.caricia);
+                                                desHielo.SetTactilTo(amount, parte, Assets._ReusableScripts.CuchiCuchi.Estimulos.DireccionDeEstimulo.recibida, Assets._ReusableScripts.CuchiCuchi.Estimulos.TipoDeEstimuloTactil.beso);
+                                                desHielo.SetTactilTo(amount, parte, Assets._ReusableScripts.CuchiCuchi.Estimulos.DireccionDeEstimulo.recibida, Assets._ReusableScripts.CuchiCuchi.Estimulos.TipoDeEstimuloTactil.lambida);
+                                                feedback = $"Thaw (acclimation) increased by {amount} for {zone}.";
+                                            }
+                                            catch (Exception ex)
+                                            {
+                                                Plugin.Log.LogError($"Error in thaw: {ex.Message}");
+                                                feedback = "Error applying thaw.";
+                                            }
+                                        }
+                                        else
+                                        {
+                                            feedback = $"Unknown thaw zone: {zone}. Use boca, senos, entrepierna, or trasero.";
+                                        }
+                                    }
+                                    else
+                                    {
+                                        feedback = "Could not find DesHielo component.";
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            feedback = "Action denied. Desire manipulation is disabled by the user.";
                         }
                     }
                     else if (comando.ToLower() == "dispatch")
