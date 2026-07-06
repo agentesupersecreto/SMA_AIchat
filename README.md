@@ -1,6 +1,4 @@
-# AI Chat Mod experimental release 1.2
-
-Microsoft Defender might flag the plugin as suspicious, but you can scan the file on `virustotal.com` to verify that it's clean
+# AI Chat Mod experimental release
 
 An interactive AI-driven dialog system for *Some Modeling Agency*, powered by Google Gemini API, a local Ollama model, or a local Gemma model. Characters have persistent session memory, adapt responses based on physical/emotional state, and can be convinced through conversation to change poses, undress, or alter their own consent thresholds.
 
