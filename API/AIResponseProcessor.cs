@@ -12,8 +12,6 @@ namespace DialogInterceptorMod.API
 {
     public static class AIResponseProcessor
     {
-        private const int SLIDING_WINDOW_SIZE = 5;
-
         public static void ProcessResponse(string respuesta, DialogBehaviour behaviour, string clientName)
         {
             try
@@ -80,17 +78,23 @@ namespace DialogInterceptorMod.API
                 if (!string.IsNullOrEmpty(dialogo))
                 {
                     behaviour.ChatHistory.Add(new ChatMessage(false, dialogo));
+                    behaviour.Memory.TotalExchangeCount++;
+                    behaviour.Memory.AutoTag(dialogo, true);
                     behaviour.Window.ScrollToBottom();
                     behaviour.Window.SetStatus($"[OK] Response received ({clientName}).", false);
 
                     ShowInBark(dialogo);
 
+                    // Process AI response through PsychologyEngine
+                    behaviour.PsychEngine.ProcessAIResponse(dialogo);
+
+                    // Style-based sentiment (native scoring)
                     if (behaviour.UseNativeDialogueScoring && !string.IsNullOrEmpty(estiloDetectado))
                     {
                         string sentimentFeedback = SentimentAnalyzer.ApplySentimentFromStyle(estiloDetectado);
                         if (!string.IsNullOrEmpty(sentimentFeedback))
                         {
-                            behaviour.ChatHistory.Add(ChatMessage.SystemMessage($"⚡ {sentimentFeedback}"));
+                            AddSystemMessage(behaviour, $"⚡ {sentimentFeedback}");
                         }
                     }
                     else if (behaviour.AllowSentimentReactions)
@@ -98,7 +102,7 @@ namespace DialogInterceptorMod.API
                         string sentimentFeedback = SentimentAnalyzer.ApplySentiment(dialogo);
                         if (!string.IsNullOrEmpty(sentimentFeedback))
                         {
-                            behaviour.ChatHistory.Add(ChatMessage.SystemMessage($"⚡ {sentimentFeedback}"));
+                            AddSystemMessage(behaviour, $"⚡ {sentimentFeedback}");
                         }
                     }
                 }
@@ -110,22 +114,32 @@ namespace DialogInterceptorMod.API
                 foreach (string cmd in comandosEncontrados)
                 {
                     string feedback = CommandExecutor.ExecuteCommand(cmd, behaviour.Window.SetStatus, behaviour.Window.ShowEmotionFeedback);
-                    behaviour.ChatHistory.Add(ChatMessage.SystemMessage($"⚡ {feedback}"));
+                    AddSystemMessage(behaviour, $"⚡ {feedback}");
                 }
 
                 if (comandosEncontrados.Count > 0)
                     behaviour.Window.ScrollToBottom();
 
-                // Sliding window: trim old messages
-                int maxMessages = (SLIDING_WINDOW_SIZE * 2) + 4;
-                while (behaviour.ChatHistory.Count > maxMessages)
-                    behaviour.ChatHistory.RemoveAt(0);
+                // Save history after AI response
+                behaviour.Window.SaveChatHistory();
             }
             catch (Exception ex)
             {
                 Plugin.Log.LogError($"Error processing {clientName} response: {ex.Message}");
                 behaviour.Window.SetStatus($"[ERROR] Processing {clientName} response.", true);
             }
+        }
+
+        /// <summary>
+        /// Adds a system message, respecting the spam filter.
+        /// </summary>
+        private static void AddSystemMessage(DialogBehaviour behaviour, string message)
+        {
+            if (behaviour.SpamFilter.ShouldShow(message))
+            {
+                behaviour.ChatHistory.Add(ChatMessage.SystemMessage(message));
+            }
+            // If filtered, it goes into the batch queue inside SpamFilter
         }
 
         private static void ShowInBark(string texto)

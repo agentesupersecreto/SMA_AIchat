@@ -8,6 +8,8 @@ using Assets._ReusableScripts.CuchiCuchi.Dependentes.DialogueSystem.Estimulacion
 using Assets._ReusableScripts.CuchiCuchi.Estimulos;
 using Assets._ReusableScripts.CuchiCuchi.Ropa;
 using DialogInterceptorMod.Core;
+using Assets._ReusableScripts.Controllers;
+using Assets._ReusableScripts.CuchiCuchi._CharactersBasics;
 
 namespace DialogInterceptorMod.Game
 {
@@ -263,9 +265,7 @@ namespace DialogInterceptorMod.Game
                                     var personalidad = root.GetComponentInChildren<Assets._ReusableScripts.CuchiCuchi.AI.Personalidad>();
                                     if (personalidad != null)
                                     {
-                                        object deseosObj = null;
-                                        var fieldInfo = personalidad.GetType().GetField("deseos", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-                                        if (fieldInfo != null) deseosObj = fieldInfo.GetValue(personalidad);
+                                        object deseosObj = personalidad.deseos;
 
                                         if (deseosObj != null)
                                         {
@@ -472,6 +472,46 @@ namespace DialogInterceptorMod.Game
                             feedback = "No clothing manager found.";
                         }
                     }
+                    else if (comando.ToLower() == "oral_open_mouth" || comando.ToLower() == "oral_close_mouth")
+                    {
+                        if (DialogBehaviour.Instance.AllowOpenMouthCommand)
+                        {
+                            try
+                            {
+                                bool open = comando.ToLower() == "oral_open_mouth";
+                                // Find the IControladorDeJaw on the character
+                                var jawController = root.GetComponentInChildren<IControladorDeJaw>();
+                                if (jawController != null && jawController.isStared)
+                                {
+                                    var ordenes = jawController.ObtenerOrdenesDeID("x",
+                                        ControllerMultipleDirectoModificableDeUnSoloFloat.TipoDeOrden.obtenerMaximoAbsoluto);
+                                    if (ordenes != null)
+                                    {
+                                        var mod = ordenes.modificable.ObtenerModificadorNotNull(jawController as UnityEngine.Object);
+                                        mod.valor.valor = open ? 25f : 0f;  // degrees of jaw opening
+                                        feedback = open ? "Mouth opened." : "Mouth closed.";
+                                    }
+                                    else
+                                    {
+                                        feedback = "Jaw controller has no 'x' axis.";
+                                    }
+                                }
+                                else
+                                {
+                                    feedback = "Jaw controller not found or not started.";
+                                }
+                            }
+                            catch (Exception mouthEx)
+                            {
+                                Plugin.Log.LogWarning($"Mouth command error: {mouthEx.Message}");
+                                feedback = $"Mouth command failed: {mouthEx.Message}";
+                            }
+                        }
+                        else
+                        {
+                            feedback = "Action denied. Mouth commands are disabled by the user.";
+                        }
+                    }
                     else if (ropaManager != null)
                     {
                         switch (comando.ToLower())
@@ -499,6 +539,9 @@ namespace DialogInterceptorMod.Game
                                     Assets._ReusableScripts.CuchiCuchi.Ropa.RopaCubre.vientreBajo, 
                                     true, null);
                                 feedback = "Removed bottom clothing.";
+                                break;
+                            case string c when (c == "can_i" || c == "thaw" || c == "add_desire" || c == "modify_trait" || c == "undress_piece"):
+                                feedback = $"Error: '{c}' requires parameters. Use the format specified in the prompt (e.g. {c}:PARAM).";
                                 break;
                             default:
                                 feedback = $"Unknown command: '{comando}'.";

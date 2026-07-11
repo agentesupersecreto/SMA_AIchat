@@ -1,7 +1,9 @@
 using System;
 using System.IO;
+using System.Collections.Generic;
 using UnityEngine;
 using DialogInterceptorMod.Core;
+using DialogInterceptorMod.Models;
 
 namespace DialogInterceptorMod.UI
 {
@@ -30,6 +32,7 @@ namespace DialogInterceptorMod.UI
         private string _ollamaUrlInput = "";
         private string _hotkeyInput = "";
         private bool _showSettings = false;
+        private bool _showDebug = false;
 
         private string _configFilePath;
         private string _customPromptPath;
@@ -37,6 +40,15 @@ namespace DialogInterceptorMod.UI
         private string _lastCustomPromptContent;
         private float _hotReloadCheckInterval = 2f;
         private float _hotReloadTimer = 0f;
+
+        // Auto-focus tracking
+        private bool _wasVisibleLastFrame = false;
+        private bool _needsFocusNextFrame = false;
+        private bool _needsRemoveFocus = false;
+
+        // Status animation
+        private float _statusDotTimer = 0f;
+        private int _statusDotCount = 0;
 
         public ChatWindow(DialogBehaviour behaviour)
         {
@@ -54,6 +66,9 @@ namespace DialogInterceptorMod.UI
             _windowRect = new Rect(Screen.width - 530, 60, 500, 650);
             if (File.Exists(_customPromptPath))
                 _lastCustomPromptWrite = File.GetLastWriteTime(_customPromptPath);
+
+            // Load chat history for current character if available
+            TryLoadChatHistory();
         }
 
         public void HandleUpdate()
@@ -63,6 +78,13 @@ namespace DialogInterceptorMod.UI
                 WindowVisible = !WindowVisible;
                 Plugin.Log.LogInfo($"Chat window: {(WindowVisible ? "opened" : "closed")}");
             }
+
+            // Auto-focus: detect open transition
+            if (WindowVisible && !_wasVisibleLastFrame)
+            {
+                _needsFocusNextFrame = true;
+            }
+            _wasVisibleLastFrame = WindowVisible;
 
             if (WindowVisible)
             {
@@ -82,6 +104,21 @@ namespace DialogInterceptorMod.UI
             {
                 _hotReloadTimer = 0f;
                 CheckHotReload();
+            }
+
+            // Animated status dots while awaiting response
+            if (AwaitingResponse)
+            {
+                _statusDotTimer += Time.deltaTime;
+                if (_statusDotTimer > 0.4f)
+                {
+                    _statusDotTimer = 0f;
+                    _statusDotCount = (_statusDotCount + 1) % 4;
+                    string dots = new string('.', _statusDotCount + 1);
+                    string providerName = _behaviour.UseOllama ? $"Ollama ({_behaviour.OllamaModel})" : "Gemini";
+                    _statusText = $"⏳ Thinking{dots} ({providerName})";
+                    _statusIsError = false;
+                }
             }
         }
 
@@ -133,10 +170,16 @@ namespace DialogInterceptorMod.UI
         private void DrawWindow(int id)
         {
             GUILayout.BeginHorizontal();
-            GUILayout.Label("[AI Chat v 1.2 beta] made by agenteSuperSecreto", ChatStyles.TitleStyle);
-            if (GUILayout.Button(_showSettings ? "Chat" : "Config", ChatStyles.ButtonStyle, GUILayout.Width(50), GUILayout.Height(28)))
+            GUILayout.Label("[AI Chat v1.3] made by agenteSuperSecreto", ChatStyles.TitleStyle);
+            if (GUILayout.Button(_showDebug ? "Chat" : "Debug", ChatStyles.ButtonStyle, GUILayout.Width(65), GUILayout.Height(28)))
+            {
+                _showDebug = !_showDebug;
+                if (_showDebug) _showSettings = false;
+            }
+            if (GUILayout.Button(_showSettings ? "Chat" : "Config", ChatStyles.ButtonStyle, GUILayout.Width(65), GUILayout.Height(28)))
             {
                 _showSettings = !_showSettings;
+                if (_showSettings) _showDebug = false;
             }
             if (GUILayout.Button("X", ChatStyles.ButtonStyle, GUILayout.Width(28), GUILayout.Height(28)))
             {
@@ -149,6 +192,10 @@ namespace DialogInterceptorMod.UI
             if (_showSettings)
             {
                 DrawSettings();
+            }
+            else if (_showDebug)
+            {
+                DrawDebug();
             }
             else
             {
@@ -237,7 +284,7 @@ namespace DialogInterceptorMod.UI
                 _ollamaModelInput = GUILayout.TextField(_ollamaModelInput, ChatStyles.InputStyle, GUILayout.Height(24));
                 
                 GUILayout.Space(2);
-                GUILayout.Label("Recommended: dolphin3:8b or dolphin-llama3:8b", ChatStyles.StatusStyle);
+                GUILayout.Label("Recommended: gemma-4-E4B-it-ultra-uncensored-heretic-Q4_K_M_gguf", ChatStyles.StatusStyle);
             }
 
             GUILayout.Space(10);
@@ -255,6 +302,8 @@ namespace DialogInterceptorMod.UI
             _behaviour.AllowCanICommand = GUILayout.Toggle(_behaviour.AllowCanICommand, "Allow \"Can I?\" Touch Command");
             _behaviour.AllowDesireManipulation = GUILayout.Toggle(_behaviour.AllowDesireManipulation, "Allow AI to modify Thaw and Desire");
             _behaviour.UseNativeDialogueScoring = GUILayout.Toggle(_behaviour.UseNativeDialogueScoring, "Use Native Dialogue Scoring (Affects Favorability/Anger)");
+            _behaviour.AllowOpenMouthCommand = GUILayout.Toggle(_behaviour.AllowOpenMouthCommand, "Allow Open/Close Mouth Command");
+            _behaviour.SpamFilterEnabled = GUILayout.Toggle(_behaviour.SpamFilterEnabled, "Reduce Event Spam in Chat");
 
             GUILayout.Space(5);
             GUILayout.BeginHorizontal();
@@ -291,40 +340,90 @@ namespace DialogInterceptorMod.UI
             }
         }
 
+        private void DrawDebug()
+        {
+            GUILayout.Label("Debug Panel", ChatStyles.SectionStyle);
+            GUILayout.Space(4);
+
+            var psych = _behaviour.PsychEngine;
+            var mem = _behaviour.Memory;
+
+            GUILayout.Label($"Char: {_behaviour.CurrentCharName} ({_behaviour.CurrentCharId.Substring(0, Math.Min(8, _behaviour.CurrentCharId.Length))}...)", ChatStyles.LabelStyle);
+            GUILayout.Label($"Stage: {psych.CurrentStage} | Atmosphere: {psych.Atmosphere:F0}", ChatStyles.LabelStyle);
+            GUILayout.Space(4);
+
+            GUILayout.Label("Extended Mood:", ChatStyles.SectionStyle);
+            GUILayout.Label($"  Boredom: {psych.Boredom:F0}  Relief: {psych.Relief:F0}  Thawing: {psych.Thawing:F0}  Disgust: {psych.Disgust:F0}", ChatStyles.StatusStyle);
+            GUILayout.Space(4);
+
+            GUILayout.Label("Keyword Strengths:", ChatStyles.SectionStyle);
+            GUILayout.Label($"  Flat:{psych.Flattery:F0} Intim:{psych.Intimidation:F0} Seduc:{psych.Seduction:F0} Prof:{psych.Professionalism:F0} Humor:{psych.Humor:F0}", ChatStyles.StatusStyle);
+            GUILayout.Label($"  Empath:{psych.Empathy:F0} Domin:{psych.Dominance:F0} Vuln:{psych.Vulnerability:F0} Negot:{psych.Negotiation:F0} Provoc:{psych.Provocation:F0}", ChatStyles.StatusStyle);
+            GUILayout.Space(4);
+
+            GUILayout.Label("Personality Accelerators:", ChatStyles.SectionStyle);
+            GUILayout.Label($"  Perv:{psych.AccPervertido:F2} Exhib:{psych.AccExhibicionista:F2} Sub:{psych.AccSumiso:F2} Shy:{psych.AccTimido:F2}", ChatStyles.StatusStyle);
+            GUILayout.Label($"  Extro:{psych.AccExtrovertido:F2} Rude:{psych.AccGrosero:F2} Dom:{psych.AccDominancia:F2}", ChatStyles.StatusStyle);
+            GUILayout.Space(4);
+
+            GUILayout.Label("Memory:", ChatStyles.SectionStyle);
+            GUILayout.Label($"  Turns: {mem.TotalExchangeCount} | Tags: {mem.LongTermTags.Count}", ChatStyles.StatusStyle);
+            if (mem.LongTermTags.Count > 0)
+            {
+                int shown = Math.Min(mem.LongTermTags.Count, 5);
+                for (int i = 0; i < shown; i++)
+                    GUILayout.Label($"  • {mem.LongTermTags[i]}", ChatStyles.StatusStyle);
+            }
+            GUILayout.Space(4);
+
+            GUILayout.Label($"History: {_behaviour.ChatHistory.Count} msgs | SpamFilter: {(_behaviour.SpamFilterEnabled ? "ON" : "OFF")}", ChatStyles.StatusStyle);
+
+            GUILayout.Space(8);
+            if (GUILayout.Button("Force Reinit PsychEngine", ChatStyles.ButtonStyle, GUILayout.Height(28)))
+            {
+                var root = _behaviour.GetCharacterRoot();
+                if (root != null)
+                {
+                    _behaviour.PsychEngine.Initialize(root);
+                    SetStatus("PsychologyEngine reinitialized.", false);
+                }
+            }
+        }
+
         private void DrawChat()
         {
             string providerLabel = _behaviour.UseOllama 
                 ? $"[Ollama: {_behaviour.OllamaModel}]" 
                 : "[Gemini API]";
-            GUILayout.Label($"Provider: {providerLabel}", ChatStyles.LabelStyle);
 
+            GUILayout.Label(providerLabel, ChatStyles.LabelStyle);
             GUILayout.Space(4);
 
             GUILayout.Label("Chat History:", ChatStyles.LabelStyle);
             _chatScroll = GUILayout.BeginScrollView(_chatScroll, ChatStyles.ChatAreaStyle, GUILayout.Height(300));
             foreach (var msg in _behaviour.ChatHistory)
             {
-                GUIStyle style;
-                string prefix;
+                GUILayout.BeginHorizontal();
 
                 if (msg.IsSystem)
                 {
-                    style = ChatStyles.ChatSystemStyle;
-                    prefix = "";
+                    GUILayout.FlexibleSpace();
+                    GUILayout.Label(msg.Text, ChatStyles.ChatSystemStyle, GUILayout.MaxWidth(_windowRect.width * 0.8f));
+                    GUILayout.FlexibleSpace();
                 }
                 else if (msg.IsUser)
                 {
-                    style = ChatStyles.ChatUserStyle;
-                    prefix = "<b>Player:</b> ";
+                    GUILayout.FlexibleSpace();
+                    GUILayout.Label(msg.Text, ChatStyles.ChatUserStyle, GUILayout.MaxWidth(_windowRect.width * 0.75f));
                 }
                 else
                 {
-                    style = ChatStyles.ChatAIStyle;
-                    prefix = $"<b>{_behaviour.CurrentCharName}:</b> ";
+                    GUILayout.Label(msg.Text, ChatStyles.ChatAIStyle, GUILayout.MaxWidth(_windowRect.width * 0.75f));
+                    GUILayout.FlexibleSpace();
                 }
 
-                GUILayout.Label($"{prefix}{msg.Text}", style);
-                GUILayout.Space(3);
+                GUILayout.EndHorizontal();
+                GUILayout.Space(6);
             }
             GUILayout.EndScrollView();
 
@@ -339,19 +438,43 @@ namespace DialogInterceptorMod.UI
 
             GUILayout.Space(4);
 
-            GUILayout.Label("Your message:", ChatStyles.LabelStyle);
+            GUILayout.Label("Your message (Enter to send, Shift+Enter for new line):", ChatStyles.LabelStyle);
+
+            // Handle Enter key for sending (Shift+Enter for newline)
             Event e = Event.current;
             if (e.type == EventType.KeyDown && (e.keyCode == KeyCode.Return || e.keyCode == KeyCode.KeypadEnter))
             {
                 if (GUI.GetNameOfFocusedControl() == "ChatInput")
                 {
-                    if (!AwaitingResponse && !string.IsNullOrEmpty(_userInput))
+                    if (e.shift)
                     {
-                        bool canSend = _behaviour.UseOllama || !string.IsNullOrEmpty(_behaviour.ApiKey);
-                        if (canSend) SendMessage();
+                        // Shift+Enter: insert newline (let it pass through)
                     }
-                    e.Use();
+                    else
+                    {
+                        // Enter: send message
+                        if (!AwaitingResponse && !string.IsNullOrEmpty(_userInput))
+                        {
+                            bool canSend = _behaviour.UseOllama || !string.IsNullOrEmpty(_behaviour.ApiKey);
+                            if (canSend) SendMessage();
+                        }
+                        e.Use();
+                    }
                 }
+            }
+
+            // Auto-focus after opening window
+            if (_needsFocusNextFrame)
+            {
+                GUI.FocusControl("ChatInput");
+                _needsFocusNextFrame = false;
+            }
+
+            // Remove focus after sending
+            if (_needsRemoveFocus)
+            {
+                GUI.FocusControl("");
+                _needsRemoveFocus = false;
             }
 
             GUI.SetNextControlName("ChatInput");
@@ -364,13 +487,14 @@ namespace DialogInterceptorMod.UI
             GUILayout.BeginHorizontal();
 
             bool noChar = string.IsNullOrEmpty(_behaviour.CurrentCharId);
-            bool noPrefs = !noChar && !_behaviour.PreferencesDiscussed;
+            // Modeling stages replace the old PreferencesDiscussed gate.
+            // At 'Discuss' stage the chat is always available — no gate needed.
             bool canSendBtn = !AwaitingResponse && !string.IsNullOrEmpty(_userInput) 
                 && (_behaviour.UseOllama || !string.IsNullOrEmpty(_behaviour.ApiKey))
-                && !noChar && !noPrefs;
+                && !noChar;
             
             GUI.enabled = canSendBtn;
-            if (GUILayout.Button("Send \u279B", ChatStyles.ButtonStyle, GUILayout.Height(32)))
+            if (GUILayout.Button("Send ➛", ChatStyles.ButtonStyle, GUILayout.Height(32)))
             {
                 SendMessage();
             }
@@ -380,26 +504,36 @@ namespace DialogInterceptorMod.UI
             {
                 _behaviour.ChatHistory.Clear();
                 _behaviour.ChatSummary = "";
-                SetStatus("Chat cleared.", false);
+                _behaviour.Memory.Clear();
+                ClearSavedHistory();
+                SetStatus("Chat & memory cleared.", false);
             }
             GUILayout.EndHorizontal();
 
+            // Bottom Status Bar
+            GUILayout.Space(8);
+            GUILayout.BeginHorizontal();
+            
+            var psych = _behaviour.PsychEngine;
+            string stageLabel = psych.CurrentStage.ToString();
+            
+            ChatStyles.StatusStyle.normal.textColor = new Color(0.0f, 0.85f, 0.9f); // Cyan
+            GUILayout.Label($"[Stage: {stageLabel}]  [Vibe: {psych.Atmosphere:F0}]", ChatStyles.StatusStyle);
+            
+            GUILayout.FlexibleSpace();
+
             if (noChar)
             {
-                GUILayout.Space(4);
+                ChatStyles.StatusStyle.normal.textColor = new Color(1f, 0.4f, 0.4f);
                 GUILayout.Label("No character present.", ChatStyles.StatusStyle);
-            }
-            else if (noPrefs)
-            {
-                GUILayout.Space(4);
-                GUILayout.Label("You must ask about her preferences first (Chat \u279B Whats your preferences?).", ChatStyles.StatusStyle);
             }
             else if (!string.IsNullOrEmpty(_statusText))
             {
-                GUILayout.Space(4);
                 ChatStyles.StatusStyle.normal.textColor = _statusIsError ? new Color(1f, 0.4f, 0.4f) : new Color(0.9f, 0.9f, 0.5f);
                 GUILayout.Label(_statusText, ChatStyles.StatusStyle);
             }
+
+            GUILayout.EndHorizontal();
         }
 
         public void SetStatus(string msg, bool error)
@@ -424,17 +558,93 @@ namespace DialogInterceptorMod.UI
             string message = _userInput.Trim();
             if (string.IsNullOrEmpty(message)) return;
 
-            _behaviour.ChatHistory.Add(new Models.ChatMessage(true, message));
+            _behaviour.ChatHistory.Add(new ChatMessage(true, message));
+            _behaviour.Memory.TotalExchangeCount++;
+            _behaviour.Memory.AutoTag(message, false);
+
+            // Process through PsychologyEngine (persuasion system)
+            var root = _behaviour.GetCharacterRoot();
+            if (root != null)
+            {
+                _behaviour.PsychEngine.ProcessPlayerMessage(message, root);
+            }
 
             _userInput = "";
             AwaitingResponse = true;
+            _needsRemoveFocus = true; // Remove focus after send
 
             string providerName = _behaviour.UseOllama ? $"Ollama ({_behaviour.OllamaModel})" : "Gemini";
-            SetStatus($"Waiting for {providerName}'s response...", false);
+            SetStatus($"⏳ Thinking... ({providerName})", false);
             ScrollToBottom();
+
+            // Save history after sending
+            SaveChatHistory();
 
             _behaviour.StartCoroutine(_behaviour.APIClient.SendMessage(message));
         }
+
+        // ── Chat History Persistence ──
+
+        private string GetHistoryFilePath()
+        {
+            if (string.IsNullOrEmpty(_behaviour.CurrentCharId)) return null;
+            string dir = Path.Combine(Path.GetDirectoryName(Plugin.ConfigPath ?? Application.dataPath), "AIchat", "history");
+            if (!Directory.Exists(dir)) Directory.CreateDirectory(dir);
+            return Path.Combine(dir, $"chat_{_behaviour.CurrentCharId}.txt");
+        }
+
+        public void SaveChatHistory()
+        {
+            string path = GetHistoryFilePath();
+            if (path == null) return;
+            try
+            {
+                var lines = new List<string>();
+                // Save only last MaxHistoryMessages
+                int start = Math.Max(0, _behaviour.ChatHistory.Count - _behaviour.MaxHistoryMessages);
+                for (int i = start; i < _behaviour.ChatHistory.Count; i++)
+                    lines.Add(_behaviour.ChatHistory[i].ToLine());
+                File.WriteAllLines(path, lines);
+                _behaviour.Memory.Save();
+            }
+            catch (Exception ex)
+            {
+                Plugin.Log.LogWarning($"Failed to save chat history: {ex.Message}");
+            }
+        }
+
+        private void TryLoadChatHistory()
+        {
+            string path = GetHistoryFilePath();
+            if (path == null || !File.Exists(path)) return;
+            try
+            {
+                var lines = File.ReadAllLines(path);
+                foreach (var line in lines)
+                {
+                    var msg = ChatMessage.FromLine(line);
+                    if (msg != null)
+                        _behaviour.ChatHistory.Add(msg);
+                }
+                Plugin.Log.LogInfo($"Loaded {_behaviour.ChatHistory.Count} chat messages from history.");
+                ScrollToBottom();
+            }
+            catch (Exception ex)
+            {
+                Plugin.Log.LogWarning($"Failed to load chat history: {ex.Message}");
+            }
+        }
+
+        private void ClearSavedHistory()
+        {
+            string path = GetHistoryFilePath();
+            if (path != null && File.Exists(path))
+            {
+                try { File.Delete(path); } catch { }
+            }
+        }
+
+        // ── Config Save/Load ──
 
         private void SaveConfig()
         {
@@ -458,6 +668,8 @@ namespace DialogInterceptorMod.UI
                     writer.WriteLine($"AllowDesireManipulation={_behaviour.AllowDesireManipulation}");
                     writer.WriteLine($"UseNativeDialogueScoring={_behaviour.UseNativeDialogueScoring}");
                     writer.WriteLine($"MaxHistoryMessages={_behaviour.MaxHistoryMessages}");
+                    writer.WriteLine($"AllowOpenMouthCommand={_behaviour.AllowOpenMouthCommand}");
+                    writer.WriteLine($"SpamFilterEnabled={_behaviour.SpamFilterEnabled}");
                 }
                 Plugin.Log.LogInfo("Config saved.");
             }
@@ -514,6 +726,8 @@ namespace DialogInterceptorMod.UI
                         case "AllowDesireManipulation": if (bool.TryParse(value, out bool desire)) _behaviour.AllowDesireManipulation = desire; break;
                         case "UseNativeDialogueScoring": if (bool.TryParse(value, out bool nat)) _behaviour.UseNativeDialogueScoring = nat; break;
                         case "MaxHistoryMessages": if (int.TryParse(value, out int maxh)) _behaviour.MaxHistoryMessages = maxh; break;
+                        case "AllowOpenMouthCommand": if (bool.TryParse(value, out bool mouth)) _behaviour.AllowOpenMouthCommand = mouth; break;
+                        case "SpamFilterEnabled": if (bool.TryParse(value, out bool spam)) _behaviour.SpamFilterEnabled = spam; break;
                     }
                 }
                 Plugin.Log.LogInfo("Config loaded.");

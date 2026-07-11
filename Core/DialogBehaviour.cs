@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using DialogInterceptorMod.Models;
@@ -27,10 +28,10 @@ namespace DialogInterceptorMod.Core
         // --- Config fields ---
         public string ApiKey = "";
         public ProviderType Provider = ProviderType.Gemini;
-        public string OllamaUrl = "http://localhost:11434/api/generate";
-        public string OllamaModel = "dolphin3:8b";
+        public string OllamaUrl = "http://localhost:11434/api/chat";
+        public string OllamaModel = "defyma85/gemma-4-E4B-it-ultra-uncensored-heretic-Q4_K_M_gguf";
         public string GemmaUrl = "http://localhost:1234/v1";
-        public string GemmaModel = "gemma-the-writer-n-restless-quill-10b-uncensored";
+        public string GemmaModel = "defyma85/gemma-4-E4B-it-ultra-uncensored-heretic-Q4_K_M_gguf";
         public KeyCode ChatHotkey { get; set; } = KeyCode.F9;
 
         /// <summary>
@@ -53,6 +54,21 @@ namespace DialogInterceptorMod.Core
         public bool AllowDesireManipulation { get; set; } = true;
         public bool UseNativeDialogueScoring { get; set; } = true;
         public int MaxHistoryMessages { get; set; } = 30;
+        public bool AllowOpenMouthCommand { get; set; } = true;
+
+        // --- Spam Filter ---
+        public SpamFilter SpamFilter { get; private set; } = new SpamFilter();
+        public bool SpamFilterEnabled
+        {
+            get => SpamFilter.Enabled;
+            set => SpamFilter.Enabled = value;
+        }
+
+        // --- Psychology Engine ---
+        public PsychologyEngine PsychEngine { get; private set; } = new PsychologyEngine();
+
+        // --- Conversation Memory ---
+        public ConversationMemory Memory { get; private set; } = new ConversationMemory();
 
         public string CurrentCharId = "";
         public string CurrentCharName = "AI";
@@ -61,9 +77,6 @@ namespace DialogInterceptorMod.Core
         public ControlladorDeBarkDePersonalidad CachedBarkController { get; private set; }
 
         // Per-bind character identity (Guid string), used to detect swaps.
-        // NOTE: GameObject.GetInstanceID() is NOT reliable here because the game
-        // pools and re-binds the female character GameObject instead of recreating
-        // it, so its instance ID stays constant across model changes.
         private string _lastCharIdString = "";
 
         public static void Initialize()
@@ -121,15 +134,23 @@ namespace DialogInterceptorMod.Core
         {
             Window.HandleUpdate();
 
+            // Flush spam filter batches
+            if (SpamFilter.Enabled)
+            {
+                string batched = SpamFilter.FlushBatch();
+                if (batched != null)
+                {
+                    ChatHistory.Add(ChatMessage.SystemMessage(batched));
+                    Window.ScrollToBottom();
+                }
+            }
+
             var controlador = FindObjectOfType<ControlladorDeBarkDePersonalidad>();
             CachedBarkController = controlador;
             if (controlador != null)
             {
                 Transform rootTransform = controlador.GetComponentInParent<Transform>().root;
 
-                // Read the per-character identity FIRST. ID_UnicoString is a fresh
-                // Guid assigned on every Bind/SoftBind, so it is the reliable signal
-                // that the model has actually changed (unlike GameObject.GetInstanceID()).
                 string newCharId = "";
                 try
                 {
@@ -150,14 +171,26 @@ namespace DialogInterceptorMod.Core
                     // Ignore errors during fetch
                 }
 
-                // Detect an actual model swap: a non-empty new id that differs from
-                // the previously seen one. On the first character detected, history
-                // is already empty so the (empty != non-empty) case is harmless.
+                // Detect character swap
                 if (!string.IsNullOrEmpty(newCharId) && newCharId != _lastCharIdString)
                 {
                     ChatHistory.Clear();
                     ChatSummary = "";
                     Plugin.Log.LogInfo($"Se detectó un cambio de personaje ({_lastCharIdString} → {newCharId}). Historial limpiado.");
+
+                    // Initialize PsychologyEngine for new character
+                    PsychEngine = new PsychologyEngine();
+                    PsychEngine.Initialize(rootTransform);
+
+                    // Bind and load memory for new character
+                    Memory = new ConversationMemory();
+                    Memory.Bind(newCharId);
+                    Memory.Load();
+                }
+                // Lazy init if engine wasn't initialized yet
+                else if (!PsychEngine.IsInitialized && rootTransform != null)
+                {
+                    PsychEngine.Initialize(rootTransform);
                 }
 
                 if (!string.IsNullOrEmpty(newCharId))
@@ -171,11 +204,6 @@ namespace DialogInterceptorMod.Core
             }
             else
             {
-                // No character present. Reset the identity so the next character we
-                // see is treated as a fresh binding, but do NOT clear chat history
-                // here — a 1-frame flicker where FindObjectOfType returns null while
-                // the pooled object is briefly inactive would otherwise wipe a valid
-                // conversation. History clearing is owned by the swap check above.
                 _lastCharIdString = "";
                 CurrentCharId = "";
                 CurrentCharName = "AI";
@@ -186,6 +214,15 @@ namespace DialogInterceptorMod.Core
         private void OnGUI()
         {
             Window.Draw();
+        }
+
+        /// <summary>
+        /// Gets the character root Transform. Returns null if no character is present.
+        /// </summary>
+        public Transform GetCharacterRoot()
+        {
+            if (CachedBarkController == null) return null;
+            return CachedBarkController.GetComponentInParent<Transform>()?.root;
         }
 
         public static void RegisterInterceptedFunction(string func)
