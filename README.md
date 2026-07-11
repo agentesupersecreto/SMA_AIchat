@@ -63,7 +63,7 @@ All settings are stored in `Some_Modeling_Agency/BepInEx/plugins/AIchat/aichat_c
 |---------|---------|-------------|
 | `ApiKey` | *(empty)* | Your Google Gemini API key |
 | `Provider` | `Gemini` | Active provider: `Gemini` or `Ollama` |
-| `OllamaUrl` | `http://localhost:11434/api/generate` | Ollama API endpoint |
+| `OllamaUrl` | `http://localhost:11434/api/chat` | Ollama API endpoint |
 | `OllamaModel` | `defyma85/gemma-4-E4B-it-ultra-uncensored-heretic-Q4_K_M_gguf` | In case of using Ollama, this is the default model name (you can change it at runtime) |
 | `ChatHotkey` | `F9` | Key to toggle the chat window |
 | `AllowSluttifyCommand` | `False` | Allow the AI to use the `sluttify` command |
