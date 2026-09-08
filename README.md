@@ -49,8 +49,9 @@ Go to https://aistudio.google.com/api-keys and create an API key (you must creat
 **For Local AI (Ollama / Gemma) Recommended**:
 1. Download Ollama from https://ollama.com/download.
 2. Open a powershell terminal, copy and paste this command `ollama run defyma85/gemma-4-E4B-it-ultra-uncensored-heretic-Q4_K_M_gguf` and press Enter.
-3. Wait for the download and extraction to complete. Upon success, it will ask you to send a message; simply don't type anything and leave the terminal open (in case you plan to use the mod).
-4. Open the game, start an interview with a model, press f9 and switch to the Ollama provider in the config panel and enter the model name (in this case `defyma85/gemma-4-E4B-it-ultra-uncensored-heretic-Q4_K_M_gguf`).
+3. Wait for the download and extraction to complete. Upon success, it will ask you to send a message; simply type /bye and/or close the terminal.
+*Make sure Ollama is running on your PC and that you have downloaded a model; for the Ollama model name, you must enter the exact name of the model (including the author, if that is how you downloaded it).*
+5. Open the game, start an interview with a model, press f9 and switch to the Ollama provider in the config panel and enter the model name (in this case `defyma85/gemma-4-E4B-it-ultra-uncensored-heretic-Q4_K_M_gguf`).
 *Note: Local AI models are resource-intensive. Ensure you have a mid-to-high-end PC. Avoid using extremely lightweight or older models, as responses will degrade.*
 
 ---
