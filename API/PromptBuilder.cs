@@ -81,15 +81,14 @@ namespace DialogInterceptorMod.API
             string mood = "";
             string psychContext = "";
             string workInfo = "";
+            string characterContext = "";
 
             try
             {
-                ControlladorDeBarkDePersonalidad controlador = DialogBehaviour.Instance.CachedBarkController;
-                if (controlador == null)
-                    controlador = UnityEngine.Object.FindObjectOfType<ControlladorDeBarkDePersonalidad>();
-                if (controlador != null)
+                characterContext = DialogBehaviour.Instance.RefreshCharacterContextAndGetPromptBlock();
+                Transform root = DialogBehaviour.Instance.CachedCharacterRoot;
+                if (root != null)
                 {
-                    Transform root = controlador.GetComponentInParent<Transform>().root;
 
                     // ── Clothing ──
                     IRopaManager ropaManager = root.GetComponentInChildren<IRopaManager>();
@@ -243,6 +242,7 @@ namespace DialogInterceptorMod.API
                 template = template.Replace("{PsychContext}", psychContext);
                 template = template.Replace("{Memory}", memory);
                 template = template.Replace("{WorkInfo}", workInfo);
+                template = template.Replace("{CharacterContext}", characterContext);
 
                 // GoTo targets
                 string goToTargets = DialogInterceptorMod.Game.MovementHelper.GetAvailableGoToTargets();
@@ -252,6 +252,11 @@ namespace DialogInterceptorMod.API
                 // Legacy compat
                 template = template.Replace("{LanguageRule}", "\nLANG: Match user's language exactly.");
                 template = template.Replace("{Instructions}", "");
+
+                // Keep older user-authored templates compatible while ensuring
+                // the richer snapshot is never silently omitted.
+                if (!string.IsNullOrEmpty(characterContext) && !template.Contains(characterContext))
+                    template += "\n" + characterContext;
 
                 return template;
             }
@@ -263,6 +268,7 @@ namespace DialogInterceptorMod.API
             sb.AppendLine(identity);
             sb.AppendLine($"[CLOTHES] {clothes}");
             if (!string.IsNullOrEmpty(traits)) sb.AppendLine(traits);
+            if (!string.IsNullOrEmpty(characterContext)) sb.AppendLine(characterContext);
             if (!string.IsNullOrEmpty(mood)) sb.AppendLine(mood);
             if (!string.IsNullOrEmpty(psychContext)) sb.AppendLine(psychContext);
             if (!string.IsNullOrEmpty(memory)) sb.Append(memory);
@@ -287,6 +293,7 @@ namespace DialogInterceptorMod.API
                 templateSb.AppendLine("{PersonalData}");
                 templateSb.AppendLine("{Vestimenta}");
                 templateSb.AppendLine("{ExtendedTraits}");
+                templateSb.AppendLine("{CharacterContext}");
                 templateSb.AppendLine("{MoodDescription}");
                 templateSb.AppendLine("{PsychContext}");
                 templateSb.Append("{Memory}");

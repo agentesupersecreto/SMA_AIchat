@@ -776,6 +776,14 @@
           }
         }
       },
+      "Unity.InputSystem/1.5.1.0": {
+        "runtime": {
+          "Unity.InputSystem.dll": {
+            "assemblyVersion": "1.5.1.0",
+            "fileVersion": "1.5.1.0"
+          }
+        }
+      },
       "TValle.Inputs/0.0.0.0": {
         "runtime": {
           "TValle.Inputs.dll": {
@@ -1171,6 +1179,14 @@
       "THS.UltimateRadialMenu/0.0.0.0": {
         "runtime": {
           "THS.UltimateRadialMenu.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "InputIcons/0.0.0.0": {
+        "runtime": {
+          "InputIcons.dll": {
             "assemblyVersion": "0.0.0.0",
             "fileVersion": "0.0.0.0"
           }
@@ -1703,6 +1719,11 @@
       "serviceable": false,
       "sha512": ""
     },
+    "Unity.InputSystem/1.5.1.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
     "TValle.Inputs/0.0.0.0": {
       "type": "reference",
       "serviceable": false,
@@ -1949,6 +1970,11 @@
       "sha512": ""
     },
     "THS.UltimateRadialMenu/0.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "InputIcons/0.0.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""

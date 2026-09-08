@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using DialogInterceptorMod.Models;
 using DialogInterceptorMod.UI;
 using DialogInterceptorMod.API;
@@ -75,9 +76,14 @@ namespace DialogInterceptorMod.Core
         public bool PreferencesDiscussed = false;
 
         public ControlladorDeBarkDePersonalidad CachedBarkController { get; private set; }
+        public Transform CachedCharacterRoot { get; private set; }
+        public CharacterContextSnapshot CharacterContext { get; private set; } = new CharacterContextSnapshot();
 
         // Per-bind character identity (Guid string), used to detect swaps.
         private string _lastCharIdString = "";
+        private float _nextControllerScanTime;
+        private const float ControllerScanInterval = 0.75f;
+        private int _lastSceneHandle = -1;
 
         public static void Initialize()
         {
@@ -134,6 +140,11 @@ namespace DialogInterceptorMod.Core
         {
             Window.HandleUpdate();
 
+            // FindObjectOfType is deliberately throttled. The character/controller
+            // usually stays stable for an entire scene, so scanning every frame
+            // only creates needless native lookups and garbage.
+            RefreshCharacterBindingIfNeeded(false);
+
             // Flush spam filter batches
             if (SpamFilter.Enabled)
             {
@@ -145,11 +156,10 @@ namespace DialogInterceptorMod.Core
                 }
             }
 
-            var controlador = FindObjectOfType<ControlladorDeBarkDePersonalidad>();
-            CachedBarkController = controlador;
+            var controlador = CachedBarkController;
             if (controlador != null)
             {
-                Transform rootTransform = controlador.GetComponentInParent<Transform>().root;
+                Transform rootTransform = CachedCharacterRoot;
 
                 string newCharId = "";
                 try
@@ -208,7 +218,52 @@ namespace DialogInterceptorMod.Core
                 CurrentCharId = "";
                 CurrentCharName = "AI";
                 PreferencesDiscussed = false;
+                CachedCharacterRoot = null;
+                CharacterContext = new CharacterContextSnapshot();
             }
+        }
+
+        /// <summary>
+        /// Rebinds the cached controller only when the scene changes, the cached
+        /// object becomes invalid, or the retry interval expires.
+        /// </summary>
+        private void RefreshCharacterBindingIfNeeded(bool force)
+        {
+            int sceneHandle = SceneManager.GetActiveScene().handle;
+            bool sceneChanged = sceneHandle != _lastSceneHandle;
+            bool cachedControllerInvalid = CachedBarkController == null || CachedCharacterRoot == null;
+            if (!force && !sceneChanged && !cachedControllerInvalid && Time.unscaledTime < _nextControllerScanTime)
+                return;
+
+            _lastSceneHandle = sceneHandle;
+            _nextControllerScanTime = Time.unscaledTime + ControllerScanInterval;
+
+            ControlladorDeBarkDePersonalidad controller = CachedBarkController;
+            if (controller == null || sceneChanged || force)
+            {
+                controller = FindObjectOfType<ControlladorDeBarkDePersonalidad>();
+            }
+
+            CachedBarkController = controller;
+            CachedCharacterRoot = null;
+            if (controller != null)
+            {
+                Transform parent = controller.GetComponentInParent<Transform>();
+                CachedCharacterRoot = parent == null ? null : parent.root;
+            }
+        }
+
+        /// <summary>
+        /// Captures the current game data on demand (normally immediately before
+        /// an AI request), never from Update. This keeps the frame loop cheap while
+        /// ensuring changes to outfit, hiring or live traits are visible to AIchat.
+        /// </summary>
+        public string RefreshCharacterContextAndGetPromptBlock()
+        {
+            RefreshCharacterBindingIfNeeded(false);
+            Transform root = GetCharacterRoot();
+            CharacterContext = CharacterContextSnapshot.Capture(root);
+            return CharacterContext.ToPromptBlock();
         }
 
         private void OnGUI()
@@ -221,8 +276,9 @@ namespace DialogInterceptorMod.Core
         /// </summary>
         public Transform GetCharacterRoot()
         {
-            if (CachedBarkController == null) return null;
-            return CachedBarkController.GetComponentInParent<Transform>()?.root;
+            if (CachedBarkController == null || CachedCharacterRoot == null)
+                return null;
+            return CachedCharacterRoot;
         }
 
         public static void RegisterInterceptedFunction(string func)

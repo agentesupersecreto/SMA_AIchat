@@ -71,11 +71,8 @@ namespace DialogInterceptorMod.Game
         {
             if (string.IsNullOrEmpty(estilo)) return null;
 
-            ControlladorDeBarkDePersonalidad controlador = DialogBehaviour.Instance.CachedBarkController
-                ?? UnityEngine.Object.FindObjectOfType<ControlladorDeBarkDePersonalidad>();
-            if (controlador == null) return null;
-
-            Transform root = controlador.GetComponentInParent<Transform>().root;
+            Transform root = DialogBehaviour.Instance.GetCharacterRoot();
+            if (root == null) return null;
             var personalidad = root.GetComponentInChildren<Assets._ReusableScripts.CuchiCuchi.AI.Personalidad>();
             if (personalidad == null) return null;
 
@@ -223,11 +220,8 @@ namespace DialogInterceptorMod.Game
         {
             try
             {
-                ControlladorDeBarkDePersonalidad controlador = DialogBehaviour.Instance.CachedBarkController
-                    ?? UnityEngine.Object.FindObjectOfType<ControlladorDeBarkDePersonalidad>();
-                if (controlador == null) return;
-
-                Transform root = controlador.GetComponentInParent<Transform>().root;
+                Transform root = DialogBehaviour.Instance.GetCharacterRoot();
+                if (root == null) return;
                 var emociones = root.GetComponentInChildren<Assets._ReusableScripts.CuchiCuchi.AI.EmocionesFemeninas>(true);
                 if (emociones == null) return;
 

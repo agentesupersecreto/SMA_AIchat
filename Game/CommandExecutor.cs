@@ -26,10 +26,9 @@ namespace DialogInterceptorMod.Game
 
             try
             {
-                ControlladorDeBarkDePersonalidad controlador = UnityEngine.Object.FindObjectOfType<ControlladorDeBarkDePersonalidad>();
-                if (controlador != null)
+                Transform root = DialogBehaviour.Instance.GetCharacterRoot();
+                if (root != null)
                 {
-                    Transform root = controlador.GetComponentInParent<Transform>().root;
                     IRopaManager ropaManager = root.GetComponentInChildren<IRopaManager>();
                     
                     if (comando.StartsWith("pose:"))
